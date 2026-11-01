@@ -12,7 +12,6 @@ title: PDI
 locale: en
 
 module:
-  proxy: direct
   hugoVersion:
     min: 0.169.0
   imports:

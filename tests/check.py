@@ -22,6 +22,7 @@ Checks:
     test site (those that Docsy didn't lay out: without .td-content, nor a td-* class on <body>,
     as Docsy's home and community pages have; Docsy's classes are its business);
   - no {{<, HAHAHUGOSHORTCODE or ZgotmplZ is left;
+  - PUBLIC has a page, and with --under, DIR has one;
   - with --links, the hrefs of PAGE's main element (a path under PUBLIC) are, in order, the list
     of EXPECTED.json.
 Docsy's print pages (_print/), which repeat every page of a section, are link targets only.
@@ -145,6 +146,10 @@ def main(argv):
         got = [n.attrs.get('href') for m in htmltree.find(trees[page], 'main') for n in walk(m) if n.tag == 'a' and 'href' in n.attrs]
         if got != want:
             errors.append(f'{page}: links {got} instead of {want}')
+    if not trees:
+        errors.append(f'{public}: no page')
+    elif under and not any(rel.replace(os.sep, '/').startswith(under) for rel in trees):
+        errors.append(f'{under}: no page')
     if under:
         # Errors on pages outside the subtree are the site's own: only what docsygen made counts.
         errors = [e for e in errors if e.split(': ', 1)[0].replace(os.sep, '/').startswith(under)

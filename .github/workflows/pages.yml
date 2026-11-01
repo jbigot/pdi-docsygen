@@ -4,22 +4,19 @@
 # the Hugo release and Dart Sass that npm installs (package.json): a released Hugo, so the site
 # exercises docsygen's template reader. docsygen has no release yet: it is checked out next to
 # this repository, and local.sh builds with it. Once it is tagged, require it in go.mod, drop the
-# second checkout and call hugo directly.
+# second checkout and call hugo directly. A pull request builds the site without deploying it.
 name: Website
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 defaults:
   run:
@@ -30,21 +27,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: pdi-docsygen
       - name: Checkout docsygen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: jbigot/docsygen
           path: docsygen
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v7
         with:
           go-version: stable
           cache-dependency-path: pdi-docsygen/go.sum
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       - name: Install npm dependencies (Hugo, Dart Sass, Bootstrap, Font Awesome)
@@ -53,19 +50,25 @@ jobs:
           npm install --global npm@11
           npm ci
       - name: Set up Pages
+        if: github.event_name != 'pull_request'
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Build
         working-directory: pdi-docsygen
         env:
           HUGO_ENVIRONMENT: production
-        run: sh build.sh --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: sh build.sh --gc --minify --baseURL "${{ steps.pages.outputs.base_url || 'https://jbigot.github.io/pdi-docsygen' }}/"
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
         with:
           path: pdi-docsygen/public
 
   deploy:
+    if: github.event_name != 'pull_request'
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -74,4 +77,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

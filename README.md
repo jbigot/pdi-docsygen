@@ -37,6 +37,10 @@ sh check.sh              # build and check: links, titles, version menus (layout
 sh bench.sh N            # time the build of N copies of the reference
 ```
 
+`tests/check.py` and `tests/htmltree.py` are copies of docsygen's `tests/site/` ones, and
+`tests/check_versions.py` of its `tests/docsy/` one, but for where it finds `htmltree.py`: update
+them from there.
+
 ## The XML
 
 `assets/doxygen/` holds Doxygen 1.18.0's XML of each version: `assets/doxygen/README.md` says how
