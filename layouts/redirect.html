@@ -1,0 +1,18 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{- /* A page that redirects to the page params.redirect names, as Hugo's alias pages do: in
+       content-pdi/, each section of PDI's documentation redirects to its latest version: /user/
+       to /user/latest/. */ -}}
+{{- $to := site.GetPage .Params.redirect -}}
+{{- if not $to -}}{{- errorf "%s: params.redirect names no page: %q" .Path .Params.redirect -}}{{- end -}}
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    <title>{{ $to.Permalink }}</title>
+    <link rel="canonical" href="{{ $to.Permalink }}">
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url={{ $to.Permalink }}">
+  </head>
+</html>

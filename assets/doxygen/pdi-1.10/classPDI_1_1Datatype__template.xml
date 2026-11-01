@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="classPDI_1_1Datatype__template" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>PDI::Datatype_template</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::enable_shared_from_this&lt; Datatype_template &gt;</basecompoundref>
+    <derivedcompoundref refid="classPDI_1_1Datatype" prot="public" virt="non-virtual">PDI::Datatype</derivedcompoundref>
+    <includes refid="datatype__template_8h" local="no">datatype_template.h</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classPDI_1_1Datatype__template_1a7cbd797b3fc189c60350f80fb0b43b47" prot="protected" static="no" mutable="no">
+        <type><ref refid="namespacePDI_1a03d9edc0d87688f72c6e11e4a6860023" kindref="member">Attributes_map</ref></type>
+        <definition>Attributes_map PDI::Datatype_template::m_attributes</definition>
+        <argsstring></argsstring>
+        <name>m_attributes</name>
+        <qualifiedname>PDI::Datatype_template::m_attributes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype_template.h" line="45" column="16" bodyfile="pdi/include/pdi/datatype_template.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPDI_1_1Datatype__template_1ad2690d41caa281e6f3410dff7caa6c7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Datatype_template::Datatype_template</definition>
+        <argsstring>(const Attributes_map &amp;attributes={})</argsstring>
+        <name>Datatype_template</name>
+        <qualifiedname>PDI::Datatype_template::Datatype_template</qualifiedname>
+        <param>
+          <type>const <ref refid="namespacePDI_1a03d9edc0d87688f72c6e11e4a6860023" kindref="member">Attributes_map</ref> &amp;</type>
+          <declname>attributes</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Creates datatype template with given attributes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attributes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>attributes of datatype template </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype_template.h" line="52" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype__template_1a4901d777744faf3d9a1ac190ac4706b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Datatype_template::Datatype_template</definition>
+        <argsstring>(PC_tree_t datatype_tree)</argsstring>
+        <name>Datatype_template</name>
+        <qualifiedname>PDI::Datatype_template::Datatype_template</qualifiedname>
+        <param>
+          <type>PC_tree_t</type>
+          <declname>datatype_tree</declname>
+        </param>
+        <briefdescription>
+<para>Creates datatype template. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If attributes are defined in datatype_tree, they will be included in datatype template</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>datatype_tree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>datatype tree </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype_template.h" line="60" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype__template_1a8722c4b873d42931d8e159abaa62ff27" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual PDI::Datatype_template::~Datatype_template</definition>
+        <argsstring>()</argsstring>
+        <name>~Datatype_template</name>
+        <qualifiedname>PDI::Datatype_template::~Datatype_template</qualifiedname>
+        <briefdescription>
+<para>Destroys the template. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype_template.h" line="64" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype__template_1a279595fa23744ff10ac01d617e59b8c5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="namespacePDI_1aad4d6c91036390acf42b8cee31f8289c" kindref="member">Datatype_sptr</ref></type>
+        <definition>virtual Datatype_sptr PDI::Datatype_template::evaluate</definition>
+        <argsstring>(Context &amp;ctx) const =0</argsstring>
+        <name>evaluate</name>
+        <qualifiedname>PDI::Datatype_template::evaluate</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1a7a9ddb0343c43becde0298b68d6312c3">evaluate</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1a3a903a6d6b9b3ea53ed3d1080e7559f0">evaluate</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1aaeaed3fd8f1631f812e89526cfdebacf">evaluate</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1ae1d69637edcf11a30700c7694c9fb4d6">evaluate</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Tuple__datatype_1a0cd042dfe9e22f534a2504c757702252">evaluate</reimplementedby>
+        <param>
+          <type><ref refid="classPDI_1_1Context" kindref="compound">Context</ref> &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new datatype by resolving the value of all metadata references. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the context in which to evaluate this template </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the evaluated type that is produced </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype_template.h" line="71" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype__template_1afa92bd9faeee96f232c694c92be41efe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classPDI_1_1Expression" kindref="compound">Expression</ref></type>
+        <definition>Expression PDI::Datatype_template::attribute</definition>
+        <argsstring>(const std::string &amp;attribute_name) const</argsstring>
+        <name>attribute</name>
+        <qualifiedname>PDI::Datatype_template::attribute</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>attribute_name</declname>
+        </param>
+        <briefdescription>
+<para>Returns attribute of given name as <ref refid="classPDI_1_1Expression" kindref="compound">Expression</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attribute_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>attribute to get</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>value of attribute as <ref refid="classPDI_1_1Expression" kindref="compound">Expression</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype_template.h" line="78" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype__template_1a6cd9ace004b0a56baad6efa94146b497" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="namespacePDI_1a03d9edc0d87688f72c6e11e4a6860023" kindref="member">Attributes_map</ref> &amp;</type>
+        <definition>const Attributes_map &amp; PDI::Datatype_template::attributes</definition>
+        <argsstring>() const</argsstring>
+        <name>attributes</name>
+        <qualifiedname>PDI::Datatype_template::attributes</qualifiedname>
+        <briefdescription>
+<para>Returns all attributes as a unordered map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>all attributes as a unordered map </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype_template.h" line="84" column="22"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classPDI_1_1Datatype__template_1aa539eee3b7312a7f1be7fd85b64b5c85" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PDI::Datatype_template::load_basic_datatypes</definition>
+        <argsstring>(Context &amp;ctx)</argsstring>
+        <name>load_basic_datatypes</name>
+        <qualifiedname>PDI::Datatype_template::load_basic_datatypes</qualifiedname>
+        <param>
+          <type><ref refid="classPDI_1_1Context" kindref="compound">Context</ref> &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Adds to the context the basic Array, Record, C and Fortran datatypes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the context where to add the datatypes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype_template.h" line="91" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype__template_1ae5ffc14e8bad3f21ce30027671055f1b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PDI::Datatype_template::load_user_datatypes</definition>
+        <argsstring>(Context &amp;ctx, PC_tree_t types_tree)</argsstring>
+        <name>load_user_datatypes</name>
+        <qualifiedname>PDI::Datatype_template::load_user_datatypes</qualifiedname>
+        <param>
+          <type><ref refid="classPDI_1_1Context" kindref="compound">Context</ref> &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>PC_tree_t</type>
+          <declname>types_tree</declname>
+        </param>
+        <briefdescription>
+<para>Adds to the context the user defined datatypes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the context where to add the datatypes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">types_tree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>with defined types </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype_template.h" line="99" column="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>PDI::Array_datatype</label>
+        <link refid="classPDI_1_1Array__datatype"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>PDI::Datatype</label>
+        <link refid="classPDI_1_1Datatype"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>PDI::Datatype_template</label>
+        <link refid="classPDI_1_1Datatype__template"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>PDI::Pointer_datatype</label>
+        <link refid="classPDI_1_1Pointer__datatype"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>PDI::Record_datatype</label>
+        <link refid="classPDI_1_1Record__datatype"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>PDI::Scalar_datatype</label>
+        <link refid="classPDI_1_1Scalar__datatype"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>PDI::Tuple_datatype</label>
+        <link refid="classPDI_1_1Tuple__datatype"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::enable_shared_from_this&lt; Datatype_template &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>PDI::Datatype_template</label>
+        <link refid="classPDI_1_1Datatype__template"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::enable_shared_from_this&lt; Datatype_template &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="pdi/include/pdi/datatype_template.h" line="42" column="1" bodyfile="pdi/include/pdi/datatype_template.h" bodystart="43" bodyend="100"/>
+    <listofallmembers>
+      <member refid="classPDI_1_1Datatype__template_1afa92bd9faeee96f232c694c92be41efe" prot="public" virt="non-virtual"><scope>PDI::Datatype_template</scope><name>attribute</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a6cd9ace004b0a56baad6efa94146b497" prot="public" virt="non-virtual"><scope>PDI::Datatype_template</scope><name>attributes</name></member>
+      <member refid="classPDI_1_1Datatype__template_1ad2690d41caa281e6f3410dff7caa6c7d" prot="public" virt="non-virtual"><scope>PDI::Datatype_template</scope><name>Datatype_template</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a4901d777744faf3d9a1ac190ac4706b0" prot="public" virt="non-virtual"><scope>PDI::Datatype_template</scope><name>Datatype_template</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a279595fa23744ff10ac01d617e59b8c5" prot="public" virt="pure-virtual"><scope>PDI::Datatype_template</scope><name>evaluate</name></member>
+      <member refid="classPDI_1_1Datatype__template_1aa539eee3b7312a7f1be7fd85b64b5c85" prot="public" virt="non-virtual"><scope>PDI::Datatype_template</scope><name>load_basic_datatypes</name></member>
+      <member refid="classPDI_1_1Datatype__template_1ae5ffc14e8bad3f21ce30027671055f1b" prot="public" virt="non-virtual"><scope>PDI::Datatype_template</scope><name>load_user_datatypes</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a7cbd797b3fc189c60350f80fb0b43b47" prot="protected" virt="non-virtual"><scope>PDI::Datatype_template</scope><name>m_attributes</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a8722c4b873d42931d8e159abaa62ff27" prot="public" virt="virtual"><scope>PDI::Datatype_template</scope><name>~Datatype_template</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

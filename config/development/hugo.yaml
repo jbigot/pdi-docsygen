@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>
+# SPDX-License-Identifier: MIT
+# hugo server's environment, development: build only the versions being edited, which keeps
+# rebuilds fast. hugo builds every version (docsygen's adapter.html, development mode).
+params:
+  docsygen:
+    versions: [main, latest]

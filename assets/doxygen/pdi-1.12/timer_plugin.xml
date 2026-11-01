@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="timer_plugin" kind="page">
+    <compoundname>timer_plugin</compoundname>
+    <title>Timer plugin</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="timer_plugin_1md_plugins_2timer_2README"/></para>
+<para>The timer plugin allows measuring time spent by PDI and its plugins.</para>
+<sect1 id="timer_plugin_1timer_configuration">
+<title>Configuration</title><para>Simple plugin build: <programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>timer:<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_A:<sp/>{start:<sp/>&quot;decl_hdf5_start_timer&quot;,<sp/>stop:<sp/>&quot;decl_hdf5_stop_timer&quot;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_B:<sp/>&quot;decl_hdf5&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_C:<sp/>[&quot;toto&quot;,<sp/>&quot;titi&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_D:<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>start:<sp/>&quot;begin_timing&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stop:<sp/>&quot;end_timing&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_E:<sp/>[&quot;pdi&quot;]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>output_to:<sp/>cout</highlight></codeline>
+</programlisting></para>
+<para>The timer plugin configuration contains a list of timer names (e.g. <computeroutput>timer_A</computeroutput>, <computeroutput>timer_B</computeroutput>, etc.). Each timer will record the time spent between the <computeroutput>start</computeroutput> and <computeroutput>stop</computeroutput> events.</para>
+<para><computeroutput>timer_A</computeroutput> uses a map-styled definition where both keys <computeroutput>start</computeroutput> and <computeroutput>stop</computeroutput> are mandatory.</para>
+<para><computeroutput>timer_B</computeroutput> uses a scalar-styled definition where only the prefix of the timer events is provided. The prefix can be either a user-defined name, or the name of the PDI plugins, such as <computeroutput>decl_hdf5</computeroutput>, <computeroutput>decl_netcdf</computeroutput>, <computeroutput>pycall</computeroutput>, etc. If the prefix is the PDI plugin, internal events named with <computeroutput>prefix_start_timer</computeroutput> and <computeroutput>prefix_stop_timer</computeroutput> will be emitted inside the plugin (except <computeroutput>set_value</computeroutput>). In the above example, <computeroutput>timer_B</computeroutput> is equivalent to <computeroutput>timer_A</computeroutput>.</para>
+<para><computeroutput>timer_C</computeroutput> uses a list-styled definition where a list of prefix is provided. If the name is not one of the PDI plugins&apos; name, then it is the user&apos;s responsibility to emit the <computeroutput>prefix_start_timer</computeroutput> and <computeroutput>prefix_stop_timer</computeroutput> events. In this example, <computeroutput>timer_C</computeroutput> will record the time spent between <computeroutput>toto_start_timer</computeroutput>, <computeroutput>toto_stop_timer</computeroutput>, and between <computeroutput>titi_start_timer</computeroutput>, <computeroutput>titi_stop_timer</computeroutput>.</para>
+<para>It is also possible to have different names for start and stop events such as <computeroutput>timer_D</computeroutput>.</para>
+<para>To measure the wall time used spent between <computeroutput>PDI_init</computeroutput> and <computeroutput>PDI_finalize</computeroutput>, one can define a timer as shown by <computeroutput>timer_E</computeroutput> with timer prefix &quot;pdi&quot;. Please notie that, this timer include time spent on the simulation as well.</para>
+<para><computeroutput>output_to</computeroutput> (<computeroutput>cout</computeroutput> by default) key allows directing the timer results to either standard output or a file (e.g. <computeroutput>output_to: timer.csv</computeroutput>). The name <computeroutput>cout</computeroutput> is reserved for standard output so can not be used to name the output file. Please also note that, PDI timer plugin uses the <computeroutput>flock</computeroutput> to perform sequential writing of multiple processes to a single file. This can fail if the underlying filesystem does not support <computeroutput>flock</computeroutput>. We suggest user to use the standard output. </para>
+</sect1>
+    </detaileddescription>
+    <location file="plugins/timer/README.md"/>
+  </compounddef>
+</doxygen>

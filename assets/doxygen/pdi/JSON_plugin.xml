@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="JSON_plugin" kind="page">
+    <compoundname>JSON_plugin</compoundname>
+    <title>JSON plugin</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="JSON_plugin_1md_plugins_2json_2README"/></para>
+<para><bold>WARNING</bold> This documentation is a work in progress and does not reflect the full potential of the JSON plugin.</para>
+<para>The JSON plugin enables users to export data in valid JSON format and allows for custom writing formats (<ref refid="JSON_plugin_1json_custom_format" kindref="member">The JSON plugin for custom formating</ref>).</para>
+<para>This plugin allows writing multiple variables in the same file as soon as they are available.</para>
+<para>It supports not only basic data types such as scalar, array, record, tuple, and pointer, but also complex and nested combinations of these types. This includes multi-level arrays, multi-level records, and any mixture of the supported basic types at arbitrary levels of nesting. However, not all combinations are fully tested.</para>
+<para>It ensures a JSON valid format at all times, even if the simulation crashes and PDI is not finalized, due to its incremental writing. <bold>Warning:</bold> this may result in increased disk bandwidth and may not be ideal for a performance-sensitive context.</para>
+<para>Conditionnal writing is supported.</para>
+<para>The write to file is only triggered when a variable is shared to PDI with read permission given.</para>
+<para>Note that is written to this file the variable whichever variables listed in the &quot;write&quot; section when PDI is granted read permission.</para>
+<para>The JSON plugin doesn&apos;t yet support the function of waiting for multiple variables to be readable before writing them.</para>
+<sect1 id="JSON_plugin_1json_configuration_grammar">
+<title>Configuration grammar</title><para>There are two syntax for the JSON configuration file: First one is <computeroutput>var_name: file_path.json</computeroutput>, as for example :</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>json:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>data1:<sp/>file_path.json<sp/></highlight></codeline>
+</programlisting></para>
+<para>The second one starts with <computeroutput>- file: file_path.json</computeroutput> with arguments below</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;file&quot;</computeroutput> (<emphasis>mandatory</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>Name of the output file  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;write&quot;</computeroutput> (<emphasis>mandatory</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>The variables to be writen  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;when&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>Indicate some kind of condition  </para>
+</entry></row>
+</table>
+</para>
+<para>For example,</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>json:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>file:<sp/>file_path.json</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>iteration<sp/>%<sp/>10<sp/>=<sp/>0<sp/>#<sp/>This<sp/>is<sp/>optional</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write:<sp/>[data1,<sp/>data2,<sp/>...]</highlight></codeline>
+</programlisting></para>
+<para>Note : By default, if the key &quot;when&quot; is not specified, a true condition is set so that the variable is written every time PDI is granted read permission. Examples of those two syntax are given in <computeroutput>example/json.yml</computeroutput>.</para>
+</sect1>
+<sect1 id="JSON_plugin_1json_test_plugin">
+<title>Install and test the JSON plugin !</title><para>The JSON plugin relies on the <ulink url="https://github.com/nlohmann/json">nlohmann/json</ulink> library to output data to JSON format. The json library is included in the PDI repo as a submodule. To get the source code of this external library, one needs to do, from the root of PDI: <programlisting filename=".bash"><codeline><highlight class="normal">git<sp/>submodule<sp/>init</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>submodule<sp/>update</highlight></codeline>
+</programlisting> Next, users can activate the json_plugin by adding <computeroutput>BUILD_JSON_PLUGIN=ON</computeroutput> option to the PDI configuration commande.</para>
+<para>Once the plugin installed, the easiest way to test the plugin is referring to the example section, which provides a full somewhat realistic C simulation code, where PDI is enabled and the JSON plugin is used. This one can be found in <computeroutput>example</computeroutput>.</para>
+<para>To use it, first compile using CMake with <computeroutput>BUILD_TESTING</computeroutput> set to <computeroutput>ON</computeroutput>, then execute : <programlisting filename=".bash"><codeline><highlight class="normal">build/PDI_EXAMPLE/PDI_example_C<sp/>example/json.yml</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="JSON_plugin_1json_config_example">
+<title>Full configuration file example</title><para>Please refer to <computeroutput>example/json.yml</computeroutput> </para>
+</sect1>
+<sect1 id="JSON_plugin_1json_on_going_work">
+<title>On going work / Limitations</title><para><itemizedlist>
+<listitem><para>Adding support for reading variables. Currently, the JSON plugin doesn&apos;t support reading variables, only writing them. To cover more use cases, the JSON plugin should be able to read variables as well as write them.</para>
+</listitem><listitem><para>The ability to create an on-the-go structures for several variables to be produced in a single JSON object</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="JSON_plugin_1json_custom_format">
+<title>The JSON plugin for custom formating</title><para>For the sake of the example, let&apos;s imagine the following code, creating which performs a certain heat transfer simulation.</para>
+<sect2 id="JSON_plugin_1the-pdi-exposes">
+<title>The PDI exposes</title><para><programlisting filename=".C"><codeline><highlight class="normal"><ref refid="group__annotation_1ga8a760063bdab78ef03815bdb36ff9f9b" kindref="member">PDI_multi_expose</ref>(</highlight><highlight class="stringliteral">&quot;init&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;simulation_name&quot;</highlight><highlight class="normal">,<sp/>&amp;simulation_name,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;max_steps&quot;</highlight><highlight class="normal">,<sp/>&amp;max_steps,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;mesh_config&quot;</highlight><highlight class="normal">,<sp/>&amp;mesh_config,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;rank&quot;</highlight><highlight class="normal">,<sp/>&amp;rank,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>NULL)<sp/>;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>main<sp/>loop</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>step<sp/>=<sp/>0;<sp/>step<sp/>&lt;<sp/>nb_steps;<sp/>++step)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>do_compute(temp,<sp/>MPI_COMM_WORLD)<sp/>;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>share<sp/>data<sp/>at<sp/>every<sp/>iteration</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga8a760063bdab78ef03815bdb36ff9f9b" kindref="member">PDI_multi_expose</ref>(</highlight><highlight class="stringliteral">&quot;iter&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;step&quot;</highlight><highlight class="normal">,<sp/>&amp;step,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;temp&quot;</highlight><highlight class="normal">,<sp/>temp,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NULL)<sp/>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>MPI_Barrier(MPI_COMM_WORLD);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>...</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="JSON_plugin_1the-related-yaml-configuration">
+<title>The related YAML configuration</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">types:<sp/>#<sp/>[...]<sp/>including<sp/>config_t<sp/>description</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>metadata:<sp/>{rank:<sp/>int,<sp/>step:<sp/>int}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simulation_name:<sp/>{<sp/>type:<sp/>array,<sp/>subtype:<sp/>char,<sp/>size:<sp/>512<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_steps:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh_config:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>type:<sp/>struct</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>dimensions:<sp/>{<sp/>type:<sp/>array,<sp/>subtype:<sp/>int,<sp/>size:<sp/>3}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>spacings:<sp/>{<sp/>type:<sp/>array,<sp/>subtype:<sp/>int,<sp/>size:<sp/>3}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp:<sp/>#<sp/>the<sp/>main<sp/>temperature<sp/>field</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>subtype:<sp/>double</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>size:<sp/>&apos;$mesh_config.dimensions&apos;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>json:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>file:<sp/>data-$rank.json</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write:<sp/>[step,<sp/>temp]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>&apos;$step<sp/>&gt;<sp/>0</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="JSON_plugin_1json-output">
+<title>JSON output</title><para>If we run this code as is, the following JSON file would get generated.</para>
+<para><programlisting filename=".json"><codeline><highlight class="normal">[{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;simulation_name&quot;:<sp/>&quot;Heat_transfer_simulation&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;max_steps&quot;:<sp/>10,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;mesh_config&quot;:<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;dimensions&quot;:<sp/>[100,<sp/>100,<sp/>50],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;spacing&quot;:<sp/>[0.1,<sp/>0.1,<sp/>0.1]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;rank&quot;:<sp/>7,</highlight></codeline>
+<codeline><highlight class="normal">},</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;step&quot;<sp/>:<sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;temp&quot;:<sp/>[75.3,<sp/>74.7,<sp/>76.1,<sp/>...,<sp/>54.2,<sp/>55.6]</highlight></codeline>
+<codeline><highlight class="normal">},</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;step&quot;<sp/>:2,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;temp&quot;<sp/>:[01.8,<sp/>89.6,<sp/>92.7,<sp/>...,<sp/>12.5,<sp/>13.7]</highlight></codeline>
+<codeline><highlight class="normal">},</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+<codeline><highlight class="normal">]</highlight></codeline>
+</programlisting></para>
+<para>We can use this output json file to generate our custom format. For example, we can rely on <ulink url="https://mustache.github.io/">mustache</ulink> to do so.</para>
+</sect2>
+<sect2 id="JSON_plugin_1mustache-code">
+<title>Mustache code</title><para><programlisting filename=".mstch"><codeline><highlight class="normal">Simulation<sp/>{{simulation_name}}<sp/>of<sp/>{{max_steps}}<sp/>iterations.</highlight></codeline>
+<codeline><highlight class="normal">Mesh<sp/>configuration<sp/>was<sp/>of<sp/>{{mesh_config.dimensions}}<sp/>dimensions<sp/>and<sp/>{{mesh_config.spacing}}<sp/>spacings</highlight></codeline>
+<codeline><highlight class="normal">{{#temperature_data}}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>At<sp/>step<sp/>{{step}}:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>was<sp/>[{{#temp}}{{.}}{{#last}}{{^last}},{{/last}}{{/temp}}]</highlight></codeline>
+<codeline><highlight class="normal">{{/temperature_datal}}</highlight></codeline>
+</programlisting></para>
+<para>Finaly, let&apos;s print it ! We execute the json to mustache converter ...</para>
+<para><programlisting filename=".bash"><codeline><highlight class="normal">vendor/mustach/mustach<sp/>data.json<sp/>format.mstch</highlight></codeline>
+</programlisting></para>
+<para>... so we can get the following result !</para>
+<para><programlisting filename=".text"><codeline><highlight class="normal">Simulation<sp/>Heat_transfer_simulation<sp/>of<sp/>10<sp/>iterations.</highlight></codeline>
+<codeline><highlight class="normal">Mesh<sp/>configuration<sp/>was<sp/>of<sp/>[100,<sp/>100,<sp/>50]<sp/>dimensions<sp/>and<sp/>[0.1,<sp/>0.1,<sp/>0.1]<sp/>spacings</highlight></codeline>
+<codeline><highlight class="normal">At<sp/>step<sp/>1,<sp/>temp<sp/>was<sp/>[75.3,<sp/>74.7,<sp/>76.1,<sp/>...,<sp/>54.2,<sp/>55.6]</highlight></codeline>
+<codeline><highlight class="normal">At<sp/>step<sp/>2,<sp/>temp<sp/>was<sp/>[91.8,<sp/>89.6,<sp/>92.7,<sp/>...,<sp/>12.5,<sp/>13.7]</highlight></codeline>
+<codeline><highlight class="normal">...</highlight></codeline>
+</programlisting> </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+    <location file="plugins/json/README.md"/>
+  </compounddef>
+</doxygen>

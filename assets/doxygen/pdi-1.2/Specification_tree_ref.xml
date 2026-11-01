@@ -1,0 +1,696 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="Specification_tree_ref" kind="page">
+    <compoundname>Specification_tree_ref</compoundname>
+    <title>Specification tree Reference</title>
+    <innerpage refid="YAML">YAML</innerpage>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>The PDI specification tree is expressed in <ref refid="YAML" kindref="compound">YAML</ref>.</para>
+<sect1 id="Specification_tree_ref_1root_node">
+<title>specification tree root</title><para>The <emphasis>specification tree root</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="7" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"types"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1types_map_node" kindref="member">types_map</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"data"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1data_map_node" kindref="member">data_map</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"metadata"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1data_map_node" kindref="member">data_map</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"plugins"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1plugin_map_node" kindref="member">plugin_map</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"plugin_path"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1plugin_path_map_node" kindref="member">plugin_path</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>".*"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para><emphasis>anything</emphasis>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>the <computeroutput>types</computeroutput> section specifies user-defined datatypes</para>
+</listitem><listitem><para>the <computeroutput>data</computeroutput> and <computeroutput>metadata</computeroutput> sections specify the type of the data in buffers exposed by the application; for <computeroutput>metadata</computeroutput>, PDI keeps a copy while it only keeps references for <computeroutput>data</computeroutput>,</para>
+</listitem><listitem><para>the <computeroutput>plugin</computeroutput> section specifies the list of plugins to load and their configuration,</para>
+</listitem><listitem><para>additional sections are ignored.</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">metadata:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>my_metadata:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>my_data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>subtype:<sp/>double</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size:<sp/>5</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>decl_hdf5:<sp/></highlight><highlight class="comment">#...</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>mpi:<sp/></highlight><highlight class="comment">#...</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1array_type_node">
+<title>array_type</title><para>A <emphasis>array_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="6" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"array"</computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"size"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1intexpr_or_seq_node" kindref="member">intexpr_or_seq</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"subtype"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1datatype_node" kindref="member">datatype</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"subsize"</computeroutput> (<emphasis>optional, deprecated</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1intexpr_or_seq_node" kindref="member">intexpr_or_seq</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"start"</computeroutput> (<emphasis>optional, deprecated</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1intexpr_or_seq_node" kindref="member">intexpr_or_seq</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <emphasis>array_type_node</emphasis> represents a potentially multi-dimensional array where:<itemizedlist>
+<listitem><para>the value associated to the <computeroutput>size</computeroutput> key represents the size of the array in each dimension (C order),</para>
+</listitem><listitem><para>the value associated to the <computeroutput>subtype</computeroutput> key represents the type of the elements in the array,</para>
+</listitem><listitem><para>the value associated to the <computeroutput>subsize</computeroutput> key represents the number of elements to actually use in each dimension (slicing), if specified it <bold>must</bold> have the same number of elements as <computeroutput>size</computeroutput>, this defaults to the full array size in each dimension,</para>
+</listitem><listitem><para>the value associated to the <computeroutput>start</computeroutput> key represents the index of the first element to actually use in each dimension (slicing), if specified it <bold>must</bold> have the same number of elements as <computeroutput>size</computeroutput>, this defaults to the first (0) element in each dimension.</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Examples:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal">subtype:<sp/>double</highlight></codeline>
+<codeline><highlight class="normal">size:<sp/>5</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal">subtype:<sp/>{<sp/>type:<sp/>character,<sp/>kind:<sp/>4<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">size:<sp/>[<sp/></highlight><highlight class="stringliteral">&apos;$size_1d&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;$size_2d&apos;</highlight><highlight class="normal"><sp/>]</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1char_type_node">
+<title>char_type</title><para>A <emphasis>char_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"char"</computeroutput>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <emphasis>char_type</emphasis> represents the C <computeroutput>char</computeroutput> datatype; it accepts no parameter.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>char</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1character_type_node">
+<title>character_type</title><para>A <emphasis>character_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"character"</computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"kind"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1expression_node" kindref="member">integer-valued $-expression</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <emphasis>character_type_node</emphasis> represents the Fortran <computeroutput>character</computeroutput> datatype. The value associated to the <computeroutput>kind</computeroutput> key corresponds to the Fortran <emphasis>kind</emphasis> parameter (<computeroutput>character(kind=...)</computeroutput>).</para>
+<para><bold>Examples:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>character</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>character</highlight></codeline>
+<codeline><highlight class="normal">kind:<sp/>4</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1datatype_node">
+<title>datatype</title><para>A <emphasis>datatype</emphasis> can be <bold>any of</bold>:<itemizedlist>
+<listitem><para>a <ref refid="Specification_tree_ref_1array_type_node" kindref="member">array_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1char_type_node" kindref="member">char_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1character_type_node" kindref="member">character_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1double_type_node" kindref="member">double_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1float_type_node" kindref="member">float_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1int_type_node" kindref="member">int_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1int16_type_node" kindref="member">int16_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1int32_type_node" kindref="member">int32_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1int64_type_node" kindref="member">int64_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1int8_type_node" kindref="member">int8_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1integer_type_node" kindref="member">integer_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1logical_type_node" kindref="member">logical_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1real_type_node" kindref="member">real_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1record_type_node" kindref="member">record_type</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1simple_datatype_node" kindref="member">simple_datatype</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1struct_type_node" kindref="member">struct_type</ref>,</para>
+</listitem><listitem><para>any user-defined datatype name.</para>
+</listitem></itemizedlist>
+</para>
+<para>Amongst these, <ref refid="Specification_tree_ref_1simple_datatype_node" kindref="member">simple_datatype</ref> is the only scalar. All others are dictionaries with a <computeroutput>type</computeroutput> key used for disambiguation between them. Plugins can add new options that follow the same pattern.</para>
+<para>A <emphasis>datatype</emphasis> represents the memory layout and interpretation for data exposed by the user in the <ref refid="Concepts_1Data_store" kindref="member">data store</ref>.</para>
+</sect1>
+<sect1 id="Specification_tree_ref_1data_map_node">
+<title>data_map</title><para>A <emphasis>data_map</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>".*"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1datatype_node" kindref="member">datatype</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>each key identifies the name of a buffer exposed to PDI associated to its type.</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">my_data_1:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">my_data_2:<sp/>{type:<sp/>array,<sp/>subtype:<sp/>double,<sp/>size:<sp/>5}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1double_type_node">
+<title>double_type</title><para>A <emphasis>double_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"double"</computeroutput>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <emphasis>double_type</emphasis> represents the C <computeroutput>double</computeroutput> type. It accepts no parameter.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>double</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1expression_node">
+<title>$-expression</title><para>A <emphasis>$-expression</emphasis> is a <bold>scalar</bold> whose content matches the following grammar:</para>
+<para><programlisting filename="docs/expression_grammar.in.txt"><codeline><highlight class="comment">/*<sp/>parsing<sp/>as<sp/>a<sp/>REFERENCE<sp/>is<sp/>preferred<sp/>over<sp/>OPERATION</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>parsing<sp/>as<sp/>an<sp/>OPERATION<sp/>is<sp/>preferred<sp/>over<sp/>STRING_LITERAL</highlight></codeline>
+<codeline><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">EXPRESSION<sp/><sp/><sp/><sp/><sp/>:=<sp/>REFERENCE<sp/>|<sp/>OPERATION<sp/>|<sp/>STRING_LITERAL</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">STRING_LITERAL<sp/>:=<sp/>(<sp/>CHAR<sp/>|<sp/></highlight><highlight class="charliteral">&apos;\&apos;</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;\&apos;</highlight><highlight class="normal"><sp/>|<sp/></highlight><highlight class="charliteral">&apos;\&apos;</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;$&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>REFERENCE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/></highlight><highlight class="charliteral">&apos;$&apos;</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;(&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="charliteral">&apos;)&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>The<sp/>operator<sp/>descending<sp/>precedence<sp/>order<sp/>is:</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>1.<sp/>*,<sp/>/,<sp/>%:<sp/>multiplication,<sp/>division<sp/>and<sp/>modulo,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>2.<sp/>+,<sp/>-:<sp/>addition<sp/>and<sp/>subtraction,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>3.<sp/>&lt;,<sp/>&gt;:<sp/>less<sp/>than<sp/>and<sp/>greater<sp/>than,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>4.<sp/>=:<sp/>equality,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>5.<sp/>&amp;:<sp/>logical<sp/>AND,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>6.<sp/>|:<sp/>logical<sp/>OR.</highlight></codeline>
+<codeline><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">OPERATION<sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>TERM<sp/>(<sp/>OPERATOR<sp/>TERM<sp/>)*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">TERM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>(<sp/>INT_LITERAL<sp/>|<sp/>REFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;(&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="stringliteral">&apos;)&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">REFERENCE<sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/></highlight><highlight class="stringliteral">&apos;$&apos;</highlight><highlight class="normal"><sp/>(<sp/>IREFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;{&apos;</highlight><highlight class="normal"><sp/>IREFERENCE<sp/></highlight><highlight class="stringliteral">&apos;}&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">IREFERENCE<sp/><sp/><sp/><sp/><sp/>:=<sp/>ID<sp/>(<sp/></highlight><highlight class="stringliteral">&apos;[&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="stringliteral">&apos;]&apos;</highlight><highlight class="normal"><sp/>|<sp/></highlight><highlight class="stringliteral">&apos;.&apos;</highlight><highlight class="normal"><sp/>ID<sp/>)*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">INT_LITERAL<sp/>~=<sp/>(0x)?<sp/>[0-9]+<sp/>(<sp/>\.<sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">ID<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~=<sp/>[a-zA-Z_][a-zA-Z0-9_]*</highlight></codeline>
+<codeline><highlight class="normal">CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~=<sp/>[^$\\]</highlight></codeline>
+<codeline><highlight class="normal">OPERATOR<sp/><sp/><sp/><sp/>~=<sp/>[|&amp;=&lt;&gt;+\-\*/%]</highlight></codeline>
+</programlisting></para>
+<para>The rules for evaluating an expression are close to those of BASH for example.</para>
+<para>In addition to raw text, a <computeroutput>STRING_LITERAL</computeroutput> can contain references to the string value of some data in the store as well as the result of an operation by enclosing it inside a dollar-parenthesis <computeroutput>$()</computeroutput>.</para>
+<para>An <computeroutput>OPERATION</computeroutput> can include logical and arithmetic operators grouped by parenthesis. The basic terms manipulated in an operation can be integer literals or references to the integer value of some data in the store.</para>
+<para>A <computeroutput>REFERENCE</computeroutput> is introduced by a dollar <computeroutput>$</computeroutput> sign and optionally enclosed in curly braces <computeroutput>{</computeroutput>, <computeroutput>}</computeroutput>. Its value is that of the data or metadata with the associated name. It is always a good idea to have referenced values in the metadata section as it prevents dangling references. Value formatting can be applied using a FMT <computeroutput>format_spec</computeroutput> string by adding a column <computeroutput>:</computeroutput> followed by the <computeroutput>format_spec</computeroutput> after a column just before the closing bracket <computeroutput>}</computeroutput> (see: <ulink url="https://fmt.dev/latest/syntax.html#grammar-token-format_spec">https://fmt.dev/latest/syntax.html#grammar-token-format_spec</ulink>). A direct reference is possible as well as sub-references to:<itemizedlist>
+<listitem><para>array elements using the square brackets <computeroutput>[</computeroutput>, <computeroutput>]</computeroutput> operator,</para>
+</listitem><listitem><para>record member using dot <computeroutput>.</computeroutput> operator.</para>
+</listitem></itemizedlist>
+</para>
+<para>The value-type of an <computeroutput>EXPRESSION</computeroutput> is as follow:<itemizedlist>
+<listitem><para>if it&apos;s a <computeroutput>REFERENCE</computeroutput>, it has the type of the referenced data in the store,</para>
+</listitem><listitem><para>if it&apos;s a <computeroutput>OPERATION</computeroutput>, it is integer-valued,</para>
+</listitem><listitem><para>if it&apos;s a <computeroutput>STRING_LITERAL</computeroutput>, it is string-valued.</para>
+</listitem></itemizedlist>
+</para>
+<para>In addition, an integer can be interpreted as a string or as a boolean value where zero is interpreted as false and any other value as true.</para>
+<para><bold>Examples:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="stringliteral">&apos;$my_data&apos;</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="stringliteral">&apos;($my_data<sp/>+<sp/>3)<sp/>%<sp/>6&apos;</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="stringliteral">&apos;${my_data.subarray[0]}<sp/>*<sp/>42&apos;</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="stringliteral">&apos;my<sp/>name<sp/>is<sp/>${my_name}&apos;</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="stringliteral">&apos;${my_data:05d}&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="stringliteral">&apos;${my_data:b}&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="stringliteral">&apos;${my_data:1.5f}&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="stringliteral">&apos;${my_data:&gt;15s}&apos;</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1float_type_node">
+<title>float_type</title><para>A <emphasis>float_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"float"</computeroutput>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <ref refid="Specification_tree_ref_1float_type_node" kindref="member">float_type</ref> represents the C <computeroutput>float</computeroutput> type. It accepts no parameter.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>float</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1int_type_node">
+<title>int_type</title><para>A <emphasis>int_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"int"</computeroutput>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <ref refid="Specification_tree_ref_1int_type_node" kindref="member">int_type</ref> represents the C <computeroutput>int</computeroutput> type. It accepts no parameter.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>int</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1int16_type_node">
+<title>int16_type</title><para>A <emphasis>int16_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"int16"</computeroutput>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <ref refid="Specification_tree_ref_1int16_type_node" kindref="member">int16_type</ref> represents the C <computeroutput>int16_t</computeroutput> type from the <computeroutput>&lt;stdtypes.h&gt;</computeroutput> header. It accepts no parameter.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>int16</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1int32_type_node">
+<title>int32_type</title><para>A <emphasis>int32_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"int32"</computeroutput>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <ref refid="Specification_tree_ref_1int32_type_node" kindref="member">int32_type</ref> represents the C <computeroutput>int32_t</computeroutput> type from the <computeroutput>&lt;stdtypes.h&gt;</computeroutput> header. It accepts no parameter.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>int32</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1int64_type_node">
+<title>int64_type</title><para>A <emphasis>int64_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"int64"</computeroutput>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <emphasis>int64_type</emphasis> represents the C <computeroutput>int64_t</computeroutput> type from the <computeroutput>&lt;stdtypes.h&gt;</computeroutput> header. It accepts no parameter.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>int64</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1int8_type_node">
+<title>int8_type</title><para>A <emphasis>int8_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"int8"</computeroutput>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <ref refid="Specification_tree_ref_1int8_type_node" kindref="member">int8_type</ref> represents the C <computeroutput>int8_t</computeroutput> type from the <computeroutput>&lt;stdtypes.h&gt;</computeroutput> header. It accepts no parameter.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>int8</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1integer_type_node">
+<title>integer_type</title><para>A <emphasis>integer_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"integer"</computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"kind"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1expression_node" kindref="member">integer-valued $-expression</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <emphasis>integer_type</emphasis> represents the Fortran <computeroutput>integer</computeroutput> datatype. The value associated to the <computeroutput>kind</computeroutput> key corresponds to the Fortran <emphasis>kind</emphasis> parameter (<computeroutput>integer(kind=...)</computeroutput>). If missing, the default kind of the Fortran implementation is used.</para>
+<para><bold>Examples:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>integer</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>integer</highlight></codeline>
+<codeline><highlight class="normal">kind:<sp/>2</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1intexpr_seq_node">
+<title>intexpr_seq</title><para>A <emphasis>intexpr_seq</emphasis> is a <bold>sequence</bold> where each element of the sequence is a <ref refid="Specification_tree_ref_1expression_node" kindref="member">integer-valued $-expression</ref>.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">[<sp/>1,<sp/></highlight><highlight class="stringliteral">&apos;2&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;$size&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&apos;$other_size<sp/>+<sp/>2&apos;</highlight><highlight class="normal"><sp/>]</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1intexpr_or_seq_node">
+<title>intexpr_or_seq</title><para>A <emphasis>intexpr_or_seq</emphasis> can be <bold>any of</bold>:<itemizedlist>
+<listitem><para>a <ref refid="Specification_tree_ref_1expression_node" kindref="member">integer-valued $-expression</ref>,</para>
+</listitem><listitem><para>a <ref refid="Specification_tree_ref_1intexpr_seq_node" kindref="member">intexpr_seq</ref>.</para>
+</listitem></itemizedlist>
+</para>
+<para>In that context, a simple <ref refid="Specification_tree_ref_1expression_node" kindref="member">$-expression</ref> is interpreted as a shortcut for a sequence containing a single <ref refid="Specification_tree_ref_1expression_node" kindref="member">$-expression</ref>.</para>
+<para>For example, the following value: <programlisting><codeline><highlight class="normal">&quot;$x<sp/>+<sp/>2&quot;</highlight></codeline>
+</programlisting></para>
+<para>is interpreted as if it was: <programlisting><codeline><highlight class="normal">[<sp/>&quot;$x<sp/>+<sp/>2&quot;<sp/>]</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1logical_type_node">
+<title>logical_type</title><para>A <emphasis>logical_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"logical"</computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"kind"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1expression_node" kindref="member">integer-valued $-expression</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <emphasis>logical_type</emphasis> represents the Fortran <computeroutput>logical</computeroutput> datatype. The value associated to the <computeroutput>kind</computeroutput> key corresponds to the Fortran <emphasis>kind</emphasis> parameter (<computeroutput>logical(kind=...)</computeroutput>). If missing, the default kind of the Fortran implementation is used.</para>
+<para><bold>Examples:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>logical</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>logical</highlight></codeline>
+<codeline><highlight class="normal">kind:<sp/>1</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1struct_member_desc_node">
+<title>struct_member_desc</title><para>A <emphasis>struct_member_desc</emphasis> is a <bold>mapping</bold> that contains the following keys: <table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a <computeroutput>scalar</computeroutput>, <computeroutput>array</computeroutput>, <computeroutput>record</computeroutput> or <computeroutput>struct</computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>".*"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para><emphasis>anything</emphasis>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>the value associated to the <computeroutput>type</computeroutput> key identifies the <ref refid="Specification_tree_ref_1datatype_node" kindref="member">type</ref> of this member, all other keys required for this <ref refid="Specification_tree_ref_1datatype_node" kindref="member">datatype</ref> must be present.</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Examples:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>struct</highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>my_char:<sp/>char</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>struct</highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>my_long:<sp/>int64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>my_array:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>subtype:<sp/>int64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>size:<sp/>[10,<sp/>10]</highlight></codeline>
+</programlisting></para>
+<para>See <ref refid="Specification_tree_ref_1struct_type_node" kindref="member">struct_type</ref> for more examples.</para>
+</sect1>
+<sect1 id="Specification_tree_ref_1record_member_desc_node">
+<title>record_member_desc</title><para>A <emphasis>record_member_desc</emphasis> is a <bold>mapping</bold> that contains the following keys: <table rows="4" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"disp"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1expression_node" kindref="member">integer-valued $-expression</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a <computeroutput>scalar</computeroutput>, <computeroutput>array</computeroutput>, <computeroutput>record</computeroutput> or <computeroutput>struct</computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>".*"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para><emphasis>anything</emphasis>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>the value associated to the <computeroutput>disp</computeroutput> key identifies the displacement in bytes from the base address of the record and the address of this specific member,</para>
+</listitem><listitem><para>the value associated to the <computeroutput>type</computeroutput> key identifies the <ref refid="Specification_tree_ref_1datatype_node" kindref="member">type</ref> of this record, all other keys required for this <ref refid="Specification_tree_ref_1datatype_node" kindref="member">datatype</ref> must be present.</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Examples:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>record</highlight></codeline>
+<codeline><highlight class="normal">buffersize:<sp/>1</highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>my_char:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>disp:<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>type:<sp/>char</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>record</highlight></codeline>
+<codeline><highlight class="normal">buffersize:<sp/>808<sp/></highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>my_long:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>disp:<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>int64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>my_array:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>disp:<sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>subtype:<sp/>int64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size:<sp/>[10,<sp/>10]</highlight></codeline>
+</programlisting></para>
+<para>See <ref refid="Specification_tree_ref_1record_type_node" kindref="member">record_type</ref> for more examples.</para>
+</sect1>
+<sect1 id="Specification_tree_ref_1struct_members_omap_node">
+<title>struct_members_omap</title><para>A <emphasis>struct_members_omap</emphasis> is an <bold>ordered mapping</bold> that contains the following keys: <table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>".*"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1struct_member_desc_node" kindref="member">struct_member_desc</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>each key identifies the name of a member and the value associated to it describes the member itself.</para>
+</listitem></itemizedlist>
+</para>
+<para>See <ref refid="Specification_tree_ref_1struct_type_node" kindref="member">struct_type</ref> for an example.</para>
+</sect1>
+<sect1 id="Specification_tree_ref_1types_map_node">
+<title>types_map</title><para>A <emphasis>types_map</emphasis> is a <bold>mapping</bold> that contains the following keys: <table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>".*"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1datatype_node" kindref="member">datatype</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>each key identifies the name of new user-defined datatype and the value associated to it describes the type</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="Specification_tree_ref_1record_members_map_node">
+<title>record_members_map</title><para>A <emphasis>record_members_map</emphasis> is a <bold>mapping</bold> that contains the following keys: <table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>".*"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1record_member_desc_node" kindref="member">record_member_desc</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>each key identifies the name of a member of the record and the value associated to it describes the member itself.</para>
+</listitem></itemizedlist>
+</para>
+<para>See <ref refid="Specification_tree_ref_1record_type_node" kindref="member">record_type</ref> for an example.</para>
+</sect1>
+<sect1 id="Specification_tree_ref_1plugin_map_node">
+<title>plugin_map</title><para>A <emphasis>plugin_map</emphasis> is a <bold>mapping</bold> that contains the following keys: <table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>".*"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para><emphasis>anything</emphasis>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>each key identifies the name of a plugin to load associated to its configuration; the content of the configuration depends on the plugin.</para>
+</listitem></itemizedlist>
+</para>
+<para>Have a look at the <ref refid="Plugins" kindref="compound">plugins</ref> documentation to see the specification tree they accept.</para>
+<para>See <ref refid="Specification_tree_ref_1root_node" kindref="member">specification tree root</ref> for an example.</para>
+</sect1>
+<sect1 id="Specification_tree_ref_1real_type_node">
+<title>real_type</title><para>A <emphasis>real_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"real"</computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"kind"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1expression_node" kindref="member">integer-valued $-expression</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <emphasis>real_type</emphasis> represents the Fortran <computeroutput>real</computeroutput> datatype. The value associated to the <computeroutput>kind</computeroutput> key corresponds to the Fortran <emphasis>kind</emphasis> parameter (<computeroutput>real(kind=...)</computeroutput>). If missing, the default kind of the Fortran implementation is used.</para>
+<para><bold>Examples:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>real</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>real</highlight></codeline>
+<codeline><highlight class="normal">kind:<sp/>8</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1struct_type_node">
+<title>struct_type</title><para>A <emphasis>struct_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"struct"</computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"members"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1struct_members_omap_node" kindref="member">struct_members_omap</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <ref refid="Specification_tree_ref_1struct_type_node" kindref="member">struct_type</ref> represents a &quot;struct&quot;, <emphasis>aka</emphasis> C &quot;struct&quot;, C++ &quot;class&quot;. Buffersize and members displacemnts will be calculated by the PDI.</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>struct</highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>first_int:<sp/>int32</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>seconf_int:<sp/>int32</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1record_type_node">
+<title>record_type</title><para>A <emphasis>record_type</emphasis> is a <bold>mapping</bold> that contains the following keys:</para>
+<para><table rows="4" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"type"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>"record"</computeroutput>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"buffersize"</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1expression_node" kindref="member">integer-valued $-expression</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>"members"</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1record_members_map_node" kindref="member">record_members_map</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para>A <ref refid="Specification_tree_ref_1record_type_node" kindref="member">record_type</ref> represents a &quot;record&quot; where:<itemizedlist>
+<listitem><para>the value associated to the <computeroutput>buffersize</computeroutput> key represents the overall size of the record, including potential padding,</para>
+</listitem><listitem><para>the value associated to the <computeroutput>members</computeroutput> key lists all members of the record with given displacements.</para>
+</listitem></itemizedlist>
+</para>
+<para><bold>Example:</bold></para>
+<para><programlisting filename=".py"><codeline><highlight class="normal">type:<sp/>record</highlight></codeline>
+<codeline><highlight class="normal">buffersize:<sp/>8</highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>first_int:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>disp:<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>int32</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>seconf_int:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>disp:<sp/>4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>int32</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1simple_datatype_node">
+<title>simple_datatype</title><para>A <emphasis>simple_datatype</emphasis> is a <bold>scalar</bold>.</para>
+<para>It is interpreted as a shortcut for a mapping with a single key <computeroutput>type</computeroutput> whose value is the provided scalar and therefore another <ref refid="Specification_tree_ref_1datatype_node" kindref="member">datatype</ref>.</para>
+<para>For example, the following value: <programlisting><codeline><highlight class="normal">&quot;my_type&quot;</highlight></codeline>
+</programlisting></para>
+<para>is interpreted as if it was: <programlisting><codeline><highlight class="normal">{<sp/>type:<sp/>&quot;my_type&quot;<sp/>}</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="Specification_tree_ref_1plugin_path_map_node">
+<title>plugin_path</title><para>A path to directory where PDI should search for plugins. It can be single path:</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">plugin_path:<sp/>&quot;/home/user123/plugins&quot;</highlight></codeline>
+</programlisting></para>
+<para>or array of paths (PDI will take first match):</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">plugin_path:<sp/>[&quot;/home/user123/plugins&quot;,<sp/>&quot;/usr/lib/pdi/plugins&quot;]</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+    <location file="pdi/docs/Specification_tree_ref.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="structPDI_1_1Yaml__region_1_1Yaml__mark" kind="struct" language="C++" prot="public">
+    <compoundname>PDI::Yaml_region::Yaml_mark</compoundname>
+    <includes refid="paraconf__wrapper_8h" local="no">paraconf_wrapper.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structPDI_1_1Yaml__region_1_1Yaml__mark_1ad775290f4a47ef2deb077898529650c4" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t PDI::Yaml_region::Yaml_mark::line</definition>
+        <argsstring></argsstring>
+        <name>line</name>
+        <qualifiedname>PDI::Yaml_region::Yaml_mark::line</qualifiedname>
+        <briefdescription>
+<para>the line of the location </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/paraconf_wrapper.h" line="61" column="8" bodyfile="pdi/include/pdi/paraconf_wrapper.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structPDI_1_1Yaml__region_1_1Yaml__mark_1ada9a5a55c12791cfeb8bf9285fe6d1e2" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t PDI::Yaml_region::Yaml_mark::column</definition>
+        <argsstring></argsstring>
+        <name>column</name>
+        <qualifiedname>PDI::Yaml_region::Yaml_mark::column</qualifiedname>
+        <briefdescription>
+<para>the column of the location </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/paraconf_wrapper.h" line="63" column="8" bodyfile="pdi/include/pdi/paraconf_wrapper.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>a location in a YAML stream </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>PDI::Yaml_region::Yaml_mark</label>
+        <link refid="structPDI_1_1Yaml__region_1_1Yaml__mark"/>
+      </node>
+    </collaborationgraph>
+    <location file="pdi/include/pdi/paraconf_wrapper.h" line="59" column="1" bodyfile="pdi/include/pdi/paraconf_wrapper.h" bodystart="59" bodyend="64"/>
+    <listofallmembers>
+      <member refid="structPDI_1_1Yaml__region_1_1Yaml__mark_1ada9a5a55c12791cfeb8bf9285fe6d1e2" prot="public" virt="non-virtual"><scope>PDI::Yaml_region::Yaml_mark</scope><name>column</name></member>
+      <member refid="structPDI_1_1Yaml__region_1_1Yaml__mark_1ad775290f4a47ef2deb077898529650c4" prot="public" virt="non-virtual"><scope>PDI::Yaml_region::Yaml_mark</scope><name>line</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

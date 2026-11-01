@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="dir_db9751b946f3181d02059dd135e60911" kind="dir">
+    <compoundname>pdi</compoundname>
+    <innerfile refid="export_8h">export.h</innerfile>
+    <innerfile refid="version_8h">version.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/"/>
+  </compounddef>
+</doxygen>

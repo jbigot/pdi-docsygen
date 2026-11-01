@@ -1,0 +1,316 @@
+{
+  "pages": {
+    "/docs/latest/": "PDI 1.12",
+    "/docs/main/": "PDI main",
+    "/docs/1.7/installation/": "Installation of PDI",
+    "/docs/latest/c-api/": "C API Reference",
+    "/docs/1.7/c-api/annotation/": "Code annotation",
+    "/plugins/latest/": "Plugins",
+    "/plugins/latest/trace_plugin/": "Trace plugin",
+    "/plugin-dev/latest/how_to_create_plugin/": "How to create a plugin",
+    "/plugin-dev/latest/api/": "Plugin API reference",
+    "/plugin-dev/latest/api/pdi/datatype/": "PDI::Datatype",
+    "/tutorial/latest/": "Hands-on tutorial",
+    "/community/": "Community",
+    "/plugin-dev/latest/api/deprecated/": "Deprecated List"
+  },
+  "links": [
+    [
+      "/docs/latest/first_steps/",
+      "/plugins/latest/trace_plugin/"
+    ],
+    [
+      "/docs/1.7/installation/",
+      "/docs/1.7/installation/source_installation/"
+    ],
+    [
+      "/docs/latest/c-api/annotation/",
+      "/docs/latest/c-api/annotation/#pdi_share"
+    ],
+    [
+      "/plugin-dev/1.7/api/pdi/datatype/",
+      "/plugin-dev/1.7/api/pdi/datatype/#datatype"
+    ],
+    [
+      "/plugin-dev/latest/api/deprecated/",
+      "/plugin-dev/latest/api/pdi/#datatype_template_ptr"
+    ],
+    [
+      "/docs/latest/c-api/error/",
+      "/plugin-dev/latest/api/deprecated/#_deprecated000001"
+    ],
+    [
+      "/docs/latest/concepts/",
+      "/docs/latest/c-api/annotation/#pdi_event"
+    ],
+    [
+      "/plugin-dev/latest/api/pdi/datatype/",
+      "/plugin-dev/latest/api/pdi/array_datatype/#datasize"
+    ],
+    [
+      "/plugins/latest/",
+      "/plugin-dev/latest/how_to_create_plugin/"
+    ],
+    [
+      "/plugins/1.7/",
+      "/plugin-dev/1.7/how_to_create_plugin/"
+    ],
+    [
+      "/docs/latest/pdi_example/",
+      "/tutorial/latest/"
+    ]
+  ],
+  "menu": {
+    "/plugins/main/serialize_plugin/": [
+      [
+        "main",
+        "/plugins/main/serialize_plugin/",
+        "active"
+      ],
+      [
+        "latest (1.12)",
+        "/plugins/latest/"
+      ],
+      [
+        "1.11",
+        "/plugins/1.11/serialize_plugin/"
+      ],
+      [
+        "1.10",
+        "/plugins/1.10/serialize_plugin/"
+      ],
+      [
+        "1.9",
+        "/plugins/1.9/serialize_plugin/"
+      ],
+      [
+        "1.8",
+        "/plugins/1.8/"
+      ],
+      [
+        "1.7",
+        "/plugins/1.7/"
+      ],
+      [
+        "1.6",
+        "/plugins/1.6/"
+      ],
+      [
+        "1.5",
+        "/plugins/1.5/"
+      ],
+      [
+        "1.4",
+        "/plugins/1.4/serialize_plugin/"
+      ],
+      [
+        "1.3",
+        "/plugins/1.3/serialize_plugin/"
+      ],
+      [
+        "1.2",
+        "/plugins/1.2/serialize_plugin/"
+      ],
+      [
+        "1.1",
+        "/plugins/1.1/serialize_plugin/"
+      ],
+      [
+        "1.0",
+        "/plugins/1.0/serialize_plugin/"
+      ]
+    ],
+    "/plugin-dev/latest/api/pdi/array_datatype/": [
+      [
+        "main",
+        "/plugin-dev/main/api/pdi/array_datatype/"
+      ],
+      [
+        "latest (1.12)",
+        "/plugin-dev/latest/api/pdi/array_datatype/",
+        "active"
+      ],
+      [
+        "1.11",
+        "/plugin-dev/1.11/api/pdi/array_datatype/"
+      ],
+      [
+        "1.10",
+        "/plugin-dev/1.10/api/pdi/array_datatype/"
+      ],
+      [
+        "1.9",
+        "/plugin-dev/1.9/api/pdi/array_datatype/"
+      ],
+      [
+        "1.8",
+        "/plugin-dev/1.8/api/pdi/array_datatype/"
+      ],
+      [
+        "1.7",
+        "/plugin-dev/1.7/api/pdi/array_datatype/"
+      ],
+      [
+        "1.6",
+        "/plugin-dev/1.6/api/pdi/array_datatype/"
+      ],
+      [
+        "1.5",
+        "/plugin-dev/1.5/api/pdi/array_datatype/"
+      ],
+      [
+        "1.4",
+        "/plugin-dev/1.4/api/pdi/array_datatype/"
+      ],
+      [
+        "1.3",
+        "/plugin-dev/1.3/api/pdi/array_datatype/"
+      ],
+      [
+        "1.2",
+        "/plugin-dev/1.2/api/pdi/array_datatype/"
+      ],
+      [
+        "1.1",
+        "/plugin-dev/1.1/api/pdi/array_datatype/"
+      ],
+      [
+        "1.0",
+        "/plugin-dev/1.0/api/pdi/array_datatype/"
+      ]
+    ],
+    "/plugin-dev/1.7/api/pdi/datatype/": [
+      [
+        "main",
+        "/plugin-dev/main/api/pdi/datatype/"
+      ],
+      [
+        "latest (1.12)",
+        "/plugin-dev/latest/api/pdi/datatype/"
+      ],
+      [
+        "1.11",
+        "/plugin-dev/1.11/api/pdi/datatype/"
+      ],
+      [
+        "1.10",
+        "/plugin-dev/1.10/api/pdi/datatype/"
+      ],
+      [
+        "1.9",
+        "/plugin-dev/1.9/api/pdi/datatype/"
+      ],
+      [
+        "1.8",
+        "/plugin-dev/1.8/api/pdi/datatype/"
+      ],
+      [
+        "1.7",
+        "/plugin-dev/1.7/api/pdi/datatype/",
+        "active"
+      ],
+      [
+        "1.6",
+        "/plugin-dev/1.6/api/pdi/datatype/"
+      ],
+      [
+        "1.5",
+        "/plugin-dev/1.5/api/pdi/datatype/"
+      ],
+      [
+        "1.4",
+        "/plugin-dev/1.4/api/pdi/datatype/"
+      ],
+      [
+        "1.3",
+        "/plugin-dev/1.3/api/pdi/datatype/"
+      ],
+      [
+        "1.2",
+        "/plugin-dev/1.2/api/pdi/datatype/"
+      ],
+      [
+        "1.1",
+        "/plugin-dev/1.1/api/pdi/datatype/"
+      ],
+      [
+        "1.0",
+        "/plugin-dev/1.0/api/pdi/datatype/"
+      ]
+    ],
+    "/docs/main/": [
+      [
+        "main",
+        "/docs/main/",
+        "active"
+      ],
+      [
+        "latest (1.12)",
+        "/docs/latest/"
+      ],
+      [
+        "1.11",
+        "/docs/1.11/"
+      ],
+      [
+        "1.10",
+        "/docs/1.10/"
+      ],
+      [
+        "1.9",
+        "/docs/1.9/"
+      ],
+      [
+        "1.8",
+        "/docs/1.8/"
+      ],
+      [
+        "1.7",
+        "/docs/1.7/"
+      ],
+      [
+        "1.6",
+        "/docs/1.6/"
+      ],
+      [
+        "1.5",
+        "/docs/1.5/"
+      ],
+      [
+        "1.4",
+        "/docs/1.4/"
+      ],
+      [
+        "1.3",
+        "/docs/1.3/"
+      ],
+      [
+        "1.2",
+        "/docs/1.2/"
+      ],
+      [
+        "1.1",
+        "/docs/1.1/"
+      ],
+      [
+        "1.0",
+        "/docs/1.0/"
+      ]
+    ]
+  },
+  "development": {
+    "menu": {
+      "/plugins/main/serialize_plugin/": [
+        [
+          "main",
+          "/plugins/main/serialize_plugin/",
+          "active"
+        ],
+        [
+          "latest (1.12)",
+          "/plugins/latest/"
+        ]
+      ]
+    }
+  }
+}

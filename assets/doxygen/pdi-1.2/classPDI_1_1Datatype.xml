@@ -1,0 +1,570 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="classPDI_1_1Datatype" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>PDI::Datatype</compoundname>
+    <basecompoundref refid="classPDI_1_1Datatype__template" prot="public" virt="non-virtual">PDI::Datatype_template</basecompoundref>
+    <derivedcompoundref refid="classPDI_1_1Array__datatype" prot="public" virt="non-virtual">PDI::Array_datatype</derivedcompoundref>
+    <derivedcompoundref refid="classPDI_1_1Pointer__datatype" prot="public" virt="non-virtual">PDI::Pointer_datatype</derivedcompoundref>
+    <derivedcompoundref refid="classPDI_1_1Record__datatype" prot="public" virt="non-virtual">PDI::Record_datatype</derivedcompoundref>
+    <derivedcompoundref refid="classPDI_1_1Scalar__datatype" prot="public" virt="non-virtual">PDI::Scalar_datatype</derivedcompoundref>
+    <includes refid="datatype_8h" local="no">datatype.h</includes>
+    <innerclass refid="structPDI_1_1Datatype_1_1Accessor__base" prot="public">PDI::Datatype::Accessor_base</innerclass>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPDI_1_1Datatype_1ad2e19537809ba143ab9130c95b237dc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Datatype::~Datatype</definition>
+        <argsstring>() override</argsstring>
+        <name>~Datatype</name>
+        <qualifiedname>PDI::Datatype::~Datatype</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="104" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1af42770105e821dea4ca30f0992f2274c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="namespacePDI_1a72ea1e67c0a642bfc9cb3159a85c7a82" kindref="member">Datatype_uptr</ref></type>
+        <definition>virtual Datatype_uptr PDI::Datatype::clone_type</definition>
+        <argsstring>() const =0</argsstring>
+        <name>clone_type</name>
+        <qualifiedname>PDI::Datatype::clone_type</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1a332187b330bb85e949fe695620c8e138">clone_type</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1a4ea685b28d9be745718e1d4715a6c544">clone_type</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1a898b8663ac36edfb67cacb1987dfb644">clone_type</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1a6c851958754a3f04881f6e12b27ff019">clone_type</reimplementedby>
+        <briefdescription>
+<para>Creates a new datatype as an exact copy of this one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the dense type that is produced </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="110" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1a8cdf8ed0c21b40519239290171252a5b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool PDI::Datatype::operator==</definition>
+        <argsstring>(const Datatype &amp;other) const =0</argsstring>
+        <name>operator==</name>
+        <qualifiedname>PDI::Datatype::operator==</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1a0ca6cf15fda5ca1406b24328e5571652">operator==</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1a7baec7ae29e45f331653b7dad44d2ba1">operator==</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1aa70ca0cdfdad5344b7ddffb55b30acdc">operator==</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1ae68e0988a4d9718f3d75105235445421">operator==</reimplementedby>
+        <param>
+          <type>const <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Test for equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref> to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref>&apos;s are equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="117" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1af80638919cb31c61451d0bc6220a69e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PDI::Datatype::operator!=</definition>
+        <argsstring>(const Datatype &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>PDI::Datatype::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Test for inequality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref> to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref>&apos;s are different </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="124" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1a565e585893035b39f95520543cea49de" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="namespacePDI_1a72ea1e67c0a642bfc9cb3159a85c7a82" kindref="member">Datatype_uptr</ref></type>
+        <definition>virtual Datatype_uptr PDI::Datatype::densify</definition>
+        <argsstring>() const =0</argsstring>
+        <name>densify</name>
+        <qualifiedname>PDI::Datatype::densify</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1a2ab426d296ba51a2ed47c335dbd0c3da">densify</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1a52d14b97faf1ace6fda56c6763e05adc">densify</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1abb72cae0af1e9d4923165abd7044450c">densify</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1a6cb314a53a731017de5bae2c00933761">densify</reimplementedby>
+        <briefdescription>
+<para>Creates a new datatype as the dense copy of this one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the type that is produced </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="130" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1a15b82a52cfafc5fc1dbc21b043588693" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool PDI::Datatype::dense</definition>
+        <argsstring>() const =0</argsstring>
+        <name>dense</name>
+        <qualifiedname>PDI::Datatype::dense</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1a31286281747dffd22dd10c3a929eef51">dense</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1a912fc3ae386f2e2368b39dad95b4a4d0">dense</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1ab5211f58ddcfbbb88243259182db1271">dense</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1aa1e4967c4b564a06ee80d2d9f3499931">dense</reimplementedby>
+        <briefdescription>
+<para>Indicate if the datatype is dense or not. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>whether the datatype is dense </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="136" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1aa5254560c8fd98403b2067091f93b3c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>size_t</type>
+        <definition>virtual size_t PDI::Datatype::datasize</definition>
+        <argsstring>() const =0</argsstring>
+        <name>datasize</name>
+        <qualifiedname>PDI::Datatype::datasize</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1a00fb46532bb0b8a63111130715a10137">datasize</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1ae39bc5277b114f47dd98da1a3f451f2f">datasize</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1aa0e39bbe49abdbc4d6e806e148bbef30">datasize</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1ad8883c6045742e19ee34606681e2fcd4">datasize</reimplementedby>
+        <briefdescription>
+<para>Computes the data size of a type, excluding potentially unused memory from a sparse type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the size in bytes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="143" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1a341a15d47396f1cd9bb12e43a5cd5a40" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>size_t</type>
+        <definition>virtual size_t PDI::Datatype::buffersize</definition>
+        <argsstring>() const =0</argsstring>
+        <name>buffersize</name>
+        <qualifiedname>PDI::Datatype::buffersize</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1adb00b9bfc6a70d320111bff1244ad979">buffersize</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1a8251c192e15741a1a471eea11045d49d">buffersize</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1aed94e24402cada695d056a4aea0e258e">buffersize</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1a8e0bb04f38f016e1050aae8ce95aa14d">buffersize</reimplementedby>
+        <briefdescription>
+<para>Computes the data size of a type, including potentially unused memory from a sparse type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the size in bytes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="150" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1a2d1d0228dddffc6ee786d56494fde972" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>size_t</type>
+        <definition>virtual size_t PDI::Datatype::alignment</definition>
+        <argsstring>() const =0</argsstring>
+        <name>alignment</name>
+        <qualifiedname>PDI::Datatype::alignment</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1ae744734eedbb48f61e0bde159940d9ce">alignment</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1a5850529f74a112c880b462780441ca92">alignment</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1a359deae4113398d9bf252b81be2fa282">alignment</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1a19cafc9d088635f5826f3c2cdc9246ee">alignment</reimplementedby>
+        <briefdescription>
+<para>Returns the required alignment for a type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the size in bytes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="156" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1ae5f85834cbae56fca2b4cf7e7fbd0df3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool PDI::Datatype::simple</definition>
+        <argsstring>() const =0</argsstring>
+        <name>simple</name>
+        <qualifiedname>PDI::Datatype::simple</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1a9ba8909f75de2d4f18749fe9362a28d2">simple</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1ab34ae78cae3a944fb741bf49c1538d4f">simple</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1a6286765cf6a1d050603f7adaed1edc93">simple</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1acf14074f0e2fdcec41b4f7cb7e3e27ea">simple</reimplementedby>
+        <briefdescription>
+<para>Tells if data can be copied as bytes (if type is dense) and doesn&apos;t need a destroyer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if data has trivial copier and destroyer, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="163" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1a9427067d10deda44d3946ea98138d52a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; void *, <ref refid="namespacePDI_1a72ea1e67c0a642bfc9cb3159a85c7a82" kindref="member">Datatype_uptr</ref> &gt;</type>
+        <definition>std::pair&lt; void *, Datatype_uptr &gt; PDI::Datatype::subaccess</definition>
+        <argsstring>(void *from, const Accessor_base &amp;accessor) const</argsstring>
+        <name>subaccess</name>
+        <qualifiedname>PDI::Datatype::subaccess</qualifiedname>
+        <param>
+          <type>void *</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structPDI_1_1Datatype_1_1Accessor__base" kindref="compound">Accessor_base</ref> &amp;</type>
+          <declname>accessor</declname>
+        </param>
+        <briefdescription>
+<para>Creates a dense deep copy of data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">to</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the allocated memory to fill (dense data) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the copied data (size of buffersize) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>updated `to&apos; pointer */ virtual void* data_to_dense_copy(void* to, const void* from) const = 0;</para>
+</simplesect>
+/** Creates a sparse deep copy of dense data</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">to</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the allocated memory to fill (size of buffersize) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the copied data (dense data) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>updated `to&apos; pointer */ virtual void* data_from_dense_copy(void* to, const void* from) const = 0;</para>
+</simplesect>
+/** Creates datatype of subtype and returns it with a moved pointer</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">accessor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>accessor to get subtype of datatype </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pointer with offset and new datatype </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="190" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1a6d6d7d7916a24108489707d2484327cf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; void *, <ref refid="namespacePDI_1a72ea1e67c0a642bfc9cb3159a85c7a82" kindref="member">Datatype_uptr</ref> &gt;</type>
+        <definition>std::pair&lt; void *, Datatype_uptr &gt; PDI::Datatype::subaccess</definition>
+        <argsstring>(void *from, const std::vector&lt; std::unique_ptr&lt; Accessor_base &gt; &gt; &amp;accessors) const</argsstring>
+        <name>subaccess</name>
+        <qualifiedname>PDI::Datatype::subaccess</qualifiedname>
+        <param>
+          <type>void *</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::unique_ptr&lt; <ref refid="structPDI_1_1Datatype_1_1Accessor__base" kindref="compound">Accessor_base</ref> &gt; &gt; &amp;</type>
+          <declname>accessors</declname>
+        </param>
+        <briefdescription>
+<para>Creates datatype of subtype and returns it with a moved pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">accessors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>accessors to get nested subtype of datatype </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pointer with offset and new datatype </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="199" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1a242eb946591d34d934cf780427b41ed3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::pair&lt; void *, <ref refid="namespacePDI_1a72ea1e67c0a642bfc9cb3159a85c7a82" kindref="member">Datatype_uptr</ref> &gt;</type>
+        <definition>virtual std::pair&lt; void *, Datatype_uptr &gt; PDI::Datatype::subaccess_by_iterators</definition>
+        <argsstring>(void *from, std::vector&lt; std::unique_ptr&lt; Accessor_base &gt; &gt;::const_iterator remaining_begin, std::vector&lt; std::unique_ptr&lt; Accessor_base &gt; &gt;::const_iterator remaining_end) const</argsstring>
+        <name>subaccess_by_iterators</name>
+        <qualifiedname>PDI::Datatype::subaccess_by_iterators</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1ad6372a44bfc246bb2b212ad96143e2f1">subaccess_by_iterators</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1aa38e0d23b93caee2668b99342834787b">subaccess_by_iterators</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1a23d1388d2f5bf130b14d50c6a267c66e">subaccess_by_iterators</reimplementedby>
+        <param>
+          <type>void *</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::unique_ptr&lt; <ref refid="structPDI_1_1Datatype_1_1Accessor__base" kindref="compound">Accessor_base</ref> &gt; &gt;::const_iterator</type>
+          <declname>remaining_begin</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::unique_ptr&lt; <ref refid="structPDI_1_1Datatype_1_1Accessor__base" kindref="compound">Accessor_base</ref> &gt; &gt;::const_iterator</type>
+          <declname>remaining_end</declname>
+        </param>
+        <briefdescription>
+<para>Creates datatype of subtype and returns it with a moved pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">remaining_begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>iterator to the begin of remaining accessors </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">remaining_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>iterator to the end of remaining accessors </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pointer moved by offset and new datatype </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="209" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1a73bcba3fb827468daeda6ab0a4fd92b5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void PDI::Datatype::destroy_data</definition>
+        <argsstring>(void *ptr) const =0</argsstring>
+        <name>destroy_data</name>
+        <qualifiedname>PDI::Datatype::destroy_data</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1ac4160324349cf4dd13bd36e8894a61cd">destroy_data</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1a1b1c55a87cf7f8642729751cf36d30b6">destroy_data</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1aca8e88ed37db5f20244637e8c69d7a61">destroy_data</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1a18fcaddec51a46921d6e4e42deee9026">destroy_data</reimplementedby>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Function used to delete the data behind the datatype. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This should not deallocate the memory.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>to the data to free </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="218" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Datatype_1aff4be6868c49816ef432098357ab5789" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::string</type>
+        <definition>virtual std::string PDI::Datatype::debug_string</definition>
+        <argsstring>() const =0</argsstring>
+        <name>debug_string</name>
+        <qualifiedname>PDI::Datatype::debug_string</qualifiedname>
+        <reimplementedby refid="classPDI_1_1Array__datatype_1ae1fa60769b6a03ff0d6b5f0b82523fec">debug_string</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Pointer__datatype_1a6aa1ae90b69129fec7e148547d262836">debug_string</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Record__datatype_1a18daca7d61b260de5457114643e2af75">debug_string</reimplementedby>
+        <reimplementedby refid="classPDI_1_1Scalar__datatype_1a5fcf657a2d7957801d45e6501a8627fd">debug_string</reimplementedby>
+        <briefdescription>
+<para>Returns the datatype yaml representation as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the datatype yaml representation as a string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/datatype.h" line="224" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref> is a <ref refid="classPDI_1_1Datatype__template" kindref="compound">Datatype_template</ref> that accepts no argument. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It represents the memory layout of data and supports some simple operations on it:<itemizedlist>
+<listitem><para>accessing its content</para>
+</listitem><listitem><para>cloning and destruction </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>PDI::Array_datatype</label>
+        <link refid="classPDI_1_1Array__datatype"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>PDI::Datatype</label>
+        <link refid="classPDI_1_1Datatype"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>PDI::Datatype_template</label>
+        <link refid="classPDI_1_1Datatype__template"/>
+      </node>
+      <node id="4">
+        <label>PDI::Pointer_datatype</label>
+        <link refid="classPDI_1_1Pointer__datatype"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>PDI::Record_datatype</label>
+        <link refid="classPDI_1_1Record__datatype"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>PDI::Scalar_datatype</label>
+        <link refid="classPDI_1_1Scalar__datatype"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>PDI::Datatype</label>
+        <link refid="classPDI_1_1Datatype"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>PDI::Datatype_template</label>
+        <link refid="classPDI_1_1Datatype__template"/>
+      </node>
+    </collaborationgraph>
+    <location file="pdi/include/pdi/datatype.h" line="46" column="1" bodyfile="pdi/include/pdi/datatype.h" bodystart="48" bodyend="226"/>
+    <listofallmembers>
+      <member refid="classPDI_1_1Datatype_1a2d1d0228dddffc6ee786d56494fde972" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>alignment</name></member>
+      <member refid="classPDI_1_1Datatype_1a341a15d47396f1cd9bb12e43a5cd5a40" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>buffersize</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a6c6cb02f6f9bab3e9fbf8826afae677a" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>clone</name></member>
+      <member refid="classPDI_1_1Datatype_1af42770105e821dea4ca30f0992f2274c" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>clone_type</name></member>
+      <member refid="classPDI_1_1Datatype_1aa5254560c8fd98403b2067091f93b3c9" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>datasize</name></member>
+      <member refid="classPDI_1_1Datatype_1aff4be6868c49816ef432098357ab5789" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>debug_string</name></member>
+      <member refid="classPDI_1_1Datatype_1a15b82a52cfafc5fc1dbc21b043588693" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>dense</name></member>
+      <member refid="classPDI_1_1Datatype_1a565e585893035b39f95520543cea49de" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>densify</name></member>
+      <member refid="classPDI_1_1Datatype_1a73bcba3fb827468daeda6ab0a4fd92b5" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>destroy_data</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a31b2c6cd579c3100c6b03bf195aa0e80" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>evaluate</name></member>
+      <member refid="classPDI_1_1Datatype__template_1aa539eee3b7312a7f1be7fd85b64b5c85" prot="public" virt="non-virtual"><scope>PDI::Datatype</scope><name>load_basic_datatypes</name></member>
+      <member refid="classPDI_1_1Datatype__template_1ae5ffc14e8bad3f21ce30027671055f1b" prot="public" virt="non-virtual"><scope>PDI::Datatype</scope><name>load_user_datatypes</name></member>
+      <member refid="classPDI_1_1Datatype_1af80638919cb31c61451d0bc6220a69e3" prot="public" virt="non-virtual"><scope>PDI::Datatype</scope><name>operator!=</name></member>
+      <member refid="classPDI_1_1Datatype_1a8cdf8ed0c21b40519239290171252a5b" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>operator==</name></member>
+      <member refid="classPDI_1_1Datatype_1ae5f85834cbae56fca2b4cf7e7fbd0df3" prot="public" virt="pure-virtual"><scope>PDI::Datatype</scope><name>simple</name></member>
+      <member refid="classPDI_1_1Datatype_1a9427067d10deda44d3946ea98138d52a" prot="public" virt="non-virtual"><scope>PDI::Datatype</scope><name>subaccess</name></member>
+      <member refid="classPDI_1_1Datatype_1a6d6d7d7916a24108489707d2484327cf" prot="public" virt="non-virtual"><scope>PDI::Datatype</scope><name>subaccess</name></member>
+      <member refid="classPDI_1_1Datatype_1a242eb946591d34d934cf780427b41ed3" prot="public" virt="virtual"><scope>PDI::Datatype</scope><name>subaccess_by_iterators</name></member>
+      <member refid="classPDI_1_1Datatype_1ad2e19537809ba143ab9130c95b237dc2" prot="public" virt="non-virtual"><scope>PDI::Datatype</scope><name>~Datatype</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a8722c4b873d42931d8e159abaa62ff27" prot="public" virt="virtual"><scope>PDI::Datatype</scope><name>~Datatype_template</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

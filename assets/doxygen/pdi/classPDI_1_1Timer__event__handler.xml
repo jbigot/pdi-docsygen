@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="classPDI_1_1Timer__event__handler" kind="class" language="C++" prot="public">
+    <compoundname>PDI::Timer_event_handler</compoundname>
+    <includes refid="context_8h" local="no">context.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPDI_1_1Timer__event__handler_1a47369bd9cd5a7c07356cf0f7600669c3" prot="private" static="no" mutable="no">
+        <type><ref refid="classPDI_1_1Context" kindref="compound">Context</ref> &amp;</type>
+        <definition>Context&amp; PDI::Timer_event_handler::m_ctx</definition>
+        <argsstring></argsstring>
+        <name>m_ctx</name>
+        <qualifiedname>PDI::Timer_event_handler::m_ctx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context.h" line="185" column="9" bodyfile="pdi/include/pdi/context.h" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Timer__event__handler_1a58a69a8d6586d37aad94b3a7525a1554" prot="private" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string PDI::Timer_event_handler::m_plugin_name</definition>
+        <argsstring></argsstring>
+        <name>m_plugin_name</name>
+        <qualifiedname>PDI::Timer_event_handler::m_plugin_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context.h" line="187" column="19" bodyfile="pdi/include/pdi/context.h" bodystart="187" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPDI_1_1Timer__event__handler_1a81cc9b11f17beb07faf3adb9db8a615e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Timer_event_handler::Timer_event_handler</definition>
+        <argsstring>(Context &amp;ctx, const std::string &amp;plugin_name)</argsstring>
+        <name>Timer_event_handler</name>
+        <qualifiedname>PDI::Timer_event_handler::Timer_event_handler</qualifiedname>
+        <param>
+          <type><ref refid="classPDI_1_1Context" kindref="compound">Context</ref> &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>plugin_name</declname>
+        </param>
+        <briefdescription>
+<para>Triggers the start event of the timer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the context in which to trigger the events </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">plugin_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the plugin the events are named after </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context.h" line="195" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Timer__event__handler_1a52c18851980a9fee72bab8e61e5cc01a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Timer_event_handler::~Timer_event_handler</definition>
+        <argsstring>()</argsstring>
+        <name>~Timer_event_handler</name>
+        <qualifiedname>PDI::Timer_event_handler::~Timer_event_handler</qualifiedname>
+        <briefdescription>
+<para>Triggers the stop event of the timer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context.h" line="199" column="1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A scoped timer for a plugin operation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Triggers the <computeroutput>&lt;plugin_name&gt;_start_timer</computeroutput> event on construction and the matching <computeroutput>&lt;plugin_name&gt;_stop_timer</computeroutput> event on destruction, so that the timer plugin can measure the duration of the enclosing scope. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>PDI::Timer_event_handler</label>
+        <link refid="classPDI_1_1Timer__event__handler"/>
+      </node>
+    </collaborationgraph>
+    <location file="pdi/include/pdi/context.h" line="182" column="1" bodyfile="pdi/include/pdi/context.h" bodystart="183" bodyend="200"/>
+    <listofallmembers>
+      <member refid="classPDI_1_1Timer__event__handler_1a47369bd9cd5a7c07356cf0f7600669c3" prot="private" virt="non-virtual"><scope>PDI::Timer_event_handler</scope><name>m_ctx</name></member>
+      <member refid="classPDI_1_1Timer__event__handler_1a58a69a8d6586d37aad94b3a7525a1554" prot="private" virt="non-virtual"><scope>PDI::Timer_event_handler</scope><name>m_plugin_name</name></member>
+      <member refid="classPDI_1_1Timer__event__handler_1a81cc9b11f17beb07faf3adb9db8a615e" prot="public" virt="non-virtual"><scope>PDI::Timer_event_handler</scope><name>Timer_event_handler</name></member>
+      <member refid="classPDI_1_1Timer__event__handler_1a52c18851980a9fee72bab8e61e5cc01a" prot="public" virt="non-virtual"><scope>PDI::Timer_event_handler</scope><name>~Timer_event_handler</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

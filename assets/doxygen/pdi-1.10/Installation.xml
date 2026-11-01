@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="Installation" kind="page">
+    <compoundname>Installation</compoundname>
+    <title>Installation of PDI</title>
+    <innerpage refid="Source_installation">Installation of %PDI source distribution</innerpage>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="Installation_1md_pdi_2docs_2Installation"/></para>
+<para>There are three ways to install PDI:<orderedlist>
+<listitem><para>the <ulink url="https://repo.pdi.dev">pre-compiled binary packages</ulink> for Debian, Fedora and Ubuntu,</para>
+</listitem><listitem><para><ulink url="https://github.com/pdidev/spack">Spack recipes</ulink>,</para>
+</listitem><listitem><para>the source distribution.</para>
+</listitem></orderedlist>
+</para>
+<sect1 id="Installation_1installation_using_binary_packages">
+<title>Installation using binary packages</title><para>The <ulink url="https://repo.pdi.dev">pre-compiled binary packages</ulink> are recommended on distributions where they are available: Debian, Fedora, and Ubuntu. They do however require root access and do not offer full control over the compilation options used.</para>
+<para><ulink url="https://repo.pdi.dev">More...</ulink>.</para>
+</sect1>
+<sect1 id="Installation_1installation_using_spack_recipes">
+<title>Installation using Spack recipes</title><para><ulink url="https://github.com/pdidev/spack">PDI recipes</ulink> for <ulink url="https://spack.io">Spack</ulink> are recommended when root access is not available, on other distributions, or when requiring fine control over the compilation options used; for example on a supercomputer.</para>
+<para><ulink url="https://github.com/pdidev/spack">More...</ulink>.</para>
+</sect1>
+<sect1 id="Installation_1installation_from_source">
+<title>Installation from source</title><para>The <ref refid="Source_installation" kindref="compound">source distribution</ref> is available if for some reason one prefers not to use Spack.</para>
+<para><ref refid="Source_installation" kindref="compound">More...</ref> </para>
+</sect1>
+    </detaileddescription>
+    <location file="pdi/docs/Installation.md"/>
+  </compounddef>
+</doxygen>

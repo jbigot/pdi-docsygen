@@ -1,0 +1,23 @@
+{
+  "name": "docsygen-example-site",
+  "private": true,
+  "description": "Docsy site rendering the PDI API reference from Doxygen XML with docsygen",
+  "scripts": {
+    "build": "hugo --cleanDestinationDir",
+    "hugo": "hugo",
+    "serve": "hugo server"
+  },
+  "devDependencies": {
+    "hugo-extended": "0.169.0",
+    "sass-embedded": "1.105.0"
+  },
+  "engines": {
+    "npm": ">=11.18.0"
+  },
+  "allowScripts": {
+    "hugo-extended@0.169.0": true
+  },
+  "workspaces": [
+    "packages/hugoautogen"
+  ]
+}

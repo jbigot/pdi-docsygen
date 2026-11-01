@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="version_8h" kind="file" language="C++">
+    <compoundname>version.h</compoundname>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="version_8h_1a2253a05dc1a5c1f8e9753a961e73af42" prot="public" static="no">
+        <name>PDI_VERSION_MAJOR</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" line="25" column="9" bodyfile=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="version_8h_1a24463e9db5d01caf8474bb1c35520e5f" prot="public" static="no">
+        <name>PDI_VERSION_MINOR</name>
+        <initializer>13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" line="26" column="9" bodyfile=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="version_8h_1aa60c73e1e74e88e46395b99772eb9423" prot="public" static="no">
+        <name>PDI_VERSION_PATCH</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" line="27" column="9" bodyfile=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="version_8h_1a4b5fc0727221432432f65c08736ab4ab" prot="public" static="no">
+        <name>PDI_VERSION_MODIF</name>
+        <initializer>&quot;-alpha.2026-09-18.6e81219&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" line="28" column="9" bodyfile=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="version_8h_1a914f40bdb285c5d14cf1b307a69241bf" prot="public" static="no">
+        <name>PDI_VERSION</name>
+        <initializer>((PDI_VERSION_MAJOR &lt;&lt; 24) + (PDI_VERSION_MINOR &lt;&lt; 16) + (PDI_VERSION_PATCH &lt;&lt; 8))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" line="30" column="9" bodyfile=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h"/>
+  </compounddef>
+</doxygen>

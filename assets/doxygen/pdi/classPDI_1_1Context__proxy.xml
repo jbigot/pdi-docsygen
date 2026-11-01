@@ -1,0 +1,723 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="classPDI_1_1Context__proxy" kind="class" language="C++" prot="public">
+    <compoundname>PDI::Context_proxy</compoundname>
+    <basecompoundref refid="classPDI_1_1Context" prot="public" virt="non-virtual">PDI::Context</basecompoundref>
+    <includes refid="context__proxy_8h" local="no">context_proxy.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPDI_1_1Context__proxy_1ae335959a882cfe7c2c4506e1a0a2b7fa" prot="private" static="no" mutable="no">
+        <type><ref refid="classPDI_1_1Context" kindref="compound">Context</ref> &amp;</type>
+        <definition>Context&amp; PDI::Context_proxy::m_real_context</definition>
+        <argsstring></argsstring>
+        <name>m_real_context</name>
+        <qualifiedname>PDI::Context_proxy::m_real_context</qualifiedname>
+        <briefdescription>
+<para>Real context of this proxy. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="41" column="9" bodyfile="pdi/include/pdi/context_proxy.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Context__proxy_1a6fcc2f6fa09fe8f45807ae286a36e171" prot="private" static="no" mutable="no">
+        <type><ref refid="classPDI_1_1Logger" kindref="compound">Logger</ref></type>
+        <definition>Logger PDI::Context_proxy::m_plugin_logger</definition>
+        <argsstring></argsstring>
+        <name>m_plugin_logger</name>
+        <qualifiedname>PDI::Context_proxy::m_plugin_logger</qualifiedname>
+        <briefdescription>
+<para><ref refid="classPDI_1_1Logger" kindref="compound">Logger</ref> of the plugin. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="44" column="8" bodyfile="pdi/include/pdi/context_proxy.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a28e4fb8e50fe8b88e01c19082abb1d43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Context_proxy::Context_proxy</definition>
+        <argsstring>(Context &amp;ctx)</argsstring>
+        <name>Context_proxy</name>
+        <qualifiedname>PDI::Context_proxy::Context_proxy</qualifiedname>
+        <param>
+          <type><ref refid="classPDI_1_1Context" kindref="compound">Context</ref> &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Creates <ref refid="classPDI_1_1Context" kindref="compound">Context</ref> proxy without plugin logger. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>context to make a proxy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="50" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a3ae61827c42a717817eabbd39be12f78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Context_proxy::Context_proxy</definition>
+        <argsstring>(Context &amp;ctx, const std::string &amp;logger_name, PC_tree_t logging_tree)</argsstring>
+        <name>Context_proxy</name>
+        <qualifiedname>PDI::Context_proxy::Context_proxy</qualifiedname>
+        <param>
+          <type><ref refid="classPDI_1_1Context" kindref="compound">Context</ref> &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>logger_name</declname>
+        </param>
+        <param>
+          <type>PC_tree_t</type>
+          <declname>logging_tree</declname>
+        </param>
+        <briefdescription>
+<para>Creates <ref refid="classPDI_1_1Context" kindref="compound">Context</ref> proxy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>context to make a proxy </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">logger_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>name of the logger (will be used in logger pattern) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">logging_tree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>logging yaml tree of the plugin </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="57" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a2346984133263dfc4b72aa8f45fde8cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PDI::Context_proxy::setup_logger</definition>
+        <argsstring>(const std::string &amp;logger_name, PC_tree_t logging_tree)</argsstring>
+        <name>setup_logger</name>
+        <qualifiedname>PDI::Context_proxy::setup_logger</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>logger_name</declname>
+        </param>
+        <param>
+          <type>PC_tree_t</type>
+          <declname>logging_tree</declname>
+        </param>
+        <briefdescription>
+<para>Sets up logger. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">logger_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>name of the logger (will be used in logger pattern) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">logging_tree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>logging yaml tree of the plugin </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="63" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1abcdc012d62a65753c918931c38c794c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classPDI_1_1Data__descriptor" kindref="compound">Data_descriptor</ref> &amp;</type>
+        <definition>Data_descriptor &amp; PDI::Context_proxy::desc</definition>
+        <argsstring>(const std::string &amp;name) override</argsstring>
+        <name>desc</name>
+        <qualifiedname>PDI::Context_proxy::desc</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1a276662e0ba075cc77b583ca1b28a3af8">desc</reimplements>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Accesses the descriptor for a specific name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Might be uninitialized </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="65" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1ac3d491644cdd6a43ed3744e644fe16a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classPDI_1_1Data__descriptor" kindref="compound">Data_descriptor</ref> &amp;</type>
+        <definition>Data_descriptor &amp; PDI::Context_proxy::desc</definition>
+        <argsstring>(const char *name) override</argsstring>
+        <name>desc</name>
+        <qualifiedname>PDI::Context_proxy::desc</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1a0b3a22cbb98bc2a0dabd3bafb967c362">desc</reimplements>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Accesses the descriptor for a specific name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Might be uninitialized </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="67" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a24859fa4031c1acc4ad3a0c159377d4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classPDI_1_1Data__descriptor" kindref="compound">Data_descriptor</ref> &amp;</type>
+        <definition>Data_descriptor &amp; PDI::Context_proxy::operator[]</definition>
+        <argsstring>(const std::string &amp;name) override</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>PDI::Context_proxy::operator[]</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1a9deb81a55fd9faa25f1a12b1ed463116">operator[]</reimplements>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Accesses the descriptor for a specific name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Might be uninitialized </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="69" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a9608f5160372b9f475172c12351f798d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classPDI_1_1Data__descriptor" kindref="compound">Data_descriptor</ref> &amp;</type>
+        <definition>Data_descriptor &amp; PDI::Context_proxy::operator[]</definition>
+        <argsstring>(const char *name) override</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>PDI::Context_proxy::operator[]</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1adde25b44672e36d337cccda98382539b">operator[]</reimplements>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Accesses the descriptor for a specific name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Might be uninitialized </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="71" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a2b0e1d5c7a43cd7e594eee845d97ccb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classPDI_1_1Context_1_1Iterator" kindref="compound">Iterator</ref></type>
+        <definition>Iterator PDI::Context_proxy::begin</definition>
+        <argsstring>() override</argsstring>
+        <name>begin</name>
+        <qualifiedname>PDI::Context_proxy::begin</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1af3cc6b4e8ecd9bc50b933527ccd5af19">begin</reimplements>
+        <briefdescription>
+<para>Returns an iterator on the first descriptor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="73" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a02f8060d4918a7bb648514a41e190b32" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classPDI_1_1Context_1_1Iterator" kindref="compound">Iterator</ref></type>
+        <definition>Iterator PDI::Context_proxy::end</definition>
+        <argsstring>() override</argsstring>
+        <name>end</name>
+        <qualifiedname>PDI::Context_proxy::end</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1ac987d27496498d563359f97ea9ec5416">end</reimplements>
+        <briefdescription>
+<para>Returns an iterator past the last descriptor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="75" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1aa95e11c12357d3144fb83d9fb42a8c9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classPDI_1_1Context_1_1Iterator" kindref="compound">Iterator</ref></type>
+        <definition>Iterator PDI::Context_proxy::find</definition>
+        <argsstring>(const std::string &amp;name) override</argsstring>
+        <name>find</name>
+        <qualifiedname>PDI::Context_proxy::find</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1a2726f1ef2df95f1560582d36e71442d6">find</reimplements>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Find the <ref refid="classPDI_1_1Data__descriptor" kindref="compound">Data_descriptor</ref> corresponding to a given name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="classPDI_1_1Data__descriptor" kindref="compound">Data_descriptor</ref> name </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>an iterator to the requested <ref refid="classPDI_1_1Data__descriptor" kindref="compound">Data_descriptor</ref> name. If no such element is found, past-the-end (see <ref refid="classPDI_1_1Context__proxy_1a02f8060d4918a7bb648514a41e190b32" kindref="member">end()</ref>) iterator is returned. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="77" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a687e53457726aa6a3f3208694b9119b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void PDI::Context_proxy::event</definition>
+        <argsstring>(const char *name) override</argsstring>
+        <name>event</name>
+        <qualifiedname>PDI::Context_proxy::event</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1afb530384d29404ab88a3c4210d03f19d">event</reimplements>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Triggers a PDI &quot;event&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the event name </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="79" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a88a323fd7b82649499561d29f578ea0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classPDI_1_1Logger" kindref="compound">Logger</ref> &amp;</type>
+        <definition>Logger &amp; PDI::Context_proxy::logger</definition>
+        <argsstring>() override</argsstring>
+        <name>logger</name>
+        <qualifiedname>PDI::Context_proxy::logger</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1a6e8fe8c560d150aa118be9918cd5da0d">logger</reimplements>
+        <briefdescription>
+<para><ref refid="classPDI_1_1Logger" kindref="compound">Logger</ref> getter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>logger </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="81" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a08f57b013269370495575124b3f8a896" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classPDI_1_1Logger" kindref="compound">Logger</ref> &amp;</type>
+        <definition>Logger &amp; PDI::Context_proxy::pdi_core_logger</definition>
+        <argsstring>()</argsstring>
+        <name>pdi_core_logger</name>
+        <qualifiedname>PDI::Context_proxy::pdi_core_logger</qualifiedname>
+        <briefdescription>
+<para>Returns pdi core logger. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>pdi core logger </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="87" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1aed256b74a398c5f9c956c5579927479d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="namespacePDI_1a70c4ec61a266eda8bc1eb7859823b0ab" kindref="member">Datatype_template_sptr</ref></type>
+        <definition>Datatype_template_sptr PDI::Context_proxy::datatype</definition>
+        <argsstring>(PC_tree_t node) override</argsstring>
+        <name>datatype</name>
+        <qualifiedname>PDI::Context_proxy::datatype</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1a3268bb9024405f2f68ab50fbdb053b9d">datatype</reimplements>
+        <param>
+          <type>PC_tree_t</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new datatype template from a paraconf-style config. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the configuration to read</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the type generated </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="89" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1ab24dac03f6faddd05bd83b734cd1ca56" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void PDI::Context_proxy::add_datatype</definition>
+        <argsstring>(const std::string &amp;name, Datatype_template_parser parser) override</argsstring>
+        <name>add_datatype</name>
+        <qualifiedname>PDI::Context_proxy::add_datatype</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1a49ae5a3b3cb8d97b0f61e6a3dd9b0fd6">add_datatype</reimplements>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="classPDI_1_1Context_1a78d929f5955093bd92622258cad86d84" kindref="member">Datatype_template_parser</ref></type>
+          <declname>parser</declname>
+        </param>
+        <briefdescription>
+<para>Adds new datatype parser to the context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>name of the datatype to add </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">parser</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function that creates new datatype_template from PC_tree_t </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="91" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1aa74325fb682e686e4ff13503128be7b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::function&lt; void()&gt;</type>
+        <definition>std::function&lt; void()&gt; PDI::Context_proxy::on_init</definition>
+        <argsstring>(const std::function&lt; void()&gt; &amp;callback) override</argsstring>
+        <name>on_init</name>
+        <qualifiedname>PDI::Context_proxy::on_init</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1a7adf11dbb814d86f2521364dd9cdf548">on_init</reimplements>
+        <param>
+          <type>const std::function&lt; void()&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+<para>Adds new init callback to context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function to call when data and metadata are loaded</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function that removes callback </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="93" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a0cf1cce4fe0b429362a2a2df4b839a07" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::function&lt; void()&gt;</type>
+        <definition>std::function&lt; void()&gt; PDI::Context_proxy::on_data</definition>
+        <argsstring>(const std::function&lt; void(const std::string &amp;, Ref)&gt; &amp;callback, const std::string &amp;name={}) override</argsstring>
+        <name>on_data</name>
+        <qualifiedname>PDI::Context_proxy::on_data</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1aa19c5c2d1a48f3cbe0ee947fd3106a61">on_data</reimplements>
+        <param>
+          <type>const std::function&lt; void(const std::string &amp;, <ref refid="namespacePDI_1adc363df268e6e68e68947a4fc799ca00" kindref="member">Ref</ref>)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Adds new data callback to context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function to call when data is being available </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the data on which call the callback, if not specified it&apos;s called on any data</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function that removes callback </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="95" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1adc244cbfb852a954f074338735e90e66" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::function&lt; void()&gt;</type>
+        <definition>std::function&lt; void()&gt; PDI::Context_proxy::on_data_remove</definition>
+        <argsstring>(const std::function&lt; void(const std::string &amp;, Ref)&gt; &amp;callback, const std::string &amp;name={}) override</argsstring>
+        <name>on_data_remove</name>
+        <qualifiedname>PDI::Context_proxy::on_data_remove</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1a7845a1b4a7580285dd72f72bd5d34724">on_data_remove</reimplements>
+        <param>
+          <type>const std::function&lt; void(const std::string &amp;, <ref refid="namespacePDI_1adc363df268e6e68e68947a4fc799ca00" kindref="member">Ref</ref>)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Adds new data remove callback to context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function to call when data is reclaimed/released </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the data on which call the callback, if not specified it&apos;s called on any data</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function that removes callback </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="97" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1a1b845aad005b0b9dbec33f9312273396" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::function&lt; void()&gt;</type>
+        <definition>std::function&lt; void()&gt; PDI::Context_proxy::on_event</definition>
+        <argsstring>(const std::function&lt; void(const std::string &amp;)&gt; &amp;callback, const std::string &amp;name={}) override</argsstring>
+        <name>on_event</name>
+        <qualifiedname>PDI::Context_proxy::on_event</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1ae5929955d0326f51c12d9f5565c2be46">on_event</reimplements>
+        <param>
+          <type>const std::function&lt; void(const std::string &amp;)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Adds new event callback to context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function to call when event is called </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the event on which call the callback, if not specified it&apos;s called on any event</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function that removes callback </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="99" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Context__proxy_1ae95647bffc098c502dc9d9c5867977f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::function&lt; void()&gt;</type>
+        <definition>std::function&lt; void()&gt; PDI::Context_proxy::on_missing_data</definition>
+        <argsstring>(const std::function&lt; void(const std::string &amp;)&gt; &amp;callback, const std::string &amp;name={}) override</argsstring>
+        <name>on_missing_data</name>
+        <qualifiedname>PDI::Context_proxy::on_missing_data</qualifiedname>
+        <reimplements refid="classPDI_1_1Context_1ae3b1c7f4c17542ce8c479b1222474f7f">on_missing_data</reimplements>
+        <param>
+          <type>const std::function&lt; void(const std::string &amp;)&gt; &amp;</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Adds new empty desc access callback to context. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function to call when event is called </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the name of the data on which call the callback, if not specified it&apos;s called on any data</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>function that removes callback </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/context_proxy.h" line="101" column="15"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>PDI::Context</label>
+        <link refid="classPDI_1_1Context"/>
+      </node>
+      <node id="1">
+        <label>PDI::Context_proxy</label>
+        <link refid="classPDI_1_1Context__proxy"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>PDI::Context</label>
+        <link refid="classPDI_1_1Context"/>
+      </node>
+      <node id="1">
+        <label>PDI::Context_proxy</label>
+        <link refid="classPDI_1_1Context__proxy"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="pdi/include/pdi/context_proxy.h" line="38" column="1" bodyfile="pdi/include/pdi/context_proxy.h" bodystart="39" bodyend="102"/>
+    <listofallmembers>
+      <member refid="classPDI_1_1Context__proxy_1ab24dac03f6faddd05bd83b734cd1ca56" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>add_datatype</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a2b0e1d5c7a43cd7e594eee845d97ccb1" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>begin</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a28e4fb8e50fe8b88e01c19082abb1d43" prot="public" virt="non-virtual"><scope>PDI::Context_proxy</scope><name>Context_proxy</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a3ae61827c42a717817eabbd39be12f78" prot="public" virt="non-virtual"><scope>PDI::Context_proxy</scope><name>Context_proxy</name></member>
+      <member refid="classPDI_1_1Context__proxy_1aed256b74a398c5f9c956c5579927479d" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>datatype</name></member>
+      <member refid="classPDI_1_1Context_1a78d929f5955093bd92622258cad86d84" prot="public" virt="non-virtual"><scope>PDI::Context_proxy</scope><name>Datatype_template_parser</name></member>
+      <member refid="classPDI_1_1Context__proxy_1abcdc012d62a65753c918931c38c794c2" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>desc</name></member>
+      <member refid="classPDI_1_1Context__proxy_1ac3d491644cdd6a43ed3744e644fe16a3" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>desc</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a02f8060d4918a7bb648514a41e190b32" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>end</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a687e53457726aa6a3f3208694b9119b5" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>event</name></member>
+      <member refid="classPDI_1_1Context__proxy_1aa95e11c12357d3144fb83d9fb42a8c9c" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>find</name></member>
+      <member refid="classPDI_1_1Context_1a3be83d7a2f040e483698a5f4ce1414d5" prot="protected" virt="non-virtual"><scope>PDI::Context_proxy</scope><name>get_iterator</name></member>
+      <member refid="classPDI_1_1Context_1a1d9b83fcb6d9a95ebb7afe6252b9449f" prot="protected" virt="non-virtual"><scope>PDI::Context_proxy</scope><name>get_iterator</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a88a323fd7b82649499561d29f578ea0a" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>logger</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a6fcc2f6fa09fe8f45807ae286a36e171" prot="private" virt="non-virtual"><scope>PDI::Context_proxy</scope><name>m_plugin_logger</name></member>
+      <member refid="classPDI_1_1Context__proxy_1ae335959a882cfe7c2c4506e1a0a2b7fa" prot="private" virt="non-virtual"><scope>PDI::Context_proxy</scope><name>m_real_context</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a0cf1cce4fe0b429362a2a2df4b839a07" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>on_data</name></member>
+      <member refid="classPDI_1_1Context__proxy_1adc244cbfb852a954f074338735e90e66" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>on_data_remove</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a1b845aad005b0b9dbec33f9312273396" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>on_event</name></member>
+      <member refid="classPDI_1_1Context__proxy_1aa74325fb682e686e4ff13503128be7b4" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>on_init</name></member>
+      <member refid="classPDI_1_1Context__proxy_1ae95647bffc098c502dc9d9c5867977f8" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>on_missing_data</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a24859fa4031c1acc4ad3a0c159377d4e" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>operator[]</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a9608f5160372b9f475172c12351f798d" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>operator[]</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a08f57b013269370495575124b3f8a896" prot="public" virt="non-virtual"><scope>PDI::Context_proxy</scope><name>pdi_core_logger</name></member>
+      <member refid="classPDI_1_1Context__proxy_1a2346984133263dfc4b72aa8f45fde8cc" prot="public" virt="non-virtual"><scope>PDI::Context_proxy</scope><name>setup_logger</name></member>
+      <member refid="classPDI_1_1Context_1a9a1eb26d8ff1d5b7b458b704a3cb26a8" prot="public" virt="virtual"><scope>PDI::Context_proxy</scope><name>~Context</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

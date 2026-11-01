@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="FAQ" kind="page">
+    <compoundname>FAQ</compoundname>
+    <title>FAQ</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="FAQ_1md_pdi_2docs_2FAQ"/></para>
+<sect1 id="FAQ_1compile-pdi-with-intel-compiler">
+<title>Compile PDI with Intel compiler</title><para>The Intel compiler is a complex beast for C++. It does not provide a full compilation environment but relies on GNU C++ library. Hence on a machine using environment modules (such as supercomputers), you will typically need to load a GCC module before using Intel C++ compiler. It is however fully compatible with the GNU compiler for C &amp; C++. Only the Fortran compiler uses a different module format.</para>
+<para><simplesect kind="attention"><para>If you don&apos;t use PDI from Fortran, we strongly advise to compile PDI with GCC even if you compile the code that use PDI with Intel compiler.</para>
+</simplesect>
+Otherwise, to use PDI from a code compiled with <computeroutput>ifort</computeroutput>, you have 3 options (by order of recommendation):<orderedlist>
+<listitem><para>compile PDI in a fully GCC environment and load PDI with <computeroutput>include</computeroutput> instead of using the module,</para>
+</listitem><listitem><para>compile PDI with GCC for C/C++, only use Intel compiler for Fortran,</para>
+</listitem><listitem><para>compile PDI in a fully Intel environment, with GNU C++ library only.</para>
+</listitem></orderedlist>
+</para>
+<sect2 id="FAQ_1load-pdi-with-include-instead-of-using-the-module">
+<title>load PDI with <computeroutput>include</computeroutput> instead of using the module</title></sect2>
+<sect2 id="FAQ_1compile-pdi-with-gcc-for-cc-use-intel-compiler-for-fortran">
+<title>compile PDI with GCC for C/C++, use Intel compiler for Fortran</title><para>On a machine using environment modules you will need to load both GCC and Intel modules.</para>
+<para>Then, compile PDI by specifying which compiler you want to use for each language to <computeroutput>cmake</computeroutput>. You can of course combine these option with the usual <computeroutput>cmake</computeroutput> options.</para>
+<para><programlisting><codeline><highlight class="normal">CC=gcc<sp/>CXX=g++<sp/>FC=ifort<sp/>cmake<sp/>-DCMAKE_INSTALL_PREFIX=&quot;${HOME}/.local/&quot;<sp/>..</highlight></codeline>
+<codeline><highlight class="normal">make<sp/>install</highlight></codeline>
+</programlisting></para>
+<para>Even if you don&apos;t use it to compile your code, you must keep the GCC module loaded on a machine using environment modules.</para>
+</sect2>
+<sect2 id="FAQ_1compile-pdi-in-a-fully-intel-environment-with-gnu-c-library-only">
+<title>compile PDI in a fully Intel environment, with GNU C++ library only</title><para>In order to use Intel compiler, you need to point it to an installation of GCC recent enough with the options:<itemizedlist>
+<listitem><para><computeroutput>-gcc-name=/path/to/gcc-7.5.0/bin/gcc</computeroutput>,</para>
+</listitem><listitem><para><computeroutput>-gxx-name=/path/to/gcc-7.5.0/bin/g++</computeroutput>. These can be specified through the <computeroutput>CFLAGS</computeroutput>, <computeroutput>CXXFLAGS</computeroutput> and <computeroutput>FFLAGS</computeroutput> environment variables.</para>
+</listitem></itemizedlist>
+</para>
+<para>Then, compile PDI normally, you might want to force the use of Intel compilers. You can of course combine these option with the usual <computeroutput>cmake</computeroutput> options.</para>
+<para><programlisting><codeline><highlight class="normal">export<sp/>CFLAGS=&quot;-gcc-name=/path/to/gcc-7.5.0/bin/gcc<sp/>-gxx-name=/path/to/gcc-7.5.0/bin/g++&quot;</highlight></codeline>
+<codeline><highlight class="normal">export<sp/>CXXFLAGS=&quot;${CFLAGS}&quot;</highlight></codeline>
+<codeline><highlight class="normal">export<sp/>FFLAGS=&quot;${CFLAGS}&quot;</highlight></codeline>
+<codeline><highlight class="normal">export<sp/>CC=icc</highlight></codeline>
+<codeline><highlight class="normal">export<sp/>CXX=icpc</highlight></codeline>
+<codeline><highlight class="normal">export<sp/>FC=ifort</highlight></codeline>
+<codeline><highlight class="normal">cmake<sp/>-DCMAKE_INSTALL_PREFIX=&quot;${HOME}/.local/&quot;<sp/>..</highlight></codeline>
+<codeline><highlight class="normal">make<sp/>install</highlight></codeline>
+</programlisting></para>
+<para>Even if you don&apos;t use it to compile your code, you must keep the GCC module loaded on a machine using environment modules. </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+    <location file="pdi/docs/FAQ.md"/>
+  </compounddef>
+</doxygen>

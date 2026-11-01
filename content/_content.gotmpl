@@ -1,0 +1,55 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{- /* PDI's documentation in four sections per version, each with its own sidebar: the user
+       documentation at /docs/<version>/ (the guide's pages and the C API's topics), the plugins
+       at /plugins/<version>/, the plugin developer documentation at /plugin-dev/<version>/ (how
+       to create a plugin, the namespaces and the deprecated list among them), and the tutorial
+       at /tutorial/<version>/, from the latest release only. PDI's main page, About, has no
+       page: the sidebars replace its lists. */ -}}
+{{- /* What each version has. The user pages: PDI_example from 1.9 (and main), FAQ from 1.3; the
+       deprecated list from 1.8. How to create a plugin is a subpage of the Plugins page up to 1.8,
+       and is placed apart with the plugin developers' pages: up to 1.4, the plugins' pages are
+       subpages too, so the Plugins page keeps them and marks this one as a duplicate; in 1.5 to
+       1.8 it is the only subpage, and the Plugins page is placed alone. */ -}}
+{{- $plugins_with_howto := dict "duplicate" (slice "page:how_to_create_plugin") -}}
+{{- $versions := slice
+    (dict "dir" "doxygen/pdi" "version" "main" "example" true "faq" true "deprecated" true)
+    (dict "dir" "doxygen/pdi-1.12" "version" "1.12" "latest" true "example" true "faq" true "deprecated" true)
+    (dict "dir" "doxygen/pdi-1.11" "version" "1.11" "example" true "faq" true "deprecated" true)
+    (dict "dir" "doxygen/pdi-1.10" "version" "1.10" "example" true "faq" true "deprecated" true)
+    (dict "dir" "doxygen/pdi-1.9" "version" "1.9" "example" true "faq" true "deprecated" true)
+    (dict "dir" "doxygen/pdi-1.8" "version" "1.8" "faq" true "deprecated" true "plugins" (dict "children" false))
+    (dict "dir" "doxygen/pdi-1.7" "version" "1.7" "faq" true "plugins" (dict "children" false))
+    (dict "dir" "doxygen/pdi-1.6" "version" "1.6" "faq" true "plugins" (dict "children" false))
+    (dict "dir" "doxygen/pdi-1.5" "version" "1.5" "faq" true "plugins" (dict "children" false))
+    (dict "dir" "doxygen/pdi-1.4" "version" "1.4" "example" true "faq" true "plugins" $plugins_with_howto)
+    (dict "dir" "doxygen/pdi-1.3" "version" "1.3" "example" true "faq" true "plugins" $plugins_with_howto)
+    (dict "dir" "doxygen/pdi-1.2" "version" "1.2" "example" true "plugins" $plugins_with_howto)
+    (dict "dir" "doxygen/pdi-1.1" "version" "1.1" "example" true "plugins" $plugins_with_howto)
+    (dict "dir" "doxygen/pdi-1.0" "version" "1.0" "example" true "plugins" $plugins_with_howto) -}}
+{{- range $versions -}}
+  {{- $user := slice "page:Installation" "page:PDI_usage" "page:Concepts" "page:First_steps" -}}
+  {{- if .example -}}{{- $user = $user | append "page:PDI_example" -}}{{- end -}}
+  {{- $user = $user | append "page:Specification_tree_ref" "topics" -}}
+  {{- if .faq -}}{{- $user = $user | append "page:FAQ" -}}{{- end -}}
+  {{- $v := dict "store" $ "dir" .dir "version" .version "latest" (.latest | default false) -}}
+  {{- range $i, $select := $user -}}
+    {{- $slug := cond (eq $select "topics") "c-api" (lower (strings.TrimPrefix "page:" $select)) -}}
+    {{- $title := cond (eq $select "topics") "C API Reference" "" -}}
+    {{- $call := merge $v (dict "path" (printf "docs/:version/%s" $slug) "select" $select "weight" (mul (add $i 1) 10)) -}}
+    {{- with $title -}}{{- $call = merge $call (dict "title" .) -}}{{- end -}}
+    {{- partial "docsygen/adapter.html" $call -}}
+  {{- end -}}
+  {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugins/:version" "select" "page:Plugins") (.plugins | default dict)) -}}
+  {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugin-dev/:version/how_to_create_plugin" "select" "page:how_to_create_plugin"
+      "weight" 10)) -}}
+  {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugin-dev/:version/api" "select" "api" "title" "Plugin API reference" "weight" 20)) -}}
+  {{- if .deprecated -}}
+    {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugin-dev/:version/api/deprecated" "select" "page:deprecated")) -}}
+  {{- end -}}
+  {{- if .latest -}}
+    {{- partial "docsygen/adapter.html" (merge $v (dict "path" "tutorial/:version" "select" "page:Hands_on")) -}}
+  {{- end -}}
+{{- end -}}

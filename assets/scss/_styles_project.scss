@@ -1,0 +1,20 @@
+// SPDX-FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>
+// SPDX-License-Identifier: MIT
+@import 'docsygen';
+
+// The version menu's navbar item is there only on the pages of a version: first in the navbar,
+// and pushed to its left end, its coming and going moves none of the menu's entries.
+@include media-breakpoint-up(md) {
+  .td-navbar__main {
+    flex-grow: 1;
+  }
+
+  .td-navbar .navbar-nav {
+    justify-content: flex-end;
+  }
+
+  .td-navbar__version-menu {
+    order: -1;
+    margin-inline-end: auto;
+  }
+}

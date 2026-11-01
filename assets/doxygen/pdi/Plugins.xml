@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="Plugins" kind="page">
+    <compoundname>Plugins</compoundname>
+    <title>Plugins</title>
+    <innerpage refid="Decl_HDF5_plugin">The Decl&apos;HDF5 plugin</innerpage>
+    <innerpage refid="Decl_NetCDF_plugin">The Decl&apos;NetCDF plugin</innerpage>
+    <innerpage refid="mpi_plugin">The MPI plugin</innerpage>
+    <innerpage refid="pycall_plugin">Pycall plugin</innerpage>
+    <innerpage refid="JSON_plugin">JSON plugin</innerpage>
+    <innerpage refid="serialize_plugin">Serialize plugin</innerpage>
+    <innerpage refid="set_value_plugin">Set_value plugin</innerpage>
+    <innerpage refid="timer_plugin">Timer plugin</innerpage>
+    <innerpage refid="trace_plugin">Trace plugin</innerpage>
+    <innerpage refid="user_code_plugin">The user-code plugin</innerpage>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="Plugins_1md_pdi_2docs_2Plugins"/></para>
+<para><table rows="11" cols="2"><row>
+<entry thead="yes" align='left'><para>Plugin  </para>
+</entry><entry thead="yes" align='left'><para>Description  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="Decl_HDF5_plugin" kindref="compound">Decl&apos;HDF5 plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Read and write data from HDF5 files in a declarative way.  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="Decl_NetCDF_plugin" kindref="compound">Decl&apos;NetCDF plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Read and write data from NetCDF files in a declarative way.  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="mpi_plugin" kindref="compound">MPI plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Enables MPI support in PDI and plugins.  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="pycall_plugin" kindref="compound">Pycall plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Call python scripts from C application  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="JSON_plugin" kindref="compound">JSON plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Export data in JSON format.  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="serialize_plugin" kindref="compound">Serialize plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Serializes and deserializes shared data.  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="set_value_plugin" kindref="compound">Set Value plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Set values to data and metadata from yaml file.  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="timer_plugin" kindref="compound">Timer plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Measure the time spent by PDI and its plugins.  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="trace_plugin" kindref="compound">Trace plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Generate a trace of what happens in PDI data store.  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><ref refid="user_code_plugin" kindref="compound">user-code plugin</ref>  </para>
+</entry><entry thead="no" align='left'><para>Call your function on event or when data becomes available.  </para>
+</entry></row>
+</table>
+</para>
+<para>To learn how to create your own plugin see: <ref refid="how_to_create_plugin" kindref="compound">How to create a plugin</ref> </para>
+    </detaileddescription>
+    <location file="pdi/docs/Plugins.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>About</title>
+    <innerpage refid="Installation">Installation of %PDI</innerpage>
+    <innerpage refid="PDI_usage">%PDI usage</innerpage>
+    <innerpage refid="Concepts">Core Concepts</innerpage>
+    <innerpage refid="First_steps">First steps with %PDI</innerpage>
+    <innerpage refid="Hands_on">Hands-on tutorial</innerpage>
+    <innerpage refid="PDI_example">%PDI examples</innerpage>
+    <innerpage refid="Specification_tree_ref">Specification tree Reference</innerpage>
+    <innerpage refid="Plugins">Plugins</innerpage>
+    <innerpage refid="FAQ">FAQ</innerpage>
+    <innerpage refid="how_to_create_plugin">How to create a plugin</innerpage>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="index_1mainpage"/></para>
+<para>PDI supports <ulink url="https://en.wikipedia.org/wiki/Loose_coupling">loose coupling</ulink> of simulation codes with data handling libraries:<itemizedlist>
+<listitem><para>the simulation code is annotated in a library-agnostic way,</para>
+</listitem><listitem><para>libraries are used from the <ref refid="Specification_tree_ref" kindref="compound">specification tree</ref>.</para>
+</listitem></itemizedlist>
+</para>
+<para>This approach works well for a number of concerns including: parameters reading, data initialization, post-processing, result storage to disk, visualization, fault tolerance, logging, inclusion as part of code-coupling, inclusion as part of an ensemble run, etc.</para>
+<sect1 id="index_1user-documentation">
+<title>User documentation</title><para><orderedlist>
+<listitem><para><ref refid="Installation" kindref="compound">Installation</ref></para>
+</listitem><listitem><para><ref refid="PDI_usage" kindref="compound">PDI usage</ref></para>
+</listitem><listitem><para><ref refid="Concepts" kindref="compound">Core concepts</ref></para>
+</listitem><listitem><para><ref refid="First_steps" kindref="compound">First steps</ref></para>
+</listitem><listitem><para><ref refid="Hands_on" kindref="compound">Tutorial</ref></para>
+</listitem><listitem><para><ref refid="PDI_example" kindref="compound">PDI example</ref></para>
+</listitem><listitem><para>C API reference</para>
+</listitem><listitem><para><ref refid="Specification_tree_ref" kindref="compound">Specification tree reference</ref></para>
+</listitem><listitem><para><ref refid="Plugins" kindref="compound">List of PDI plugins</ref></para>
+</listitem><listitem><para><ref refid="FAQ" kindref="compound">F.A.Q.</ref></para>
+</listitem></orderedlist>
+</para>
+</sect1>
+<sect1 id="index_1developer-documentation">
+<title>Developer documentation</title><para><orderedlist>
+<listitem><para><ref refid="how_to_create_plugin" kindref="compound">Plugin creation tutorial</ref></para>
+</listitem><listitem><para><ref refid="namespacePDI" kindref="compound">API for plugin developers</ref></para>
+</listitem></orderedlist>
+</para>
+</sect1>
+<sect1 id="index_1get-support">
+<title>Get support</title><para>If you have any problem with installation, running or understanding PDI, please contact us on our <ulink url="https://join.slack.pdi.dev">Slack channel<image type="html" name="slack.png" inline="yes">Slack</image>
+ <image type="latex" name="slack.png" inline="yes">Slack</image>
+ <image type="rtf" name="slack.png" inline="yes">Slack</image>
+ <image type="docbook" name="slack.png" inline="yes">Slack</image>
+ <image type="xml" name="slack.png" inline="yes">Slack</image>
+ https://join.slack.pdi.dev</ulink>. We will be happy to help ( ဖ‿ဖ)人(စ‿စ ) </para>
+</sect1>
+    </detaileddescription>
+    <location file="pdi/docs/About.md"/>
+  </compounddef>
+</doxygen>

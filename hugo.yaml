@@ -1,0 +1,85 @@
+# SPDX-FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>
+# SPDX-License-Identifier: MIT
+# PDI's website, in docsygen's draft of it: four top-menu entries, each a docs section with its
+# own sidebar: the user documentation at /docs/<version>/ (the guide's pages and the C API), the
+# plugins at /plugins/<version>/, the plugin developer documentation at /plugin-dev/<version>/
+# (how to create a plugin, the plugin API and the deprecated list), and the tutorial at
+# /tutorial/<version>/, from the latest release only. Each section redirects to its latest
+# version. The home and community pages come from PDI's new-site (github.com/pdidev/new-site),
+# with the community's links in params.links, which Docsy's footer shows too.
+baseURL: https://jbigot.github.io/pdi-docsygen/
+title: PDI
+locale: en
+
+module:
+  proxy: direct
+  hugoVersion:
+    min: 0.169.0
+  imports:
+    - path: github.com/jbigot/docsygen
+    - path: github.com/docsy/docsy/theme
+
+# Docsy's blocks and alerts write HTML around Markdown, as in docsy-example.
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+menu:
+  main:
+    - name: Documentation
+      pageRef: /docs/latest/
+      weight: 10
+    - name: Plugins
+      pageRef: /plugins/latest/
+      weight: 20
+    - name: Tutorial
+      pageRef: /tutorial/latest/
+      weight: 30
+    - name: Plugin dev.
+      pageRef: /plugin-dev/latest/
+      weight: 40
+    - name: Community
+      pageRef: /community/
+      weight: 50
+
+outputs:
+  section: [HTML, RSS, print]
+
+params:
+  offlineSearch: true
+  ui:
+    # Docsy's light/dark menu in the navbar.
+    showLightDarkModeMenu: true
+    sidebar_menu_compact: true
+    # docsygen makes each version root its own sidebar root (sidebar_root_for).
+    sidebar_root_enabled: true
+    # Not sidebar_menu_truncate: Hugo (≥ 0.152) reads YAML integers as uint64, and Docsy 0.18's
+    # sidebar-tree.html then warns that 18446744073709550… entries were truncated. PDI's sections
+    # stay under its default of 100 entries.
+  links:
+    user:
+      - name: Slack for users
+        url: https://join.slack.com/t/pdidev/shared_invite/enQtNDk5OTY2MDA0Nzg0LTlkM2U1MGQwZmM3OGM1MjA0M2VlMzUyNWNjODhkNmI4MjMwZmQxMTM1ODc2ODI4MjY4ODNmNDhmY2QzOWI4Nzk
+        icon: fa-brands fa-slack
+        desc: Get support on Slack!
+      - name: Releases
+        url: https://github.com/pdidev/pdi/releases
+        icon: fa-brands fa-github
+        desc: Get the code from GitHub!
+    developer:
+      - name: GitHub
+        url: https://github.com/pdidev/pdi
+        icon: fa-brands fa-github
+        desc: Contribute on GitHub!
+      - name: Slack
+        url: https://join.slack.com/t/pdidev/shared_invite/enQtNDk5OTY2MDA0Nzg0LTlkM2U1MGQwZmM3OGM1MjA0M2VlMzUyNWNjODhkNmI4MjMwZmQxMTM1ODc2ODI4MjY4ODNmNDhmY2QzOWI4Nzk
+        icon: fa-brands fa-slack
+        desc: Discuss with developers on Slack!
+      - name: GitHub Actions
+        url: https://github.com/pdidev/pdi/actions
+        icon: fa-solid fa-gears
+        desc: Check test results on GitHub Actions!
+      - name: Container images
+        url: https://github.com/orgs/pdidev/packages
+        icon: fa-brands fa-docker
+        desc: Try our container images from ghcr.io!

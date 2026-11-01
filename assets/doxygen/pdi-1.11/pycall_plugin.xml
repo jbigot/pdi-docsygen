@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="pycall_plugin" kind="page">
+    <compoundname>pycall_plugin</compoundname>
+    <title>Pycall plugin</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="pycall_plugin_1md_plugins_2pycall_2README"/></para>
+<para>The Pycall plugin allows calling python scripts from yaml file, that can work either if wanted data was shared or program calls specific event.</para>
+<sect1 id="pycall_plugin_1pycall_configuration">
+<title>Configuration</title><para>Simple plugin build: <programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pycall:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>name<sp/>of<sp/>plugin</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>on_event:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>run<sp/>script<sp/>on<sp/>event<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>testing:<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>name<sp/>of<sp/>an<sp/>event</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>with:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>data<sp/>alias</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exec:<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>python<sp/>code<sp/>which<sp/>will<sp/>be<sp/>executed<sp/>when<sp/>the<sp/>event<sp/>is<sp/>called</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>on_data:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>run<sp/>script<sp/>on<sp/>data<sp/>share</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>data_name:<sp/><sp/><sp/><sp/>//<sp/>python<sp/>code<sp/>which<sp/>will<sp/>be<sp/>executed<sp/>when<sp/>data_name<sp/>is<sp/>shared</highlight></codeline>
+</programlisting></para>
+<sect2 id="pycall_plugin_1pycall_plugin_tree">
+<title>Plugin tree</title><para>The root of plugin configuration (named <computeroutput>pycall</computeroutput>), is a dictionary that contains the following keys:<itemizedlist>
+<listitem><para><ref refid="Specification_tree_ref_1logging_node" kindref="member">logging</ref></para>
+</listitem><listitem><para><ref refid="pycall_plugin_1pycall_on_event" kindref="member">on_event</ref></para>
+</listitem><listitem><para><ref refid="pycall_plugin_1pycall_on_data" kindref="member">on_data</ref></para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="pycall_plugin_1pycall_on_event">
+<title>on_event</title><para>This option allows to execute written python code when specific event is called.</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">data:<sp/>{a:<sp/>{type:<sp/>array,<sp/>subtype:<sp/>int,<sp/>size:<sp/>3}}</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pycall:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>on_event:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>testing:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>with:<sp/>{<sp/>a_python:<sp/>$a<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exec:<sp/>\&quot;print(&apos;<sp/>*<sp/>[P]<sp/>I<sp/>received<sp/><sp/><sp/><sp/>$a<sp/>=&apos;,a_python);<sp/>a_python[1]=7;<sp/>print(&apos;<sp/>*<sp/>[P]<sp/>changed<sp/>it<sp/>to<sp/>$a<sp/>=&apos;,a_python);\&quot;</highlight></codeline>
+</programlisting> In this example pycall will run script on <computeroutput>testing</computeroutput> event. In the next step in <computeroutput>with</computeroutput> section alias name for data is generated. <computeroutput>a</computeroutput> will be <computeroutput>a_python</computeroutput> for execusion of the python code. Finally <computeroutput>exec</computeroutput> contains python code that will be executed on <computeroutput>testing</computeroutput> event.</para>
+<para>There is also an option to set a list of executions: <programlisting filename=".yaml"><codeline><highlight class="normal">data:<sp/>{a:<sp/>{type:<sp/>array,<sp/>subtype:<sp/>int,<sp/>size:<sp/>3}}</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pycall:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>on_event:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>testing:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>exec:<sp/>#some_python_script</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>with:<sp/>{<sp/>a:<sp/>$a<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>exec:<sp/>#some_other_python_script</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>with:<sp/>{<sp/>b:<sp/>$a<sp/>}</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="pycall_plugin_1pycall_on_data">
+<title>on_data</title><para>This option allows to execute written python code when specific data is shared.</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">data:<sp/>{a:<sp/>{type:<sp/>array,<sp/>subtype:<sp/>int,<sp/>size:<sp/>3}}</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pycall:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>on_data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>a:<sp/>print(&apos;<sp/>*<sp/>[P]<sp/>I<sp/>received<sp/><sp/><sp/><sp/>$a<sp/>=&apos;,a);<sp/>a[1]=7;<sp/>print(&apos;<sp/>*<sp/>[P]<sp/>changed<sp/>it<sp/>to<sp/>$a<sp/>=&apos;,a);\&quot;</highlight></codeline>
+</programlisting></para>
+<para>The <computeroutput>on_data</computeroutput> is a dictionary that contains data name with the python script that will be executed on share.</para>
+</sect2>
+</sect1>
+<sect1 id="pycall_plugin_1pycall_ex">
+<title>Examples</title><para>Full example of pycall plugin. For siplicity yaml file was included with c code in one file instead of creating separate files.</para>
+<para>Yaml file named your_file: <programlisting filename=".yaml"><codeline><highlight class="normal">logging:<sp/>trace</highlight></codeline>
+<codeline><highlight class="normal">data:<sp/>{a:<sp/>{type:<sp/>array,<sp/>subtype:<sp/>int,<sp/>size:<sp/>3}}</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pycall:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>on_event:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>testing:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>with:<sp/>{<sp/>a_python:<sp/>$a<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exec:<sp/>\&quot;print(&apos;<sp/>*<sp/>[P]<sp/>I<sp/>received<sp/><sp/><sp/><sp/>$a<sp/>=&apos;,a_python);<sp/>a_python[1]=7;<sp/>print(&apos;<sp/>*<sp/>[P]<sp/>changed<sp/>it<sp/>to<sp/>$a<sp/>=&apos;,a_python);\&quot;</highlight></codeline>
+</programlisting></para>
+<para>C++ code: <programlisting filename=".cpp"><codeline><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>a[3]<sp/>=<sp/>{1,<sp/>2,<sp/>3};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">printf(</highlight><highlight class="stringliteral">&quot;<sp/>*<sp/>[C]<sp/>starting<sp/>with<sp/>$a<sp/>=<sp/>[%d<sp/>%d<sp/>%d]\n&quot;</highlight><highlight class="normal">,<sp/>a[0],<sp/>a[1],<sp/>a[2]);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__annotation_1ga8f103855418326055020d6f71b365c7e" kindref="member">PDI_share</ref>(</highlight><highlight class="stringliteral">&quot;a&quot;</highlight><highlight class="normal">,<sp/>a,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a5cf752cb5cd43b4ae3d7590af61c9939" kindref="member">PDI_INOUT</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__annotation_1gab21d59fd8d6532f6b8d7a4ac69a2388b" kindref="member">PDI_event</ref>(</highlight><highlight class="stringliteral">&quot;testing&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="group__annotation_1gabf58b7c146cbf7e3341245f60cec0f7e" kindref="member">PDI_reclaim</ref>(</highlight><highlight class="stringliteral">&quot;a&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">printf(</highlight><highlight class="stringliteral">&quot;<sp/>*<sp/>[C]<sp/>now<sp/>I<sp/>see<sp/><sp/><sp/><sp/><sp/>$a<sp/>=<sp/>[%d<sp/>%d<sp/>%d]\n&quot;</highlight><highlight class="normal">,<sp/>a[0],<sp/>a[1],<sp/>a[2]);</highlight></codeline>
+</programlisting> Output from the program: <programlisting><codeline><highlight class="normal"><sp/>*<sp/>[C]<sp/>starting<sp/>with<sp/>$a<sp/>=<sp/>[1<sp/>2<sp/>3]</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:51:26]<sp/>***<sp/>trace:<sp/>Sharing<sp/>`a&apos;<sp/>Ref<sp/>with<sp/>rights:<sp/>R<sp/>=<sp/>true,<sp/>W<sp/>=<sp/>true</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:51:26]<sp/>***<sp/>trace:<sp/>Calling<sp/>`a&apos;<sp/>share.<sp/>Callbacks<sp/>to<sp/>call:<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:51:26]<sp/>***<sp/>trace:<sp/>Calling<sp/>`testing&apos;<sp/>event.<sp/>Callbacks<sp/>to<sp/>call:<sp/>1</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>[P]<sp/>I<sp/>received<sp/><sp/><sp/><sp/>$a<sp/>=<sp/>[1<sp/>2<sp/>3]</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>[P]<sp/>changed<sp/>it<sp/>to<sp/>$a<sp/>=<sp/>[1<sp/>7<sp/>3]</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>[C]<sp/>now<sp/>I<sp/>see<sp/><sp/><sp/><sp/><sp/>$a<sp/>=<sp/>[1<sp/>7<sp/>3]</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+    <location file="plugins/pycall/README.md"/>
+  </compounddef>
+</doxygen>

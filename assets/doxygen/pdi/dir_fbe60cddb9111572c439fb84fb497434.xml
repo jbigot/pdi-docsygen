@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="dir_fbe60cddb9111572c439fb84fb497434" kind="dir">
+    <compoundname>.build</compoundname>
+    <innerdir refid="dir_a6b60725734c1d67255b14bebcede7ad">ClangDevel</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file=".build/"/>
+  </compounddef>
+</doxygen>

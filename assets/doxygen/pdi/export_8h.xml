@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="export_8h" kind="file" language="C++">
+    <compoundname>export.h</compoundname>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="export_8h_1ac957cd52670b6eeb581ce8c6dc964162" prot="public" static="no">
+        <name>PDI_DEPRECATED</name>
+        <initializer>__attribute__ ((__deprecated__))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/export.h" line="25" column="11" bodyfile=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/export.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="export_8h_1a29ac3520969cf5bbab71db1bd5a0c0ac" prot="public" static="no">
+        <name>PDI_DEPRECATED_NO_EXPORT</name>
+        <initializer>PDI_NO_EXPORT PDI_DEPRECATED</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/export.h" line="33" column="11" bodyfile=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/export.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/pdi/export.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1058 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="classPDI_1_1Scalar__datatype" kind="class" language="C++" prot="public">
+    <compoundname>PDI::Scalar_datatype</compoundname>
+    <basecompoundref refid="classPDI_1_1Datatype" prot="public" virt="non-virtual">PDI::Datatype</basecompoundref>
+    <includes refid="scalar__datatype_8h" local="no">scalar_datatype.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPDI_1_1Scalar__datatype_1a5596bf27bff801817e53e7c65f27bb21" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t PDI::Scalar_datatype::m_size</definition>
+        <argsstring></argsstring>
+        <name>m_size</name>
+        <qualifiedname>PDI::Scalar_datatype::m_size</qualifiedname>
+        <briefdescription>
+<para>Size of the content in bytes or 0 if unknown. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="44" column="8" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Scalar__datatype_1a4c2a91a8e6a86ebefe8a0a165b1c5efd" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t PDI::Scalar_datatype::m_dense_size</definition>
+        <argsstring></argsstring>
+        <name>m_dense_size</name>
+        <qualifiedname>PDI::Scalar_datatype::m_dense_size</qualifiedname>
+        <briefdescription>
+<para>Size of the densified content in bytes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="47" column="8" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Scalar__datatype_1add2240fd379b86ed06bbb3c4e46f4afc" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t PDI::Scalar_datatype::m_align</definition>
+        <argsstring></argsstring>
+        <name>m_align</name>
+        <qualifiedname>PDI::Scalar_datatype::m_align</qualifiedname>
+        <briefdescription>
+<para>Size of the alignment in bytes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="50" column="8" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Scalar__datatype_1a4b47e5b9783b79383e6ad99348de70ed" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacePDI_1aaeb021e0fbcb2477836bd770c3c473c7" kindref="member">Scalar_kind</ref></type>
+        <definition>Scalar_kind PDI::Scalar_datatype::m_kind</definition>
+        <argsstring></argsstring>
+        <name>m_kind</name>
+        <qualifiedname>PDI::Scalar_datatype::m_kind</qualifiedname>
+        <briefdescription>
+<para>Interpretation of the content. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="53" column="13" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Scalar__datatype_1a101018958f1d0a6fdb66cef50f6019aa" prot="private" static="no" mutable="no">
+        <type>std::function&lt; void *(void *, const void *) &gt;</type>
+        <definition>std::function&lt;void*(void*, const void*) &gt; PDI::Scalar_datatype::m_copy</definition>
+        <argsstring></argsstring>
+        <name>m_copy</name>
+        <qualifiedname>PDI::Scalar_datatype::m_copy</qualifiedname>
+        <briefdescription>
+<para>copy function or null for memcpy </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="56" column="15" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Scalar__datatype_1adfab6f14ba8e4d67735f6b2aa552eae7" prot="private" static="no" mutable="no">
+        <type>std::function&lt; void(void *) &gt;</type>
+        <definition>std::function&lt;void(void*) &gt; PDI::Scalar_datatype::m_destroy</definition>
+        <argsstring></argsstring>
+        <name>m_destroy</name>
+        <qualifiedname>PDI::Scalar_datatype::m_destroy</qualifiedname>
+        <briefdescription>
+<para>destroy function or null for memcpy </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="59" column="15" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classPDI_1_1Scalar__datatype_1aaebbb08ce0295ae670283e302bde45e4" prot="private" static="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>std::shared_ptr&lt; Scalar_datatype &gt; const</type>
+        <definition>template std::shared_ptr&lt; Scalar_datatype &gt; const PDI::Scalar_datatype::cv_type_for_v&lt; double &gt;</definition>
+        <argsstring></argsstring>
+        <name>cv_type_for_v</name>
+        <qualifiedname>PDI::Scalar_datatype::cv_type_for_v</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="62" column="30" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classPDI_1_1Scalar__datatype_1a9147261e905f5437598840b20c5939a9" prot="public" static="yes" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto PDI::Scalar_datatype::kind_of_v</definition>
+        <argsstring></argsstring>
+        <name>kind_of_v</name>
+        <qualifiedname>PDI::Scalar_datatype::kind_of_v</qualifiedname>
+        <initializer>= kind_of&lt;std::remove_cv_t&lt;T&gt;&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="80" column="23" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Scalar__datatype_1aad01acf8889cb34aaade4d285d8ebfcb" prot="public" static="yes" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>auto const  &amp;</type>
+        <definition>auto const&amp; PDI::Scalar_datatype::type_for_v</definition>
+        <argsstring></argsstring>
+        <name>type_for_v</name>
+        <qualifiedname>PDI::Scalar_datatype::type_for_v</qualifiedname>
+        <initializer>= cv_type_for_v&lt;std::remove_cv_t&lt;T&gt;&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="83" column="30" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a98868cfed7b14ac2d0474892d2365fa0" prot="private" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacePDI_1aaeb021e0fbcb2477836bd770c3c473c7" kindref="member">Scalar_kind</ref></type>
+        <definition>static constexpr Scalar_kind PDI::Scalar_datatype::kind_of</definition>
+        <argsstring>()</argsstring>
+        <name>kind_of</name>
+        <qualifiedname>PDI::Scalar_datatype::kind_of</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="65" column="37" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="65" bodyend="76"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a553f70f9bdc343bc96659a31cdf19529" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacePDI_1aaeb021e0fbcb2477836bd770c3c473c7" kindref="member">Scalar_kind</ref></type>
+        <definition>Scalar_kind PDI::Scalar_datatype::kind</definition>
+        <argsstring>() const</argsstring>
+        <name>kind</name>
+        <qualifiedname>PDI::Scalar_datatype::kind</qualifiedname>
+        <briefdescription>
+<para>Interpretation of the content. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="87" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a02b9d948fd6d17319b89bdf81d464424" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="namespacePDI_1aad4d6c91036390acf42b8cee31f8289c" kindref="member">Datatype_sptr</ref></type>
+        <definition>Datatype_sptr PDI::Scalar_datatype::densify</definition>
+        <argsstring>() const override</argsstring>
+        <name>densify</name>
+        <qualifiedname>PDI::Scalar_datatype::densify</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1ac805f64a2f7ee4e82d723f80a952add4">densify</reimplements>
+        <briefdescription>
+<para>Creates a new datatype as the dense copy of this one. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the type that is produced </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="89" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1ae1d69637edcf11a30700c7694c9fb4d6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="namespacePDI_1aad4d6c91036390acf42b8cee31f8289c" kindref="member">Datatype_sptr</ref></type>
+        <definition>Datatype_sptr PDI::Scalar_datatype::evaluate</definition>
+        <argsstring>(Context &amp;) const override</argsstring>
+        <name>evaluate</name>
+        <qualifiedname>PDI::Scalar_datatype::evaluate</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype__template_1a279595fa23744ff10ac01d617e59b8c5">evaluate</reimplements>
+        <param>
+          <type><ref refid="classPDI_1_1Context" kindref="compound">Context</ref> &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+<para>Creates a new datatype by resolving the value of all metadata references. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ctx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the context in which to evaluate this template </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the evaluated type that is produced </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="91" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1aa1e4967c4b564a06ee80d2d9f3499931" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool PDI::Scalar_datatype::dense</definition>
+        <argsstring>() const override</argsstring>
+        <name>dense</name>
+        <qualifiedname>PDI::Scalar_datatype::dense</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1a15b82a52cfafc5fc1dbc21b043588693">dense</reimplements>
+        <briefdescription>
+<para>Indicate if the datatype is dense or not. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>whether the datatype is dense </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="93" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1ad8883c6045742e19ee34606681e2fcd4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>size_t</type>
+        <definition>size_t PDI::Scalar_datatype::datasize</definition>
+        <argsstring>() const override</argsstring>
+        <name>datasize</name>
+        <qualifiedname>PDI::Scalar_datatype::datasize</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1aa5254560c8fd98403b2067091f93b3c9">datasize</reimplements>
+        <briefdescription>
+<para>Computes the data size of a type, excluding potentially unused memory from a sparse type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the size in bytes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="95" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a8e0bb04f38f016e1050aae8ce95aa14d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>size_t</type>
+        <definition>size_t PDI::Scalar_datatype::buffersize</definition>
+        <argsstring>() const override</argsstring>
+        <name>buffersize</name>
+        <qualifiedname>PDI::Scalar_datatype::buffersize</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1a341a15d47396f1cd9bb12e43a5cd5a40">buffersize</reimplements>
+        <briefdescription>
+<para>Computes the data size of a type, including potentially unused memory from a sparse type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the size in bytes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="97" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a19cafc9d088635f5826f3c2cdc9246ee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>size_t</type>
+        <definition>size_t PDI::Scalar_datatype::alignment</definition>
+        <argsstring>() const override</argsstring>
+        <name>alignment</name>
+        <qualifiedname>PDI::Scalar_datatype::alignment</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1a2d1d0228dddffc6ee786d56494fde972">alignment</reimplements>
+        <briefdescription>
+<para>Returns the required alignment for a type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the size in bytes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="99" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1acf14074f0e2fdcec41b4f7cb7e3e27ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool PDI::Scalar_datatype::simple</definition>
+        <argsstring>() const override</argsstring>
+        <name>simple</name>
+        <qualifiedname>PDI::Scalar_datatype::simple</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1ae5f85834cbae56fca2b4cf7e7fbd0df3">simple</reimplements>
+        <briefdescription>
+<para>Tells if data can be copied as bytes (if type is dense) and doesn&apos;t need a destroyer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if data has trivial copier and destroyer, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="101" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a6c79e2f579e87bd8dca650b75f02e260" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void *</type>
+        <definition>void * PDI::Scalar_datatype::data_to_dense_copy</definition>
+        <argsstring>(void *to, const void *from) const override</argsstring>
+        <name>data_to_dense_copy</name>
+        <qualifiedname>PDI::Scalar_datatype::data_to_dense_copy</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1a01d222d0c9bf459473bace048742c54c">data_to_dense_copy</reimplements>
+        <param>
+          <type>void *</type>
+          <declname>to</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>from</declname>
+        </param>
+        <briefdescription>
+<para>Creates a dense deep copy of data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">to</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the allocated memory to fill (dense data) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the copied data (size of buffersize) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>updated <lsquo/>to<rsquo/> pointer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="103" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a0f92cb5110cfe8c8337edc210a7d80e5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void *</type>
+        <definition>void * PDI::Scalar_datatype::data_from_dense_copy</definition>
+        <argsstring>(void *to, const void *from) const override</argsstring>
+        <name>data_from_dense_copy</name>
+        <qualifiedname>PDI::Scalar_datatype::data_from_dense_copy</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1a7645d048793076dbfadd54bf0162a223">data_from_dense_copy</reimplements>
+        <param>
+          <type>void *</type>
+          <declname>to</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>from</declname>
+        </param>
+        <briefdescription>
+<para>Creates a sparse deep copy of dense data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">to</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the allocated memory to fill (size of buffersize) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">from</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the pointer to the copied data (dense data) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>updated <lsquo/>to<rsquo/> pointer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="105" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a18fcaddec51a46921d6e4e42deee9026" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void PDI::Scalar_datatype::destroy_data</definition>
+        <argsstring>(void *ptr) const override</argsstring>
+        <name>destroy_data</name>
+        <qualifiedname>PDI::Scalar_datatype::destroy_data</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1a73bcba3fb827468daeda6ab0a4fd92b5">destroy_data</reimplements>
+        <param>
+          <type>void *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Delete data whose type is described by the <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This does not deallocate the buffer used to store the data.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>to the data to free </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="107" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a5fcf657a2d7957801d45e6501a8627fd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string PDI::Scalar_datatype::debug_string</definition>
+        <argsstring>() const override</argsstring>
+        <name>debug_string</name>
+        <qualifiedname>PDI::Scalar_datatype::debug_string</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1aff4be6868c49816ef432098357ab5789">debug_string</reimplements>
+        <briefdescription>
+<para>Returns the datatype yaml representation as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the datatype yaml representation as a string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="109" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1ae68e0988a4d9718f3d75105235445421" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool PDI::Scalar_datatype::operator==</definition>
+        <argsstring>(const Datatype &amp;) const override</argsstring>
+        <name>operator==</name>
+        <qualifiedname>PDI::Scalar_datatype::operator==</qualifiedname>
+        <reimplements refid="classPDI_1_1Datatype_1a8cdf8ed0c21b40519239290171252a5b">operator==</reimplements>
+        <param>
+          <type>const <ref refid="classPDI_1_1Datatype_1a78f397bb00153aedd4823091e7403b3e" kindref="member">Datatype</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Test for equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref> to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the <ref refid="classPDI_1_1Datatype" kindref="compound">Datatype</ref>&apos;s are equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="111" column="6"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a052ef07a86cead55e2f858e997edc477" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Scalar_datatype::Scalar_datatype</definition>
+        <argsstring>(Scalar_kind kind, size_t size, const Attributes_map &amp;attributes={})</argsstring>
+        <name>Scalar_datatype</name>
+        <qualifiedname>PDI::Scalar_datatype::Scalar_datatype</qualifiedname>
+        <param>
+          <type><ref refid="namespacePDI_1aaeb021e0fbcb2477836bd770c3c473c7" kindref="member">Scalar_kind</ref></type>
+          <declname>kind</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacePDI_1a03d9edc0d87688f72c6e11e4a6860023" kindref="member">Attributes_map</ref> &amp;</type>
+          <declname>attributes</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Creates new scalar datatype. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">kind</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>kind of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffersize of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">attributes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>attributes of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="120" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1adcf3bbcf9803403935388b114e0e1cad" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Scalar_datatype::Scalar_datatype</definition>
+        <argsstring>(Scalar_kind kind, size_t size, size_t align, const Attributes_map &amp;attributes={})</argsstring>
+        <name>Scalar_datatype</name>
+        <qualifiedname>PDI::Scalar_datatype::Scalar_datatype</qualifiedname>
+        <param>
+          <type><ref refid="namespacePDI_1aaeb021e0fbcb2477836bd770c3c473c7" kindref="member">Scalar_kind</ref></type>
+          <declname>kind</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>align</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacePDI_1a03d9edc0d87688f72c6e11e4a6860023" kindref="member">Attributes_map</ref> &amp;</type>
+          <declname>attributes</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Creates new scalar datatype. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">kind</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>kind of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffersize of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">align</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>alignment of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">attributes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>attributes of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="129" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a77cd4c3970ef1e53bbbd8916c8702127" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Scalar_datatype::Scalar_datatype</definition>
+        <argsstring>(Scalar_kind kind, size_t size, size_t align, size_t dense_size, std::function&lt; void *(void *, const void *) &gt; copy, std::function&lt; void(void *) &gt; destroy, const Attributes_map &amp;attributes={})</argsstring>
+        <name>Scalar_datatype</name>
+        <qualifiedname>PDI::Scalar_datatype::Scalar_datatype</qualifiedname>
+        <param>
+          <type><ref refid="namespacePDI_1aaeb021e0fbcb2477836bd770c3c473c7" kindref="member">Scalar_kind</ref></type>
+          <declname>kind</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>align</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>dense_size</declname>
+        </param>
+        <param>
+          <type>std::function&lt; void *(void *, const void *) &gt;</type>
+          <declname>copy</declname>
+        </param>
+        <param>
+          <type>std::function&lt; void(void *) &gt;</type>
+          <declname>destroy</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacePDI_1a03d9edc0d87688f72c6e11e4a6860023" kindref="member">Attributes_map</ref> &amp;</type>
+          <declname>attributes</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Creates new scalar datatype. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">kind</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>kind of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffersize of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">dense_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dense size of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">copy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function that copies data of this datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">destroy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function that destroys data of this datatype (doesn&apos;t deallocate memory) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">attributes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>attributes of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="140" column="1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1a9ef0a32c5656d62de594702954436780" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Scalar_datatype &gt;</type>
+        <definition>static std::shared_ptr&lt; Scalar_datatype &gt; PDI::Scalar_datatype::make</definition>
+        <argsstring>(Scalar_kind kind, size_t size, const Attributes_map &amp;attributes={})</argsstring>
+        <name>make</name>
+        <qualifiedname>PDI::Scalar_datatype::make</qualifiedname>
+        <param>
+          <type><ref refid="namespacePDI_1aaeb021e0fbcb2477836bd770c3c473c7" kindref="member">Scalar_kind</ref></type>
+          <declname>kind</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacePDI_1a03d9edc0d87688f72c6e11e4a6860023" kindref="member">Attributes_map</ref> &amp;</type>
+          <declname>attributes</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Creates new scalar datatype. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">kind</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>kind of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffersize of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">attributes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>attributes of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="157" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1abd719e41f042a58f231d29860ad4c8e1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Scalar_datatype &gt;</type>
+        <definition>static std::shared_ptr&lt; Scalar_datatype &gt; PDI::Scalar_datatype::make</definition>
+        <argsstring>(Scalar_kind kind, size_t size, size_t align, const Attributes_map &amp;attributes={})</argsstring>
+        <name>make</name>
+        <qualifiedname>PDI::Scalar_datatype::make</qualifiedname>
+        <param>
+          <type><ref refid="namespacePDI_1aaeb021e0fbcb2477836bd770c3c473c7" kindref="member">Scalar_kind</ref></type>
+          <declname>kind</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>align</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacePDI_1a03d9edc0d87688f72c6e11e4a6860023" kindref="member">Attributes_map</ref> &amp;</type>
+          <declname>attributes</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Creates new scalar datatype. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">kind</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>kind of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffersize of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">align</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>alignment of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">attributes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>attributes of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="166" column="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Scalar__datatype_1abc5ddc8a93b7bbc46fb30a8fd6556cdb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; Scalar_datatype &gt;</type>
+        <definition>static std::shared_ptr&lt; Scalar_datatype &gt; PDI::Scalar_datatype::make</definition>
+        <argsstring>(Scalar_kind kind, size_t size, size_t align, size_t dense_size, std::function&lt; void *(void *, const void *) &gt; copy, std::function&lt; void(void *) &gt; destroy, const Attributes_map &amp;attributes={})</argsstring>
+        <name>make</name>
+        <qualifiedname>PDI::Scalar_datatype::make</qualifiedname>
+        <param>
+          <type><ref refid="namespacePDI_1aaeb021e0fbcb2477836bd770c3c473c7" kindref="member">Scalar_kind</ref></type>
+          <declname>kind</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>align</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>dense_size</declname>
+        </param>
+        <param>
+          <type>std::function&lt; void *(void *, const void *) &gt;</type>
+          <declname>copy</declname>
+        </param>
+        <param>
+          <type>std::function&lt; void(void *) &gt;</type>
+          <declname>destroy</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacePDI_1a03d9edc0d87688f72c6e11e4a6860023" kindref="member">Attributes_map</ref> &amp;</type>
+          <declname>attributes</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Creates new scalar datatype. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">kind</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>kind of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>buffersize of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">align</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>alignment of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">dense_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dense size of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">copy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function that copies data of this datatype </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">destroy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function that destroys data of this datatype (doesn&apos;t deallocate memory) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">attributes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>attributes of the scalar datatype </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/scalar_datatype.h" line="178" column="24"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>PDI::Datatype</label>
+        <link refid="classPDI_1_1Datatype"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>PDI::Datatype_template</label>
+        <link refid="classPDI_1_1Datatype__template"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>PDI::Scalar_datatype</label>
+        <link refid="classPDI_1_1Scalar__datatype"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::enable_shared_from_this&lt; Datatype_template &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>PDI::Datatype</label>
+        <link refid="classPDI_1_1Datatype"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>PDI::Datatype_template</label>
+        <link refid="classPDI_1_1Datatype__template"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>PDI::Scalar_datatype</label>
+        <link refid="classPDI_1_1Scalar__datatype"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::enable_shared_from_this&lt; Datatype_template &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="pdi/include/pdi/scalar_datatype.h" line="38" column="1" bodyfile="pdi/include/pdi/scalar_datatype.h" bodystart="39" bodyend="187"/>
+    <listofallmembers>
+      <member refid="classPDI_1_1Scalar__datatype_1a19cafc9d088635f5826f3c2cdc9246ee" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>alignment</name></member>
+      <member refid="classPDI_1_1Datatype__template_1afa92bd9faeee96f232c694c92be41efe" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>attribute</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a6cd9ace004b0a56baad6efa94146b497" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>attributes</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a8e0bb04f38f016e1050aae8ce95aa14d" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>buffersize</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1aaebbb08ce0295ae670283e302bde45e4" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>cv_type_for_v</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a0f92cb5110cfe8c8337edc210a7d80e5" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>data_from_dense_copy</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a6c79e2f579e87bd8dca650b75f02e260" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>data_to_dense_copy</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1ad8883c6045742e19ee34606681e2fcd4" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>datasize</name></member>
+      <member refid="classPDI_1_1Datatype_1a78f397bb00153aedd4823091e7403b3e" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>Datatype</name></member>
+      <member refid="classPDI_1_1Datatype__template_1ad2690d41caa281e6f3410dff7caa6c7d" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>Datatype_template</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a4901d777744faf3d9a1ac190ac4706b0" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>Datatype_template</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a5fcf657a2d7957801d45e6501a8627fd" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>debug_string</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1aa1e4967c4b564a06ee80d2d9f3499931" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>dense</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a02b9d948fd6d17319b89bdf81d464424" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>densify</name></member>
+      <member refid="classPDI_1_1Datatype_1aca54ccb74b04fb348613d0ce918ede4a" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>dereference</name></member>
+      <member refid="classPDI_1_1Datatype_1a8a17d181842b531cc5cd3a912276949b" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>dereference</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a18fcaddec51a46921d6e4e42deee9026" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>destroy_data</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1ae1d69637edcf11a30700c7694c9fb4d6" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>evaluate</name></member>
+      <member refid="classPDI_1_1Datatype_1ad3462d1b9b794c7a7b128975598162ec" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>index</name></member>
+      <member refid="classPDI_1_1Datatype_1afe14122b99b52ad783b3319b2d4f8d50" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>index</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a553f70f9bdc343bc96659a31cdf19529" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>kind</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a98868cfed7b14ac2d0474892d2365fa0" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>kind_of</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a9147261e905f5437598840b20c5939a9" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>kind_of_v</name></member>
+      <member refid="classPDI_1_1Datatype__template_1aa539eee3b7312a7f1be7fd85b64b5c85" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>load_basic_datatypes</name></member>
+      <member refid="classPDI_1_1Datatype__template_1ae5ffc14e8bad3f21ce30027671055f1b" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>load_user_datatypes</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1add2240fd379b86ed06bbb3c4e46f4afc" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>m_align</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a7cbd797b3fc189c60350f80fb0b43b47" prot="protected" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>m_attributes</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a101018958f1d0a6fdb66cef50f6019aa" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>m_copy</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a4c2a91a8e6a86ebefe8a0a165b1c5efd" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>m_dense_size</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1adfab6f14ba8e4d67735f6b2aa552eae7" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>m_destroy</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a4b47e5b9783b79383e6ad99348de70ed" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>m_kind</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a5596bf27bff801817e53e7c65f27bb21" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>m_size</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a9ef0a32c5656d62de594702954436780" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>make</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1abd719e41f042a58f231d29860ad4c8e1" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>make</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1abc5ddc8a93b7bbc46fb30a8fd6556cdb" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>make</name></member>
+      <member refid="classPDI_1_1Datatype_1a6e2bbe80efacf91e680b2f8e5f79610b" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>member</name></member>
+      <member refid="classPDI_1_1Datatype_1afbd9eec9099095f8a537cfa398af33c1" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>member</name></member>
+      <member refid="classPDI_1_1Datatype_1af80638919cb31c61451d0bc6220a69e3" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>operator!=</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1ae68e0988a4d9718f3d75105235445421" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>operator==</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a052ef07a86cead55e2f858e997edc477" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>Scalar_datatype</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1adcf3bbcf9803403935388b114e0e1cad" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>Scalar_datatype</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1a77cd4c3970ef1e53bbbd8916c8702127" prot="private" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>Scalar_datatype</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1acf14074f0e2fdcec41b4f7cb7e3e27ea" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>simple</name></member>
+      <member refid="classPDI_1_1Datatype_1a458d8d3dc7235779f510185a8ea1337d" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>slice</name></member>
+      <member refid="classPDI_1_1Datatype_1a66a912614603ac4b7880bf484476bbd9" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>slice</name></member>
+      <member refid="classPDI_1_1Scalar__datatype_1aad01acf8889cb34aaade4d285d8ebfcb" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>type_for_v</name></member>
+      <member refid="classPDI_1_1Datatype_1ad2e19537809ba143ab9130c95b237dc2" prot="public" virt="non-virtual"><scope>PDI::Scalar_datatype</scope><name>~Datatype</name></member>
+      <member refid="classPDI_1_1Datatype__template_1a8722c4b873d42931d8e159abaa62ff27" prot="public" virt="virtual"><scope>PDI::Scalar_datatype</scope><name>~Datatype_template</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

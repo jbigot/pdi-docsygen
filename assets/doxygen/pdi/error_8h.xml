@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="error_8h" kind="file" language="C++">
+    <compoundname>error.h</compoundname>
+    <includes local="no">concepts</includes>
+    <includes local="no">exception</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">ranges</includes>
+    <includes local="no">sstream</includes>
+    <includes local="no">stdexcept</includes>
+    <includes local="no">string</includes>
+    <includes local="no">spdlog/spdlog.h</includes>
+    <includes refid="pdi__fwd_8h" local="no">pdi/pdi_fwd.h</includes>
+    <includes refid="paraconf__wrapper_8h" local="no">pdi/paraconf_wrapper.h</includes>
+    <includedby refid="ref__any_8h" local="no">ref_any.h</includedby>
+    <incdepgraph>
+      <node id="13">
+        <label>pdi.h</label>
+        <link refid="pdi_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>error.h</label>
+        <link refid="error_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>pdi/paraconf_wrapper.h</label>
+        <link refid="paraconf__wrapper_8h_source"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>pdi/pdi_fwd.h</label>
+        <link refid="pdi__fwd_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>concepts</label>
+      </node>
+      <node id="11">
+        <label>cstdint</label>
+      </node>
+      <node id="3">
+        <label>exception</label>
+      </node>
+      <node id="18">
+        <label>functional</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
+      </node>
+      <node id="12">
+        <label>memory</label>
+      </node>
+      <node id="19">
+        <label>optional</label>
+      </node>
+      <node id="14">
+        <label>paraconf.h</label>
+      </node>
+      <node id="15">
+        <label>pdi/export.h</label>
+      </node>
+      <node id="16">
+        <label>pdi/version.h</label>
+      </node>
+      <node id="5">
+        <label>ranges</label>
+      </node>
+      <node id="9">
+        <label>spdlog/spdlog.h</label>
+      </node>
+      <node id="6">
+        <label>sstream</label>
+      </node>
+      <node id="7">
+        <label>stdexcept</label>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>context.h</label>
+        <link refid="context_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>context_proxy.h</label>
+        <link refid="context__proxy_8h_source"/>
+      </node>
+      <node id="5">
+        <label>data_descriptor.h</label>
+        <link refid="data__descriptor_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>error.h</label>
+        <link refid="error_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>python_ref_wrapper.h</label>
+        <link refid="python__ref__wrapper_8h_source"/>
+      </node>
+      <node id="7">
+        <label>tools.h</label>
+        <link refid="tools_8h_source"/>
+      </node>
+      <node id="2">
+        <label>ref_any.h</label>
+        <link refid="ref__any_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classPDI_1_1Error" prot="public">PDI::Error</innerclass>
+    <innerclass refid="classPDI_1_1Spectree__error" prot="public">PDI::Spectree_error</innerclass>
+    <innerclass refid="classPDI_1_1Multiple__errors" prot="public">PDI::Multiple_errors</innerclass>
+    <innerconcept refid="conceptPDI_1_1range__of__exception__ptrs">PDI::range_of_exception_ptrs</innerconcept>
+    <innernamespace refid="namespacePDI">PDI</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pdi/include/pdi/error.h"/>
+  </compounddef>
+</doxygen>

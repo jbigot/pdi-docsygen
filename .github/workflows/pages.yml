@@ -1,0 +1,77 @@
+# SPDX-FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>
+# SPDX-License-Identifier: MIT
+# Build the site and deploy it to GitHub Pages, as gohugo.io's "Host on GitHub Pages" does, with
+# the Hugo release and Dart Sass that npm installs (package.json): a released Hugo, so the site
+# exercises docsygen's template reader. docsygen has no release yet: it is checked out next to
+# this repository, and local.sh builds with it. Once it is tagged, require it in go.mod, drop the
+# second checkout and call hugo directly.
+name: Website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: pdi-docsygen
+      - name: Checkout docsygen
+        uses: actions/checkout@v4
+        with:
+          repository: jbigot/docsygen
+          path: docsygen
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache-dependency-path: pdi-docsygen/go.sum
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install npm dependencies (Hugo, Dart Sass, Bootstrap, Font Awesome)
+        working-directory: pdi-docsygen
+        run: |
+          npm install --global npm@11
+          npm ci
+      - name: Set up Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build
+        working-directory: pdi-docsygen
+        env:
+          HUGO_ENVIRONMENT: production
+        run: sh build.sh --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pdi-docsygen/public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

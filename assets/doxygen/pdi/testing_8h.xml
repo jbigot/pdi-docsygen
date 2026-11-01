@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="testing_8h" kind="file" language="C++">
+    <compoundname>testing.h</compoundname>
+    <includes local="no">algorithm</includes>
+    <includes local="no">filesystem</includes>
+    <includes local="no">random</includes>
+    <includes local="no">ranges</includes>
+    <includes local="no">type_traits</includes>
+    <includes local="no">gmock/gmock.h</includes>
+    <includes local="no">gtest/gtest.h</includes>
+    <includes local="no">paraconf.h</includes>
+    <includes refid="pdi_8h" local="no">pdi.h</includes>
+    <incdepgraph>
+      <node id="10">
+        <label>pdi.h</label>
+        <link refid="pdi_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>testing.h</label>
+        <link refid="testing_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>algorithm</label>
+      </node>
+      <node id="3">
+        <label>filesystem</label>
+      </node>
+      <node id="7">
+        <label>gmock/gmock.h</label>
+      </node>
+      <node id="8">
+        <label>gtest/gtest.h</label>
+      </node>
+      <node id="9">
+        <label>paraconf.h</label>
+      </node>
+      <node id="11">
+        <label>pdi/export.h</label>
+      </node>
+      <node id="12">
+        <label>pdi/version.h</label>
+      </node>
+      <node id="4">
+        <label>random</label>
+      </node>
+      <node id="5">
+        <label>ranges</label>
+      </node>
+      <node id="6">
+        <label>type_traits</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classPDI_1_1PdiTest" prot="public">PDI::PdiTest</innerclass>
+    <innerconcept refid="conceptPDI_1_1initializable__from">PDI::initializable_from</innerconcept>
+    <innerconcept refid="conceptPDI_1_1buildable__from">PDI::buildable_from</innerconcept>
+    <innernamespace refid="namespacePDI">PDI</innernamespace>
+    <briefdescription>
+<para>Tools to help testing PDI plugins. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>To include this, you must link against both gtest &amp; gmock.<itemizedlist>
+<listitem><para>Let your tests be fixtures using TEST_F and have your fixture class inherit <ref refid="classPDI_1_1PdiTest" kindref="compound">PDI::PdiTest</ref> .</para>
+</listitem><listitem><para>Call <ref refid="classPDI_1_1PdiTest_1a9d8044c5909fda97c6af769794180922" kindref="member">PDI::PdiTest::InitPdi()</ref> to initialize PDI in your test.</para>
+</listitem></itemizedlist>
+</para>
+<para>Have a look at Decl&apos;HDF5 plugin <computeroutput>decl_hdf5_tests.cxx</computeroutput> for an example of use.</para>
+<para>It offers the following features.<itemizedlist>
+<listitem><para>If you need to re-init PDI, you can re-call <ref refid="classPDI_1_1PdiTest_1a9d8044c5909fda97c6af769794180922" kindref="member">PDI::PdiTest::InitPdi()</ref> .</para>
+</listitem><listitem><para>If you want to finalize Pdi before you re-initialize it, you can call <ref refid="classPDI_1_1PdiTest_1ae7074cf39a70b7d21cd37a25e94591c8" kindref="member">PDI::PdiTest::FinalizePdi()</ref></para>
+</listitem><listitem><para>::PDI::make_a&lt;T&gt;() initialize your data to &quot;random&quot; but repeatable values.</para>
+</listitem><listitem><para><computeroutput>EXPECT_CALL(*this, PdiError(errcodeMatcher, errmsgMatcher))</computeroutput> if you expect an error.</para>
+</listitem></itemizedlist>
+</para>
+<para>Each test will run in a separate directory that&apos;s cleaned up after execution, feel free to create any file you need there. In order to be able to use make_a for your own classes &amp; structures, you&apos;ll need to define a matching random_init() function.</para>
+<para>Some recommendations:<itemizedlist>
+<listitem><para>Follow gtest naming requirements for the tests: valid C++ identifiers without _ (underscores)</para>
+</listitem><listitem><para>Make each test target one feature and test it well.</para>
+</listitem><listitem><para>Use standard c++ ::std::filesystem or the plugin underlying library directly to check that what you expected actually append.</para>
+</listitem><listitem><para>Use C++ types, such as ::std::array&lt;int, N&gt; vs. int[N].</para>
+</listitem><listitem><para>When defining your own type, make them default constructibel, give them a init_from member function, a default comparison operator and a stream output operator.</para>
+</listitem><listitem><para>Make the data you expose for writing const as much as possible with the pattern: <computeroutput>auto const myvar = make_a&lt;MyType&gt;()</computeroutput>.</para>
+</listitem><listitem><para>Use a separate variable for reading as much as possible, so that you can compare it against the unmodified expected value, do not rely on magic constants.</para>
+</listitem><listitem><para>When expecting errors, use partial or regex testers for strings to support message improvement. </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="pdi/include/pdi/testing.h"/>
+  </compounddef>
+</doxygen>

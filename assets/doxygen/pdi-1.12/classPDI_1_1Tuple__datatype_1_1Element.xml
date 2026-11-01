@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="classPDI_1_1Tuple__datatype_1_1Element" kind="class" language="C++" prot="public">
+    <compoundname>PDI::Tuple_datatype::Element</compoundname>
+    <includes refid="tuple__datatype_8h" local="no">tuple_datatype.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPDI_1_1Tuple__datatype_1_1Element_1a9969d77ef8b744e31e1bb1511e819687" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t PDI::Tuple_datatype::Element::m_offset</definition>
+        <argsstring></argsstring>
+        <name>m_offset</name>
+        <qualifiedname>PDI::Tuple_datatype::Element::m_offset</qualifiedname>
+        <briefdescription>
+<para>Offset in byte from the <ref refid="classPDI_1_1Tuple__datatype" kindref="compound">Tuple_datatype</ref> start. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/tuple_datatype.h" line="52" column="8" bodyfile="pdi/include/pdi/tuple_datatype.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Tuple__datatype_1_1Element_1a8d8598485c656ba2746d88823a3d2d42" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacePDI_1aad4d6c91036390acf42b8cee31f8289c" kindref="member">Datatype_sptr</ref></type>
+        <definition>Datatype_sptr PDI::Tuple_datatype::Element::m_type</definition>
+        <argsstring></argsstring>
+        <name>m_type</name>
+        <qualifiedname>PDI::Tuple_datatype::Element::m_type</qualifiedname>
+        <briefdescription>
+<para>Type of the contained element. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/tuple_datatype.h" line="55" column="15" bodyfile="pdi/include/pdi/tuple_datatype.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPDI_1_1Tuple__datatype_1_1Element_1a8577ea5aaf33d1558e307afceac35f9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Tuple_datatype::Element::Element</definition>
+        <argsstring>(size_t offset, Datatype_sptr type)</argsstring>
+        <name>Element</name>
+        <qualifiedname>PDI::Tuple_datatype::Element::Element</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>offset</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacePDI_1aad4d6c91036390acf42b8cee31f8289c" kindref="member">Datatype_sptr</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new element. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>offset in byte from the <ref refid="classPDI_1_1Tuple__datatype" kindref="compound">Tuple_datatype</ref> start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of the contained element </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/tuple_datatype.h" line="63" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Tuple__datatype_1_1Element_1abc5d25a3d0af5b17d1d21d1a9041036f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Tuple_datatype::Element::Element</definition>
+        <argsstring>(const Element &amp;o)</argsstring>
+        <name>Element</name>
+        <qualifiedname>PDI::Tuple_datatype::Element::Element</qualifiedname>
+        <param>
+          <type>const Element &amp;</type>
+          <declname>o</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new element by copy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>o</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the element to copy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/tuple_datatype.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Tuple__datatype_1_1Element_1a3f96a2f2a91cec098571a729d36afe9d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t PDI::Tuple_datatype::Element::offset</definition>
+        <argsstring>() const</argsstring>
+        <name>offset</name>
+        <qualifiedname>PDI::Tuple_datatype::Element::offset</qualifiedname>
+        <briefdescription>
+<para>Access the offset in byte from the <ref refid="classPDI_1_1Tuple__datatype" kindref="compound">Tuple_datatype</ref> start. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the offset in byte from the <ref refid="classPDI_1_1Tuple__datatype" kindref="compound">Tuple_datatype</ref> start </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/tuple_datatype.h" line="75" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Tuple__datatype_1_1Element_1a261f417bf9773b7017492ba20183d174" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacePDI_1aad4d6c91036390acf42b8cee31f8289c" kindref="member">Datatype_sptr</ref></type>
+        <definition>Datatype_sptr PDI::Tuple_datatype::Element::type</definition>
+        <argsstring>() const</argsstring>
+        <name>type</name>
+        <qualifiedname>PDI::Tuple_datatype::Element::type</qualifiedname>
+        <briefdescription>
+<para>Access the type of the contained element. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the type of the contained element </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/tuple_datatype.h" line="81" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Tuple__datatype_1_1Element_1a29af84771ed3d3c8a0bf5f893fb2dc80" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PDI::Tuple_datatype::Element::operator==</definition>
+        <argsstring>(const Element &amp;rhs) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>PDI::Tuple_datatype::Element::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classPDI_1_1Tuple__datatype_1_1Element_1a8577ea5aaf33d1558e307afceac35f9e" kindref="member">Element</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Tests another element for equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other element to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the elements are equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/tuple_datatype.h" line="88" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Tuple__datatype_1_1Element_1a0c6281ec663a14726becfc7e73fd7de9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PDI::Tuple_datatype::Element::operator!=</definition>
+        <argsstring>(const Element &amp;rhs) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>PDI::Tuple_datatype::Element::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classPDI_1_1Tuple__datatype_1_1Element_1a8577ea5aaf33d1558e307afceac35f9e" kindref="member">Element</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Tests another element for inequality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other element to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the elements are different </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/tuple_datatype.h" line="95" column="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A <ref refid="classPDI_1_1Tuple__datatype_1_1Element" kindref="compound">Element</ref> is one of the elements inside a <ref refid="classPDI_1_1Tuple__datatype" kindref="compound">Tuple_datatype</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>PDI::Tuple_datatype::Element</label>
+        <link refid="classPDI_1_1Tuple__datatype_1_1Element"/>
+      </node>
+    </collaborationgraph>
+    <location file="pdi/include/pdi/tuple_datatype.h" line="49" column="1" bodyfile="pdi/include/pdi/tuple_datatype.h" bodystart="50" bodyend="96"/>
+    <listofallmembers>
+      <member refid="classPDI_1_1Tuple__datatype_1_1Element_1a8577ea5aaf33d1558e307afceac35f9e" prot="public" virt="non-virtual"><scope>PDI::Tuple_datatype::Element</scope><name>Element</name></member>
+      <member refid="classPDI_1_1Tuple__datatype_1_1Element_1abc5d25a3d0af5b17d1d21d1a9041036f" prot="public" virt="non-virtual"><scope>PDI::Tuple_datatype::Element</scope><name>Element</name></member>
+      <member refid="classPDI_1_1Tuple__datatype_1_1Element_1a9969d77ef8b744e31e1bb1511e819687" prot="private" virt="non-virtual"><scope>PDI::Tuple_datatype::Element</scope><name>m_offset</name></member>
+      <member refid="classPDI_1_1Tuple__datatype_1_1Element_1a8d8598485c656ba2746d88823a3d2d42" prot="private" virt="non-virtual"><scope>PDI::Tuple_datatype::Element</scope><name>m_type</name></member>
+      <member refid="classPDI_1_1Tuple__datatype_1_1Element_1a3f96a2f2a91cec098571a729d36afe9d" prot="public" virt="non-virtual"><scope>PDI::Tuple_datatype::Element</scope><name>offset</name></member>
+      <member refid="classPDI_1_1Tuple__datatype_1_1Element_1a0c6281ec663a14726becfc7e73fd7de9" prot="public" virt="non-virtual"><scope>PDI::Tuple_datatype::Element</scope><name>operator!=</name></member>
+      <member refid="classPDI_1_1Tuple__datatype_1_1Element_1a29af84771ed3d3c8a0bf5f893fb2dc80" prot="public" virt="non-virtual"><scope>PDI::Tuple_datatype::Element</scope><name>operator==</name></member>
+      <member refid="classPDI_1_1Tuple__datatype_1_1Element_1a261f417bf9773b7017492ba20183d174" prot="public" virt="non-virtual"><scope>PDI::Tuple_datatype::Element</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,386 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="user_code_plugin" kind="page">
+    <compoundname>user_code_plugin</compoundname>
+    <title>The user-code plugin</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="user_code_plugin_1md_plugins_2user__code_2README"/></para>
+<para>The <computeroutput>user-code</computeroutput> plugin enables one to call a user-defined function when a specified event occur or certain data becomes available.</para>
+<sect1 id="user_code_plugin_1important_notes_node">
+<title>Important notes</title><para><itemizedlist>
+<listitem><para>Make sure to compile your program with <computeroutput>Wl,--export-dynamic</computeroutput> or <computeroutput>-rdynamic</computeroutput> flag (in CMake set <computeroutput>ENABLE_EXPORTS</computeroutput> to <computeroutput>TRUE</computeroutput> using <computeroutput>set_target_properties</computeroutput> command) in order to generate necessary symbols.</para>
+</listitem><listitem><para>Make sure you use the proper access rights in your function in <ref refid="group__annotation_1ga8dcd0c81d7697ea473a55bd57efb717d" kindref="member">PDI_access</ref> (PDI_IN for reading, PDI_OUT for writing).</para>
+</listitem><listitem><para>Descriptor aliases enables one to use different descriptors without the need to recompile the code.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="user_code_plugin_1dependencies_node">
+<title>Dependencies between the code and the specification tree</title><para>To ensure proper work of the <computeroutput>user-code</computeroutput> plugin, there are several conventions to follow in the application code and the specification tree.</para>
+<para>First, each function name in specification tree must be a valid function name (watch out for <ulink url="https://en.wikipedia.org/wiki/Name_mangling">name mangling</ulink>). Please do not use any PDI yaml key for the function name. (e.g., <computeroutput>when</computeroutput>, <computeroutput>file</computeroutput>, etc.)</para>
+<para>Second, these functions <bold>can not</bold> take any arguments or return any value (i.e. their type must be <computeroutput>void(void)</computeroutput>). Use descriptors for passing input/output variables instead.</para>
+<para>Third, function&apos;s symbols <bold>must</bold> be exported to make them accessible by <computeroutput>user-code</computeroutput> plugin. To do this, compile your program as described in <ref refid="user_code_plugin_1important_notes_node" kindref="member">Important notes</ref>.</para>
+</sect1>
+<sect1 id="user_code_plugin_1use_examples_node">
+<title>Use examples</title><para>This section shows a simple examples with the use of a <computeroutput>user-code</computeroutput> plugin.</para>
+<sect2 id="user_code_plugin_1hello_world_node">
+<title>Hello world!</title><para>First, we will call simple function without the use of descriptors to print &quot;Hello world!&quot; on &quot;print&quot; event.</para>
+<para>hello_world.c: <programlisting filename=".C"><codeline><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pdi.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>hello_world(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Hello<sp/>world!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>argv[])</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PC_tree_t<sp/>conf<sp/>=<sp/>PC_parse_path(</highlight><highlight class="stringliteral">&quot;hello_world.yml&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga3dc660be40c93c169337e3d2692b2ed0" kindref="member">PDI_init</ref>(conf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1gab21d59fd8d6532f6b8d7a4ac69a2388b" kindref="member">PDI_event</ref>(</highlight><highlight class="stringliteral">&quot;print&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga7995fbda2099950ed4ffc7fd4c0bb969" kindref="member">PDI_finalize</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>hello_world.yml: <programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>user_code:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_event:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hello_world:<sp/>{}</highlight></codeline>
+</programlisting></para>
+<para>output: <programlisting filename=".console"><codeline><highlight class="normal">[PDI][User-code][13:40:55]<sp/>***<sp/>info:<sp/>Plugin<sp/>loaded<sp/>successfully</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:40:55]<sp/>***<sp/>info:<sp/>Initialization<sp/>successful</highlight></codeline>
+<codeline><highlight class="normal">Hello<sp/>world!</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:40:55]<sp/>***<sp/>info:<sp/>Finalization</highlight></codeline>
+<codeline><highlight class="normal">[PDI][User-code][13:40:55]<sp/>***<sp/>info:<sp/>Closing<sp/>plugin</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="user_code_plugin_1handling_input_node">
+<title>Handling input</title><para>Now we will pass some input data to the function.</para>
+<para>print_number.c: <programlisting filename=".C"><codeline><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pdi.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>print_number(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>input;<sp/><ref refid="group__annotation_1ga8dcd0c81d7697ea473a55bd57efb717d" kindref="member">PDI_access</ref>(</highlight><highlight class="stringliteral">&quot;input&quot;</highlight><highlight class="normal">,<sp/>&amp;input,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a70fa3cd94e02b997794d9eaaea34b0b6" kindref="member">PDI_IN</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;I&apos;ve<sp/>got<sp/>number<sp/>%d.\n&quot;</highlight><highlight class="normal">,<sp/>*((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*)input));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga001117ae897dd4e4a25c312b5d00c43a" kindref="member">PDI_release</ref>(</highlight><highlight class="stringliteral">&quot;input&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>argv[])</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PC_tree_t<sp/>conf<sp/>=<sp/>PC_parse_path(</highlight><highlight class="stringliteral">&quot;print_number.yml&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga3dc660be40c93c169337e3d2692b2ed0" kindref="member">PDI_init</ref>(conf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>number<sp/>=<sp/>42;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga8f103855418326055020d6f71b365c7e" kindref="member">PDI_share</ref>(</highlight><highlight class="stringliteral">&quot;number&quot;</highlight><highlight class="normal">,<sp/>&amp;number,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1gab21d59fd8d6532f6b8d7a4ac69a2388b" kindref="member">PDI_event</ref>(</highlight><highlight class="stringliteral">&quot;print&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1gabf58b7c146cbf7e3341245f60cec0f7e" kindref="member">PDI_reclaim</ref>(</highlight><highlight class="stringliteral">&quot;number&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga7995fbda2099950ed4ffc7fd4c0bb969" kindref="member">PDI_finalize</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>print_number.yml: <programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>number:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>user_code:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_event:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print_number:<sp/>{input:<sp/>$number}</highlight></codeline>
+</programlisting></para>
+<para>output: <programlisting filename=".console"><codeline><highlight class="normal">[PDI][User-code][13:49:30]<sp/>***<sp/>info:<sp/>Plugin<sp/>loaded<sp/>successfully</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:49:30]<sp/>***<sp/>info:<sp/>Initialization<sp/>successful</highlight></codeline>
+<codeline><highlight class="normal">I&apos;ve<sp/>got<sp/>number<sp/>42.</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:49:30]<sp/>***<sp/>info:<sp/>Finalization</highlight></codeline>
+<codeline><highlight class="normal">[PDI][User-code][13:49:30]<sp/>***<sp/>info:<sp/>Closing<sp/>plugin</highlight></codeline>
+</programlisting></para>
+<para>We can simplify this example by using <computeroutput>on_data</computeroutput> to print value of number when it is shared to PDI.</para>
+<para>print_number.c: <programlisting filename=".C"><codeline><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pdi.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>print_number(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>input;<sp/><ref refid="group__annotation_1ga8dcd0c81d7697ea473a55bd57efb717d" kindref="member">PDI_access</ref>(</highlight><highlight class="stringliteral">&quot;input&quot;</highlight><highlight class="normal">,<sp/>&amp;input,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a70fa3cd94e02b997794d9eaaea34b0b6" kindref="member">PDI_IN</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;I&apos;ve<sp/>got<sp/>number<sp/>%d.\n&quot;</highlight><highlight class="normal">,<sp/>*((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*)input));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga001117ae897dd4e4a25c312b5d00c43a" kindref="member">PDI_release</ref>(</highlight><highlight class="stringliteral">&quot;input&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>argv[])</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PC_tree_t<sp/>conf<sp/>=<sp/>PC_parse_path(</highlight><highlight class="stringliteral">&quot;print_number.yml&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga3dc660be40c93c169337e3d2692b2ed0" kindref="member">PDI_init</ref>(conf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>number<sp/>=<sp/>42;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1gae809befdb9bde9abad07a9e0eab894d7" kindref="member">PDI_expose</ref>(</highlight><highlight class="stringliteral">&quot;number&quot;</highlight><highlight class="normal">,<sp/>&amp;number,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//PDI_event<sp/>is<sp/>no<sp/>longer<sp/>necessary<sp/>and<sp/>PDI_share/PDI_reclaim<sp/>can<sp/>be<sp/>simplified<sp/>to<sp/>PDI_expose</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga7995fbda2099950ed4ffc7fd4c0bb969" kindref="member">PDI_finalize</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>print_number.yml: <programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>number:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>user_code:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>number:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print_number:<sp/>{input:<sp/>$number}</highlight></codeline>
+</programlisting></para>
+<para>output does not change: <programlisting filename=".console"><codeline><highlight class="normal">[PDI][User-code][13:52:15]<sp/>***<sp/>info:<sp/>Plugin<sp/>loaded<sp/>successfully</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:52:15]<sp/>***<sp/>info:<sp/>Initialization<sp/>successful</highlight></codeline>
+<codeline><highlight class="normal">I&apos;ve<sp/>got<sp/>number<sp/>42.</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:52:15]<sp/>***<sp/>info:<sp/>Finalization</highlight></codeline>
+<codeline><highlight class="normal">[PDI][User-code][13:52:15]<sp/>***<sp/>info:<sp/>Closing<sp/>plugin</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="user_code_plugin_1handling_output_node">
+<title>Handling output</title><para>Output handling is very similar to the input handling, the only difference are the access rights. In this example we will call <computeroutput>add_ten</computeroutput> function when <computeroutput>number</computeroutput> is shared to PDI.</para>
+<para>adding_to_number.c: <programlisting filename=".C"><codeline><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pdi.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>add_ten(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>input;<sp/><ref refid="group__annotation_1ga8dcd0c81d7697ea473a55bd57efb717d" kindref="member">PDI_access</ref>(</highlight><highlight class="stringliteral">&quot;input&quot;</highlight><highlight class="normal">,<sp/>&amp;input,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*)input)<sp/>+=<sp/>10;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga001117ae897dd4e4a25c312b5d00c43a" kindref="member">PDI_release</ref>(</highlight><highlight class="stringliteral">&quot;input&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>argv[])</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PC_tree_t<sp/>conf<sp/>=<sp/>PC_parse_path(</highlight><highlight class="stringliteral">&quot;adding_to_number.yml&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga3dc660be40c93c169337e3d2692b2ed0" kindref="member">PDI_init</ref>(conf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>number<sp/>=<sp/>42;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Before<sp/>expose,<sp/>number<sp/>=<sp/>%d.\n&quot;</highlight><highlight class="normal">,<sp/>number);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1gae809befdb9bde9abad07a9e0eab894d7" kindref="member">PDI_expose</ref>(</highlight><highlight class="stringliteral">&quot;number&quot;</highlight><highlight class="normal">,<sp/>&amp;number,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a70fa3cd94e02b997794d9eaaea34b0b6" kindref="member">PDI_IN</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;After<sp/>expose,<sp/>number<sp/>=<sp/>%d.\n&quot;</highlight><highlight class="normal">,<sp/>number);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga7995fbda2099950ed4ffc7fd4c0bb969" kindref="member">PDI_finalize</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>adding_to_number.yml: <programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>number:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>user_code:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>number:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>add_ten:<sp/>{input:<sp/>$number}</highlight></codeline>
+</programlisting></para>
+<para>output: <programlisting filename=".console"><codeline><highlight class="normal">[PDI][User-code][13:53:51]<sp/>***<sp/>info:<sp/>Plugin<sp/>loaded<sp/>successfully</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:53:51]<sp/>***<sp/>info:<sp/>Initialization<sp/>successful</highlight></codeline>
+<codeline><highlight class="normal">Before<sp/>expose,<sp/>number<sp/>=<sp/>42.</highlight></codeline>
+<codeline><highlight class="normal">After<sp/>expose,<sp/>number<sp/>=<sp/>52.</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:53:51]<sp/>***<sp/>info:<sp/>Finalization</highlight></codeline>
+<codeline><highlight class="normal">[PDI][User-code][13:53:51]<sp/>***<sp/>info:<sp/>Closing<sp/>plugin</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="user_code_plugin_1multiple_inout_data_node">
+<title>Multiple input/output data</title><para>In this example we will use multiple data in function. We will add and multiply two given numbers and return the results on event &quot;calculate&quot;.</para>
+<para>calculate.c: <programlisting filename=".C"><codeline><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pdi.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>sum_and_multiply(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>number1;<sp/><ref refid="group__annotation_1ga8dcd0c81d7697ea473a55bd57efb717d" kindref="member">PDI_access</ref>(</highlight><highlight class="stringliteral">&quot;number1&quot;</highlight><highlight class="normal">,<sp/>&amp;number1,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a70fa3cd94e02b997794d9eaaea34b0b6" kindref="member">PDI_IN</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>number2;<sp/><ref refid="group__annotation_1ga8dcd0c81d7697ea473a55bd57efb717d" kindref="member">PDI_access</ref>(</highlight><highlight class="stringliteral">&quot;number2&quot;</highlight><highlight class="normal">,<sp/>&amp;number2,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a70fa3cd94e02b997794d9eaaea34b0b6" kindref="member">PDI_IN</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>sum;<sp/><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga8dcd0c81d7697ea473a55bd57efb717d" kindref="member">PDI_access</ref>(</highlight><highlight class="stringliteral">&quot;sum&quot;</highlight><highlight class="normal">,<sp/>&amp;sum,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>product;<sp/><ref refid="group__annotation_1ga8dcd0c81d7697ea473a55bd57efb717d" kindref="member">PDI_access</ref>(</highlight><highlight class="stringliteral">&quot;product&quot;</highlight><highlight class="normal">,<sp/>&amp;product,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*)sum)<sp/>=<sp/>*((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*)number1)<sp/>+<sp/>*((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*)number2);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*)product)<sp/>=<sp/>*((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*)number1)<sp/>*<sp/>*((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*)number2);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga001117ae897dd4e4a25c312b5d00c43a" kindref="member">PDI_release</ref>(</highlight><highlight class="stringliteral">&quot;number1&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga001117ae897dd4e4a25c312b5d00c43a" kindref="member">PDI_release</ref>(</highlight><highlight class="stringliteral">&quot;number2&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga001117ae897dd4e4a25c312b5d00c43a" kindref="member">PDI_release</ref>(</highlight><highlight class="stringliteral">&quot;sum&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga001117ae897dd4e4a25c312b5d00c43a" kindref="member">PDI_release</ref>(</highlight><highlight class="stringliteral">&quot;product&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>argv[])</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PC_tree_t<sp/>conf<sp/>=<sp/>PC_parse_path(</highlight><highlight class="stringliteral">&quot;calculate.yml&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga3dc660be40c93c169337e3d2692b2ed0" kindref="member">PDI_init</ref>(conf);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>foo<sp/>=<sp/>4,<sp/>bar<sp/>=<sp/>5,<sp/>res1<sp/>=<sp/>0,<sp/>res2<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Before<sp/>calculation,<sp/>foo<sp/>=<sp/>%d,<sp/>bar<sp/>=<sp/>%d,<sp/>res1<sp/>=<sp/>%d,<sp/>res2<sp/>=<sp/>%d.\n&quot;</highlight><highlight class="normal">,<sp/>foo,<sp/>bar,<sp/>res1,<sp/>res2);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__annotation_1ga8a760063bdab78ef03815bdb36ff9f9b" kindref="member">PDI_multi_expose</ref>(</highlight><highlight class="stringliteral">&quot;calculate&quot;</highlight><highlight class="normal">,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;foo&quot;</highlight><highlight class="normal">,<sp/>&amp;foo,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;bar&quot;</highlight><highlight class="normal">,<sp/>&amp;bar,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a49ed5399cbc2fca8085867ea04d01b6e" kindref="member">PDI_OUT</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;res1&quot;</highlight><highlight class="normal">,<sp/>&amp;res1,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a70fa3cd94e02b997794d9eaaea34b0b6" kindref="member">PDI_IN</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;res2&quot;</highlight><highlight class="normal">,<sp/>&amp;res2,<sp/><ref refid="group__annotation_1gga7c857647f7a8077648c28db634eeb805a70fa3cd94e02b997794d9eaaea34b0b6" kindref="member">PDI_IN</ref>,<sp/>NULL);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;After<sp/>calculation,<sp/>foo<sp/>=<sp/>%d,<sp/>bar<sp/>=<sp/>%d,<sp/>res1<sp/>=<sp/>%d,<sp/>res2<sp/>=<sp/>%d.\n&quot;</highlight><highlight class="normal">,<sp/>foo,<sp/>bar,<sp/>res1,<sp/>res2);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__init__final_1ga7995fbda2099950ed4ffc7fd4c0bb969" kindref="member">PDI_finalize</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>calculate.yml: <programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>foo:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bar:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res1:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>res2:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>user_code:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_event:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>calculate:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sum_and_multiply:<sp/>{number1:<sp/>$foo,<sp/>number2:<sp/>$bar,<sp/>sum:<sp/>$res1,<sp/>product:<sp/>$res2}</highlight></codeline>
+</programlisting></para>
+<para>output: <programlisting filename=".console"><codeline><highlight class="normal">[PDI][User-code][13:58:20]<sp/>***<sp/>info:<sp/>Plugin<sp/>loaded<sp/>successfully</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:58:20]<sp/>***<sp/>info:<sp/>Initialization<sp/>successful</highlight></codeline>
+<codeline><highlight class="normal">Before<sp/>calculation,<sp/>foo<sp/>=<sp/>4,<sp/>bar<sp/>=<sp/>5,<sp/>res1<sp/>=<sp/>0,<sp/>res2<sp/>=<sp/>0.</highlight></codeline>
+<codeline><highlight class="normal">After<sp/>calculation,<sp/>foo<sp/>=<sp/>4,<sp/>bar<sp/>=<sp/>5,<sp/>res1<sp/>=<sp/>9,<sp/>res2<sp/>=<sp/>20.</highlight></codeline>
+<codeline><highlight class="normal">[PDI][13:58:20]<sp/>***<sp/>info:<sp/>Finalization</highlight></codeline>
+<codeline><highlight class="normal">[PDI][User-code][13:58:20]<sp/>***<sp/>info:<sp/>Closing<sp/>plugin</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="user_code_plugin_1conf_grammar_node">
+<title>Configuration grammar</title><para>The root of <computeroutput>user-code</computeroutput> plugin is a dictionary that contains the following keys:</para>
+<para><table rows="5" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;logging&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1logging_node" kindref="member">logging</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;on_data&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="user_code_plugin_1on_data_node" kindref="member">on_data</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;on_event&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="user_code_plugin_1on_event_node" kindref="member">on_event</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;.*&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para><emphasis>anything</emphasis>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>the <computeroutput>on_data</computeroutput> key specifies the list of descriptors that, when they become available, will cause the specified functions to be called,</para>
+</listitem><listitem><para>the <computeroutput>on_event</computeroutput> key specifies the list of events on which to call the specified functions,</para>
+</listitem><listitem><para>additional keys are ignored.</para>
+</listitem></itemizedlist>
+</para>
+<sect2 id="user_code_plugin_1on_data_node">
+<title>on_data</title><para>A <ref refid="user_code_plugin_1on_data_node" kindref="member">on_data</ref> is a dictionary that contains the following keys:</para>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;when&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a $-expression defines a condition for executing the function  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;.*&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="user_code_plugin_1function_list_node" kindref="member">function_list</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>each key identifies the name of a descriptor, which will trigger specified functions when it becomes available.</para>
+</listitem></itemizedlist>
+</para>
+<para>If a data is used to trigger multiple functions and some functions should be executed only if the <computeroutput>when</computeroutput> condition is satisfied, then we can use the list-styled syntex of the yaml: <programlisting filename=".yaml"><codeline><highlight class="normal">plugins:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>user_code:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_data:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>my_data:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>`$cond&gt;1`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun1:<sp/>{in:<sp/>$desc2,<sp/>out:<sp/>$desc3}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>my_data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun2:<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun3:<sp/>{out:<sp/>$desc2}</highlight></codeline>
+</programlisting></para>
+<para>In this exmaple, <computeroutput>fun2</computeroutput> and <computeroutput>fun3</computeroutput> will be executed when <computeroutput>my_data</computeroutput> is shared to PDI. However, <computeroutput>fun1</computeroutput> will only be executed when <computeroutput>my_data</computeroutput> is shared and also <computeroutput>$cond&gt;1</computeroutput>.</para>
+</sect2>
+<sect2 id="user_code_plugin_1on_event_node">
+<title>on_event</title><para>A <ref refid="user_code_plugin_1on_event_node" kindref="member">on_event</ref> is a dictionary that contains the following keys:</para>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;when&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a $-expression defines a condition for executing the function  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;.*&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="user_code_plugin_1function_list_node" kindref="member">function_list</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>each key identifies the name of an event, which will trigger specified functions when it occurs.</para>
+</listitem></itemizedlist>
+</para>
+<para>If an event is used to trigger multiple functions and some functions should be executed only if the <computeroutput>when</computeroutput> condition is satisfied, then we can use the list-styled syntex of the yaml: <programlisting filename=".yaml"><codeline><highlight class="normal">plugins:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>user_code:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_event:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>my_event:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>`$cond&gt;1`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun1:<sp/>{in:<sp/>$desc2,<sp/>out:<sp/>$desc3}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>my_event:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun2:<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun3:<sp/>{out:<sp/>$desc2}</highlight></codeline>
+</programlisting></para>
+<para>In this exmaple, <computeroutput>fun2</computeroutput> and <computeroutput>fun3</computeroutput> will be executed when <computeroutput>my_event</computeroutput> is issued. However, <computeroutput>fun1</computeroutput> will only be executed when <computeroutput>my_evnet</computeroutput> is issued and also <computeroutput>$cond&gt;1</computeroutput>.</para>
+</sect2>
+<sect2 id="user_code_plugin_1function_list_node">
+<title>function_list</title><para>A <ref refid="user_code_plugin_1function_list_node" kindref="member">function_list</ref> is a dictionary that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;.*&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="user_code_plugin_1function_param_list_node" kindref="member">function_param_list</ref>  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>each key identifies the name of a function, which will be called on specified event or data,</para>
+</listitem><listitem><para><bold>NOTE</bold>: these functions <bold>can not</bold> take any arguments or return any value (i.e. their type must be <computeroutput>void(void)</computeroutput>).</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="user_code_plugin_1function_param_list_node">
+<title>function_param_list</title><para>A <ref refid="user_code_plugin_1function_param_list_node" kindref="member">function_param_list</ref> is a dictionary that contains the following keys:</para>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;.*&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a $-expression referencing a data  </para>
+</entry></row>
+</table>
+</para>
+<para><itemizedlist>
+<listitem><para>each key identifies the name of a descriptor alias, which will be available during function execution.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="user_code_plugin_1full_spec_tree_example_node">
+<title>Specification tree example</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">metadata:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cond:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>desc1:<sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>desc2:<sp/>float<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>desc3:<sp/>double<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">plugins:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>user_code:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_data:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>desc1:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>`$cond&gt;1`</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun1:<sp/>{in:<sp/>$desc2,<sp/>out:<sp/>$desc3}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>desc2:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun2:<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun3:<sp/>{out:<sp/>$desc2}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_event:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>event1:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>`$cond&lt;1`<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun2:<sp/>{}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>event2:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fun4:<sp/>{param1:<sp/>$desc2,<sp/>param2:<sp/>$desc1,<sp/>param3:<sp/>$desc3}</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+    <location file="plugins/user_code/README.md"/>
+  </compounddef>
+</doxygen>

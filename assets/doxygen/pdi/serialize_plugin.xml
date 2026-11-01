@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="serialize_plugin" kind="page">
+    <compoundname>serialize_plugin</compoundname>
+    <title>Serialize plugin</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="serialize_plugin_1md_plugins_2serialize_2README"/></para>
+<para>Serialize plugin allows to serialize shared data. The plugin will convert all arrays from sparse to dense and dereference all pointers.</para>
+<para>The serialized data will be shared as long the user data is shared.</para>
+<para><orderedlist>
+<listitem><para>In case of the share with <computeroutput>PDI_OUT</computeroutput>: plugin will serialize and share serialized data on <computeroutput>PDI_share</computeroutput> of given descriptor.</para>
+</listitem><listitem><para>In case of the share with <computeroutput>PDI_IN</computeroutput>: plugin will deserialize data on <computeroutput>PDI_reclaim</computeroutput> of given descriptor (to be sure that the serialized data have been writen to buffer by other plugin (e.g. done on event)).</para>
+</listitem><listitem><para>In case of the share with <computeroutput>PDI_INOUT</computeroutput>: plugin will do step 1. on <computeroutput>PDI_share</computeroutput> and step 2. on <computeroutput>PDI_reclaim</computeroutput>.</para>
+</listitem></orderedlist>
+</para>
+<sect1 id="serialize_plugin_1serialize_configuration">
+<title>Configuration grammar</title><para>The serialize configuration is made of only:</para>
+<para><table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>logging</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><ref refid="Specification_tree_ref_1logging_node" kindref="member">logging</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para>data name to serialize  </para>
+</entry><entry thead="no" align='left'><para>serialized data name  </para>
+</entry></row>
+</table>
+</para>
+</sect1>
+<sect1 id="serialize_plugin_1serialize_plugin_examples">
+<title>Plugin examples</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>sparse_array:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>subtype:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size:<sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>start:<sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>subsize:<sp/>4</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>serialize:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>logging:<sp/>debug</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sparse_array:<sp/>dense_array</highlight></codeline>
+</programlisting> On each <computeroutput>sparse_array</computeroutput> data share, the plugin will share serialized data under the <computeroutput>dense_array</computeroutput> name. The <computeroutput>dense_array</computeroutput> will be of type: <programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal">subtype:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">size:<sp/>4</highlight></codeline>
+</programlisting></para>
+<para>Another example: <programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pointer_to_sparse_array:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>pointer</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>subtype:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>subtype:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>size:<sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>start:<sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>subsize:<sp/>4</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>serialize:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pointer_to_sparse_array:<sp/>dense_array</highlight></codeline>
+</programlisting> On each <computeroutput>pointer_to_sparse_array</computeroutput> data share, the plugin will share serialized data under the <computeroutput>dense_array</computeroutput> name. The <computeroutput>dense_array</computeroutput> again will be of type: <programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal">subtype:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">size:<sp/>4</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+    <location file="plugins/serialize/README.md"/>
+  </compounddef>
+</doxygen>

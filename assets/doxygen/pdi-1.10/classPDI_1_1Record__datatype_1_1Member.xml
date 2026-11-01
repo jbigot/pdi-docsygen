@@ -1,0 +1,278 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="classPDI_1_1Record__datatype_1_1Member" kind="class" language="C++" prot="public">
+    <compoundname>PDI::Record_datatype::Member</compoundname>
+    <includes refid="record__datatype_8h" local="no">record_datatype.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPDI_1_1Record__datatype_1_1Member_1a1f367d497e48f0b828247ab86b774060" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t PDI::Record_datatype::Member::m_displacement</definition>
+        <argsstring></argsstring>
+        <name>m_displacement</name>
+        <qualifiedname>PDI::Record_datatype::Member::m_displacement</qualifiedname>
+        <briefdescription>
+<para>Offset or distance in byte from the <ref refid="classPDI_1_1Record__datatype" kindref="compound">Record_datatype</ref> start. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="52" column="8" bodyfile="pdi/include/pdi/record_datatype.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Record__datatype_1_1Member_1a21839e32a8a6c123a940e1434957d3ae" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacePDI_1aad4d6c91036390acf42b8cee31f8289c" kindref="member">Datatype_sptr</ref></type>
+        <definition>Datatype_sptr PDI::Record_datatype::Member::m_type</definition>
+        <argsstring></argsstring>
+        <name>m_type</name>
+        <qualifiedname>PDI::Record_datatype::Member::m_type</qualifiedname>
+        <briefdescription>
+<para>Type of the contained member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="55" column="15" bodyfile="pdi/include/pdi/record_datatype.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDI_1_1Record__datatype_1_1Member_1a9aa2c4a7312a912cb516ca578ad32098" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string PDI::Record_datatype::Member::m_name</definition>
+        <argsstring></argsstring>
+        <name>m_name</name>
+        <qualifiedname>PDI::Record_datatype::Member::m_name</qualifiedname>
+        <briefdescription>
+<para>Name of this specific member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="58" column="13" bodyfile="pdi/include/pdi/record_datatype.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPDI_1_1Record__datatype_1_1Member_1adc9b7b6245de859a21ad41f3a5f1d72a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Record_datatype::Member::Member</definition>
+        <argsstring>(size_t displacement, Datatype_sptr type, const std::string &amp;name)</argsstring>
+        <name>Member</name>
+        <qualifiedname>PDI::Record_datatype::Member::Member</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>displacement</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacePDI_1aad4d6c91036390acf42b8cee31f8289c" kindref="member">Datatype_sptr</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new member. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>displacement</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>offset or distance in byte from the <ref refid="classPDI_1_1Record__datatype" kindref="compound">Record_datatype</ref> start </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of the contained member </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>name of this specific member </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="67" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Record__datatype_1_1Member_1a08d1fead3b96e498c8f2e83c9a8f0c1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDI::Record_datatype::Member::Member</definition>
+        <argsstring>(const Member &amp;o)</argsstring>
+        <name>Member</name>
+        <qualifiedname>PDI::Record_datatype::Member::Member</qualifiedname>
+        <param>
+          <type>const Member &amp;</type>
+          <declname>o</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new member by copy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>o</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="classPDI_1_1Record__datatype_1_1Member" kindref="compound">Member</ref> to copy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="73" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Record__datatype_1_1Member_1a7c067ee7ad87b2245c3e19b0fff2734c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t PDI::Record_datatype::Member::displacement</definition>
+        <argsstring>() const</argsstring>
+        <name>displacement</name>
+        <qualifiedname>PDI::Record_datatype::Member::displacement</qualifiedname>
+        <briefdescription>
+<para>Access the offset or distance in byte from the <ref refid="classPDI_1_1Record__datatype" kindref="compound">Record_datatype</ref> start. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the offset or distance in byte from the <ref refid="classPDI_1_1Record__datatype" kindref="compound">Record_datatype</ref> start </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="79" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Record__datatype_1_1Member_1a4cba50a0ecb7b73bf0d334c35f94bb65" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacePDI_1aad4d6c91036390acf42b8cee31f8289c" kindref="member">Datatype_sptr</ref></type>
+        <definition>Datatype_sptr PDI::Record_datatype::Member::type</definition>
+        <argsstring>() const</argsstring>
+        <name>type</name>
+        <qualifiedname>PDI::Record_datatype::Member::type</qualifiedname>
+        <briefdescription>
+<para>Access the type of the contained member. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the type of the contained member </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="85" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Record__datatype_1_1Member_1a40b061bb878892343a49c347437ff9af" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string &amp;</type>
+        <definition>const std::string &amp; PDI::Record_datatype::Member::name</definition>
+        <argsstring>() const</argsstring>
+        <name>name</name>
+        <qualifiedname>PDI::Record_datatype::Member::name</qualifiedname>
+        <briefdescription>
+<para>Access the name of this specific member. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the name of this specific member </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="91" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Record__datatype_1_1Member_1a32eec3c5fca4ce9c2f4b67a99e2b6704" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PDI::Record_datatype::Member::operator==</definition>
+        <argsstring>(const Member &amp;rhs) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>PDI::Record_datatype::Member::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classPDI_1_1Record__datatype_1_1Member_1adc9b7b6245de859a21ad41f3a5f1d72a" kindref="member">Member</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Tests another member for equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other member to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the members are equal </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="98" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDI_1_1Record__datatype_1_1Member_1a9106d87288bc7eec45fcabc7941b323a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PDI::Record_datatype::Member::operator!=</definition>
+        <argsstring>(const Member &amp;rhs) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>PDI::Record_datatype::Member::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classPDI_1_1Record__datatype_1_1Member_1adc9b7b6245de859a21ad41f3a5f1d72a" kindref="member">Member</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Tests another member for inequality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the other member to compare </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the members are different </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="pdi/include/pdi/record_datatype.h" line="105" column="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A <ref refid="classPDI_1_1Record__datatype_1_1Member" kindref="compound">Member</ref> is one of the elements inside a <ref refid="classPDI_1_1Record__datatype" kindref="compound">Record_datatype</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>PDI::Record_datatype::Member</label>
+        <link refid="classPDI_1_1Record__datatype_1_1Member"/>
+      </node>
+    </collaborationgraph>
+    <location file="pdi/include/pdi/record_datatype.h" line="49" column="1" bodyfile="pdi/include/pdi/record_datatype.h" bodystart="50" bodyend="106"/>
+    <listofallmembers>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1a7c067ee7ad87b2245c3e19b0fff2734c" prot="public" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>displacement</name></member>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1a1f367d497e48f0b828247ab86b774060" prot="private" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>m_displacement</name></member>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1a9aa2c4a7312a912cb516ca578ad32098" prot="private" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>m_name</name></member>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1a21839e32a8a6c123a940e1434957d3ae" prot="private" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>m_type</name></member>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1adc9b7b6245de859a21ad41f3a5f1d72a" prot="public" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>Member</name></member>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1a08d1fead3b96e498c8f2e83c9a8f0c1f" prot="public" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>Member</name></member>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1a40b061bb878892343a49c347437ff9af" prot="public" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>name</name></member>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1a9106d87288bc7eec45fcabc7941b323a" prot="public" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>operator!=</name></member>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1a32eec3c5fca4ce9c2f4b67a99e2b6704" prot="public" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>operator==</name></member>
+      <member refid="classPDI_1_1Record__datatype_1_1Member_1a4cba50a0ecb7b73bf0d334c35f94bb65" prot="public" virt="non-virtual"><scope>PDI::Record_datatype::Member</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="dir_a4a28d6d06118721532f769163f87ae6" kind="dir">
+    <compoundname>include</compoundname>
+    <innerdir refid="dir_3a0fa92888a900e60ba7bdd84e99898a">pdi</innerdir>
+    <innerfile refid="pdi_8h">pdi.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/var/tmp/pdi-xml.CZopRc/src/pdi/include/"/>
+  </compounddef>
+</doxygen>

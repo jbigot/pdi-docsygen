@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="mpi_plugin" kind="page">
+    <compoundname>mpi_plugin</compoundname>
+    <title>The MPI plugin</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="mpi_plugin_1md_plugins_2mpi_2README"/></para>
+<para><bold>WARNING</bold> This documentation is a work in progress and does not reflect the full MPI plugin potential.</para>
+<para>MPI plugin defines 2 types in PDI:<itemizedlist>
+<listitem><para><computeroutput>MPI_Comm</computeroutput> - C MPI_Comm type</para>
+</listitem><listitem><para><computeroutput>MPI_Comm_f</computeroutput> - Fortran MPI_Comm type</para>
+</listitem></itemizedlist>
+</para>
+<para>MPI plugin exposes several metadata that correspond with mpi library.<itemizedlist>
+<listitem><para><computeroutput>MPI_COMM_WORLD.rank</computeroutput> - an integer value, represents the rank of the proccess in the MPI_COMM_WORLD</para>
+</listitem><listitem><para><computeroutput>MPI_COMM_WORLD</computeroutput> - a MPI_Comm, MPI_COMM_WORLD for C language</para>
+</listitem><listitem><para><computeroutput>MPI_COMM_SELF</computeroutput> - a MPI_Comm, MPI_COMM_SELF for C language</para>
+</listitem><listitem><para><computeroutput>MPI_COMM_NULL</computeroutput> - a MPI_Comm, MPI_COMM_NULL for C language</para>
+</listitem><listitem><para><computeroutput>MPI_COMM_WORLD_F</computeroutput> - an integer, MPI_COMM_WORLD for Fortran language</para>
+</listitem><listitem><para><computeroutput>MPI_COMM_SELF_F</computeroutput> - an integer, MPI_COMM_SELF for Fortran language</para>
+</listitem><listitem><para><computeroutput>MPI_COMM_NULL_F</computeroutput> - an integer, MPI_COMM_NULL for Fortran language</para>
+</listitem></itemizedlist>
+</para>
+<para>All above metadata are available from PDI_init call to PDI_finalize call.</para>
+<para>At the yaml tree root plugin is a map that contains the following keys: <table rows="3" cols="2"><row>
+<entry thead="yes" align='left'><para>key  </para>
+</entry><entry thead="yes" align='left'><para>value  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;logging&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1logging_node" kindref="member">logging</ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>&quot;transtype&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
+</entry><entry thead="no" align='left'><para>a <ref refid="mpi_plugin_1transtype_map_node" kindref="member">transtype map</ref>  </para>
+</entry></row>
+</table>
+</para>
+<sect1 id="mpi_plugin_1transtype_map_node">
+<title>transtype map</title><para>A <emphasis>transtype map</emphasis> can be used to transtype between C and Fortran MPI communicators. It is a mapping that in key has the name of data with communicator to transtype and in value the name of data where to write transtyped communicator.</para>
+<para>Example:</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>mpi_comm:<sp/>MPI_Comm</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>mpi_comm_f:<sp/>MPI_Comm_f</highlight></codeline>
+<codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>mpi:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>transtype:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>mpi_comm:<sp/>m_mpi_comm_f</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>mpi_comm_f:<sp/>m_mpi_comm</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+    <location file="plugins/mpi/README.md"/>
+  </compounddef>
+</doxygen>

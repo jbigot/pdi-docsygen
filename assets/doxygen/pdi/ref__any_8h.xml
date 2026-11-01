@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="ref__any_8h" kind="file" language="C++">
+    <compoundname>ref_any.h</compoundname>
+    <includes local="no">algorithm</includes>
+    <includes local="no">cassert</includes>
+    <includes local="no">functional</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">new</includes>
+    <includes local="no">unordered_map</includes>
+    <includes refid="pdi__fwd_8h" local="no">pdi/pdi_fwd.h</includes>
+    <includes refid="array__datatype_8h" local="no">pdi/array_datatype.h</includes>
+    <includes refid="datatype_8h" local="no">pdi/datatype.h</includes>
+    <includes refid="error_8h" local="no">pdi/error.h</includes>
+    <includes refid="record__datatype_8h" local="no">pdi/record_datatype.h</includes>
+    <includes refid="scalar__datatype_8h" local="no">pdi/scalar_datatype.h</includes>
+    <includedby refid="context_8h" local="no">context.h</includedby>
+    <includedby refid="data__descriptor_8h" local="no">data_descriptor.h</includedby>
+    <includedby refid="python__ref__wrapper_8h" local="no">python_ref_wrapper.h</includedby>
+    <includedby refid="tools_8h" local="no">tools.h</includedby>
+    <incdepgraph>
+      <node id="10">
+        <label>pdi.h</label>
+        <link refid="pdi_8h_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>pdi/array_datatype.h</label>
+        <link refid="array__datatype_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>pdi/datatype.h</label>
+        <link refid="datatype_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>pdi/datatype_template.h</label>
+        <link refid="datatype__template_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>pdi/error.h</label>
+        <link refid="error_8h_source"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>pdi/expression.h</label>
+        <link refid="expression_8h_source"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>pdi/paraconf_wrapper.h</label>
+        <link refid="paraconf__wrapper_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>pdi/pdi_fwd.h</label>
+        <link refid="pdi__fwd_8h_source"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>pdi/record_datatype.h</label>
+        <link refid="record__datatype_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ref_any.h</label>
+        <link refid="ref__any_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>pdi/scalar_datatype.h</label>
+        <link refid="scalar__datatype_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>pdi/tuple_datatype.h</label>
+        <link refid="tuple__datatype_8h_source"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>algorithm</label>
+      </node>
+      <node id="3">
+        <label>cassert</label>
+      </node>
+      <node id="26">
+        <label>concepts</label>
+      </node>
+      <node id="9">
+        <label>cstdint</label>
+      </node>
+      <node id="27">
+        <label>exception</label>
+      </node>
+      <node id="4">
+        <label>functional</label>
+      </node>
+      <node id="28">
+        <label>iostream</label>
+      </node>
+      <node id="21">
+        <label>map</label>
+      </node>
+      <node id="5">
+        <label>memory</label>
+      </node>
+      <node id="6">
+        <label>new</label>
+      </node>
+      <node id="23">
+        <label>optional</label>
+      </node>
+      <node id="11">
+        <label>paraconf.h</label>
+      </node>
+      <node id="12">
+        <label>pdi/export.h</label>
+      </node>
+      <node id="13">
+        <label>pdi/version.h</label>
+      </node>
+      <node id="29">
+        <label>ranges</label>
+      </node>
+      <node id="32">
+        <label>spdlog/spdlog.h</label>
+      </node>
+      <node id="30">
+        <label>sstream</label>
+      </node>
+      <node id="31">
+        <label>stdexcept</label>
+      </node>
+      <node id="15">
+        <label>string</label>
+      </node>
+      <node id="35">
+        <label>type_traits</label>
+      </node>
+      <node id="7">
+        <label>unordered_map</label>
+      </node>
+      <node id="16">
+        <label>utility</label>
+      </node>
+      <node id="17">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>context.h</label>
+        <link refid="context_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>context_proxy.h</label>
+        <link refid="context__proxy_8h_source"/>
+      </node>
+      <node id="4">
+        <label>data_descriptor.h</label>
+        <link refid="data__descriptor_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>python_ref_wrapper.h</label>
+        <link refid="python__ref__wrapper_8h_source"/>
+      </node>
+      <node id="6">
+        <label>tools.h</label>
+        <link refid="tools_8h_source"/>
+      </node>
+      <node id="1">
+        <label>ref_any.h</label>
+        <link refid="ref__any_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classPDI_1_1Reference__base" prot="public">PDI::Reference_base</innerclass>
+    <innerclass refid="structPDI_1_1Reference__base_1_1Referenced__buffer" prot="protected">PDI::Reference_base::Referenced_buffer</innerclass>
+    <innerclass refid="structPDI_1_1Reference__base_1_1Referenced__data" prot="protected">PDI::Reference_base::Referenced_data</innerclass>
+    <innerclass refid="classPDI_1_1Ref__any" prot="public">PDI::Ref_any</innerclass>
+    <innerclass refid="structstd_1_1hash_3_01PDI_1_1Ref__any_3_01R_00_01W_01_4_01_4" prot="public">std::hash&lt; PDI::Ref_any&lt; R, W &gt; &gt;</innerclass>
+    <innernamespace refid="namespacePDI">PDI</innernamespace>
+    <innernamespace refid="namespacestd">std</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="pdi/include/pdi/ref_any.h"/>
+  </compounddef>
+</doxygen>
