@@ -8,25 +8,55 @@
     <detaileddescription>
 <para><anchor id="timer_plugin_1md_plugins_2timer_2README"/></para>
 <para>The timer plugin allows measuring time spent by PDI and its plugins.</para>
+<para>Each timer records the time spent between a <computeroutput>start</computeroutput> and a <computeroutput>stop</computeroutput> event, accumulated over all the times it is started and stopped. When the plugin is unloaded, it outputs the time accumulated by each timer that was started at least once.</para>
 <sect1 id="timer_plugin_1timer_configuration">
-<title>Configuration</title><para>Simple plugin build: <programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>timer:<sp/></highlight></codeline>
+<title>Example of a Timer configuration</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>timer:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_A:<sp/>{start:<sp/>&quot;decl_hdf5_start_timer&quot;,<sp/>stop:<sp/>&quot;decl_hdf5_stop_timer&quot;}</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_B:<sp/>&quot;decl_hdf5&quot;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_C:<sp/>[&quot;toto&quot;,<sp/>&quot;titi&quot;]</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_D:<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_D:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>start:<sp/>&quot;begin_timing&quot;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stop:<sp/>&quot;end_timing&quot;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>timer_E:<sp/>[&quot;pdi&quot;]</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>output_to:<sp/>cout</highlight></codeline>
 </programlisting></para>
-<para>The timer plugin configuration contains a list of timer names (e.g. <computeroutput>timer_A</computeroutput>, <computeroutput>timer_B</computeroutput>, etc.). Each timer will record the time spent between the <computeroutput>start</computeroutput> and <computeroutput>stop</computeroutput> events.</para>
-<para><computeroutput>timer_A</computeroutput> uses a map-styled definition where both keys <computeroutput>start</computeroutput> and <computeroutput>stop</computeroutput> are mandatory.</para>
-<para><computeroutput>timer_B</computeroutput> uses a scalar-styled definition where only the prefix of the timer events is provided. The prefix can be either a user-defined name, or the name of the PDI plugins, such as <computeroutput>decl_hdf5</computeroutput>, <computeroutput>decl_netcdf</computeroutput>, <computeroutput>pycall</computeroutput>, etc. If the prefix is the PDI plugin, internal events named with <computeroutput>prefix_start_timer</computeroutput> and <computeroutput>prefix_stop_timer</computeroutput> will be emitted inside the plugin (except <computeroutput>set_value</computeroutput>). In the above example, <computeroutput>timer_B</computeroutput> is equivalent to <computeroutput>timer_A</computeroutput>.</para>
-<para><computeroutput>timer_C</computeroutput> uses a list-styled definition where a list of prefix is provided. If the name is not one of the PDI plugins&apos; name, then it is the user&apos;s responsibility to emit the <computeroutput>prefix_start_timer</computeroutput> and <computeroutput>prefix_stop_timer</computeroutput> events. In this example, <computeroutput>timer_C</computeroutput> will record the time spent between <computeroutput>toto_start_timer</computeroutput>, <computeroutput>toto_stop_timer</computeroutput>, and between <computeroutput>titi_start_timer</computeroutput>, <computeroutput>titi_stop_timer</computeroutput>.</para>
-<para>It is also possible to have different names for start and stop events such as <computeroutput>timer_D</computeroutput>.</para>
-<para>To measure the wall time used spent between <computeroutput>PDI_init</computeroutput> and <computeroutput>PDI_finalize</computeroutput>, one can define a timer as shown by <computeroutput>timer_E</computeroutput> with timer prefix &quot;pdi&quot;. Please notie that, this timer include time spent on the simulation as well.</para>
-<para><computeroutput>output_to</computeroutput> (<computeroutput>cout</computeroutput> by default) key allows directing the timer results to either standard output or a file (e.g. <computeroutput>output_to: timer.csv</computeroutput>). The name <computeroutput>cout</computeroutput> is reserved for standard output so can not be used to name the output file. Please also note that, PDI timer plugin uses the <computeroutput>flock</computeroutput> to perform sequential writing of multiple processes to a single file. This can fail if the underlying filesystem does not support <computeroutput>flock</computeroutput>. We suggest user to use the standard output. </para>
+<para>In this example, <computeroutput>timer_B</computeroutput> is equivalent to <computeroutput>timer_A</computeroutput>, <computeroutput>timer_C</computeroutput> records the time spent between <computeroutput>toto_start_timer</computeroutput> and <computeroutput>toto_stop_timer</computeroutput>, and between <computeroutput>titi_start_timer</computeroutput> and <computeroutput>titi_stop_timer</computeroutput>, and <computeroutput>timer_E</computeroutput> records the time spent between <computeroutput>PDI_init</computeroutput> and <computeroutput>PDI_finalize</computeroutput>, including the time spent in the simulation itself.</para>
+</sect1>
+<sect1 id="timer_plugin_1timer_plugins_timer">
+<title><computeroutput>plugins.timer</computeroutput></title><para>A mapping, the timers to define and where to output their results. It can also be a sequence of single-key mappings, which has the same meaning:</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>timer:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>timer_A:<sp/>{start:<sp/>&quot;decl_hdf5_start_timer&quot;,<sp/>stop:<sp/>&quot;decl_hdf5_stop_timer&quot;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>output_to:<sp/>timer.csv</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="timer_plugin_1timer_plugins_timer_timer_name">
+<title><computeroutput>plugins.timer.&lt;timer_name&gt;</computeroutput></title><para>The events that start and stop the timer named <computeroutput>&lt;timer_name&gt;</computeroutput>, either:<itemizedlist>
+<listitem><para>a mapping with both <ref refid="timer_plugin_1timer_plugins_timer_timer_name_start" kindref="member"><computeroutput>plugins.timer.&lt;timer_name&gt;.start</computeroutput></ref> and <ref refid="timer_plugin_1timer_plugins_timer_timer_name_stop" kindref="member"><computeroutput>plugins.timer.&lt;timer_name&gt;.stop</computeroutput></ref> keys,</para>
+</listitem><listitem><para>a scalar, a prefix: the timer is started by the <computeroutput>&lt;prefix&gt;_start_timer</computeroutput> event and stopped by the <computeroutput>&lt;prefix&gt;_stop_timer</computeroutput> event,</para>
+</listitem><listitem><para>a sequence of such prefixes, each pair of events starting and stopping the timer.</para>
+</listitem></itemizedlist>
+</para>
+<para>The prefix can be either a user-defined name, whose events the application has to emit, or one of the following:<itemizedlist>
+<listitem><para><computeroutput>pdi</computeroutput>, whose events PDI emits in <computeroutput>PDI_init</computeroutput> and <computeroutput>PDI_finalize</computeroutput>,</para>
+</listitem><listitem><para>the name of a plugin that emits such events around its own work: <computeroutput>decl_hdf5</computeroutput>, <computeroutput>decl_netcdf</computeroutput>, <computeroutput>json</computeroutput>, <computeroutput>pycall</computeroutput>, <computeroutput>serialize</computeroutput> or <computeroutput>user_code</computeroutput>.</para>
+</listitem></itemizedlist>
+</para>
+<para>A timer started while already running, or stopped while not running, logs an error and is left unchanged.</para>
+</sect1>
+<sect1 id="timer_plugin_1timer_plugins_timer_timer_name_start">
+<title><computeroutput>plugins.timer.&lt;timer_name&gt;.start</computeroutput></title><para><emphasis>Required in the mapping form.</emphasis> A scalar, the name of the event that starts the timer.</para>
+</sect1>
+<sect1 id="timer_plugin_1timer_plugins_timer_timer_name_stop">
+<title><computeroutput>plugins.timer.&lt;timer_name&gt;.stop</computeroutput></title><para><emphasis>Required in the mapping form.</emphasis> A scalar, the name of the event that stops the timer.</para>
+</sect1>
+<sect1 id="timer_plugin_1timer_plugins_timer_output_to">
+<title><computeroutput>plugins.timer.output_to</computeroutput></title><para><emphasis>Optional.</emphasis> A scalar, where to output the results of the timers: <computeroutput>cout</computeroutput> (the default) for the standard output, through the logger of the plugin, or the path of a file. The name <computeroutput>cout</computeroutput> is reserved for standard output so can not be used to name the output file.</para>
+<para>The results are appended to the file, one line <computeroutput>&lt;timer name&gt;,&lt;seconds&gt;</computeroutput> per timer. The plugin uses <computeroutput>flock</computeroutput> to write sequentially from multiple processes to a single file. This can fail if the underlying filesystem does not support <computeroutput>flock</computeroutput>, so the standard output is the safer choice.</para>
+</sect1>
+<sect1 id="timer_plugin_1timer_plugins_timer_logging">
+<title><computeroutput>plugins.timer.logging</computeroutput></title><para><emphasis>Optional.</emphasis> The configuration of the logger of the plugin, see <ref refid="Specification_tree_ref_1spectree_plugins_plugin_name_logging" kindref="member"><computeroutput>plugins.&lt;plugin_name&gt;.logging</computeroutput></ref>. This plugin only supports its scalar form, a level, and it then also defines a timer named <computeroutput>logging</computeroutput>, as for any other key. </para>
 </sect1>
     </detaileddescription>
     <location file="plugins/timer/README.md"/>

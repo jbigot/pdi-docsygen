@@ -12,48 +12,57 @@
 <para>This plugin allows writing multiple variables in the same file as soon as they are available.</para>
 <para>It supports not only basic data types such as scalar, array, record, tuple, and pointer, but also complex and nested combinations of these types. This includes multi-level arrays, multi-level records, and any mixture of the supported basic types at arbitrary levels of nesting. However, not all combinations are fully tested.</para>
 <para>It ensures a JSON valid format at all times, even if the simulation crashes and PDI is not finalized, due to its incremental writing. <bold>Warning:</bold> this may result in increased disk bandwidth and may not be ideal for a performance-sensitive context.</para>
-<para>Conditionnal writing is supported.</para>
+<para>Conditional writing is supported.</para>
 <para>The write to file is only triggered when a variable is shared to PDI with read permission given.</para>
 <para>Note that is written to this file the variable whichever variables listed in the &quot;write&quot; section when PDI is granted read permission.</para>
 <para>The JSON plugin doesn&apos;t yet support the function of waiting for multiple variables to be readable before writing them.</para>
 <sect1 id="JSON_plugin_1json_configuration_grammar">
-<title>Configuration grammar</title><para>There are two syntax for the JSON configuration file: First one is <computeroutput>var_name: file_path.json</computeroutput>, as for example :</para>
-<para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<title>Example of a JSON configuration</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>json:</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>data1:<sp/>file_path.json<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>data1:<sp/>file_path.json</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>file:<sp/>file_path_${iteration}.json</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>$iteration<sp/>%<sp/>10<sp/>=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write:<sp/>[data2,<sp/>data3]</highlight></codeline>
 </programlisting></para>
-<para>The second one starts with <computeroutput>- file: file_path.json</computeroutput> with arguments below</para>
-<para><table rows="4" cols="2"><row>
-<entry thead="yes" align='left'><para>key  </para>
-</entry><entry thead="yes" align='left'><para>value  </para>
-</entry></row>
-<row>
-<entry thead="no" align='left'><para><computeroutput>&quot;file&quot;</computeroutput> (<emphasis>mandatory</emphasis>)  </para>
-</entry><entry thead="no" align='left'><para>Name of the output file  </para>
-</entry></row>
-<row>
-<entry thead="no" align='left'><para><computeroutput>&quot;write&quot;</computeroutput> (<emphasis>mandatory</emphasis>)  </para>
-</entry><entry thead="no" align='left'><para>The variables to be writen  </para>
-</entry></row>
-<row>
-<entry thead="no" align='left'><para><computeroutput>&quot;when&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
-</entry><entry thead="no" align='left'><para>Indicate some kind of condition  </para>
-</entry></row>
-</table>
+<para>More examples are given in <computeroutput>example/json.yml</computeroutput>.</para>
+</sect1>
+<sect1 id="JSON_plugin_1json_plugins_json">
+<title><computeroutput>plugins.json</computeroutput></title><para>A sequence of elements, or a single element, each describing writes to one file. An element is either:<itemizedlist>
+<listitem><para>a mapping with a single key, <ref refid="JSON_plugin_1json_plugins_json_data_name" kindref="member"><computeroutput>plugins.json.&lt;data_name&gt;</computeroutput></ref>, that writes one variable,</para>
+</listitem><listitem><para>a mapping whose first key is <ref refid="JSON_plugin_1json_plugins_json_file" kindref="member"><computeroutput>plugins.json.file</computeroutput></ref>, with the <ref refid="JSON_plugin_1json_plugins_json_write" kindref="member"><computeroutput>plugins.json.write</computeroutput></ref> and <ref refid="JSON_plugin_1json_plugins_json_when" kindref="member"><computeroutput>plugins.json.when</computeroutput></ref> keys, and no other key.</para>
+</listitem></itemizedlist>
 </para>
-<para>For example,</para>
-<para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<para>The file holds a JSON array, with one object per write, whose single key is the name of the variable. If the file already exists, the new objects are appended to its array.</para>
+<para>A variable is written each time it is shared with read permission.</para>
+</sect1>
+<sect1 id="JSON_plugin_1json_plugins_json_data_name">
+<title><computeroutput>plugins.json.&lt;data_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the file where to write the variable named <computeroutput>&lt;data_name&gt;</computeroutput>.</para>
+<sect2 id="JSON_plugin_1example-of-pluginsjsondata_name">
+<title>Example of <computeroutput>plugins.json.&lt;data_name&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>json:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>data1:<sp/>file_path.json</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="JSON_plugin_1json_plugins_json_file">
+<title><computeroutput>plugins.json.file</computeroutput></title><para><emphasis>Required, first key of its mapping.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the file where to write the variables listed in <ref refid="JSON_plugin_1json_plugins_json_write" kindref="member"><computeroutput>plugins.json.write</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="JSON_plugin_1json_plugins_json_write">
+<title><computeroutput>plugins.json.write</computeroutput></title><para><emphasis>Required.</emphasis> A sequence of scalars, the names of the variables to write to <ref refid="JSON_plugin_1json_plugins_json_file" kindref="member"><computeroutput>plugins.json.file</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="JSON_plugin_1json_plugins_json_when">
+<title><computeroutput>plugins.json.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, a condition evaluated each time a variable of <ref refid="JSON_plugin_1json_plugins_json_write" kindref="member"><computeroutput>plugins.json.write</computeroutput></ref> is to be written. The variable is only written if it is true. By default, the variables are written each time they are shared with read permission.</para>
+<sect2 id="JSON_plugin_1example-of-pluginsjsonwhen">
+<title>Example of <computeroutput>plugins.json.when</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>json:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>file:<sp/>file_path.json</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>iteration<sp/>%<sp/>10<sp/>=<sp/>0<sp/>#<sp/>This<sp/>is<sp/>optional</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write:<sp/>[data1,<sp/>data2,<sp/>...]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>$iteration<sp/>%<sp/>10<sp/>=<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write:<sp/>[data1,<sp/>data2]</highlight></codeline>
 </programlisting></para>
-<para>Note : By default, if the key &quot;when&quot; is not specified, a true condition is set so that the variable is written every time PDI is granted read permission. Examples of those two syntax are given in <computeroutput>example/json.yml</computeroutput>.</para>
+</sect2>
 </sect1>
 <sect1 id="JSON_plugin_1json_test_plugin">
-<title>Install and test the JSON plugin !</title><para>The JSON plugin relies on the <ulink url="https://github.com/nlohmann/json">nlohmann/json</ulink> library to output data to JSON format. The json library is included in the PDI repo as a submodule. To get the source code of this external library, one needs to do, from the root of PDI: <programlisting filename=".bash"><codeline><highlight class="normal">git<sp/>submodule<sp/>init</highlight></codeline>
-<codeline><highlight class="normal">git<sp/>submodule<sp/>update</highlight></codeline>
-</programlisting> Next, users can activate the json_plugin by adding <computeroutput>BUILD_JSON_PLUGIN=ON</computeroutput> option to the PDI configuration commande.</para>
+<title>Install and test the JSON plugin !</title><para>The JSON plugin relies on the <ulink url="https://github.com/nlohmann/json">nlohmann/json</ulink> library to output data to JSON format. The json library is included in the PDI distribution, and is built along with the plugin when it is not found on the system. Users can activate the json_plugin by adding <computeroutput>BUILD_JSON_PLUGIN=ON</computeroutput> option to the PDI configuration commande.</para>
 <para>Once the plugin installed, the easiest way to test the plugin is referring to the example section, which provides a full somewhat realistic C simulation code, where PDI is enabled and the JSON plugin is used. This one can be found in <computeroutput>example</computeroutput>.</para>
 <para>To use it, first compile using CMake with <computeroutput>BUILD_TESTING</computeroutput> set to <computeroutput>ON</computeroutput>, then execute : <programlisting filename=".bash"><codeline><highlight class="normal">build/PDI_EXAMPLE/PDI_example_C<sp/>example/json.yml</highlight></codeline>
 </programlisting></para>
@@ -93,60 +102,63 @@
 </programlisting></para>
 </sect2>
 <sect2 id="JSON_plugin_1the-related-yaml-configuration">
-<title>The related YAML configuration</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">types:<sp/>#<sp/>[...]<sp/>including<sp/>config_t<sp/>description</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>metadata:<sp/>{rank:<sp/>int,<sp/>step:<sp/>int}</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>data:</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>simulation_name:<sp/>{<sp/>type:<sp/>array,<sp/>subtype:<sp/>char,<sp/>size:<sp/>512<sp/>}</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_steps:<sp/>int</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh_config:</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>type:<sp/>struct</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>members:</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>dimensions:<sp/>{<sp/>type:<sp/>array,<sp/>subtype:<sp/>int,<sp/>size:<sp/>3}</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>spacings:<sp/>{<sp/>type:<sp/>array,<sp/>subtype:<sp/>int,<sp/>size:<sp/>3}</highlight></codeline>
+<title>The related YAML configuration</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">metadata:<sp/>{rank:<sp/>int,<sp/>step:<sp/>int}</highlight></codeline>
+<codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>simulation_name:<sp/>{<sp/>type:<sp/>array,<sp/>subtype:<sp/>char,<sp/>size:<sp/>512<sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>max_steps:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>mesh_config:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>type:<sp/>struct</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>dimensions:<sp/>{<sp/>type:<sp/>array,<sp/>subtype:<sp/>int,<sp/>size:<sp/>3}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>spacings:<sp/>{<sp/>type:<sp/>array,<sp/>subtype:<sp/>double,<sp/>size:<sp/>3}</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp:<sp/>#<sp/>the<sp/>main<sp/>temperature<sp/>field</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>type:<sp/>array</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>subtype:<sp/>double</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>size:<sp/>&apos;$mesh_config.dimensions&apos;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>temp:<sp/>#<sp/>the<sp/>main<sp/>temperature<sp/>field</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>subtype:<sp/>double</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size:<sp/>[&apos;$mesh_config.dimensions[0]&apos;,<sp/>&apos;$mesh_config.dimensions[1]&apos;,<sp/>&apos;$mesh_config.dimensions[2]&apos;]</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>json:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>file:<sp/>data-$rank.json</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write:<sp/>[step,<sp/>temp]</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>when:<sp/>&apos;$step<sp/>&gt;<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>write:<sp/>[simulation_name,<sp/>max_steps,<sp/>mesh_config,<sp/>rank,<sp/>step,<sp/>temp]</highlight></codeline>
 </programlisting></para>
 </sect2>
 <sect2 id="JSON_plugin_1json-output">
-<title>JSON output</title><para>If we run this code as is, the following JSON file would get generated.</para>
-<para><programlisting filename=".json"><codeline><highlight class="normal">[{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;simulation_name&quot;:<sp/>&quot;Heat_transfer_simulation&quot;,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;max_steps&quot;:<sp/>10,</highlight></codeline>
+<title>JSON output</title><para>If we run this code as is, the following JSON file would get generated, with one object per variable written.</para>
+<para><programlisting filename=".json"><codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;simulation_name&quot;:<sp/>&quot;Heat_transfer_simulation&quot;</highlight></codeline>
+<codeline><highlight class="normal">},</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;max_steps&quot;:<sp/>10</highlight></codeline>
+<codeline><highlight class="normal">},</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;mesh_config&quot;:<sp/>{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;dimensions&quot;:<sp/>[100,<sp/>100,<sp/>50],</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;spacing&quot;:<sp/>[0.1,<sp/>0.1,<sp/>0.1]</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;rank&quot;:<sp/>7,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;spacings&quot;:<sp/>[0.1,<sp/>0.1,<sp/>0.1]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal">},</highlight></codeline>
 <codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;step&quot;<sp/>:<sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;rank&quot;:<sp/>7</highlight></codeline>
+<codeline><highlight class="normal">},</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;step&quot;:<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">},</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;temp&quot;:<sp/>[75.3,<sp/>74.7,<sp/>76.1,<sp/>...,<sp/>54.2,<sp/>55.6]</highlight></codeline>
-<codeline><highlight class="normal">},</highlight></codeline>
-<codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;step&quot;<sp/>:2,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;temp&quot;<sp/>:[01.8,<sp/>89.6,<sp/>92.7,<sp/>...,<sp/>12.5,<sp/>13.7]</highlight></codeline>
 <codeline><highlight class="normal">},</highlight></codeline>
 <codeline><highlight class="normal">...</highlight></codeline>
 <codeline><highlight class="normal">]</highlight></codeline>
 </programlisting></para>
-<para>We can use this output json file to generate our custom format. For example, we can rely on <ulink url="https://mustache.github.io/">mustache</ulink> to do so.</para>
+<para>We can use this output json file to generate our custom format. For example, we can rely on <ulink url="https://mustache.github.io/">mustache</ulink> to do so, once the objects have been gathered into a single one, with the iterations under a <computeroutput>temperature_data</computeroutput> key.</para>
 </sect2>
 <sect2 id="JSON_plugin_1mustache-code">
 <title>Mustache code</title><para><programlisting filename=".mstch"><codeline><highlight class="normal">Simulation<sp/>{{simulation_name}}<sp/>of<sp/>{{max_steps}}<sp/>iterations.</highlight></codeline>
-<codeline><highlight class="normal">Mesh<sp/>configuration<sp/>was<sp/>of<sp/>{{mesh_config.dimensions}}<sp/>dimensions<sp/>and<sp/>{{mesh_config.spacing}}<sp/>spacings</highlight></codeline>
+<codeline><highlight class="normal">Mesh<sp/>configuration<sp/>was<sp/>of<sp/>{{mesh_config.dimensions}}<sp/>dimensions<sp/>and<sp/>{{mesh_config.spacings}}<sp/>spacings</highlight></codeline>
 <codeline><highlight class="normal">{{#temperature_data}}</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>At<sp/>step<sp/>{{step}}:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>was<sp/>[{{#temp}}{{.}}{{#last}}{{^last}},{{/last}}{{/temp}}]</highlight></codeline>
-<codeline><highlight class="normal">{{/temperature_datal}}</highlight></codeline>
+<codeline><highlight class="normal">{{/temperature_data}}</highlight></codeline>
 </programlisting></para>
 <para>Finaly, let&apos;s print it ! We execute the json to mustache converter ...</para>
 <para><programlisting filename=".bash"><codeline><highlight class="normal">vendor/mustach/mustach<sp/>data.json<sp/>format.mstch</highlight></codeline>

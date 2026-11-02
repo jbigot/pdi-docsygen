@@ -8,6 +8,14 @@
     <includes local="no">functional</includes>
     <includes local="no">string</includes>
     <incdepgraph>
+      <node id="7">
+        <label>pdi/export.h</label>
+        <link refid="export_8h_source"/>
+      </node>
+      <node id="8">
+        <label>pdi/version.h</label>
+        <link refid="version_8h_source"/>
+      </node>
       <node id="5">
         <label>pdi.h</label>
         <link refid="pdi_8h_source"/>
@@ -305,12 +313,6 @@
       </node>
       <node id="6">
         <label>paraconf.h</label>
-      </node>
-      <node id="7">
-        <label>pdi/export.h</label>
-      </node>
-      <node id="8">
-        <label>pdi/version.h</label>
       </node>
       <node id="32">
         <label>ranges</label>

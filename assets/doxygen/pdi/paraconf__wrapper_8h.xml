@@ -11,6 +11,14 @@
     <includedby refid="expression_8h" local="no">expression.h</includedby>
     <includedby refid="logger_8h" local="no">logger.h</includedby>
     <incdepgraph>
+      <node id="10">
+        <label>pdi/export.h</label>
+        <link refid="export_8h_source"/>
+      </node>
+      <node id="11">
+        <label>pdi/version.h</label>
+        <link refid="version_8h_source"/>
+      </node>
       <node id="9">
         <label>pdi.h</label>
         <link refid="pdi_8h_source"/>
@@ -59,12 +67,6 @@
       </node>
       <node id="5">
         <label>paraconf.h</label>
-      </node>
-      <node id="10">
-        <label>pdi/export.h</label>
-      </node>
-      <node id="11">
-        <label>pdi/version.h</label>
       </node>
       <node id="4">
         <label>string</label>

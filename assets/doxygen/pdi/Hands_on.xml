@@ -97,7 +97,7 @@ Once you have correctly modified each exercise according to instructions, you ca
 </para>
 <para>To achieve this result, you will need to fill 2 sections in the YAML file.</para>
 <para><orderedlist>
-<listitem><para>The <computeroutput>data</computeroutput> section to indicate to PDI the <ref refid="Specification_tree_ref_1datatype_node" kindref="member">datatype</ref> type of the fields that are exposed.</para>
+<listitem><para>The <computeroutput>data</computeroutput> section to indicate to PDI the datatype_node type of the fields that are exposed.</para>
 </listitem><listitem><para>The <computeroutput>decl_hdf5</computeroutput> section for the configuration of the <ref refid="Decl_HDF5_plugin" kindref="compound">Decl&apos;HDF5 plugin</ref>.</para>
 </listitem></orderedlist>
 </para>

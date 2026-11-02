@@ -9,107 +9,43 @@
 <para><anchor id="Decl_HDF5_plugin_1md_plugins_2decl__hdf5_2README"/></para>
 <para><bold>WARNING</bold> This documentation is a work in progress and does not reflect the full Decl&apos;HDF5 potential.</para>
 <para>The Decl&apos;HDF5 plugin enables one to read and write data from HDF5 files in a declarative way. Decl&apos;HDF5 does not support the full HDF5 feature set but offers a simple declarative interface to access a large subset of it.</para>
-<sect1 id="Decl_HDF5_plugin_1configuration-grammar">
-<title>Configuration grammar</title><para>At its root, the Decl&apos;HDF5 configuration is made of either a single <computeroutput>FILE_DESC</computeroutput> or a list of <computeroutput>FILE_DESC</computeroutput>s.</para>
-<sect2 id="Decl_HDF5_plugin_1file_desc">
-<title>FILE_DESC</title><para>A <computeroutput>FILE_DESC</computeroutput> specifies a list of actions to execute in one file. It is specified by a key/value map that contains at least the <computeroutput>file</computeroutput> key. Other keys are optional. The possible values for the keys are as follow:<itemizedlist>
-<listitem><para><computeroutput>logging</computeroutput>: <ref refid="Specification_tree_ref_1logging_node" kindref="member">logging</ref></para>
-</listitem><listitem><para><computeroutput>file</computeroutput>: a string that can contain $-expressions and specified the name of the file this <computeroutput>FILE_DESC</computeroutput> refers to.</para>
-</listitem><listitem><para><computeroutput>write</computeroutput>: a <computeroutput>DATA_SECTION</computeroutput> that defaults to an empty one. This <computeroutput>DATA_SECTION</computeroutput> describes writes to execute.</para>
-</listitem><listitem><para><computeroutput>read</computeroutput>: a <computeroutput>DATA_SECTION</computeroutput> that defaults to an empty one. This <computeroutput>DATA_SECTION</computeroutput> describes reads to execute.</para>
-</listitem><listitem><para><computeroutput>on_event</computeroutput>: a string identifying an event when the whole file is accessed. If not specified, each data is written when it is exposed and the file is opened and closed every time.</para>
-</listitem><listitem><para><computeroutput>when</computeroutput>: a $-expression specifying a default condition to test before executing the reads and writes of this <computeroutput>FILE_DESC</computeroutput>. This can be replaced by a more specific condition inside the <computeroutput>DATA_SECTION</computeroutput>.</para>
-</listitem><listitem><para><computeroutput>communicator</computeroutput>: a $-expression referencing a MPI communicator to use for HDF5 parallel synchronized reads and writes. It defaults to MPI_COMM_SELF which stands for sequential writes. In case of data-triggered (vs. event-triggered) reads and writes, this can be replaced inside the <computeroutput>DATA_SECTION</computeroutput>.</para>
-</listitem><listitem><para><computeroutput>datasets</computeroutput>: a key-value map associating a PDI type to string keys. Each string is the name of a dataset to create in the file on first access, with the type described in the value. The string key is a regular expression (regex), and be used to define &quot;generic keys&quot;, that can be used in <computeroutput>DATA_IO_DESC</computeroutput> for the keyword dataset. The regex use the Modiﬁed ECMAScript regular expression grammar.</para>
-</listitem><listitem><para><computeroutput>collision_policy</computeroutput>: a string identifying a <ref refid="Decl_HDF5_plugin_1COLLISION_POLICY" kindref="member">COLLISION_POLICY</ref></para>
-</listitem><listitem><para><computeroutput>deflate</computeroutput>: an integer value (from 0 to 9) defining the default deflate (GNU gzip) compression level to use for datasets created in this file. This can be overriden on a per dataset basis. By default, the deflate filter is deactivated. See <ulink url="https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetDeflate">https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetDeflate</ulink> for more information.</para>
-</listitem><listitem><para><computeroutput>fletcher</computeroutput>: an integer value interpreted as a boolean (0 is false, non 0 values are true) that defines whether to activate the Fletcher32 checksum filter by default for datasets created in this file. This can be overriden on a per dataset basis. By default, the Fletcher32 checksum filter is deactivated. See <ulink url="https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetFletcher32">https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetFletcher32</ulink> for more information.</para>
-</listitem><listitem><para><computeroutput>subfiling</computeroutput>: a key-value map or an integer. Configures the HDF5 Subfiling Virtual File Driver (VFD). This feature is only available if the underlying HDF5 installation was compiled with <computeroutput>H5_HAVE_SUBFILING_VFD</computeroutput>.<itemizedlist>
-<listitem><para>Configuration keys:<itemizedlist>
-<listitem><para><computeroutput>count</computeroutput> (integer, default: 0) : the total number of subfiles to generate. If set to -1 or other negative values, the one-subfile-per-node mode will be triggered.</para>
-</listitem><listitem><para><computeroutput>policy</computeroutput> (string, default: &quot;STOP&quot;) : Determines behavior if subfiling requirements are not met.<itemizedlist>
-<listitem><para><computeroutput>STOP</computeroutput>: Throw a runtime error.</para>
-</listitem><listitem><para><computeroutput>CONTINUE</computeroutput>: Fall back to a standard HDF5 output file.</para>
-</listitem></itemizedlist>
-</para>
-</listitem><listitem><para><computeroutput>stripe_size</computeroutput> (non-negative integer, default: 0): The amount of data (in bytes) written to one subfile before rotating to the next. If 0, the HDF5 default (typically 32MB) is used.</para>
-</listitem></itemizedlist>
-</para>
-</listitem><listitem><para>Yaml example<itemizedlist>
-<listitem><para>full configuration: <programlisting><codeline><highlight class="normal">subfiling:</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>count:<sp/>4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>generate<sp/>4<sp/>subfiles</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>policy:<sp/>CONTINUE<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Fallback<sp/>to<sp/>standard<sp/>HDF5<sp/>if<sp/>necessary</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>stripe_size:<sp/>8388608<sp/><sp/>#<sp/>8MB<sp/>stripes</highlight></codeline>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5">
+<title><computeroutput>plugins.decl_hdf5</computeroutput></title><para>A <emphasis>file description</emphasis>, a mapping with the keys below that specifies a list of actions to execute in one file, or a sequence of file descriptions.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_file">
+<title><computeroutput>plugins.decl_hdf5.file</computeroutput></title><para><emphasis>Required.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the name of the file this file description refers to.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_on_event">
+<title><computeroutput>plugins.decl_hdf5.on_event</computeroutput></title><para><emphasis>Optional.</emphasis> A scalar, or a sequence of scalars, the events when the whole file is accessed. If not specified, each data is read or written when it is shared, and the file is opened and closed every time.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_when">
+<title><computeroutput>plugins.decl_hdf5.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, a default condition to test before executing the reads and writes of this file description. This can be replaced by a more specific condition for each I/O, see <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_when" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.when</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_communicator">
+<title><computeroutput>plugins.decl_hdf5.communicator</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> referencing a MPI communicator to use for HDF5 parallel synchronized reads and writes. It defaults to <computeroutput>MPI_COMM_SELF</computeroutput> which stands for sequential I/O. In case of data-triggered (vs. event-triggered) reads and writes, this can be replaced for each I/O, see <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_communicator" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.communicator</computeroutput></ref>. It is an error to specify it when the HDF5 library is not parallel.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_datasets">
+<title><computeroutput>plugins.decl_hdf5.datasets</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the datasets whose type is defined explicitly. A dataset that is accessed but not defined here is created just big enough to fit the data.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_datasets_dataset_regex">
+<title><computeroutput>plugins.decl_hdf5.datasets.&lt;dataset_regex&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref>, the type of the datasets whose name matches <computeroutput>&lt;dataset_regex&gt;</computeroutput>, created with this type on first access.</para>
+<para><computeroutput>&lt;dataset_regex&gt;</computeroutput> is a regular expression, using the Modiﬁed ECMAScript regular expression grammar, so that a single entry can define &quot;generic
+keys&quot; for several datasets. It must match the whole name of the dataset, and a dataset whose name matches several of them is an error.</para>
+<sect2 id="Decl_HDF5_plugin_1example-of-pluginsdecl_hdf5datasetsdataset_regex">
+<title>Example of <computeroutput>plugins.decl_hdf5.datasets.&lt;dataset_regex&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">datasets:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>data/array:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>subtype:<sp/>double</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size:<sp/>[10,<sp/>$width-2,<sp/>$width-2]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>data_iter.*/array:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>subtype:<sp/>double</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size:<sp/>[$width-2,<sp/>$width-2]</highlight></codeline>
 </programlisting></para>
-</listitem><listitem><para>shorthand configuration: <programlisting><codeline><highlight class="normal">subfiling:<sp/>2<sp/></highlight></codeline>
-</programlisting> This will set <computeroutput>count=2</computeroutput> and all other members use default values.</para>
-</listitem></itemizedlist>
-</para>
-</listitem><listitem><para>Here are several important notes for using <computeroutput>subfiling</computeroutput> correctly:<itemizedlist>
-<listitem><para><bold>MPI Threading Requirement</bold>: The simulation must be initialized with <computeroutput>MPI_THREAD_MULTIPLE</computeroutput>. If this is not satisfied, the application will throw a runtime error unless policy is set to <computeroutput>CONTINUE</computeroutput>. In <computeroutput>CONTINUE</computeroutput> mode, the simulation will proceed using standard HDF5 I/O.</para>
-</listitem><listitem><para><bold>Stripe Size Configuration</bold>: The stripe size can be set in the YAML via <computeroutput>stripe_size</computeroutput> or via the environment variable <computeroutput>H5FD_SUBFILING_STRIPE_SIZE</computeroutput>. The YAML value takes precedence if both are provided.</para>
-</listitem><listitem><para><bold>Custom File Locations</bold>: To store subfiles in a specific directory (e.g., a high-speed scratch burst buffer), provide an absolute path to <computeroutput>H5FD_SUBFILING_SUBFILE_PREFIX</computeroutput>. <bold>Note</bold> : You must set the same path to <computeroutput>H5FD_SUBFILING_CONFIG_FILE_PREFIX</computeroutput> so the main .h5 file can locate its constituent subfiles.</para>
-</listitem><listitem><para><bold>Naming Convention</bold>: Subfile names are managed internally by HDF5 and cannot be easily customized. They follow a template similar to: <computeroutput>[filename].h5.subfile_[contextID]_[subfile_index]_of_[total_subfiles]</computeroutput> (e.g., <computeroutput>output.h5.subfile_11273556_01_of_10</computeroutput>)</para>
-</listitem></itemizedlist>
-</para>
-</listitem></itemizedlist>
-</para>
-</listitem></itemizedlist>
-</para>
 </sect2>
-<sect2 id="Decl_HDF5_plugin_1data_section">
-<title>DATA_SECTION</title><para>The <computeroutput>DATA_SECTION</computeroutput> describes a set of I/O (read or write) to execute. A data section can take multiple forms:<itemizedlist>
-<listitem><para>a list of strings, each being either:<itemizedlist>
-<listitem><para>the name of a PDI data to write in a dataset with the same name ( e.g. <computeroutput>data</computeroutput>, where <computeroutput>data</computeroutput> is both a PDI data and the HDF5 dataset name)</para>
-</listitem><listitem><para>the name of a PDI data to write in an attribute of the same name preceded by a <computeroutput>#</computeroutput> and the name of the dataset or datagroup to which the attribute applies ( e.g. <computeroutput>dset#attr</computeroutput>, where <computeroutput>attr</computeroutput> is both a PDI data and the HDF5 attribute name applied to the <computeroutput>dset</computeroutput> dataset)</para>
-</listitem></itemizedlist>
-</para>
-</listitem><listitem><para>a key-value map where each key is the name of a PDI data to write and the value is either a single <computeroutput>DATA_IO_DESC</computeroutput> or a list of <computeroutput>DATA_IO_DESC</computeroutput>s describing the I/O (read or write) to execute.</para>
-</listitem></itemizedlist>
-</para>
-<para>The first case behaves as if each data had its <computeroutput>DATA_IO_DESC</computeroutput> specified with all default values.</para>
-</sect2>
-<sect2 id="Decl_HDF5_plugin_1data_io_desc">
-<title>DATA_IO_DESC</title><para>A <computeroutput>DATA_IO_DESC</computeroutput> is a key-velue map describing one I/O (read or write) to execute. All keys are optional and have default values. The possible values for the keys are as follow:<itemizedlist>
-<listitem><para><computeroutput>dataset</computeroutput>: a $-expression identifying the name of the dataset to access in the file. If not specified this defaults to the name of the data. On writing, if the dataset does not exist in the file and is not specified in the <computeroutput>FILE_DESC</computeroutput> then a dataset with the same size as the memory selection is automatically created.</para>
-</listitem><listitem><para><computeroutput>attribute</computeroutput>: a $-expression identifying the path of the attribute to access in the file. The path is specified as a <computeroutput>/</computeroutput>-separated path to the object on which the attribute is set (a dataset or a datagroup) followed by a <computeroutput>#</computeroutput> sign and the name of the attribute itself (e.g. <computeroutput>group/dset#attr</computeroutput>). If the <computeroutput>attribute</computeroutput> key is specified, then only the <computeroutput>when</computeroutput> key can also be specified, no other key can be present.</para>
-</listitem><listitem><para><computeroutput>size_of</computeroutput>: a $-expression identifying the path of the dataset that size should be written to data descriptor.</para>
-</listitem><listitem><para><computeroutput>when</computeroutput>: a $-expression specifying a condition to test before executing the I/O operation (read or write). This defaults to the value specified in the <computeroutput>FILE_DESC</computeroutput> if present or to unconditional I/O otherwise.</para>
-</listitem><listitem><para><computeroutput>communicator</computeroutput>: a $-expression referencing a MPI communicator to use for HDF5 parallel synchronized I/O operation (read or write). Specifying communicator at this level is incompatible with event-triggered (vs. data-triggered) This defaults to the value specified in the <computeroutput>FILE_DESC</computeroutput> if present or to sequential (MPI_COMM_SELF) I/O otherwise.</para>
-</listitem><listitem><para><computeroutput>memory_selection</computeroutput>: a <computeroutput>SELECTION_DESC</computeroutput> specifying the selection of data in memory to read or write. It defaults to selecting the whole data.</para>
-</listitem><listitem><para><computeroutput>dataset_selection</computeroutput>: a <computeroutput>SELECTION_DESC</computeroutput> specifying the selection of data in the file data to write or read. This is only valid if the dataset is explicitly defined in the <computeroutput>datasets</computeroutput> section.</para>
-</listitem><listitem><para><computeroutput>attributes</computeroutput>: a key-value map specifying the set of attributes to read from (respectively, write to) the file when the associated dataset is read (respectively, written). Each key is the name of an attribute of the dataset. Each value is a $-expression (evaluated when the dataset is accessed) specifying the value to the attribute.</para>
-</listitem><listitem><para><computeroutput>collision_policy</computeroutput>: a string identifying a <ref refid="Decl_HDF5_plugin_1COLLISION_POLICY" kindref="member">COLLISION_POLICY</ref>.</para>
-</listitem><listitem><para><computeroutput>chunking</computeroutput>: a <ref refid="Specification_tree_ref_1intexpr_or_seq_node" kindref="member">intexpr_or_seq</ref> that defines the size of the chunks used to the dataset in a chunked layout. The <ref refid="Specification_tree_ref_1intexpr_or_seq_node" kindref="member">intexpr_or_seq</ref> must have the same dimension as the dataset type. This can be overriden by the <computeroutput>decl_hdf5.chunking</computeroutput> attribute in the dataset type. By default, no chunking is activated. See <ulink url="https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetChunk">https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetChunk</ulink> for more information.</para>
-</listitem><listitem><para><computeroutput>deflate</computeroutput>: an integer value (from 0 to 9) defining the deflate (GNU gzip) compression level to use or <computeroutput>-1</computeroutput> for no filter for datasets created by this I/O. This can be overriden by the <computeroutput>decl_hdf5.deflate</computeroutput> attribute in the dataset type. By default, the deflate filter is deactivated. See <ulink url="https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetDeflate">https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetDeflate</ulink> for more information.</para>
-</listitem><listitem><para><computeroutput>fletcher</computeroutput>: an integer value interpreted as a boolean (0 is false, non 0 values are true) that defines whether to activate the Fletcher32 checksum filter by default for datasets created in this file. This can be overriden by the <computeroutput>decl_hdf5.fletcher</computeroutput> attribute in the dataset type. By default, the Fletcher32 checksum filter is deactivated. See <ulink url="https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetFletcher32">https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetFletcher32</ulink> for more information.</para>
-</listitem><listitem><para><computeroutput>mpio</computeroutput> : a string expression to define the type of MPI-I/O parallel pointer for the operation among two choices : <computeroutput>COLLECTIVE</computeroutput> (default) and <computeroutput>INDEPENDENT</computeroutput>.</para>
-</listitem></itemizedlist>
-</para>
-</sect2>
-<sect2 id="Decl_HDF5_plugin_1selection_desc">
-<title>SELECTION_DESC</title><para>A <computeroutput>SELECTION_DESC</computeroutput> is a key-value map that describes the selection of a subset of data from a larger set. All keys are optional and have default values. The possible values for the keys are as follow:<itemizedlist>
-<listitem><para><computeroutput>size</computeroutput> is either a single $-expression or a list of $-expressions. It describes the size of the selection in each dimension.</para>
-</listitem><listitem><para><computeroutput>start</computeroutput> is either a single $-expression or a list of $-expressions. It describes the number of point to skip at the beginning in each dimension.</para>
-</listitem></itemizedlist>
-</para>
-<para>Memory selection default values:<itemizedlist>
-<listitem><para>If the <computeroutput>size</computeroutput> is not specified, it defaults to size of the whole data in each dimension.</para>
-</listitem><listitem><para>If the <computeroutput>start</computeroutput> is not specified it defaults to 0 in all dimensions.</para>
-</listitem></itemizedlist>
-</para>
-<para>Dataset selection default values:<itemizedlist>
-<listitem><para>If the <computeroutput>size</computeroutput> is not specified:<itemizedlist>
-<listitem><para>if the number of dimensions match that of the memory, the size defaults to that of the memory,</para>
-</listitem><listitem><para>otherwise, the size default to the whole dataset.</para>
-</listitem></itemizedlist>
-</para>
-</listitem><listitem><para>If the <computeroutput>start</computeroutput> is not specified it defaults to 0 in all dimensions.</para>
-</listitem></itemizedlist>
-</para>
-</sect2>
-<sect2 id="Decl_HDF5_plugin_1COLLISION_POLICY">
-<title>COLLISION_POLICY</title><para>A <computeroutput>COLLISION_POLICY</computeroutput> is a string that identifies what to do when writing to a file or dataset that already exists. Available policies are listed below:<itemizedlist>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_collision_policy">
+<title><computeroutput>plugins.decl_hdf5.collision_policy</computeroutput></title><para><emphasis>Optional.</emphasis> A scalar, what to do when writing to a file or dataset that already exists, case-insensitive:<itemizedlist>
 <listitem><para><computeroutput>skip</computeroutput> - do not do anything</para>
 </listitem><listitem><para><computeroutput>skip_and_warn</computeroutput> - do not do anything, only generate a warning message</para>
 </listitem><listitem><para><computeroutput><ref refid="group__error" kindref="compound">Error handling</ref></computeroutput> - do not do anything, only throw an error</para>
@@ -119,10 +55,171 @@
 </listitem><listitem><para><computeroutput>replace_and_warn</computeroutput> - delete the existing file/dataset, create a new one, but generate a warning message</para>
 </listitem></itemizedlist>
 </para>
+<para>This can be replaced for each write, see <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_collision_policy" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.collision_policy</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_deflate">
+<title><computeroutput>plugins.decl_hdf5.deflate</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> (from 0 to 9) defining the default deflate (GNU gzip) compression level to use for datasets created in this file. This can be overridden for each write, see <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_deflate" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.deflate</computeroutput></ref>. By default, the deflate filter is deactivated. See <ulink url="https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetDeflate">https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetDeflate</ulink> for more information.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_fletcher">
+<title><computeroutput>plugins.decl_hdf5.fletcher</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> interpreted as a boolean (0 is false, non 0 values are true) that defines whether to activate the Fletcher32 checksum filter by default for datasets created in this file. This can be overridden for each write, see <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_fletcher" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.fletcher</computeroutput></ref>. By default, the Fletcher32 checksum filter is deactivated. See <ulink url="https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetFletcher32">https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetFletcher32</ulink> for more information.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_subfiling">
+<title><computeroutput>plugins.decl_hdf5.subfiling</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping with the keys below, or a scalar, a shortcut for a mapping whose only key is <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_subfiling_count" kindref="member"><computeroutput>plugins.decl_hdf5.subfiling.count</computeroutput></ref>. It configures the HDF5 Subfiling Virtual File Driver (VFD). This feature is only available if the underlying HDF5 installation was compiled with <computeroutput>H5_HAVE_SUBFILING_VFD</computeroutput>.</para>
+<para>Here are several important notes for using <computeroutput>subfiling</computeroutput> correctly:<itemizedlist>
+<listitem><para><bold>MPI Threading Requirement</bold>: The simulation must be initialized with <computeroutput>MPI_THREAD_MULTIPLE</computeroutput>. If this is not satisfied, the application will throw a runtime error unless policy is set to <computeroutput>CONTINUE</computeroutput>. In <computeroutput>CONTINUE</computeroutput> mode, the simulation will proceed using standard HDF5 I/O.</para>
+</listitem><listitem><para><bold>Stripe Size Configuration</bold>: The stripe size can be set in the YAML via <computeroutput>stripe_size</computeroutput> or via the environment variable <computeroutput>H5FD_SUBFILING_STRIPE_SIZE</computeroutput>. The YAML value takes precedence if both are provided.</para>
+</listitem><listitem><para><bold>Custom File Locations</bold>: To store subfiles in a specific directory (e.g., a high-speed scratch burst buffer), provide an absolute path to <computeroutput>H5FD_SUBFILING_SUBFILE_PREFIX</computeroutput>. <bold>Note</bold> : You must set the same path to <computeroutput>H5FD_SUBFILING_CONFIG_FILE_PREFIX</computeroutput> so the main .h5 file can locate its constituent subfiles.</para>
+</listitem><listitem><para><bold>Naming Convention</bold>: Subfile names are managed internally by HDF5 and cannot be easily customized. They follow a template similar to: <computeroutput>[filename].h5.subfile_[contextID]_[subfile_index]_of_[total_subfiles]</computeroutput> (e.g., <computeroutput>output.h5.subfile_11273556_01_of_10</computeroutput>)</para>
+</listitem></itemizedlist>
+</para>
+<sect2 id="Decl_HDF5_plugin_1example-of-pluginsdecl_hdf5subfiling">
+<title>Example of <computeroutput>plugins.decl_hdf5.subfiling</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">subfiling:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>count:<sp/>4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>generate<sp/>4<sp/>subfiles</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>policy:<sp/>CONTINUE<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Fallback<sp/>to<sp/>standard<sp/>HDF5<sp/>if<sp/>necessary</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>stripe_size:<sp/>8388608<sp/><sp/>#<sp/>8MB<sp/>stripes</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">subfiling:<sp/>2<sp/>#<sp/>count=2<sp/>and<sp/>all<sp/>other<sp/>members<sp/>use<sp/>default<sp/>values</highlight></codeline>
+</programlisting></para>
 </sect2>
 </sect1>
-<sect1 id="Decl_HDF5_plugin_1full-configuration-example">
-<title>full configuration example</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">metadata:<sp/>#<sp/>small<sp/>values<sp/>for<sp/>which<sp/>PDI<sp/>keeps<sp/>a<sp/>copy</highlight></codeline>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_subfiling_count">
+<title><computeroutput>plugins.decl_hdf5.subfiling.count</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the total number of subfiles to generate, 0 by default. If negative, the one-subfile-per-node mode is triggered.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_subfiling_policy">
+<title><computeroutput>plugins.decl_hdf5.subfiling.policy</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, what to do if the subfiling requirements are not met:<itemizedlist>
+<listitem><para><computeroutput>STOP</computeroutput> (default): throw a runtime error,</para>
+</listitem><listitem><para><computeroutput>CONTINUE</computeroutput>: fall back to a standard HDF5 output file.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_subfiling_stripe_size">
+<title><computeroutput>plugins.decl_hdf5.subfiling.stripe_size</computeroutput></title><para><emphasis>Optional.</emphasis> A non-negative integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the amount of data (in bytes) written to one subfile before rotating to the next. If 0 (the default), the HDF5 default (typically 32MB) is used.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_logging">
+<title><computeroutput>plugins.decl_hdf5.logging</computeroutput></title><para><emphasis>Optional.</emphasis> The configuration of the logger of the plugin, see <ref refid="Specification_tree_ref_1spectree_plugins_plugin_name_logging" kindref="member"><computeroutput>plugins.&lt;plugin_name&gt;.logging</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write">
+<title><computeroutput>plugins.decl_hdf5.write</computeroutput></title><para><emphasis>Optional.</emphasis> The writes to execute, either:<itemizedlist>
+<listitem><para>a sequence of scalars, see <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_seq" kindref="member"><computeroutput>plugins.decl_hdf5.write[*]</computeroutput></ref>,</para>
+</listitem><listitem><para>a mapping, see <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;</computeroutput></ref>.</para>
+</listitem></itemizedlist>
+</para>
+<para>It defaults to no write.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_seq">
+<title><computeroutput>plugins.decl_hdf5.write[*]</computeroutput></title><para>A scalar, either:<itemizedlist>
+<listitem><para>the name of a PDI data to write in a dataset with the same name ( e.g. <computeroutput>data</computeroutput>, where <computeroutput>data</computeroutput> is both a PDI data and the HDF5 dataset name),</para>
+</listitem><listitem><para>the name of a PDI data to write in an attribute of the same name preceded by a <computeroutput>#</computeroutput> and the name of the dataset or datagroup to which the attribute applies ( e.g. <computeroutput>dset#attr</computeroutput>, where <computeroutput>attr</computeroutput> is both a PDI data and the HDF5 attribute name applied to the <computeroutput>dset</computeroutput> dataset).</para>
+</listitem></itemizedlist>
+</para>
+<para>This behaves as if each data had its write specified with all default values.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;</computeroutput></title><para>A mapping with the keys below, or a sequence of such mappings, each describing one write of the PDI data named <computeroutput>&lt;data_name&gt;</computeroutput>. All keys are optional and have default values.</para>
+<para>A mapping with an <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_attribute" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.attribute</computeroutput></ref> key writes the data in an attribute, and can only have a <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_when" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.when</computeroutput></ref> key beside it. Such a mapping must be given alone, not as an element of a sequence.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_dataset">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.dataset</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the name of the dataset to write in the file. If not specified this defaults to the name of the data. If the dataset does not exist in the file and is not specified in <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_datasets" kindref="member"><computeroutput>plugins.decl_hdf5.datasets</computeroutput></ref> then a dataset with the same size as the memory selection is automatically created.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_attribute">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.attribute</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the attribute where to write the data. The path is specified as a <computeroutput>/</computeroutput>-separated path to the object on which the attribute is set (a dataset or a datagroup) followed by a <computeroutput>#</computeroutput> sign and the name of the attribute itself (e.g. <computeroutput>group/dset#attr</computeroutput>).</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_when">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, a condition to test before executing the write. This defaults to <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_when" kindref="member"><computeroutput>plugins.decl_hdf5.when</computeroutput></ref> if present or to unconditional I/O otherwise.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_communicator">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.communicator</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> referencing a MPI communicator to use for HDF5 parallel synchronized write. Specifying communicator at this level is incompatible with event-triggered (vs. data-triggered) I/O. This defaults to <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_communicator" kindref="member"><computeroutput>plugins.decl_hdf5.communicator</computeroutput></ref> if present or to sequential (<computeroutput>MPI_COMM_SELF</computeroutput>) I/O otherwise.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_mpio">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.mpio</computeroutput></title><para><emphasis>Optional.</emphasis> A scalar, the type of MPI-I/O parallel pointer for the operation among two choices: <computeroutput>COLLECTIVE</computeroutput> (default) and <computeroutput>INDEPENDENT</computeroutput>. It is not a $-expression: it must be written as one of these two values.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_memory_selection">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.memory_selection</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the selection of data in memory to write. It defaults to selecting the whole data.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_memory_selection_size">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.memory_selection.size</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> or a sequence of them, the size of the selection in each dimension. It defaults to the size of the whole data in each dimension.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_memory_selection_start">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.memory_selection.start</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> or a sequence of them, the number of points to skip at the beginning in each dimension. It defaults to 0 in all dimensions.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_dataset_selection">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.dataset_selection</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the selection of data in the dataset where to write. This is only valid if the dataset is explicitly defined in <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_datasets" kindref="member"><computeroutput>plugins.decl_hdf5.datasets</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_dataset_selection_size">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.dataset_selection.size</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> or a sequence of them, the size of the selection in each dimension. If not specified:<itemizedlist>
+<listitem><para>if the number of dimensions match that of the memory, the size defaults to that of the memory,</para>
+</listitem><listitem><para>otherwise, the size default to the whole dataset.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_dataset_selection_start">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.dataset_selection.start</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> or a sequence of them, the number of points to skip at the beginning in each dimension. It defaults to 0 in all dimensions.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_attributes">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.attributes</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the attributes to write to the dataset when it is written.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_attributes_attribute_name">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.attributes.&lt;attribute_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, evaluated when the dataset is written, the value to write to the attribute named <computeroutput>&lt;attribute_name&gt;</computeroutput> of the dataset.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_collision_policy">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.collision_policy</computeroutput></title><para><emphasis>Optional.</emphasis> A scalar, what to do when the dataset already exists, among the values of <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_collision_policy" kindref="member"><computeroutput>plugins.decl_hdf5.collision_policy</computeroutput></ref>, which it defaults to.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_chunking">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.chunking</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> or a sequence of them, the size of the chunks used for the dataset in a chunked layout. It must have the same dimension as the dataset type. This can be overridden by the <computeroutput>+decl_hdf5.chunking</computeroutput> attribute in the dataset type. By default, no chunking is activated. See <ulink url="https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetChunk">https://support.hdfgroup.org/HDF5/doc/RM/RM_H5P.html#Property-SetChunk</ulink> for more information.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_deflate">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.deflate</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> (from 0 to 9) defining the deflate (GNU gzip) compression level to use, or <computeroutput>-1</computeroutput> for no filter, for the dataset created by this write. This can be overridden by the <computeroutput>+decl_hdf5.deflate</computeroutput> attribute in the dataset type. It defaults to <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_deflate" kindref="member"><computeroutput>plugins.decl_hdf5.deflate</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_fletcher">
+<title><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.fletcher</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> interpreted as a boolean (0 is false, non 0 values are true) that defines whether to activate the Fletcher32 checksum filter for the dataset created by this write. This can be overridden by the <computeroutput>+decl_hdf5.fletcher</computeroutput> attribute in the dataset type. It defaults to <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_fletcher" kindref="member"><computeroutput>plugins.decl_hdf5.fletcher</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read">
+<title><computeroutput>plugins.decl_hdf5.read</computeroutput></title><para><emphasis>Optional.</emphasis> The reads to execute, either:<itemizedlist>
+<listitem><para>a sequence of scalars, see <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_seq" kindref="member"><computeroutput>plugins.decl_hdf5.read[*]</computeroutput></ref>,</para>
+</listitem><listitem><para>a mapping, see <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name" kindref="member"><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;</computeroutput></ref>.</para>
+</listitem></itemizedlist>
+</para>
+<para>It defaults to no read.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_seq">
+<title><computeroutput>plugins.decl_hdf5.read[*]</computeroutput></title><para>A scalar, the name of a PDI data to read from a dataset of the same name, or from an attribute, as for <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_seq" kindref="member"><computeroutput>plugins.decl_hdf5.write[*]</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;</computeroutput></title><para>A mapping with the keys below, or a sequence of such mappings, each describing one read into the PDI data named <computeroutput>&lt;data_name&gt;</computeroutput>. All keys are optional and have default values.</para>
+<para>A mapping with an <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_attribute" kindref="member"><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.attribute</computeroutput></ref> key reads an attribute, and can only have a <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_when" kindref="member"><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.when</computeroutput></ref> key beside it. A mapping with a <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_size_of" kindref="member"><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.size_of</computeroutput></ref> key reads the size of a dataset, and any other key is ignored.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_dataset">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.dataset</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the name of the dataset to read from the file. If not specified this defaults to the name of the data.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_attribute">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.attribute</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the attribute to read, as for <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_attribute" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.attribute</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_size_of">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.size_of</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the dataset whose size should be written to the data.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_when">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, a condition to test before executing the read, as for <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_when" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.when</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_communicator">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.communicator</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> referencing a MPI communicator to use for HDF5 parallel synchronized read, as for <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_communicator" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.communicator</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_mpio">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.mpio</computeroutput></title><para><emphasis>Optional.</emphasis> A scalar, the type of MPI-I/O parallel pointer for the read, as for <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_mpio" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.mpio</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_memory_selection">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.memory_selection</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the selection of data in memory where to read, with the same <computeroutput>size</computeroutput> and <computeroutput>start</computeroutput> keys as <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_memory_selection" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.memory_selection</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_dataset_selection">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.dataset_selection</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the selection of data in the dataset to read, with the same <computeroutput>size</computeroutput> and <computeroutput>start</computeroutput> keys as <ref refid="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_write_data_name_dataset_selection" kindref="member"><computeroutput>plugins.decl_hdf5.write.&lt;data_name&gt;.dataset_selection</computeroutput></ref>.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_attributes">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.attributes</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the attributes to read from the dataset when it is read.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_plugins_decl_hdf5_read_data_name_attributes_attribute_name">
+<title><computeroutput>plugins.decl_hdf5.read.&lt;data_name&gt;.attributes.&lt;attribute_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, evaluated when the dataset is read, referencing the data where to store the attribute named <computeroutput>&lt;attribute_name&gt;</computeroutput> of the dataset.</para>
+</sect1>
+<sect1 id="Decl_HDF5_plugin_1decl_hdf5_full_example">
+<title>Full configuration example</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">metadata:<sp/>#<sp/>small<sp/>values<sp/>for<sp/>which<sp/>PDI<sp/>keeps<sp/>a<sp/>copy</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>width:<sp/><sp/><sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>per<sp/>proc.<sp/>width<sp/>including<sp/>ghost</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>height:<sp/><sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>per<sp/>proc.<sp/>height<sp/>including<sp/>ghost</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>pwidth:<sp/><sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>nb<sp/>proc.<sp/>in<sp/>the<sp/>x<sp/>dim</highlight></codeline>

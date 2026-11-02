@@ -15,16 +15,23 @@
 <codeline><highlight class="normal"><sp/><sp/>trace:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>#...</highlight></codeline>
 </programlisting></para>
-<para>The plugin then generates a (somewhat verbose) trace on the standard error.</para>
-<para>For example: <programlisting><codeline><highlight class="normal">[PDI][Test-plugin][00:00:00]<sp/>***<sp/>info:<sp/>Welcome!</highlight></codeline>
-<codeline><highlight class="normal">[PDI][Test-plugin][00:00:00]<sp/>***<sp/>info:<sp/>=&gt;&gt;<sp/><sp/><sp/>data<sp/>becoming<sp/>available<sp/>in<sp/>the<sp/>store:<sp/>my_data</highlight></codeline>
-<codeline><highlight class="normal">[PDI][Test-plugin][00:00:00]<sp/>***<sp/>info:<sp/>&lt;&lt;=<sp/>data<sp/>stop<sp/>being<sp/>available<sp/>in<sp/>the<sp/>store:<sp/>my_data</highlight></codeline>
-<codeline><highlight class="normal">[PDI][Test-plugin][00:00:00]<sp/>***<sp/>info:<sp/>!!!<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>named<sp/>event:<sp/>my_event</highlight></codeline>
-<codeline><highlight class="normal">[PDI][Test-plugin][00:00:00]<sp/>***<sp/>info:<sp/>Goodbye!</highlight></codeline>
+<para>The plugin then generates a (somewhat verbose) trace through its logger, on the standard output by default.</para>
+<para>For example: <programlisting><codeline><highlight class="normal">[10:52:58][Trace]<sp/>***<sp/>info:<sp/>Welcome!</highlight></codeline>
+<codeline><highlight class="normal">[10:52:58][PDI]<sp/>***<sp/>info:<sp/>Initialization<sp/>successful</highlight></codeline>
+<codeline><highlight class="normal">[10:52:58][Trace]<sp/>***<sp/>info:<sp/>!!!<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>named<sp/>event:<sp/>pdi_start_timer</highlight></codeline>
+<codeline><highlight class="normal">[10:52:58][Trace]<sp/>***<sp/>info:<sp/>=&gt;&gt;<sp/><sp/><sp/>data<sp/>becoming<sp/>available<sp/>in<sp/>the<sp/>store:<sp/>my_data</highlight></codeline>
+<codeline><highlight class="normal">[10:52:58][Trace]<sp/>***<sp/>info:<sp/>&lt;&lt;=<sp/>data<sp/>stop<sp/>being<sp/>available<sp/>in<sp/>the<sp/>store:<sp/>my_data</highlight></codeline>
+<codeline><highlight class="normal">[10:52:58][Trace]<sp/>***<sp/>info:<sp/>!!!<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>named<sp/>event:<sp/>my_event</highlight></codeline>
+<codeline><highlight class="normal">[10:52:58][Trace]<sp/>***<sp/>info:<sp/>!!!<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>named<sp/>event:<sp/>pdi_stop_timer</highlight></codeline>
+<codeline><highlight class="normal">[10:52:58][PDI]<sp/>***<sp/>info:<sp/>Finalization</highlight></codeline>
+<codeline><highlight class="normal">[10:52:58][Trace]<sp/>***<sp/>info:<sp/>Goodbye!</highlight></codeline>
 </programlisting></para>
 <para>Each line starting by <computeroutput>=&gt;&gt; data becoming available in the store</computeroutput> means a new piece of data has been shared.</para>
 <para>Each line starting by <computeroutput>&lt;&lt;= data stop being available in the store</computeroutput> means a piece of data is being removed from the store.</para>
-<para>Each line starting by <computeroutput>!!! named event</computeroutput> means a named event has been emitted. </para>
+<para>Each line starting by <computeroutput>!!! named event</computeroutput> means a named event has been emitted.</para>
+<sect1 id="trace_plugin_1trace_plugins_trace">
+<title><computeroutput>plugins.trace</computeroutput></title><para>The configuration of the Trace plugin. It can be empty (<computeroutput>~</computeroutput>), or a mapping whose only key is <ref refid="Specification_tree_ref_1spectree_plugins_plugin_name_logging" kindref="member"><computeroutput>plugins.&lt;plugin_name&gt;.logging</computeroutput></ref>. </para>
+</sect1>
     </detaileddescription>
     <location file="plugins/trace/README.md"/>
   </compounddef>

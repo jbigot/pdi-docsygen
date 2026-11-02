@@ -100,10 +100,15 @@ If the default installation fails or if you need an installation better tailored
 </table>
 </para>
 <para>The following flags define which features of the distribution to enable or not.</para>
-<para><table rows="15" cols="3"><row>
+<para><table rows="16" cols="3"><row>
 <entry thead="yes" align='left'><para>Flag  </para>
 </entry><entry thead="yes" align='left'><para>Default  </para>
 </entry><entry thead="yes" align='left'><para>Description  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>BUILD_BENCHMARKING</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para><computeroutput>ON</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>Build the Decl&apos;HDF5 benchmarks.  </para>
 </entry></row>
 <row>
 <entry thead="no" align='left'><para><computeroutput>BUILD_DECL_HDF5_PLUGIN</computeroutput>  </para>

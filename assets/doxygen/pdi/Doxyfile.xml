@@ -2,11 +2,11 @@
 <doxyfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="doxyfile.xsd" version="1.18.0" xml:lang="en-US">
   <option  id='DOXYFILE_ENCODING' default='yes' type='string'><value><![CDATA[UTF-8]]></value></option>
   <option  id='PROJECT_NAME' default='no' type='string'><value><![CDATA[PDI]]></value></option>
-  <option  id='PROJECT_NUMBER' default='no' type='string'><value><![CDATA[1.13.0-alpha.2026-09-18.6e81219]]></value></option>
+  <option  id='PROJECT_NUMBER' default='no' type='string'><value><![CDATA[1.13.0-alpha.2026-11-02.ff41aad]]></value></option>
   <option  id='PROJECT_BRIEF' default='yes' type='string'><value><![CDATA[]]></value></option>
-  <option  id='PROJECT_LOGO' default='no' type='string'><value><![CDATA[/home/jbigot/pdi/pdi/docs/_template/logo.png]]></value></option>
-  <option  id='PROJECT_ICON' default='no' type='string'><value><![CDATA[/home/jbigot/pdi/pdi/docs/_template/logo.png]]></value></option>
-  <option  id='OUTPUT_DIRECTORY' default='no' type='string'><value><![CDATA[/home/jbigot/docsygen/docsygen/exampleSite/assets/doxygen]]></value></option>
+  <option  id='PROJECT_LOGO' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.wer6hZ/src/pdi/docs/_template/logo.png]]></value></option>
+  <option  id='PROJECT_ICON' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.wer6hZ/src/pdi/docs/_template/logo.png]]></value></option>
+  <option  id='OUTPUT_DIRECTORY' default='no' type='string'><value><![CDATA[/home/jbigot/docsygen/pdi-docsygen/assets/doxygen]]></value></option>
   <option  id='CREATE_SUBDIRS' default='yes' type='bool'><value>NO</value></option>
   <option  id='CREATE_SUBDIRS_LEVEL' default='yes' type='int'><value>8</value></option>
   <option  id='ALLOW_UNICODE_NAMES' default='yes' type='bool'><value>NO</value></option>
@@ -114,7 +114,7 @@
   <option  id='SHOW_FILES' default='no' type='bool'><value>NO</value></option>
   <option  id='SHOW_NAMESPACES' default='yes' type='bool'><value>YES</value></option>
   <option  id='FILE_VERSION_FILTER' default='yes' type='string'><value><![CDATA[]]></value></option>
-  <option  id='LAYOUT_FILE' default='no' type='string'><value><![CDATA[/home/jbigot/pdi/pdi/docs/_template/layout.xml]]></value></option>
+  <option  id='LAYOUT_FILE' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.wer6hZ/src/pdi/docs/_template/layout.xml]]></value></option>
   <option  id='CITE_BIB_FILES' default='yes' type='stringlist'>
   </option>
   <option  id='EXTERNAL_TOOL_PATH' default='yes' type='stringlist'>
@@ -143,22 +143,22 @@
     <value><![CDATA[pdi/docs/Source_installation.md]]></value>
     <value><![CDATA[pdi/docs/Using_PDI.md]]></value>
     <value><![CDATA[pdi/docs/Yaml.md]]></value>
-    <value><![CDATA[.build/ClangDevel/PDI/src/PDI-build/pdi/pdi/export.h]]></value>
-    <value><![CDATA[.build/ClangDevel/PDI/src/PDI-build/pdi/pdi/version.h]]></value>
+    <value><![CDATA[../build/pdi/export.h]]></value>
+    <value><![CDATA[../build/pdi/version.h]]></value>
     <value><![CDATA[pdi/include/pdi.h]]></value>
     <value><![CDATA[pdi/include/pdi/]]></value>
-    <value><![CDATA[example/README.md]]></value>
-    <value><![CDATA[tutorial/README.md]]></value>
-    <value><![CDATA[plugins/decl_hdf5/README.md]]></value>
-    <value><![CDATA[plugins/decl_netcdf/README.md]]></value>
-    <value><![CDATA[plugins/mpi/README.md]]></value>
-    <value><![CDATA[plugins/timer/README.md]]></value>
-    <value><![CDATA[plugins/trace/README.md]]></value>
-    <value><![CDATA[plugins/user_code/README.md]]></value>
-    <value><![CDATA[plugins/pycall/README.md]]></value>
-    <value><![CDATA[plugins/serialize/README.md]]></value>
-    <value><![CDATA[plugins/set_value/README.md]]></value>
-    <value><![CDATA[plugins/json/README.md]]></value>
+    <value><![CDATA[pdi/../example/README.md]]></value>
+    <value><![CDATA[pdi/../tutorial/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/decl_hdf5/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/decl_netcdf/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/mpi/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/timer/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/trace/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/user_code/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/pycall/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/serialize/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/set_value/README.md]]></value>
+    <value><![CDATA[pdi/../plugins/json/README.md]]></value>
   </option>
   <option  id='INPUT_ENCODING' default='yes' type='string'><value><![CDATA[UTF-8]]></value></option>
   <option  id='INPUT_FILE_ENCODING' default='yes' type='stringlist'>
@@ -235,7 +235,7 @@
   </option>
   <option  id='EXAMPLE_RECURSIVE' default='yes' type='bool'><value>NO</value></option>
   <option  id='IMAGE_PATH' default='no' type='stringlist'>
-    <value><![CDATA[/home/jbigot/pdi/pdi/docs/images]]></value>
+    <value><![CDATA[/var/tmp/pdi-xml.wer6hZ/src/pdi/docs/images]]></value>
   </option>
   <option  id='INPUT_FILTER' default='yes' type='string'><value><![CDATA[]]></value></option>
   <option  id='FILTER_PATTERNS' default='yes' type='stringlist'>
@@ -264,11 +264,11 @@
   <option  id='IGNORE_PREFIX' default='yes' type='stringlist'>
   </option>
   <option  id='GENERATE_HTML' default='no' type='bool'><value>NO</value></option>
-  <option  id='HTML_OUTPUT' default='no' type='string'><value><![CDATA[/home/jbigot/pdi/.build/ClangDevel/PDI/src/PDI-build/pdi/docs/html]]></value></option>
+  <option  id='HTML_OUTPUT' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.wer6hZ/build/docs/html]]></value></option>
   <option  id='HTML_FILE_EXTENSION' default='yes' type='string'><value><![CDATA[.html]]></value></option>
-  <option  id='HTML_HEADER' default='no' type='string'><value><![CDATA[/home/jbigot/pdi/pdi/docs/_template/header.html]]></value></option>
-  <option  id='HTML_FOOTER' default='no' type='string'><value><![CDATA[/home/jbigot/pdi/pdi/docs/_template/footer.html]]></value></option>
-  <option  id='HTML_STYLESHEET' default='no' type='string'><value><![CDATA[/home/jbigot/pdi/pdi/docs/_template/style.css]]></value></option>
+  <option  id='HTML_HEADER' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.wer6hZ/src/pdi/docs/_template/header.html]]></value></option>
+  <option  id='HTML_FOOTER' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.wer6hZ/src/pdi/docs/_template/footer.html]]></value></option>
+  <option  id='HTML_STYLESHEET' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.wer6hZ/src/pdi/docs/_template/style.css]]></value></option>
   <option  id='HTML_EXTRA_STYLESHEET' default='yes' type='stringlist'>
   </option>
   <option  id='HTML_EXTRA_FILES' default='yes' type='stringlist'>
@@ -388,7 +388,7 @@
   <option  id='SEARCH_INCLUDES' default='yes' type='bool'><value>YES</value></option>
   <option  id='INCLUDE_PATH' default='no' type='stringlist'>
     <value><![CDATA[pdi/include/]]></value>
-    <value><![CDATA[/home/jbigot/pdi/.build/ClangDevel/PDI/src/PDI-build/pdi]]></value>
+    <value><![CDATA[/var/tmp/pdi-xml.wer6hZ/build]]></value>
   </option>
   <option  id='INCLUDE_FILE_PATTERNS' default='yes' type='stringlist'>
   </option>

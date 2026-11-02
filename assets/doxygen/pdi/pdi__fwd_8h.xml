@@ -23,6 +23,14 @@
     <includedby refid="tools_8h" local="no">tools.h</includedby>
     <includedby refid="tuple__datatype_8h" local="no">tuple_datatype.h</includedby>
     <incdepgraph>
+      <node id="6">
+        <label>pdi/export.h</label>
+        <link refid="export_8h_source"/>
+      </node>
+      <node id="7">
+        <label>pdi/version.h</label>
+        <link refid="version_8h_source"/>
+      </node>
       <node id="4">
         <label>pdi.h</label>
         <link refid="pdi_8h_source"/>
@@ -51,12 +59,6 @@
       </node>
       <node id="5">
         <label>paraconf.h</label>
-      </node>
-      <node id="6">
-        <label>pdi/export.h</label>
-      </node>
-      <node id="7">
-        <label>pdi/version.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>

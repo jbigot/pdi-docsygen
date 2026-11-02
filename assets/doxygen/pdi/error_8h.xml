@@ -14,6 +14,14 @@
     <includes refid="paraconf__wrapper_8h" local="no">pdi/paraconf_wrapper.h</includes>
     <includedby refid="ref__any_8h" local="no">ref_any.h</includedby>
     <incdepgraph>
+      <node id="15">
+        <label>pdi/export.h</label>
+        <link refid="export_8h_source"/>
+      </node>
+      <node id="16">
+        <label>pdi/version.h</label>
+        <link refid="version_8h_source"/>
+      </node>
       <node id="13">
         <label>pdi.h</label>
         <link refid="pdi_8h_source"/>
@@ -95,12 +103,6 @@
       </node>
       <node id="14">
         <label>paraconf.h</label>
-      </node>
-      <node id="15">
-        <label>pdi/export.h</label>
-      </node>
-      <node id="16">
-        <label>pdi/version.h</label>
       </node>
       <node id="5">
         <label>ranges</label>

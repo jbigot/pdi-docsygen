@@ -148,7 +148,7 @@
 <codeline><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">OPERATION<sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>TERM<sp/>(<sp/>OPERATOR<sp/>TERM<sp/>)*</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal">TERM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>(<sp/>INT_LITERAL<sp/>|<sp/>REFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;(&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="stringliteral">&apos;)&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">TERM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>(<sp/>INT_LITERAL<sp/>|<sp/>FLOAT_LITERAL<sp/>|<sp/>REFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;(&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="stringliteral">&apos;)&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">REFERENCE<sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/></highlight><highlight class="stringliteral">&apos;$&apos;</highlight><highlight class="normal"><sp/>(<sp/>IREFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;{&apos;</highlight><highlight class="normal"><sp/>IREFERENCE<sp/></highlight><highlight class="stringliteral">&apos;}&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -156,7 +156,8 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal">INT_LITERAL<sp/>~=<sp/>(0x)?<sp/>[0-9]+<sp/>(<sp/>\.<sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">INT_LITERAL<sp/>~=<sp/>(0x)?<sp/>[0-9a-fA-F]+</highlight></codeline>
+<codeline><highlight class="normal">FLOAT_LITERAL<sp/>~=<sp/>[0-9]*<sp/>\.<sp/>[0-9]*<sp/>(<sp/>[eE]<sp/>[+-]?<sp/>[0-9]+<sp/>)?</highlight></codeline>
 <codeline><highlight class="normal">ID<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~=<sp/>[a-zA-Z_][a-zA-Z0-9_]*</highlight></codeline>
 <codeline><highlight class="normal">CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~=<sp/>[^$\\]</highlight></codeline>
 <codeline><highlight class="normal">OPERATOR<sp/><sp/><sp/><sp/>~=<sp/>[|&amp;=&lt;&gt;+\-\*/%]</highlight></codeline>
@@ -211,7 +212,7 @@
 <codeline><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">OPERATION<sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>TERM<sp/>(<sp/>OPERATOR<sp/>TERM<sp/>)*</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal">TERM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>(<sp/>INT_LITERAL<sp/>|<sp/>REFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;(&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="stringliteral">&apos;)&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">TERM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>(<sp/>INT_LITERAL<sp/>|<sp/>FLOAT_LITERAL<sp/>|<sp/>REFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;(&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="stringliteral">&apos;)&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal">REFERENCE<sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/></highlight><highlight class="stringliteral">&apos;$&apos;</highlight><highlight class="normal"><sp/>(<sp/>IREFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;{&apos;</highlight><highlight class="normal"><sp/>IREFERENCE<sp/></highlight><highlight class="stringliteral">&apos;}&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -219,7 +220,8 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal">INT_LITERAL<sp/>~=<sp/>(0x)?<sp/>[0-9]+<sp/>(<sp/>\.<sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal">INT_LITERAL<sp/>~=<sp/>(0x)?<sp/>[0-9a-fA-F]+</highlight></codeline>
+<codeline><highlight class="normal">FLOAT_LITERAL<sp/>~=<sp/>[0-9]*<sp/>\.<sp/>[0-9]*<sp/>(<sp/>[eE]<sp/>[+-]?<sp/>[0-9]+<sp/>)?</highlight></codeline>
 <codeline><highlight class="normal">ID<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~=<sp/>[a-zA-Z_][a-zA-Z0-9_]*</highlight></codeline>
 <codeline><highlight class="normal">CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~=<sp/>[^$\\]</highlight></codeline>
 <codeline><highlight class="normal">OPERATOR<sp/><sp/><sp/><sp/>~=<sp/>[|&amp;=&lt;&gt;+\-\*/%]</highlight></codeline>

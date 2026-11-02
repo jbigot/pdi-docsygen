@@ -31,7 +31,7 @@
 </programlisting></para>
 </sect2>
 <sect2 id="how_to_create_plugin_1adding_callback">
-<title>Adding a callback</title><para>To be notified when the user shares data (calls <computeroutput>PDI_share</computeroutput>), a plugin registers a function (a callback) with <computeroutput>PDI::Context::on_data</computeroutput>.</para>
+<title>Adding a callback</title><para>To be notified when the user shares data (calls <computeroutput>PDI_share</computeroutput>, <computeroutput>PDI_expose</computeroutput> or <computeroutput>PDI_multiexpose</computeroutput>), a plugin registers a function (a callback) with <computeroutput>PDI::Context::on_data</computeroutput>.</para>
 <para><programlisting filename=".cpp"><codeline><highlight class="normal">std::function&lt;void()&gt;<sp/>on_data(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::function&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;,<sp/>Ref)&gt;&amp;<sp/>callback,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name<sp/>=<sp/>{}))</highlight></codeline>
 </programlisting></para>
 <para>The first argument is the function to be called when user shares the data. If the second parameter (name) is given, the function will be called only on a specified data name. Returns a function that removes the callback from PDI::Context container.</para>

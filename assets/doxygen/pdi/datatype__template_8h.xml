@@ -12,6 +12,14 @@
     <includedby refid="data__descriptor_8h" local="no">data_descriptor.h</includedby>
     <includedby refid="datatype_8h" local="no">datatype.h</includedby>
     <incdepgraph>
+      <node id="9">
+        <label>pdi/export.h</label>
+        <link refid="export_8h_source"/>
+      </node>
+      <node id="10">
+        <label>pdi/version.h</label>
+        <link refid="version_8h_source"/>
+      </node>
       <node id="8">
         <label>pdi.h</label>
         <link refid="pdi_8h_source"/>
@@ -97,12 +105,6 @@
       </node>
       <node id="5">
         <label>paraconf.h</label>
-      </node>
-      <node id="9">
-        <label>pdi/export.h</label>
-      </node>
-      <node id="10">
-        <label>pdi/version.h</label>
       </node>
       <node id="3">
         <label>string</label>

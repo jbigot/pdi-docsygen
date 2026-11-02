@@ -19,6 +19,14 @@
     <includedby refid="python__ref__wrapper_8h" local="no">python_ref_wrapper.h</includedby>
     <includedby refid="tools_8h" local="no">tools.h</includedby>
     <incdepgraph>
+      <node id="12">
+        <label>pdi/export.h</label>
+        <link refid="export_8h_source"/>
+      </node>
+      <node id="13">
+        <label>pdi/version.h</label>
+        <link refid="version_8h_source"/>
+      </node>
       <node id="10">
         <label>pdi.h</label>
         <link refid="pdi_8h_source"/>
@@ -246,12 +254,6 @@
       </node>
       <node id="11">
         <label>paraconf.h</label>
-      </node>
-      <node id="12">
-        <label>pdi/export.h</label>
-      </node>
-      <node id="13">
-        <label>pdi/version.h</label>
       </node>
       <node id="29">
         <label>ranges</label>

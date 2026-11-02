@@ -50,7 +50,7 @@
 <para>Every used plugin in application needs to be found by PDI. PDI will search for plugins in 4 steps (it will use the first plugin found):</para>
 <para><orderedlist>
 <listitem><para><computeroutput>PDI_PLUGIN_PATH</computeroutput> environment variable that is colon separated list with paths,</para>
-</listitem><listitem><para><computeroutput>plugin_path</computeroutput> subtree in specification tree: <ref refid="Specification_tree_ref_1plugin_path_map_node" kindref="member">plugin_path</ref>,</para>
+</listitem><listitem><para><computeroutput>plugin_path</computeroutput> subtree in specification tree: <ref refid="Specification_tree_ref_1spectree_plugin_path" kindref="member"><computeroutput>plugin_path</computeroutput></ref>,</para>
 </listitem><listitem><para>the directory relative to the installation of PDI shared library <computeroutput>libpdi.so</computeroutput>,</para>
 </listitem><listitem><para><computeroutput>LD_LIBRARY_PATH</computeroutput> environment variable that is colon separated list.</para>
 </listitem></orderedlist>

@@ -14,7 +14,7 @@
 </listitem></itemizedlist>
 </para>
 <para>MPI plugin exposes several metadata that correspond with mpi library.<itemizedlist>
-<listitem><para><computeroutput>MPI_COMM_WORLD.rank</computeroutput> - an integer value, represents the rank of the proccess in the MPI_COMM_WORLD</para>
+<listitem><para><computeroutput>MPI_COMM_WORLD_rank</computeroutput> - an integer value, represents the rank of the process in the MPI_COMM_WORLD</para>
 </listitem><listitem><para><computeroutput>MPI_COMM_WORLD</computeroutput> - a MPI_Comm, MPI_COMM_WORLD for C language</para>
 </listitem><listitem><para><computeroutput>MPI_COMM_SELF</computeroutput> - a MPI_Comm, MPI_COMM_SELF for C language</para>
 </listitem><listitem><para><computeroutput>MPI_COMM_NULL</computeroutput> - a MPI_Comm, MPI_COMM_NULL for C language</para>
@@ -24,32 +24,42 @@
 </listitem></itemizedlist>
 </para>
 <para>All above metadata are available from PDI_init call to PDI_finalize call.</para>
-<para>At the yaml tree root plugin is a map that contains the following keys: <table rows="3" cols="2"><row>
-<entry thead="yes" align='left'><para>key  </para>
-</entry><entry thead="yes" align='left'><para>value  </para>
-</entry></row>
-<row>
-<entry thead="no" align='left'><para><computeroutput>&quot;logging&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
-</entry><entry thead="no" align='left'><para>a <ref refid="Specification_tree_ref_1logging_node" kindref="member">logging</ref>  </para>
-</entry></row>
-<row>
-<entry thead="no" align='left'><para><computeroutput>&quot;transtype&quot;</computeroutput> (<emphasis>optional</emphasis>)  </para>
-</entry><entry thead="no" align='left'><para>a <ref refid="mpi_plugin_1transtype_map_node" kindref="member">transtype map</ref>  </para>
-</entry></row>
-</table>
-</para>
-<sect1 id="mpi_plugin_1transtype_map_node">
-<title>transtype map</title><para>A <emphasis>transtype map</emphasis> can be used to transtype between C and Fortran MPI communicators. It is a mapping that in key has the name of data with communicator to transtype and in value the name of data where to write transtyped communicator.</para>
-<para>Example:</para>
-<para><programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
+<para>The plugin can also transtype communicators between C and Fortran: each time a source communicator is shared, the transtyped communicator is shared under a destination name. When the source is released, if it was shared with write access, the value of the destination is transtyped back into it, then the destination is released.</para>
+<sect1 id="mpi_plugin_1mpi_configuration">
+<title>Example of an MPI configuration</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>mpi_comm:<sp/>MPI_Comm</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>mpi_comm_f:<sp/>MPI_Comm_f</highlight></codeline>
 <codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>mpi:</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>transtype:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Comm_c2f:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>mpi_comm:<sp/>m_mpi_comm_f</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Comm_f2c:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>mpi_comm_f:<sp/>m_mpi_comm</highlight></codeline>
-</programlisting> </para>
+</programlisting></para>
+</sect1>
+<sect1 id="mpi_plugin_1mpi_plugins_mpi">
+<title><computeroutput>plugins.mpi</computeroutput></title><para>The configuration of the MPI plugin, empty (<computeroutput>~</computeroutput>) or a mapping with the keys below.</para>
+</sect1>
+<sect1 id="mpi_plugin_1mpi_plugins_mpi_Comm_c2f">
+<title><computeroutput>plugins.mpi.Comm_c2f</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the C communicators (<computeroutput>MPI_Comm</computeroutput>) to transtype to Fortran ones (<computeroutput>MPI_Comm_f</computeroutput>).</para>
+</sect1>
+<sect1 id="mpi_plugin_1mpi_plugins_mpi_Comm_c2f_data_name">
+<title><computeroutput>plugins.mpi.Comm_c2f.&lt;data_name&gt;</computeroutput></title><para>A scalar, the name under which to share the Fortran communicator transtyped from the C communicator named <computeroutput>&lt;data_name&gt;</computeroutput>.</para>
+</sect1>
+<sect1 id="mpi_plugin_1mpi_plugins_mpi_Comm_f2c">
+<title><computeroutput>plugins.mpi.Comm_f2c</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the Fortran communicators (<computeroutput>MPI_Comm_f</computeroutput>) to transtype to C ones (<computeroutput>MPI_Comm</computeroutput>).</para>
+</sect1>
+<sect1 id="mpi_plugin_1mpi_plugins_mpi_Comm_f2c_data_name">
+<title><computeroutput>plugins.mpi.Comm_f2c.&lt;data_name&gt;</computeroutput></title><para>A scalar, the name under which to share the C communicator transtyped from the Fortran communicator named <computeroutput>&lt;data_name&gt;</computeroutput>.</para>
+</sect1>
+<sect1 id="mpi_plugin_1mpi_plugins_mpi_transtype">
+<title><computeroutput>plugins.mpi.transtype</computeroutput></title><para><emphasis>Optional, deprecated.</emphasis> A mapping, the communicators to transtype, use <ref refid="mpi_plugin_1mpi_plugins_mpi_Comm_c2f" kindref="member"><computeroutput>plugins.mpi.Comm_c2f</computeroutput></ref> and <ref refid="mpi_plugin_1mpi_plugins_mpi_Comm_f2c" kindref="member"><computeroutput>plugins.mpi.Comm_f2c</computeroutput></ref> instead.</para>
+</sect1>
+<sect1 id="mpi_plugin_1mpi_plugins_mpi_transtype_data_name">
+<title><computeroutput>plugins.mpi.transtype.&lt;data_name&gt;</computeroutput></title><para>A scalar, the name under which to share the communicator transtyped from the communicator named <computeroutput>&lt;data_name&gt;</computeroutput>. The direction of the transtyping depends on the type of <computeroutput>&lt;data_name&gt;</computeroutput>: C to Fortran for a <computeroutput>MPI_Comm</computeroutput>, Fortran to C otherwise.</para>
+</sect1>
+<sect1 id="mpi_plugin_1mpi_plugins_mpi_logging">
+<title><computeroutput>plugins.mpi.logging</computeroutput></title><para><emphasis>Optional.</emphasis> The configuration of the logger of the plugin, see <ref refid="Specification_tree_ref_1spectree_plugins_plugin_name_logging" kindref="member"><computeroutput>plugins.&lt;plugin_name&gt;.logging</computeroutput></ref>. </para>
 </sect1>
     </detaileddescription>
     <location file="plugins/mpi/README.md"/>

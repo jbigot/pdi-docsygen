@@ -10,6 +10,14 @@
     <includes refid="pdi__fwd_8h" local="no">pdi/pdi_fwd.h</includes>
     <includes refid="logger_8h" local="no">pdi/logger.h</includes>
     <incdepgraph>
+      <node id="11">
+        <label>pdi/export.h</label>
+        <link refid="export_8h_source"/>
+      </node>
+      <node id="12">
+        <label>pdi/version.h</label>
+        <link refid="version_8h_source"/>
+      </node>
       <node id="9">
         <label>pdi.h</label>
         <link refid="pdi_8h_source"/>
@@ -96,12 +104,6 @@
       </node>
       <node id="10">
         <label>paraconf.h</label>
-      </node>
-      <node id="11">
-        <label>pdi/export.h</label>
-      </node>
-      <node id="12">
-        <label>pdi/version.h</label>
       </node>
       <node id="16">
         <label>spdlog/logger.h</label>

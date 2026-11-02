@@ -3,11 +3,19 @@
   <compounddef id="pdi_8h" kind="file" language="C++">
     <compoundname>pdi.h</compoundname>
     <includes local="no">paraconf.h</includes>
-    <includes local="no">pdi/export.h</includes>
-    <includes local="no">pdi/version.h</includes>
+    <includes refid="export_8h" local="no">pdi/export.h</includes>
+    <includes refid="version_8h" local="no">pdi/version.h</includes>
     <includedby refid="pdi__fwd_8h" local="no">pdi_fwd.h</includedby>
     <includedby refid="testing_8h" local="no">testing.h</includedby>
     <incdepgraph>
+      <node id="3">
+        <label>pdi/export.h</label>
+        <link refid="export_8h_source"/>
+      </node>
+      <node id="4">
+        <label>pdi/version.h</label>
+        <link refid="version_8h_source"/>
+      </node>
       <node id="1">
         <label>pdi.h</label>
         <link refid="pdi_8h"/>
@@ -20,12 +28,6 @@
       </node>
       <node id="2">
         <label>paraconf.h</label>
-      </node>
-      <node id="3">
-        <label>pdi/export.h</label>
-      </node>
-      <node id="4">
-        <label>pdi/version.h</label>
       </node>
     </incdepgraph>
     <invincdepgraph>

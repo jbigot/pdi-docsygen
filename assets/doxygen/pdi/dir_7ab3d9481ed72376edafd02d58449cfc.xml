@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
-  <compounddef id="dir_326c27d8a23ffaebe319786a6c0379e3" kind="dir">
-    <compoundname>pdi</compoundname>
-    <innerdir refid="dir_db9751b946f3181d02059dd135e60911">pdi</innerdir>
+  <compounddef id="dir_7ab3d9481ed72376edafd02d58449cfc" kind="dir">
+    <compoundname>set_value</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file=".build/ClangDevel/PDI/src/PDI-build/pdi/"/>
+    <location file="plugins/set_value/"/>
   </compounddef>
 </doxygen>

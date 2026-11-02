@@ -1,11 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
-  <compounddef id="dir_236c71c8ac6ee6cc9381eb4f6d6f5269" kind="dir">
-    <compoundname>user_code</compoundname>
+  <compounddef id="dir_2b8d0b6bafb52c876fcf53056d68ba4e" kind="dir">
+    <compoundname>python</compoundname>
+    <innerfile refid="python__ref__wrapper_8h">python_ref_wrapper.h</innerfile>
+    <innerfile refid="tools_8h">tools.h</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="plugins/user_code/"/>
+    <location file="pdi/include/pdi/python/"/>
   </compounddef>
 </doxygen>

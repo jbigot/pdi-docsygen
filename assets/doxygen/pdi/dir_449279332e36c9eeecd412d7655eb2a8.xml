@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
-  <compounddef id="dir_a6b60725734c1d67255b14bebcede7ad" kind="dir">
-    <compoundname>ClangDevel</compoundname>
-    <innerdir refid="dir_c97af3276462c4530280eb6a790416ef">PDI</innerdir>
+  <compounddef id="dir_449279332e36c9eeecd412d7655eb2a8" kind="dir">
+    <compoundname>mpi</compoundname>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file=".build/ClangDevel/"/>
+    <location file="plugins/mpi/"/>
   </compounddef>
 </doxygen>
