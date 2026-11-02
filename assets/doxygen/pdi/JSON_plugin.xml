@@ -36,7 +36,7 @@
 <para>A variable is written each time it is shared with read permission.</para>
 </sect1>
 <sect1 id="JSON_plugin_1json_plugins_json_data_name">
-<title><computeroutput>plugins.json.&lt;data_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the file where to write the variable named <computeroutput>&lt;data_name&gt;</computeroutput>.</para>
+<title><computeroutput>plugins.json.&lt;data_name&gt;</computeroutput></title><para>A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the path of the file where to write the variable named <computeroutput>&lt;data_name&gt;</computeroutput>.</para>
 <sect2 id="JSON_plugin_1example-of-pluginsjsondata_name">
 <title>Example of <computeroutput>plugins.json.&lt;data_name&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>json:</highlight></codeline>
@@ -45,13 +45,13 @@
 </sect2>
 </sect1>
 <sect1 id="JSON_plugin_1json_plugins_json_file">
-<title><computeroutput>plugins.json.file</computeroutput></title><para><emphasis>Required, first key of its mapping.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the file where to write the variables listed in <ref refid="JSON_plugin_1json_plugins_json_write" kindref="member"><computeroutput>plugins.json.write</computeroutput></ref>.</para>
+<title><computeroutput>plugins.json.file</computeroutput></title><para><emphasis>Required, first key of its mapping.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the path of the file where to write the variables listed in <ref refid="JSON_plugin_1json_plugins_json_write" kindref="member"><computeroutput>plugins.json.write</computeroutput></ref>.</para>
 </sect1>
 <sect1 id="JSON_plugin_1json_plugins_json_write">
 <title><computeroutput>plugins.json.write</computeroutput></title><para><emphasis>Required.</emphasis> A sequence of scalars, the names of the variables to write to <ref refid="JSON_plugin_1json_plugins_json_file" kindref="member"><computeroutput>plugins.json.file</computeroutput></ref>.</para>
 </sect1>
 <sect1 id="JSON_plugin_1json_plugins_json_when">
-<title><computeroutput>plugins.json.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, a condition evaluated each time a variable of <ref refid="JSON_plugin_1json_plugins_json_write" kindref="member"><computeroutput>plugins.json.write</computeroutput></ref> is to be written. The variable is only written if it is true. By default, the variables are written each time they are shared with read permission.</para>
+<title><computeroutput>plugins.json.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, a condition evaluated each time a variable of <ref refid="JSON_plugin_1json_plugins_json_write" kindref="member"><computeroutput>plugins.json.write</computeroutput></ref> is to be written. The variable is only written if it is true. By default, the variables are written each time they are shared with read permission.</para>
 <sect2 id="JSON_plugin_1example-of-pluginsjsonwhen">
 <title>Example of <computeroutput>plugins.json.when</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>json:</highlight></codeline>

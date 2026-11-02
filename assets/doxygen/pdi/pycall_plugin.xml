@@ -86,7 +86,7 @@
 <title><computeroutput>plugins.pycall.on_event.&lt;event_name&gt;.with</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the values to expose to the Python code.</para>
 </sect1>
 <sect1 id="pycall_plugin_1pycall_plugins_pycall_on_event_event_name_with_python_name">
-<title><computeroutput>plugins.pycall.on_event.&lt;event_name&gt;.with.&lt;python_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, whose value is exposed to the Python code as the variable named <computeroutput>&lt;python_name&gt;</computeroutput>.</para>
+<title><computeroutput>plugins.pycall.on_event.&lt;event_name&gt;.with.&lt;python_name&gt;</computeroutput></title><para>A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, whose value is exposed to the Python code as the variable named <computeroutput>&lt;python_name&gt;</computeroutput>.</para>
 </sect1>
 <sect1 id="pycall_plugin_1pycall_on_data">
 <title><computeroutput>plugins.pycall.on_data</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the code to execute when data are shared.</para>

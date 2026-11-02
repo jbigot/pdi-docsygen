@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="spectree_expression" kind="page">
+    <compoundname>spectree_expression</compoundname>
+    <title>$-expressions</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="spectree_expression_1md_pdi_2docs_2Spectree__expressions"/></para>
+<para>A <emphasis>$-expression</emphasis> is a <bold>scalar</bold> whose content matches the following grammar:</para>
+<para><programlisting filename="docs/expression_grammar.in.txt"><codeline><highlight class="comment">/*<sp/>parsing<sp/>as<sp/>a<sp/>REFERENCE<sp/>is<sp/>preferred<sp/>over<sp/>OPERATION</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>parsing<sp/>as<sp/>an<sp/>OPERATION<sp/>is<sp/>preferred<sp/>over<sp/>STRING_LITERAL</highlight></codeline>
+<codeline><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">EXPRESSION<sp/><sp/><sp/><sp/><sp/>:=<sp/>REFERENCE<sp/>|<sp/>OPERATION<sp/>|<sp/>STRING_LITERAL</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">STRING_LITERAL<sp/>:=<sp/>(<sp/>CHAR<sp/>|<sp/></highlight><highlight class="charliteral">&apos;\&apos;</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;\&apos;</highlight><highlight class="normal"><sp/>|<sp/></highlight><highlight class="charliteral">&apos;\&apos;</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;$&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/>REFERENCE</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|<sp/></highlight><highlight class="charliteral">&apos;$&apos;</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;(&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="charliteral">&apos;)&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">/*<sp/>The<sp/>operator<sp/>descending<sp/>precedence<sp/>order<sp/>is:</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>1.<sp/>*,<sp/>/,<sp/>%:<sp/>multiplication,<sp/>division<sp/>and<sp/>modulo,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>2.<sp/>+,<sp/>-:<sp/>addition<sp/>and<sp/>subtraction,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>3.<sp/>&lt;,<sp/>&gt;:<sp/>less<sp/>than<sp/>and<sp/>greater<sp/>than,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>4.<sp/>=:<sp/>equality,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>5.<sp/>&amp;:<sp/>logical<sp/>AND,</highlight></codeline>
+<codeline><highlight class="comment"><sp/><sp/><sp/>6.<sp/>|:<sp/>logical<sp/>OR.</highlight></codeline>
+<codeline><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">OPERATION<sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>TERM<sp/>(<sp/>OPERATOR<sp/>TERM<sp/>)*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">TERM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/>(<sp/>INT_LITERAL<sp/>|<sp/>FLOAT_LITERAL<sp/>|<sp/>REFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;(&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="stringliteral">&apos;)&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">REFERENCE<sp/><sp/><sp/><sp/><sp/><sp/>:=<sp/></highlight><highlight class="stringliteral">&apos;$&apos;</highlight><highlight class="normal"><sp/>(<sp/>IREFERENCE<sp/>|<sp/></highlight><highlight class="stringliteral">&apos;{&apos;</highlight><highlight class="normal"><sp/>IREFERENCE<sp/></highlight><highlight class="stringliteral">&apos;}&apos;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">IREFERENCE<sp/><sp/><sp/><sp/><sp/>:=<sp/>ID<sp/>(<sp/></highlight><highlight class="stringliteral">&apos;[&apos;</highlight><highlight class="normal"><sp/>OPERATION<sp/></highlight><highlight class="stringliteral">&apos;]&apos;</highlight><highlight class="normal"><sp/>|<sp/></highlight><highlight class="stringliteral">&apos;.&apos;</highlight><highlight class="normal"><sp/>ID<sp/>)*</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">INT_LITERAL<sp/>~=<sp/>(0x)?<sp/>[0-9a-fA-F]+</highlight></codeline>
+<codeline><highlight class="normal">FLOAT_LITERAL<sp/>~=<sp/>[0-9]*<sp/>\.<sp/>[0-9]*<sp/>(<sp/>[eE]<sp/>[+-]?<sp/>[0-9]+<sp/>)?</highlight></codeline>
+<codeline><highlight class="normal">ID<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~=<sp/>[a-zA-Z_][a-zA-Z0-9_]*</highlight></codeline>
+<codeline><highlight class="normal">CHAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>~=<sp/>[^$\\]</highlight></codeline>
+<codeline><highlight class="normal">OPERATOR<sp/><sp/><sp/><sp/>~=<sp/>[|&amp;=&lt;&gt;+\-\*/%]</highlight></codeline>
+</programlisting></para>
+<para>The rules for evaluating an expression are close to those of BASH for example.</para>
+<para>In addition to raw text, a <computeroutput>STRING_LITERAL</computeroutput> can contain references to the string value of some data in the store as well as the result of an operation by enclosing it inside a dollar-parenthesis <computeroutput>$()</computeroutput>.</para>
+<para>An <computeroutput>OPERATION</computeroutput> can include logical and arithmetic operators grouped by parenthesis. The basic terms manipulated in an operation can be integer literals, floating-point literals or references to the value of some data in the store. An integer literal is decimal, hexadecimal if it starts with <computeroutput>0x</computeroutput> or octal if it starts with <computeroutput>0</computeroutput> (<computeroutput>010</computeroutput> is 8). A literal that contains a dot <computeroutput>.</computeroutput> is a floating-point literal.</para>
+<para>A <computeroutput>REFERENCE</computeroutput> is introduced by a dollar <computeroutput>$</computeroutput> sign and optionally enclosed in curly braces <computeroutput>{</computeroutput>, <computeroutput>}</computeroutput>. Its value is that of the data or metadata with the associated name. It is always a good idea to have referenced values in the metadata section as it prevents dangling references. Value formatting can be applied using a FMT <computeroutput>format_spec</computeroutput> string by adding a colon <computeroutput>:</computeroutput> followed by the <computeroutput>format_spec</computeroutput> just before the closing bracket <computeroutput>}</computeroutput> (see: <ulink url="https://fmt.dev/latest/syntax.html#grammar-token-format_spec">https://fmt.dev/latest/syntax.html#grammar-token-format_spec</ulink>). A direct reference is possible as well as sub-references to:<itemizedlist>
+<listitem><para>array elements using the square brackets <computeroutput>[</computeroutput>, <computeroutput>]</computeroutput> operator,</para>
+</listitem><listitem><para>record member using dot <computeroutput>.</computeroutput> operator.</para>
+</listitem></itemizedlist>
+</para>
+<para>The value-type of an <computeroutput>EXPRESSION</computeroutput> is as follow:<itemizedlist>
+<listitem><para>if it&apos;s a <computeroutput>REFERENCE</computeroutput>, it has the type of the referenced data in the store,</para>
+</listitem><listitem><para>if it&apos;s a <computeroutput>OPERATION</computeroutput>, it is integer-valued, or floating-point-valued if one of its terms is,</para>
+</listitem><listitem><para>if it&apos;s a <computeroutput>STRING_LITERAL</computeroutput>, it is string-valued.</para>
+</listitem></itemizedlist>
+</para>
+<para>Where a value is expected (and not only an integer or a string), a YAML <bold>sequence</bold> or <bold>mapping</bold> whose elements are $-expressions is accepted too:<itemizedlist>
+<listitem><para>a <bold>sequence</bold> is array-valued if all its elements have the same type and tuple-valued otherwise,</para>
+</listitem><listitem><para>a <bold>mapping</bold> is record-valued, each key naming a member.</para>
+</listitem></itemizedlist>
+</para>
+<para>In addition, an integer can be interpreted as a string or as a boolean value where zero is interpreted as false and any other value as true.</para>
+<para>The following strings can also be interpreted as a boolean integer values:<itemizedlist>
+<listitem><para>true (1): <computeroutput>y</computeroutput>, <computeroutput>Y</computeroutput>, <computeroutput>yes</computeroutput>, <computeroutput>Yes</computeroutput>, <computeroutput>YES</computeroutput>, <computeroutput>true</computeroutput>, <computeroutput>True</computeroutput>, <computeroutput>TRUE</computeroutput>, <computeroutput>on</computeroutput>, <computeroutput>On</computeroutput>, <computeroutput>ON</computeroutput>.</para>
+</listitem><listitem><para>false (0): <computeroutput>n</computeroutput>, <computeroutput>N</computeroutput>, <computeroutput>no</computeroutput>, <computeroutput>No</computeroutput>, <computeroutput>NO</computeroutput>, <computeroutput>false</computeroutput>, <computeroutput>False</computeroutput>, <computeroutput>FALSE</computeroutput>, <computeroutput>Off</computeroutput>, <computeroutput>OFF</computeroutput>.</para>
+</listitem></itemizedlist>
+</para>
+<sect1 id="spectree_expression_1example-of--expressions">
+<title>Example of $-expressions</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">&apos;$my_data&apos;</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">&apos;($my_data<sp/>+<sp/>3)<sp/>%<sp/>6&apos;</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">&apos;${my_data.subarray[0]}<sp/>*<sp/>42&apos;</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">&apos;my<sp/>name<sp/>is<sp/>${my_name}&apos;</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">&apos;${my_data:05d}&apos;</highlight></codeline>
+<codeline><highlight class="normal">&apos;${my_data:b}&apos;</highlight></codeline>
+<codeline><highlight class="normal">&apos;${my_data:1.5f}&apos;</highlight></codeline>
+<codeline><highlight class="normal">&apos;${my_data:&gt;15s}&apos;</highlight></codeline>
+</programlisting> </para>
+</sect1>
+    </detaileddescription>
+    <location file="pdi/docs/Spectree_expressions.md"/>
+  </compounddef>
+</doxygen>

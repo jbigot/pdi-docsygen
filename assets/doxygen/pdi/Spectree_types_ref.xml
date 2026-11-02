@@ -1,0 +1,363 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.18.0" xml:lang="en-US">
+  <compounddef id="Spectree_types_ref" kind="page">
+    <compoundname>Spectree_types_ref</compoundname>
+    <title>Datatypes</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="Spectree_types_ref_1md_pdi_2docs_2Spectree__types"/></para>
+<para>A datatype can be found at many places in the specification tree, including in the configuration of plugins. This page documents each of its keys, named by the path that leads to it from the datatype itself, <emphasis>e.g.</emphasis> <computeroutput>&lt;array&gt;.size</computeroutput> is the <computeroutput>size</computeroutput> key of a datatype whose <computeroutput>type</computeroutput> is <computeroutput>array</computeroutput>, wherever that datatype appears. The conventions for these paths are those of the <ref refid="Specification_tree_ref" kindref="compound">Specification tree reference</ref>.</para>
+<sect1 id="Spectree_types_ref_1spectree_datatype">
+<title><computeroutput>&lt;datatype&gt;</computeroutput></title><para>A <emphasis>datatype</emphasis> represents the memory layout and interpretation of data exposed by the application in the <ref refid="Concepts_1Data_store" kindref="member">data store</ref>. It is the value of <ref refid="Specification_tree_ref_1spectree_types_type_name" kindref="member"><computeroutput>types.&lt;type_name&gt;</computeroutput></ref>, <ref refid="Specification_tree_ref_1spectree_metadata_data_name" kindref="member"><computeroutput>metadata.&lt;data_name&gt;</computeroutput></ref> and <ref refid="Specification_tree_ref_1spectree_data_data_name" kindref="member"><computeroutput>data.&lt;data_name&gt;</computeroutput></ref>, and of many keys of the plugins.</para>
+<para>A datatype is either:<itemizedlist>
+<listitem><para>a scalar, the name of a type, a shortcut for a mapping with a single <ref refid="Spectree_types_ref_1spectree_datatype_type" kindref="member"><computeroutput>&lt;datatype&gt;.type</computeroutput></ref> key whose value is that scalar,</para>
+</listitem><listitem><para>a mapping, whose <ref refid="Spectree_types_ref_1spectree_datatype_type" kindref="member"><computeroutput>&lt;datatype&gt;.type</computeroutput></ref> key identifies the type, and whose other keys depend on that type.</para>
+</listitem></itemizedlist>
+</para>
+<para>The paths of the keys that only some types accept start with the name of the type between angle brackets: <computeroutput>&lt;array&gt;.size</computeroutput> is the <computeroutput>size</computeroutput> key of a datatype whose <computeroutput>type</computeroutput> is <computeroutput>array</computeroutput>.</para>
+<sect2 id="Spectree_types_ref_1example-of-datatype">
+<title>Example of <computeroutput>&lt;datatype&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">&quot;my_type&quot;</highlight></codeline>
+</programlisting></para>
+<para>is interpreted as if it was:</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">{<sp/>type:<sp/>&quot;my_type&quot;<sp/>}</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_datatype_type">
+<title><computeroutput>&lt;datatype&gt;.type</computeroutput></title><para><emphasis>Required.</emphasis> A scalar, the name of the type.</para>
+<para>It can be the name of a user-defined datatype (see <ref refid="Specification_tree_ref_1spectree_types_type_name" kindref="member"><computeroutput>types.&lt;type_name&gt;</computeroutput></ref>), of a type that a plugin makes available, or one of the following.</para>
+<para><table rows="31" cols="3"><row>
+<entry thead="yes" align='left'><para><computeroutput>type</computeroutput>  </para>
+</entry><entry thead="yes" align='left'><para>represents  </para>
+</entry><entry thead="yes" align='left'><para>other keys  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>array</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a potentially multi-dimensional array  </para>
+</entry><entry thead="no" align='left'><para>see <ref refid="Spectree_types_ref_1spectree_array" kindref="member"><computeroutput>&lt;array&gt;</computeroutput></ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>pointer</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a memory address where data is actually stored  </para>
+</entry><entry thead="no" align='left'><para>see <ref refid="Spectree_types_ref_1spectree_pointer" kindref="member"><computeroutput>&lt;pointer&gt;</computeroutput></ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>record</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a structure whose members are placed explicitly  </para>
+</entry><entry thead="no" align='left'><para>see <ref refid="Spectree_types_ref_1spectree_record" kindref="member"><computeroutput>&lt;record&gt;</computeroutput></ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>struct</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a C <computeroutput>struct</computeroutput> or C++ <computeroutput>class</computeroutput> using the default C memory layout  </para>
+</entry><entry thead="no" align='left'><para>see <ref refid="Spectree_types_ref_1spectree_struct" kindref="member"><computeroutput>&lt;struct&gt;</computeroutput></ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>tuple</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>a sequence of unnamed elements  </para>
+</entry><entry thead="no" align='left'><para>see <ref refid="Spectree_types_ref_1spectree_tuple" kindref="member"><computeroutput>&lt;tuple&gt;</computeroutput></ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>byte</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C++ <computeroutput>std::byte</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>char</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>char</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>short</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>short</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>int</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>int</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>long</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>long</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>long long</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>long long</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>unsigned short</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>unsigned short</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>unsigned long</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>unsigned long</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>unsigned long long</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>unsigned long long</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>float</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>float</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>double</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>double</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>int8</computeroutput>, <computeroutput>int16</computeroutput>, <computeroutput>int32</computeroutput>, <computeroutput>int64</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>int8_t</computeroutput>, <computeroutput>int16_t</computeroutput>, <computeroutput>int32_t</computeroutput>, <computeroutput>int64_t</computeroutput> types  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>uint8</computeroutput>, <computeroutput>uint16</computeroutput>, <computeroutput>uint32</computeroutput>, <computeroutput>uint64</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>uint8_t</computeroutput>, <computeroutput>uint16_t</computeroutput>, <computeroutput>uint32_t</computeroutput>, <computeroutput>uint64_t</computeroutput> types  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>int_least8</computeroutput>, ..., <computeroutput>int_least64</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>int_least8_t</computeroutput>, ..., <computeroutput>int_least64_t</computeroutput> types  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>uint_least8</computeroutput>, ..., <computeroutput>uint_least64</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>uint_least8_t</computeroutput>, ..., <computeroutput>uint_least64_t</computeroutput> types  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>int_fast8</computeroutput>, ..., <computeroutput>int_fast64</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>int_fast8_t</computeroutput>, ..., <computeroutput>int_fast64_t</computeroutput> types  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>uint_fast8</computeroutput>, ..., <computeroutput>uint_fast64</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>uint_fast8_t</computeroutput>, ..., <computeroutput>uint_fast64_t</computeroutput> types  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>intmax</computeroutput>, <computeroutput>uintmax</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>intmax_t</computeroutput> and <computeroutput>uintmax_t</computeroutput> types  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>intptr</computeroutput>, <computeroutput>uintptr</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>intptr_t</computeroutput> and <computeroutput>uintptr_t</computeroutput> types  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>ptrdiff</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>ptrdiff_t</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>size_t</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the C <computeroutput>size_t</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para></para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>character</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the Fortran <computeroutput>character</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para><ref refid="Spectree_types_ref_1spectree_fortran_kind" kindref="member"><computeroutput>&lt;character|integer|logical|real&gt;.kind</computeroutput></ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>integer</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the Fortran <computeroutput>integer</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para><ref refid="Spectree_types_ref_1spectree_fortran_kind" kindref="member"><computeroutput>&lt;character|integer|logical|real&gt;.kind</computeroutput></ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>logical</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the Fortran <computeroutput>logical</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para><ref refid="Spectree_types_ref_1spectree_fortran_kind" kindref="member"><computeroutput>&lt;character|integer|logical|real&gt;.kind</computeroutput></ref>  </para>
+</entry></row>
+<row>
+<entry thead="no" align='left'><para><computeroutput>real</computeroutput>  </para>
+</entry><entry thead="no" align='left'><para>the Fortran <computeroutput>real</computeroutput> type  </para>
+</entry><entry thead="no" align='left'><para><ref refid="Spectree_types_ref_1spectree_fortran_kind" kindref="member"><computeroutput>&lt;character|integer|logical|real&gt;.kind</computeroutput></ref>  </para>
+</entry></row>
+</table>
+</para>
+<para>The C types of the <computeroutput>&lt;stdint.h&gt;</computeroutput> and <computeroutput>&lt;stddef.h&gt;</computeroutput> headers can also be written with their <computeroutput>_t</computeroutput> suffix (<computeroutput>int32_t</computeroutput>, <computeroutput>int_fast8_t</computeroutput>, <computeroutput>ptrdiff_t</computeroutput>...), except for <computeroutput>size_t</computeroutput> that only exists in that form.</para>
+<para>The Fortran types are only available when PDI is built with Fortran support.</para>
+<sect2 id="Spectree_types_ref_1example-of-datatypetype">
+<title>Example of <computeroutput>&lt;datatype&gt;.type</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>int64</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_datatype_attribute">
+<title><computeroutput>&lt;datatype&gt;.+&lt;attribute_name&gt;</computeroutput></title><para><emphasis>Optional.</emphasis> Anything (<bold>scalar</bold>, <bold>sequence</bold> or <bold>mapping</bold>), the value of the attribute <computeroutput>&lt;attribute_name&gt;</computeroutput> of the datatype.</para>
+<para>Attributes can be added to any datatype given as a mapping. They are not interpreted by PDI, but plugins can read them.</para>
+<sect2 id="Spectree_types_ref_1example-of-datatypeattribute_name">
+<title>Example of <computeroutput>&lt;datatype&gt;.+&lt;attribute_name&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">data:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>data_name:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>int</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>+first_attr:<sp/>attr_value_1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>+second_attr:<sp/>[attr,<sp/>value]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>+third_attr:<sp/>{key_0:<sp/>0,<sp/>key_1:<sp/>1}</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_fortran_kind">
+<title><computeroutput>&lt;character|integer|logical|real&gt;.kind</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the Fortran <emphasis>kind</emphasis> parameter of a Fortran <computeroutput>character</computeroutput>, <computeroutput>integer</computeroutput>, <computeroutput>logical</computeroutput> or <computeroutput>real</computeroutput> type, <emphasis>e.g.</emphasis> <computeroutput>integer(kind=...)</computeroutput>. If missing or 0, the default kind of the Fortran implementation is used.</para>
+<sect2 id="Spectree_types_ref_1example-of-characterintegerlogicalrealkind">
+<title>Example of <computeroutput>&lt;character|integer|logical|real&gt;.kind</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>real</highlight></codeline>
+<codeline><highlight class="normal">kind:<sp/>8</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_array">
+<title><computeroutput>&lt;array&gt;</computeroutput></title><para>A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref> whose <ref refid="Spectree_types_ref_1spectree_datatype_type" kindref="member"><computeroutput>&lt;datatype&gt;.type</computeroutput></ref> is <computeroutput>array</computeroutput>, a potentially multi-dimensional array.</para>
+<sect2 id="Spectree_types_ref_1example-of-array">
+<title>Example of <computeroutput>&lt;array&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal">subtype:<sp/>double</highlight></codeline>
+<codeline><highlight class="normal">size:<sp/>5</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal">subtype:<sp/>{<sp/>type:<sp/>character,<sp/>kind:<sp/>4<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">size:<sp/>[<sp/>&apos;$size_1d&apos;,<sp/>&apos;$size_2d&apos;<sp/>]</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_array_size">
+<title><computeroutput>&lt;array&gt;.size</computeroutput></title><para><emphasis>Required.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref> or a sequence of them, the size of the array in each dimension (C order). A single expression is a shortcut for a sequence with a single element, a one-dimensional array.</para>
+<sect2 id="Spectree_types_ref_1example-of-arraysize">
+<title>Example of <computeroutput>&lt;array&gt;.size</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">size:<sp/>[<sp/>1,<sp/>&apos;2&apos;,<sp/>&apos;$size&apos;,<sp/>&apos;$other_size<sp/>+<sp/>2&apos;<sp/>]</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_array_subtype">
+<title><computeroutput>&lt;array&gt;.subtype</computeroutput></title><para><emphasis>Required.</emphasis> A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref>, the type of the elements of the array.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_array_subsize">
+<title><computeroutput>&lt;array&gt;.subsize</computeroutput></title><para><emphasis>Optional, deprecated.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref> or a sequence of them, the number of elements to actually use in each dimension (slicing). If specified, it <bold>must</bold> have the same number of elements as <ref refid="Spectree_types_ref_1spectree_array_size" kindref="member"><computeroutput>&lt;array&gt;.size</computeroutput></ref>. It defaults to the full array size in each dimension.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_array_start">
+<title><computeroutput>&lt;array&gt;.start</computeroutput></title><para><emphasis>Optional, deprecated.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref> or a sequence of them, the index of the first element to actually use in each dimension (slicing). If specified, it <bold>must</bold> have the same number of elements as <ref refid="Spectree_types_ref_1spectree_array_size" kindref="member"><computeroutput>&lt;array&gt;.size</computeroutput></ref>, and <ref refid="Spectree_types_ref_1spectree_array_subsize" kindref="member"><computeroutput>&lt;array&gt;.subsize</computeroutput></ref> <bold>must</bold> be specified too. It defaults to the first (0) element in each dimension.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_array_order">
+<title><computeroutput>&lt;array&gt;.order</computeroutput></title><para><emphasis>Optional, deprecated.</emphasis> <computeroutput>&quot;C&quot;</computeroutput> or <computeroutput>&quot;c&quot;</computeroutput>, the order of the dimensions. Only C order is supported and specifying it is deprecated.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_pointer">
+<title><computeroutput>&lt;pointer&gt;</computeroutput></title><para>A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref> whose <ref refid="Spectree_types_ref_1spectree_datatype_type" kindref="member"><computeroutput>&lt;datatype&gt;.type</computeroutput></ref> is <computeroutput>pointer</computeroutput>, a memory address where data is actually stored.</para>
+<sect2 id="Spectree_types_ref_1example-of-pointer">
+<title>Example of <computeroutput>&lt;pointer&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>pointer</highlight></codeline>
+<codeline><highlight class="normal">subtype:<sp/>double</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>pointer</highlight></codeline>
+<codeline><highlight class="normal">subtype:<sp/>{<sp/>type:<sp/>pointer,<sp/>subtype:<sp/>int<sp/>}</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_pointer_subtype">
+<title><computeroutput>&lt;pointer&gt;.subtype</computeroutput></title><para><emphasis>Required.</emphasis> A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref>, the type of the referenced elements.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_record">
+<title><computeroutput>&lt;record&gt;</computeroutput></title><para>A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref> whose <ref refid="Spectree_types_ref_1spectree_datatype_type" kindref="member"><computeroutput>&lt;datatype&gt;.type</computeroutput></ref> is <computeroutput>record</computeroutput>, a structure whose members are placed explicitly.</para>
+<sect2 id="Spectree_types_ref_1example-of-record">
+<title>Example of <computeroutput>&lt;record&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>record</highlight></codeline>
+<codeline><highlight class="normal">buffersize:<sp/>8</highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>first_int:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>disp:<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>int32</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>second_int:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>disp:<sp/>4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>int32</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>record</highlight></codeline>
+<codeline><highlight class="normal">buffersize:<sp/>808</highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>my_long:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>disp:<sp/>0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>int64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>my_array:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>disp:<sp/>8</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>subtype:<sp/>int64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>size:<sp/>[10,<sp/>10]</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_record_buffersize">
+<title><computeroutput>&lt;record&gt;.buffersize</computeroutput></title><para><emphasis>Required.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the overall size of the record in bytes, including potential padding.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_record_members">
+<title><computeroutput>&lt;record&gt;.members</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the members of the record.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_record_members_member_name">
+<title><computeroutput>&lt;record&gt;.members.&lt;member_name&gt;</computeroutput></title><para>A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref> given as a mapping with an additional <ref refid="Spectree_types_ref_1spectree_record_members_member_name_disp" kindref="member"><computeroutput>&lt;record&gt;.members.&lt;member_name&gt;.disp</computeroutput></ref> key, the member named <computeroutput>&lt;member_name&gt;</computeroutput> and its type.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_record_members_member_name_disp">
+<title><computeroutput>&lt;record&gt;.members.&lt;member_name&gt;.disp</computeroutput></title><para><emphasis>Required.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the offset in bytes of the member from the base address of the record.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_struct">
+<title><computeroutput>&lt;struct&gt;</computeroutput></title><para>A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref> whose <ref refid="Spectree_types_ref_1spectree_datatype_type" kindref="member"><computeroutput>&lt;datatype&gt;.type</computeroutput></ref> is <computeroutput>struct</computeroutput>, a C <computeroutput>struct</computeroutput> or C++ <computeroutput>class</computeroutput> using the default C memory layout.</para>
+<sect2 id="Spectree_types_ref_1example-of-struct">
+<title>Example of <computeroutput>&lt;struct&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>struct</highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>first_int:<sp/>int32</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>second_int:<sp/>int32</highlight></codeline>
+</programlisting></para>
+<para>matches:</para>
+<para><programlisting filename=".C"><codeline><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>int32_t<sp/>first_int;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>int32_t<sp/>second_int;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_struct_members">
+<title><computeroutput>&lt;struct&gt;.members</computeroutput></title><para><emphasis>Optional.</emphasis> An ordered mapping, <emphasis>i.e.</emphasis> a sequence of mappings with a single key each, the members of the struct in order.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_struct_members_member_name">
+<title><computeroutput>&lt;struct&gt;.members[*].&lt;member_name&gt;</computeroutput></title><para>A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref>, the type of the member named <computeroutput>&lt;member_name&gt;</computeroutput>.</para>
+<sect2 id="Spectree_types_ref_1example-of-structmembersmember_name">
+<title>Example of <computeroutput>&lt;struct&gt;.members[*].&lt;member_name&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>struct</highlight></codeline>
+<codeline><highlight class="normal">members:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>my_long:<sp/>int64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>my_array:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>type:<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>subtype:<sp/>int64</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>size:<sp/>[10,<sp/>10]</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_tuple">
+<title><computeroutput>&lt;tuple&gt;</computeroutput></title><para>A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref> whose <ref refid="Spectree_types_ref_1spectree_datatype_type" kindref="member"><computeroutput>&lt;datatype&gt;.type</computeroutput></ref> is <computeroutput>tuple</computeroutput>, a sequence of unnamed elements.</para>
+<sect2 id="Spectree_types_ref_1example-of-tuple">
+<title>Example of <computeroutput>&lt;tuple&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>tuple</highlight></codeline>
+<codeline><highlight class="normal">buffersize:<sp/>16</highlight></codeline>
+<codeline><highlight class="normal">elements:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>{disp:<sp/>0,<sp/>type:<sp/>int32}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>{disp:<sp/>8,<sp/>type:<sp/>double}</highlight></codeline>
+</programlisting></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">type:<sp/>tuple</highlight></codeline>
+<codeline><highlight class="normal">elements:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>int32</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>double</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_tuple_buffersize">
+<title><computeroutput>&lt;tuple&gt;.buffersize</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the overall size of the tuple in bytes, including potential padding. It <bold>must</bold> be specified if and only if the elements have a <ref refid="Spectree_types_ref_1spectree_tuple_elements_disp" kindref="member"><computeroutput>&lt;tuple&gt;.elements[*].disp</computeroutput></ref>. If omitted, the minimum size that fits all elements is used.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_tuple_elements">
+<title><computeroutput>&lt;tuple&gt;.elements</computeroutput></title><para><emphasis>Required.</emphasis> A sequence, the elements of the tuple in order.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_tuple_elements_element">
+<title><computeroutput>&lt;tuple&gt;.elements[*]</computeroutput></title><para>A <ref refid="Spectree_types_ref_1spectree_datatype" kindref="member"><computeroutput>&lt;datatype&gt;</computeroutput></ref>, the type of an element of the tuple, with an optional additional <ref refid="Spectree_types_ref_1spectree_tuple_elements_disp" kindref="member"><computeroutput>&lt;tuple&gt;.elements[*].disp</computeroutput></ref> key when it is given as a mapping.</para>
+</sect1>
+<sect1 id="Spectree_types_ref_1spectree_tuple_elements_disp">
+<title><computeroutput>&lt;tuple&gt;.elements[*].disp</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the offset in bytes of the element from the base address of the tuple. Either all elements or none of them <bold>must</bold> have a <computeroutput>disp</computeroutput> key. If they have none, each element is placed at the minimum offset that does not lead to overlaps. </para>
+</sect1>
+    </detaileddescription>
+    <location file="pdi/docs/Spectree_types.md"/>
+  </compounddef>
+</doxygen>

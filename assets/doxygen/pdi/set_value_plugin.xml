@@ -106,19 +106,19 @@
 <title><computeroutput>&lt;operations&gt;[*].logger</computeroutput></title><para>A mapping, settings to apply to the global PDI logger.</para>
 </sect1>
 <sect1 id="set_value_plugin_1set_value_operations_logger_level">
-<title><computeroutput>&lt;operations&gt;[*].logger.level</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the level to set to the logger of PDI, evaluated each time the operation is executed.</para>
+<title><computeroutput>&lt;operations&gt;[*].logger.level</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the level to set to the logger of PDI, evaluated each time the operation is executed.</para>
 </sect1>
 <sect1 id="set_value_plugin_1set_value_operations_logger_pattern">
 <title><computeroutput>&lt;operations&gt;[*].logger.pattern</computeroutput></title><para><emphasis>Optional.</emphasis> A scalar, the pattern to set to the logger of PDI and to those of the plugins that do not set their own.</para>
 </sect1>
 <sect1 id="set_value_plugin_1set_value_operations_logger_evaluate">
-<title><computeroutput>&lt;operations&gt;[*].logger.evaluate</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> evaluated at initialization, whether to evaluate the logger pattern again each time the operation is executed.</para>
+<title><computeroutput>&lt;operations&gt;[*].logger.evaluate</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref> evaluated at initialization, whether to evaluate the logger pattern again each time the operation is executed.</para>
 </sect1>
 <sect1 id="set_value_plugin_1set_value_value_list">
 <title><computeroutput>&lt;operations&gt;[*].&lt;set|share|expose&gt;</computeroutput></title><para>A <emphasis>value list</emphasis> is the value of <ref refid="set_value_plugin_1set_value_operations_set" kindref="member"><computeroutput>&lt;operations&gt;[*].set</computeroutput></ref>, <ref refid="set_value_plugin_1set_value_operations_share" kindref="member"><computeroutput>&lt;operations&gt;[*].share</computeroutput></ref> and <ref refid="set_value_plugin_1set_value_operations_expose" kindref="member"><computeroutput>&lt;operations&gt;[*].expose</computeroutput></ref>. It is a sequence of mappings with a single key each, whose elements are handled in order.</para>
 </sect1>
 <sect1 id="set_value_plugin_1set_value_value_list_data_name">
-<title><computeroutput>&lt;operations&gt;[*].&lt;set|share|expose&gt;[*].&lt;data_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, or a sequence or mapping of them, converted to the type of the data named <computeroutput>&lt;data_name&gt;</computeroutput>. It can be:<itemizedlist>
+<title><computeroutput>&lt;operations&gt;[*].&lt;set|share|expose&gt;[*].&lt;data_name&gt;</computeroutput></title><para>A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, or a sequence or mapping of them, converted to the type of the data named <computeroutput>&lt;data_name&gt;</computeroutput>. It can be:<itemizedlist>
 <listitem><para>a scalar, to set a scalar data,</para>
 </listitem><listitem><para>a sequence of values, to set an array,</para>
 </listitem><listitem><para>a mapping associating each member name to its value, to set a record.</para>

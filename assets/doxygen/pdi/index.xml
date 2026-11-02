@@ -603,6 +603,10 @@
   </compound>
   <compound refid="Specification__tree__ref_8md" kind="file"><name>Specification_tree_ref.md</name>
   </compound>
+  <compound refid="Spectree__expressions_8md" kind="file"><name>Spectree_expressions.md</name>
+  </compound>
+  <compound refid="Spectree__types_8md" kind="file"><name>Spectree_types.md</name>
+  </compound>
   <compound refid="Using__PDI_8md" kind="file"><name>Using_PDI.md</name>
   </compound>
   <compound refid="Yaml_8md" kind="file"><name>Yaml.md</name>
@@ -738,9 +742,13 @@
   </compound>
   <compound refid="Plugins" kind="page"><name>Plugins</name>
   </compound>
+  <compound refid="Source_installation" kind="page"><name>Source_installation</name>
+  </compound>
   <compound refid="Specification_tree_ref" kind="page"><name>Specification_tree_ref</name>
   </compound>
-  <compound refid="Source_installation" kind="page"><name>Source_installation</name>
+  <compound refid="spectree_expression" kind="page"><name>spectree_expression</name>
+  </compound>
+  <compound refid="Spectree_types_ref" kind="page"><name>Spectree_types_ref</name>
   </compound>
   <compound refid="PDI_usage" kind="page"><name>PDI_usage</name>
   </compound>

@@ -34,7 +34,7 @@
 </sect2>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_file">
-<title><computeroutput>plugins.decl_netcdf.file</computeroutput></title><para><emphasis>Required.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the name (path) of the input/output file.</para>
+<title><computeroutput>plugins.decl_netcdf.file</computeroutput></title><para><emphasis>Required.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the name (path) of the input/output file.</para>
 <sect2 id="Decl_NetCDF_plugin_1example-of-pluginsdecl_netcdffile">
 <title>Example of <computeroutput>plugins.decl_netcdf.file</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>decl_netcdf:</highlight></codeline>
@@ -43,7 +43,7 @@
 </sect2>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_comm">
-<title><computeroutput>plugins.decl_netcdf.communicator</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> referencing a valid MPI communicator, which enables parallel NetCDF input/output. All processes must have the same communicator and filename.</para>
+<title><computeroutput>plugins.decl_netcdf.communicator</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref> referencing a valid MPI communicator, which enables parallel NetCDF input/output. All processes must have the same communicator and filename.</para>
 <para><simplesect kind="warning"><para>Feature not tested yet</para>
 </simplesect>
 </para>
@@ -66,7 +66,7 @@
 </sect2>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_when">
-<title><computeroutput>plugins.decl_netcdf.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the condition on which the plugin executes input/output operations on the file, always true by default.</para>
+<title><computeroutput>plugins.decl_netcdf.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the condition on which the plugin executes input/output operations on the file, always true by default.</para>
 <sect2 id="Decl_NetCDF_plugin_1example-of-pluginsdecl_netcdfwhen">
 <title>Example of <computeroutput>plugins.decl_netcdf.when</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>decl_netcdf:</highlight></codeline>
@@ -76,7 +76,7 @@
 </sect2>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_deflate">
-<title><computeroutput>plugins.decl_netcdf.deflate</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the compression level (0-9) for all variables of the file (default=0). It can be overridden for each variable, see <ref refid="Decl_NetCDF_plugin_1decl_netcdf_variables_deflate" kindref="member"><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.deflate</computeroutput></ref>.</para>
+<title><computeroutput>plugins.decl_netcdf.deflate</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the compression level (0-9) for all variables of the file (default=0). It can be overridden for each variable, see <ref refid="Decl_NetCDF_plugin_1decl_netcdf_variables_deflate" kindref="member"><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.deflate</computeroutput></ref>.</para>
 <sect2 id="Decl_NetCDF_plugin_1example-of-pluginsdecl_netcdfdeflate">
 <title>Example of <computeroutput>plugins.decl_netcdf.deflate</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>decl_netcdf:</highlight></codeline>
@@ -96,7 +96,7 @@
 <title><computeroutput>plugins.decl_netcdf.groups.&lt;group_path&gt;.attributes</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the attributes of the group.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_attr">
-<title><computeroutput>plugins.decl_netcdf.groups.&lt;group_path&gt;.attributes.&lt;attribute_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the value written as the attribute named <computeroutput>&lt;attribute_name&gt;</computeroutput>, or referencing the data where to store it on read. Attributes are read and written when the file is opened.</para>
+<title><computeroutput>plugins.decl_netcdf.groups.&lt;group_path&gt;.attributes.&lt;attribute_name&gt;</computeroutput></title><para>A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the value written as the attribute named <computeroutput>&lt;attribute_name&gt;</computeroutput>, or referencing the data where to store it on read. Attributes are read and written when the file is opened.</para>
 <sect2 id="Decl_NetCDF_plugin_1example-of-pluginsdecl_netcdfgroupsgroup_pathattributesattribute_name">
 <title>Example of <computeroutput>plugins.decl_netcdf.groups.&lt;group_path&gt;.attributes.&lt;attribute_name&gt;</computeroutput></title><para><programlisting filename=".yaml"><codeline><highlight class="normal">plugins:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>decl_netcdf:</highlight></codeline>
@@ -137,7 +137,7 @@
 </sect2>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_variables_type">
-<title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.type</computeroutput></title><para><emphasis>Optional.</emphasis> The <ref refid="Specification_tree_ref_1spectree_datatype_type" kindref="member"><computeroutput>&lt;datatype&gt;.type</computeroutput></ref> of the variable, whose other keys (<computeroutput>subtype</computeroutput>, <computeroutput>size</computeroutput>...) are given beside it, in <ref refid="Decl_NetCDF_plugin_1decl_netcdf_variables_value" kindref="member"><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;</computeroutput></ref>. It is mandatory if the type of the variable differs from that of the descriptor. It also allows to define an <computeroutput>UNLIMITED</computeroutput> dimension, whose size must then be set to <computeroutput>0</computeroutput>.</para>
+<title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.type</computeroutput></title><para><emphasis>Optional.</emphasis> The <ref refid="Spectree_types_ref_1spectree_datatype_type" kindref="member"><computeroutput>&lt;datatype&gt;.type</computeroutput></ref> of the variable, whose other keys (<computeroutput>subtype</computeroutput>, <computeroutput>size</computeroutput>...) are given beside it, in <ref refid="Decl_NetCDF_plugin_1decl_netcdf_variables_value" kindref="member"><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;</computeroutput></ref>. It is mandatory if the type of the variable differs from that of the descriptor. It also allows to define an <computeroutput>UNLIMITED</computeroutput> dimension, whose size must then be set to <computeroutput>0</computeroutput>.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_variables_dimensions">
 <title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.dimensions</computeroutput></title><para><emphasis>Optional.</emphasis> A sequence of scalars, the names of the dimensions of the variable. A value that is not a sequence is ignored.</para>
@@ -146,13 +146,13 @@
 <title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.attributes</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the attributes of the variable.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_variables_attributes_attribute_name">
-<title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.attributes.&lt;attribute_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the value written as the attribute named <computeroutput>&lt;attribute_name&gt;</computeroutput>, or referencing the data where to store it on read, as for <ref refid="Decl_NetCDF_plugin_1decl_netcdf_attr" kindref="member"><computeroutput>plugins.decl_netcdf.groups.&lt;group_path&gt;.attributes.&lt;attribute_name&gt;</computeroutput></ref>.</para>
+<title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.attributes.&lt;attribute_name&gt;</computeroutput></title><para>A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the value written as the attribute named <computeroutput>&lt;attribute_name&gt;</computeroutput>, or referencing the data where to store it on read, as for <ref refid="Decl_NetCDF_plugin_1decl_netcdf_attr" kindref="member"><computeroutput>plugins.decl_netcdf.groups.&lt;group_path&gt;.attributes.&lt;attribute_name&gt;</computeroutput></ref>.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_variables_deflate">
-<title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.deflate</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the compression level (0-9) of the variable, using the native NetCDF compression. It defaults to <ref refid="Decl_NetCDF_plugin_1decl_netcdf_deflate" kindref="member"><computeroutput>plugins.decl_netcdf.deflate</computeroutput></ref>, and <computeroutput>0</computeroutput> means no compression.</para>
+<title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.deflate</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the compression level (0-9) of the variable, using the native NetCDF compression. It defaults to <ref refid="Decl_NetCDF_plugin_1decl_netcdf_deflate" kindref="member"><computeroutput>plugins.decl_netcdf.deflate</computeroutput></ref>, and <computeroutput>0</computeroutput> means no compression.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_variables_chunking">
-<title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.chunking</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref> or a sequence of them, the chunk size of the variable for chunked storage, used when compression is enabled. It must have the same dimension as the variable. If not specified, an automatic chunking is used.</para>
+<title><computeroutput>plugins.decl_netcdf.variables.&lt;variable_path&gt;.chunking</computeroutput></title><para><emphasis>Optional.</emphasis> An integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref> or a sequence of them, the chunk size of the variable for chunked storage, used when compression is enabled. It must have the same dimension as the variable. If not specified, an automatic chunking is used.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_write">
 <title><computeroutput>plugins.decl_netcdf.write</computeroutput></title><para><emphasis>Optional.</emphasis> The writes to execute, either:<itemizedlist>
@@ -217,19 +217,19 @@
 </sect2>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_write_data_name_variable">
-<title><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the variable to write (that may be defined in <ref refid="Decl_NetCDF_plugin_1decl_netcdf_variables" kindref="member"><computeroutput>plugins.decl_netcdf.variables</computeroutput></ref>), the name of the descriptor by default.</para>
+<title><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the path of the variable to write (that may be defined in <ref refid="Decl_NetCDF_plugin_1decl_netcdf_variables" kindref="member"><computeroutput>plugins.decl_netcdf.variables</computeroutput></ref>), the name of the descriptor by default.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_io_when">
-<title><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the condition on which the plugin writes this descriptor.</para>
+<title><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the condition on which the plugin writes this descriptor.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_var_selection">
 <title><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable_selection</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the part (hyperslab) of the NetCDF variable where to write the data.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_var_selection_start">
-<title><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable_selection.start</computeroutput></title><para><emphasis>Optional.</emphasis> A sequence of integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the start index in each dimension.</para>
+<title><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable_selection.start</computeroutput></title><para><emphasis>Optional.</emphasis> A sequence of integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the start index in each dimension.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_var_selection_subsize">
-<title><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable_selection.subsize</computeroutput></title><para><emphasis>Optional.</emphasis> A sequence of integer-valued <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the number of elements (count) in each dimension.</para>
+<title><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable_selection.subsize</computeroutput></title><para><emphasis>Optional.</emphasis> A sequence of integer-valued <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the number of elements (count) in each dimension.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_read">
 <title><computeroutput>plugins.decl_netcdf.read</computeroutput></title><para><emphasis>Optional.</emphasis> The reads to execute, either:<itemizedlist>
@@ -272,13 +272,13 @@
 </sect2>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_read_data_name_variable">
-<title><computeroutput>plugins.decl_netcdf.read.&lt;data_name&gt;.variable</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the variable to read, as for <ref refid="Decl_NetCDF_plugin_1decl_netcdf_write_data_name_variable" kindref="member"><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable</computeroutput></ref>.</para>
+<title><computeroutput>plugins.decl_netcdf.read.&lt;data_name&gt;.variable</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the path of the variable to read, as for <ref refid="Decl_NetCDF_plugin_1decl_netcdf_write_data_name_variable" kindref="member"><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable</computeroutput></ref>.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_read_data_name_size_of">
-<title><computeroutput>plugins.decl_netcdf.read.&lt;data_name&gt;.size_of</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the path of the variable whose size is read into the descriptor, in place of its content.</para>
+<title><computeroutput>plugins.decl_netcdf.read.&lt;data_name&gt;.size_of</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the path of the variable whose size is read into the descriptor, in place of its content.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_read_data_name_when">
-<title><computeroutput>plugins.decl_netcdf.read.&lt;data_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, the condition on which the plugin reads this descriptor.</para>
+<title><computeroutput>plugins.decl_netcdf.read.&lt;data_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, the condition on which the plugin reads this descriptor.</para>
 </sect1>
 <sect1 id="Decl_NetCDF_plugin_1decl_netcdf_read_data_name_variable_selection">
 <title><computeroutput>plugins.decl_netcdf.read.&lt;data_name&gt;.variable_selection</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the part (hyperslab) of the NetCDF variable to read, with the same <computeroutput>start</computeroutput> and <computeroutput>subsize</computeroutput> keys as <ref refid="Decl_NetCDF_plugin_1decl_netcdf_var_selection" kindref="member"><computeroutput>plugins.decl_netcdf.write.&lt;data_name&gt;.variable_selection</computeroutput></ref>.</para>

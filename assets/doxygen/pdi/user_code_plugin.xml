@@ -249,13 +249,13 @@
 </sect2>
 </sect1>
 <sect1 id="user_code_plugin_1user_code_plugins_user_code_on_event_event_name_when">
-<title><computeroutput>plugins.user_code.on_event.&lt;event_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, a condition for calling the functions of the list. It is evaluated after the aliases are exposed, and the functions are only called if it is true. An error while evaluating it is logged and does not interrupt the program.</para>
+<title><computeroutput>plugins.user_code.on_event.&lt;event_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, a condition for calling the functions of the list. It is evaluated after the aliases are exposed, and the functions are only called if it is true. An error while evaluating it is logged and does not interrupt the program.</para>
 </sect1>
 <sect1 id="user_code_plugin_1user_code_plugins_user_code_on_event_event_name_function_name">
 <title><computeroutput>plugins.user_code.on_event.&lt;event_name&gt;.&lt;function_name&gt;</computeroutput></title><para>A mapping, the aliases to expose while calling the function named <computeroutput>&lt;function_name&gt;</computeroutput>, empty (<computeroutput>{}</computeroutput>) for none. The function must be of type <computeroutput>void(void)</computeroutput> and its symbol exported, see <ref refid="user_code_plugin_1dependencies_node" kindref="member">Dependencies between the code and the specification tree</ref>. A function can not be named <computeroutput>when</computeroutput>, this key is reserved for the condition of the list.</para>
 </sect1>
 <sect1 id="user_code_plugin_1user_code_plugins_user_code_on_event_event_name_function_name_alias_name">
-<title><computeroutput>plugins.user_code.on_event.&lt;event_name&gt;.&lt;function_name&gt;.&lt;alias_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, whose value is shared under the name <computeroutput>&lt;alias_name&gt;</computeroutput> while the function is called.</para>
+<title><computeroutput>plugins.user_code.on_event.&lt;event_name&gt;.&lt;function_name&gt;.&lt;alias_name&gt;</computeroutput></title><para>A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, whose value is shared under the name <computeroutput>&lt;alias_name&gt;</computeroutput> while the function is called.</para>
 </sect1>
 <sect1 id="user_code_plugin_1user_code_plugins_user_code_on_data">
 <title><computeroutput>plugins.user_code.on_data</computeroutput></title><para><emphasis>Optional.</emphasis> A mapping, the functions to call when data are shared. It can also be a sequence of mappings with a single key each, which has the same meaning and lets a data appear more than once.</para>
@@ -277,13 +277,13 @@
 </sect2>
 </sect1>
 <sect1 id="user_code_plugin_1user_code_plugins_user_code_on_data_data_name_when">
-<title><computeroutput>plugins.user_code.on_data.&lt;data_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, a condition for calling the functions of the list, as for <ref refid="user_code_plugin_1user_code_plugins_user_code_on_event_event_name_when" kindref="member"><computeroutput>plugins.user_code.on_event.&lt;event_name&gt;.when</computeroutput></ref>.</para>
+<title><computeroutput>plugins.user_code.on_data.&lt;data_name&gt;.when</computeroutput></title><para><emphasis>Optional.</emphasis> A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, a condition for calling the functions of the list, as for <ref refid="user_code_plugin_1user_code_plugins_user_code_on_event_event_name_when" kindref="member"><computeroutput>plugins.user_code.on_event.&lt;event_name&gt;.when</computeroutput></ref>.</para>
 </sect1>
 <sect1 id="user_code_plugin_1user_code_plugins_user_code_on_data_data_name_function_name">
 <title><computeroutput>plugins.user_code.on_data.&lt;data_name&gt;.&lt;function_name&gt;</computeroutput></title><para>A mapping, the aliases to expose while calling the function named <computeroutput>&lt;function_name&gt;</computeroutput>, as for <ref refid="user_code_plugin_1user_code_plugins_user_code_on_event_event_name_function_name" kindref="member"><computeroutput>plugins.user_code.on_event.&lt;event_name&gt;.&lt;function_name&gt;</computeroutput></ref>.</para>
 </sect1>
 <sect1 id="user_code_plugin_1user_code_plugins_user_code_on_data_data_name_function_name_alias_name">
-<title><computeroutput>plugins.user_code.on_data.&lt;data_name&gt;.&lt;function_name&gt;.&lt;alias_name&gt;</computeroutput></title><para>A <ref refid="Specification_tree_ref_1spectree_expression" kindref="member">$-expressions</ref>, whose value is shared under the name <computeroutput>&lt;alias_name&gt;</computeroutput> while the function is called.</para>
+<title><computeroutput>plugins.user_code.on_data.&lt;data_name&gt;.&lt;function_name&gt;.&lt;alias_name&gt;</computeroutput></title><para>A <ref refid="spectree_expression" kindref="compound">$-expressions</ref>, whose value is shared under the name <computeroutput>&lt;alias_name&gt;</computeroutput> while the function is called.</para>
 </sect1>
 <sect1 id="user_code_plugin_1user_code_plugins_user_code_logging">
 <title><computeroutput>plugins.user_code.logging</computeroutput></title><para><emphasis>Optional.</emphasis> The configuration of the logger of the plugin, see <ref refid="Specification_tree_ref_1spectree_plugins_plugin_name_logging" kindref="member"><computeroutput>plugins.&lt;plugin_name&gt;.logging</computeroutput></ref>.</para>
