@@ -23,7 +23,7 @@ Doxygen then runs on it from the directory that PDI's `doc` target runs it from.
 
 | Directory | Version | Tag (PDI commit) | Doxyfile in the build tree |
 | --- | --- | --- | --- |
-| `pdi/` | `main` | c39508e5 (1.12.0-46, branch `spectree_paths_doc`) | `pdi/docs/Doxyfile`, with the `tutorial` submodule checked out |
+| `pdi/` | `main` | ba8bf580 (1.12.0-47, branch `spectree_paths_doc`) | `pdi/docs/Doxyfile`, with the `tutorial` submodule checked out |
 | `pdi-1.12/` | 1.12, the latest release | `1.12.0` (21e86d15) | `docs/Doxyfile` (`configure_file`) |
 | `pdi-1.11/` | 1.11 | `1.11.2` (e50b2719) | `docs/Doxyfile` |
 | `pdi-1.10/` | 1.10 | `1.10.1` (6c29b9ad) | `docs/Doxyfile` |

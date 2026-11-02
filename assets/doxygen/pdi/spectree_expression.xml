@@ -67,8 +67,8 @@
 </listitem><listitem><para>false (0): <computeroutput>n</computeroutput>, <computeroutput>N</computeroutput>, <computeroutput>no</computeroutput>, <computeroutput>No</computeroutput>, <computeroutput>NO</computeroutput>, <computeroutput>false</computeroutput>, <computeroutput>False</computeroutput>, <computeroutput>FALSE</computeroutput>, <computeroutput>Off</computeroutput>, <computeroutput>OFF</computeroutput>.</para>
 </listitem></itemizedlist>
 </para>
-<sect1 id="spectree_expression_1example-of--expressions">
-<title>Example of $-expressions</title><para><programlisting filename=".yaml"><codeline><highlight class="normal">&apos;$my_data&apos;</highlight></codeline>
+<para><bold>Example of $-expressions</bold></para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">&apos;$my_data&apos;</highlight></codeline>
 </programlisting></para>
 <para><programlisting filename=".yaml"><codeline><highlight class="normal">&apos;($my_data<sp/>+<sp/>3)<sp/>%<sp/>6&apos;</highlight></codeline>
 </programlisting></para>
@@ -81,7 +81,6 @@
 <codeline><highlight class="normal">&apos;${my_data:1.5f}&apos;</highlight></codeline>
 <codeline><highlight class="normal">&apos;${my_data:&gt;15s}&apos;</highlight></codeline>
 </programlisting> </para>
-</sect1>
     </detaileddescription>
     <location file="pdi/docs/Spectree_expressions.md"/>
   </compounddef>

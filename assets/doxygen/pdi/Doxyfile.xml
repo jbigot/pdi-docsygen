@@ -2,10 +2,10 @@
 <doxyfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="doxyfile.xsd" version="1.18.0" xml:lang="en-US">
   <option  id='DOXYFILE_ENCODING' default='yes' type='string'><value><![CDATA[UTF-8]]></value></option>
   <option  id='PROJECT_NAME' default='no' type='string'><value><![CDATA[PDI]]></value></option>
-  <option  id='PROJECT_NUMBER' default='no' type='string'><value><![CDATA[1.13.0-alpha.2026-11-02.c39508e]]></value></option>
+  <option  id='PROJECT_NUMBER' default='no' type='string'><value><![CDATA[1.13.0-alpha.2026-11-02.ba8bf58]]></value></option>
   <option  id='PROJECT_BRIEF' default='yes' type='string'><value><![CDATA[]]></value></option>
-  <option  id='PROJECT_LOGO' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.htzTyF/src/pdi/docs/_template/logo.png]]></value></option>
-  <option  id='PROJECT_ICON' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.htzTyF/src/pdi/docs/_template/logo.png]]></value></option>
+  <option  id='PROJECT_LOGO' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.0yglDg/src/pdi/docs/_template/logo.png]]></value></option>
+  <option  id='PROJECT_ICON' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.0yglDg/src/pdi/docs/_template/logo.png]]></value></option>
   <option  id='OUTPUT_DIRECTORY' default='no' type='string'><value><![CDATA[/home/jbigot/docsygen/pdi-docsygen/assets/doxygen]]></value></option>
   <option  id='CREATE_SUBDIRS' default='yes' type='bool'><value>NO</value></option>
   <option  id='CREATE_SUBDIRS_LEVEL' default='yes' type='int'><value>8</value></option>
@@ -114,7 +114,7 @@
   <option  id='SHOW_FILES' default='no' type='bool'><value>NO</value></option>
   <option  id='SHOW_NAMESPACES' default='yes' type='bool'><value>YES</value></option>
   <option  id='FILE_VERSION_FILTER' default='yes' type='string'><value><![CDATA[]]></value></option>
-  <option  id='LAYOUT_FILE' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.htzTyF/src/pdi/docs/_template/layout.xml]]></value></option>
+  <option  id='LAYOUT_FILE' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.0yglDg/src/pdi/docs/_template/layout.xml]]></value></option>
   <option  id='CITE_BIB_FILES' default='yes' type='stringlist'>
   </option>
   <option  id='EXTERNAL_TOOL_PATH' default='yes' type='stringlist'>
@@ -237,7 +237,7 @@
   </option>
   <option  id='EXAMPLE_RECURSIVE' default='yes' type='bool'><value>NO</value></option>
   <option  id='IMAGE_PATH' default='no' type='stringlist'>
-    <value><![CDATA[/var/tmp/pdi-xml.htzTyF/src/pdi/docs/images]]></value>
+    <value><![CDATA[/var/tmp/pdi-xml.0yglDg/src/pdi/docs/images]]></value>
   </option>
   <option  id='INPUT_FILTER' default='yes' type='string'><value><![CDATA[]]></value></option>
   <option  id='FILTER_PATTERNS' default='yes' type='stringlist'>
@@ -266,11 +266,11 @@
   <option  id='IGNORE_PREFIX' default='yes' type='stringlist'>
   </option>
   <option  id='GENERATE_HTML' default='no' type='bool'><value>NO</value></option>
-  <option  id='HTML_OUTPUT' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.htzTyF/build/docs/html]]></value></option>
+  <option  id='HTML_OUTPUT' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.0yglDg/build/docs/html]]></value></option>
   <option  id='HTML_FILE_EXTENSION' default='yes' type='string'><value><![CDATA[.html]]></value></option>
-  <option  id='HTML_HEADER' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.htzTyF/src/pdi/docs/_template/header.html]]></value></option>
-  <option  id='HTML_FOOTER' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.htzTyF/src/pdi/docs/_template/footer.html]]></value></option>
-  <option  id='HTML_STYLESHEET' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.htzTyF/src/pdi/docs/_template/style.css]]></value></option>
+  <option  id='HTML_HEADER' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.0yglDg/src/pdi/docs/_template/header.html]]></value></option>
+  <option  id='HTML_FOOTER' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.0yglDg/src/pdi/docs/_template/footer.html]]></value></option>
+  <option  id='HTML_STYLESHEET' default='no' type='string'><value><![CDATA[/var/tmp/pdi-xml.0yglDg/src/pdi/docs/_template/style.css]]></value></option>
   <option  id='HTML_EXTRA_STYLESHEET' default='yes' type='stringlist'>
   </option>
   <option  id='HTML_EXTRA_FILES' default='yes' type='stringlist'>
@@ -390,7 +390,7 @@
   <option  id='SEARCH_INCLUDES' default='yes' type='bool'><value>YES</value></option>
   <option  id='INCLUDE_PATH' default='no' type='stringlist'>
     <value><![CDATA[pdi/include/]]></value>
-    <value><![CDATA[/var/tmp/pdi-xml.htzTyF/build]]></value>
+    <value><![CDATA[/var/tmp/pdi-xml.0yglDg/build]]></value>
   </option>
   <option  id='INCLUDE_FILE_PATTERNS' default='yes' type='stringlist'>
   </option>
