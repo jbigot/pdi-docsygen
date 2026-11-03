@@ -23,6 +23,10 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+  highlight:
+    # As docsy-example: Chroma's classes, which Docsy styles in light and dark mode.
+    style: tango
+    noClasses: false
 menu:
   main:
     - name: Documentation

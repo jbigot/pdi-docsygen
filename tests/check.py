@@ -16,12 +16,18 @@ Checks:
   - every internal href resolves to a file, and its fragment to an id in that file, but the
     links the documentation's authors wrote (class docsygen-ulink), left as they are;
   - no id appears twice in a file;
+  - no `name` attribute on an <a>, nor an id of Doxygen's anchors (a<N>_…, r_…), which nothing
+    links to;
   - no <p> holds a block element;
-  - no class but docsygen-*, Docsy's alert classes, and mermaid, outside KaTeX's output
-    (.katex*) and the highlighted code of listings (pre.docsygen-listing), on the pages of the
-    test site (those that Docsy didn't lay out: without .td-content, nor a td-* class on <body>,
-    as Docsy's home and community pages have; Docsy's classes are its business);
-  - no {{<, HAHAHUGOSHORTCODE or ZgotmplZ is left;
+  - no class but docsygen-*, Docsy's alert classes, mermaid and the Bootstrap classes docsygen uses
+    (badge, d-block, figure, figure-caption, small, text-bg-secondary, text-body-secondary),
+    outside KaTeX's output (.katex*), the highlighted code (div.highlight) and the language-* class of
+    code that Chroma has no lexer for,
+    on the pages of the test site (those that Docsy didn't lay out: without .td-content, nor a
+    td-* class on <body>, as Docsy's home and community pages have; Docsy's classes are its
+    business);
+  - no {{<, {{%, HAHAHUGOSHORTCODE, ZgotmplZ or heading with its {#id} as text (what a docsygen
+    shortcode called as {{< >}} leaves) is left;
   - PUBLIC has a page, and with --under, DIR has one;
   - with --links, the hrefs of PAGE's main element (a path under PUBLIC) are, in order, the list
     of EXPECTED.json.
@@ -33,18 +39,20 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import htmltree
 
 BLOCKS = {'div', 'table', 'ul', 'ol', 'dl', 'pre', 'p', 'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr'}
-LEFTOVERS = ('{{<', 'HAHAHUGOSHORTCODE', 'ZgotmplZ')
-ALLOWED = re.compile(r'^(docsygen-.*|alert|alert-.*|h4|mermaid|katex.*)$')
+LEFTOVERS = ('{{<', '{{%', 'HAHAHUGOSHORTCODE', 'ZgotmplZ')
+# A heading that Markdown didn't read: a shortcode called as {{< >}} returns the Markdown it holds as text.
+HEADING_LEFT = re.compile(r'#{1,6} [^\n<]*\{#[\w:.-]+\}')
+ALLOWED = re.compile(r'^(docsygen-.*|alert|alert-.*|h4|mermaid|katex.*|language-.*|badge|d-block|figure|figure-caption|small|text-bg-secondary|text-body-secondary)$')
 
 
 def foreign_classes(node, out):
     """The classes of node and its descendants that ALLOWED rejects, as {class: count}, skipping
-    KaTeX's output and the highlighted code of listings."""
+    KaTeX's output and the highlighted code (div.highlight)."""
     for c in node.children:
         if not isinstance(c, htmltree.Node):
             continue
         cls = htmltree.classes(c)
-        if any(x.startswith('katex') for x in cls) or (c.tag == 'pre' and 'docsygen-listing' in cls):
+        if any(x.startswith('katex') for x in cls) or (c.tag == 'div' and 'highlight' in cls):
             continue
         for x in cls:
             if not ALLOWED.match(x):
@@ -89,9 +97,13 @@ def main(argv):
         rel = os.path.relpath(path, public)
         printed = rel.split(os.sep)[0] == '_print'
         in_root = root_url != '-' and ('/' + rel.replace(os.sep, '/')).startswith(root_url)
+        # {{% is what a page shows of a shortcode call it documents, in code (Hugo can't escape it).
+        prose = re.sub(r'<(pre|code)\b.*?</\1>', '', text, flags=re.S)
         for s in LEFTOVERS:
-            if s in text:
+            if s in (prose if s == '{{%' else text):
                 errors.append(f'{rel}: {s} left')
+        if HEADING_LEFT.search(text):
+            errors.append(f'{rel}: a heading with its {{#id}} left as text')
         tree = htmltree.parse(text)
         trees[rel] = tree
         seen = collections.Counter()
@@ -101,6 +113,10 @@ def main(argv):
         for n in walk(tree):
             if 'id' in n.attrs:
                 seen[n.attrs['id']] += 1
+            if n.tag == 'a' and 'name' in n.attrs:
+                errors.append(f'{rel}: <a name={n.attrs["name"]!r}>')
+            if re.match(r'^(a\d+_|r_)', n.attrs.get('id', '')):
+                errors.append(f'{rel}: id {n.attrs["id"]!r} is a Doxygen anchor')
             if 'data-doxygen-id' in n.attrs and in_root:
                 marks[n.attrs['data-doxygen-id']] += 1
             if n.tag == 'p':
