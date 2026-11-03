@@ -42,7 +42,7 @@ BLOCKS = {'div', 'table', 'ul', 'ol', 'dl', 'pre', 'p', 'blockquote', 'h1', 'h2'
 LEFTOVERS = ('{{<', '{{%', 'HAHAHUGOSHORTCODE', 'ZgotmplZ')
 # A heading that Markdown didn't read: a shortcode called as {{< >}} returns the Markdown it holds as text.
 HEADING_LEFT = re.compile(r'#{1,6} [^\n<]*\{#[\w:.-]+\}')
-ALLOWED = re.compile(r'^(docsygen-.*|alert|alert-.*|h4|mermaid|katex.*|language-.*|badge|d-block|figure|figure-caption|small|text-bg-secondary|text-body-secondary)$')
+ALLOWED = re.compile(r'^(docsygen-.*|alert|alert-.*|h4|mermaid|katex.*|language-.*|badge|d-block|figure|figure-caption|small|td-max-width-on-larger-screens|text-bg-secondary|text-body-secondary)$')
 
 
 def foreign_classes(node, out):
