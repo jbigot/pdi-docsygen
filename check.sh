@@ -26,6 +26,13 @@ status=0
 tutorial='docsygen: /docs/main/pdi_example links to Hands_on, which no page of version main holds: rendered as text'
 if grep -E 'WARN|ERROR' "$tmp/log" | grep -vF "$tutorial" >&2; then status=1; fi
 python3 -I "$here/tests/check.py" "$tmp/public" - - || status=1
+# Chroma's classes (markup.highlight.noClasses: false) need their rules in the CSS: Docsy's
+# `@import 'td/code-dark'` gives them, in light and dark mode. A few dozen at least, one per token.
+rules=$(find "$tmp/public" -name '*.css' -exec grep -oh '\.chroma [^{]*{' {} + | wc -l)
+if [ "$rules" -lt 20 ]; then
+  echo "check.sh: the CSS has $rules .chroma rules: add @import 'td/code-dark'; to assets/scss/_styles_project.scss" >&2
+  status=1
+fi
 python3 -I "$here/tests/check_layout.py" "$tmp/public" "$here/layout-expected.json" || status=1
 if ! "$hugo" --source "$here" --baseURL / --destination "$tmp/again" > "$tmp/again.log" 2>&1; then
   cat "$tmp/again.log" >&2; exit 1

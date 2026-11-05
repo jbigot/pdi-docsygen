@@ -2,6 +2,9 @@
 // SPDX-License-Identifier: MIT
 @use 'docsygen';
 
+// Light and dark code styles, which Chroma's classes (`noClasses: false`) need.
+@import 'td/code-dark';
+
 // The version menu's navbar item is there only on the pages of a version: first in the navbar,
 // and pushed to its left end, its coming and going moves none of the menu's entries.
 @include media-breakpoint-up(md) {
