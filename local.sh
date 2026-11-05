@@ -6,9 +6,16 @@
 # in Go's module cache (Hugo wants every module of the graph replaced once one is). Without
 # DOCSYGEN_SRC and its checkout, nothing is replaced: the build then needs a released docsygen.
 #
+# It fails when assets/doxygen/pdi is missing (fetch-xml.sh generates it).
+#
 # It sets here, the directory of this repository, and PATH to find the npm-installed hugo.
 here=$(cd "$(dirname "$0")" && pwd)
 export PATH="$here/node_modules/.bin:$PATH"
+# The XML is not in git: fetch-xml.sh makes it.
+if [ ! -d "$here/assets/doxygen/pdi" ]; then
+  echo "$(basename "$0"): assets/doxygen/pdi is missing: run sh fetch-xml.sh first" >&2
+  exit 1
+fi
 docsygen=${DOCSYGEN_SRC:-$(dirname "$here")/docsygen}
 if [ -d "$docsygen" ]; then
   # modcache MODULE: the directory of the module's version in Go's module cache, as go.mod says.

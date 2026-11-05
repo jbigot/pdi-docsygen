@@ -6,3 +6,4 @@
 .hugo_build.lock
 packages/hugoautogen/hugo_packagemeta.json
 __pycache__/
+/assets/doxygen/pdi*/

@@ -25,6 +25,9 @@ Each section redirects to its latest version, and the home and community pages c
 Hugo and Dart Sass come from npm, which must be 11.18 or later (an older npm installs the wrong
 `sass`): run `npx npm@11 install` once. Hugo needs Go for its modules.
 
+The reference's XML is not in git: run `sh fetch-xml.sh` first, which needs Docker and git (see
+[The XML](#the-xml)).
+
 docsygen has no release yet: build with a local checkout, which `local.sh` points
 `HUGO_MODULE_REPLACEMENTS` at (`DOCSYGEN_SRC`, by default `docsygen/` next to this repository). Hugo
 wants every module of the graph replaced once one is, so `local.sh` replaces Docsy and
@@ -43,8 +46,10 @@ them from there.
 
 ## The XML
 
-`assets/doxygen/` holds Doxygen 1.18.0's XML of each version: `assets/doxygen/README.md` says how
-it was made, and `generate-pdi-xml.sh PDI_SOURCE_DIR TAG NAME` regenerates it from a PDI checkout.
+`sh fetch-xml.sh [NAME ...]` generates the Doxygen XML of each version of `xml/versions.txt` into
+`assets/doxygen/` (git-ignored), in PDI's own CI image (`xml/image`), and only when the PDI commit,
+the image or `xml/generate-pdi-xml.sh` changed since the last time. It needs Docker and git.
+`assets/doxygen/README.md` says how.
 
 ## License
 
