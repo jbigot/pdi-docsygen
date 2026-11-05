@@ -7,8 +7,9 @@
 #
 # The image's tag is resolved to its digest once, by the first job, and every version is generated
 # on that digest. A version's XML is cached under the PDI commit its ref points to, that digest and
-# the hash of xml/generate-pdi-xml.sh, as fetch-xml.sh's stamp is: a cold cache (a new digest of the
-# tag, which comes weekly, or a new script) generates every version at once, in parallel. A version
+# the hash of the generation scripts (xml/generate-pdi-xml.sh and xml/lib.sh), as fetch-xml.sh's
+# stamp is made of the same three things: a cold cache (a new digest of the tag, which comes
+# weekly, or a new script) generates every version at once, in parallel. A version
 # that fails to generate fails the run: the site is never built without it. Nothing triggers this
 # on a schedule or from PDI: a rebuild comes from a push, a pull request or a manual run of the
 # caller.
@@ -70,7 +71,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: assets/doxygen/${{ matrix.version.name }}
-          key: pdi-xml-${{ matrix.version.name }}-${{ matrix.version.sha }}-${{ needs.versions.outputs.digest }}-${{ hashFiles('xml/generate-pdi-xml.sh') }}
+          key: pdi-xml-${{ matrix.version.name }}-${{ matrix.version.sha }}-${{ needs.versions.outputs.digest }}-${{ hashFiles('xml/generate-pdi-xml.sh', 'xml/lib.sh') }}
       - name: Checkout PDI
         if: steps.cache.outputs.cache-hit != 'true'
         uses: actions/checkout@v7

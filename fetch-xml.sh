@@ -4,8 +4,9 @@
 # Generate the Doxygen XML of PDI's versions (xml/versions.txt) into assets/doxygen/NAME/, in PDI's
 # image (xml/image), whose tag is resolved to its current digest once: every version is generated
 # on that digest. A version is generated again only when its stamp, assets/doxygen/NAME/.source,
-# differs from "COMMIT IMAGE_DIGEST SCRIPT_SHA256": the PDI commit its ref points to now, the image
-# digest, and the hash of xml/generate-pdi-xml.sh. assets/doxygen/README.md says more.
+# differs from "COMMIT IMAGE_DIGEST SCRIPTS_SHA256": the PDI commit its ref points to now, the image
+# digest, and the hash of the generation scripts, xml/generate-pdi-xml.sh and xml/lib.sh (the docker
+# run that shapes the output). assets/doxygen/README.md says more.
 #
 # Usage: sh fetch-xml.sh [NAME ...]    (default: every version of xml/versions.txt)
 # XML_OUT replaces assets/doxygen as the output directory (for experiments).
@@ -26,7 +27,7 @@ digest=$(image_digest "$image")
 [ -n "$digest" ] || { echo "fetch-xml.sh: cannot resolve the digest of $image" >&2; exit 1; }
 pinned=${image%:*}@$digest
 docker image inspect "$pinned" > /dev/null 2>&1 || docker pull -q "$pinned" > /dev/null
-script_sha=$(sha256sum "$script" | cut -d ' ' -f 1)
+scripts_sha=$(cat "$script" "$xml_dir/lib.sh" | sha256sum | cut -d ' ' -f 1)
 
 if [ ! -d "$src/.git" ] && [ ! -f "$src/.git" ]; then
   mkdir -p "$src"
@@ -42,7 +43,7 @@ while read -r name repo ref; do
   fi
   commit=$(resolve_commit "$repo" "$ref")
   [ -n "$commit" ] || { echo "fetch-xml.sh: $ref not found in $repo" >&2; status=1; continue; }
-  stamp="$commit $digest $script_sha"
+  stamp="$commit $digest $scripts_sha"
   if [ "$(cat "$out/$name/.source" 2> /dev/null)" = "$stamp" ]; then
     echo "fetch-xml.sh: $name is up to date ($ref at $commit)"
     continue

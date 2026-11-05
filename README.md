@@ -48,21 +48,21 @@ them from there.
 
 `sh fetch-xml.sh [NAME ...]` generates the Doxygen XML of each version of `xml/versions.txt` into
 `assets/doxygen/` (git-ignored), in PDI's own CI image (`xml/image`), and only when the PDI commit,
-the image or `xml/generate-pdi-xml.sh` changed since the last time. It needs Docker and git.
+the image or a generation script (`xml/generate-pdi-xml.sh`, `xml/lib.sh`) changed since the last time. It needs Docker and git.
 `assets/doxygen/README.md` says how.
 
-CI does the same (`.github/workflows/xml.yml`, called by `tests.yml` and `pages.yml`, which wait
-for it). A first job resolves the image's tag to its digest and each version's ref to a commit;
+CI does the same (`.github/workflows/xml.yml`, called once by `website.yml`, whose checks and build
+wait for it). A first job resolves the image's tag to its digest and each version's ref to a commit;
 then one job per version, in parallel, restores that version's XML from the Actions cache or
 generates it with the same commands as `fetch-xml.sh` (`xml/lib.sh`), and uploads it as an
 artifact named after the version, which the site's job downloads into `assets/doxygen/`. The cache
-key is `pdi-xml-NAME-COMMIT-DIGEST-SCRIPT_HASH`: the PDI commit, the image digest and the hash of
-`xml/generate-pdi-xml.sh`. A version that fails to generate fails the run: the site is never built
+key is `pdi-xml-NAME-COMMIT-DIGEST-SCRIPTS_HASH`: the PDI commit, the image digest and a hash of
+the generation scripts (`xml/generate-pdi-xml.sh`, `xml/lib.sh`). A version that fails to generate fails the run: the site is never built
 without it.
 
 Nothing runs on a schedule or on PDI's pushes while the site is a prototype: a rebuild comes from a
 push, a pull request or a manual run. What the XML then depends on is re-resolved each time: a push
-to a branch that `xml/versions.txt` follows (`main`'s), or an edit of the script, regenerates the
+to a branch that `xml/versions.txt` follows (`main`'s), or an edit of a generation script, regenerates the
 versions concerned; and since the image's `v4` tag is not pinned, its next digest (the image is
 rebuilt weekly) regenerates every version, 14 generations at once, at the first run after it.
 

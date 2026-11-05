@@ -43,12 +43,13 @@ The paths are fixed, so that two generations are identical, `Doxyfile.xml` inclu
 
 ## The stamp
 
-`NAME/.source` holds `COMMIT IMAGE_DIGEST SCRIPT_SHA256`: the PDI commit the ref pointed to, the
-image's digest, and the hash of `xml/generate-pdi-xml.sh`. A version is generated again when it
-differs: a new commit of `main`, a new digest of the image's tag `v4` (which regenerates every
-version), or an edit of the script. CI keys its cache on the same three values
-(`pdi-xml-NAME-COMMIT-DIGEST-SCRIPT_HASH`, `.github/workflows/xml.yml`); it generates with the
-commands of `fetch-xml.sh`, which are in `../../xml/lib.sh`.
+`NAME/.source` holds `COMMIT IMAGE_DIGEST SCRIPTS_SHA256`: the PDI commit the ref pointed to, the
+image's digest, and a hash of the generation scripts (`xml/generate-pdi-xml.sh` and `xml/lib.sh`,
+the docker run). A version is generated again when it differs: a new commit of `main`, a new digest of the image's tag `v4` (which regenerates every
+version), or an edit of a script. CI keys its cache on the same three things
+(`pdi-xml-NAME-COMMIT-DIGEST-SCRIPTS_HASH`, `.github/workflows/xml.yml`, whose hash of the scripts
+is GitHub's `hashFiles`, not this one); it generates with the commands of `fetch-xml.sh`, which are
+in `../../xml/lib.sh`.
 
 ## Notes on the old releases
 
