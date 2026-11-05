@@ -48,7 +48,8 @@ them from there.
 
 `sh fetch-xml.sh [NAME ...]` generates the Doxygen XML of each version of `xml/versions.txt` into
 `assets/doxygen/` (git-ignored), in PDI's own CI image (`xml/image`), and only when the PDI commit,
-the image or a generation script (`xml/generate-pdi-xml.sh`, `xml/lib.sh`) changed since the last time. It needs Docker and git.
+the image or a generation script (`xml/generate-pdi-xml.sh`, `xml/lib.sh`) changed since the last time. It needs Docker and git. It checks PDI out in its own cache clone; `PDI_SRC` may name a PDI checkout of
+your own to fetch commits from, which is never modified.
 `assets/doxygen/README.md` says how.
 
 CI does the same (`.github/workflows/xml.yml`, called once by `website.yml`, whose checks and build

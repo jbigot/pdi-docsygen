@@ -11,8 +11,10 @@
 # Usage: sh fetch-xml.sh [NAME ...]    (default: every version of xml/versions.txt)
 # XML_OUT replaces assets/doxygen as the output directory (for experiments).
 # Needs Docker (with buildx) and git. The checkouts of PDI are made in a clone cached under
-# /var/tmp/pdi-docsygen/pdi, or in PDI_SRC when it is set: a git repository, which is checked out
-# and cleaned over. The commits are fetched from the REPO of xml/versions.txt, a commit at a time.
+# /var/tmp/pdi-docsygen/pdi (PDI_CACHE), which is checked out and cleaned over. PDI_SRC may name a repository of
+# one's own (a PDI checkout): it is only a place to fetch a commit from when it has it, instead of
+# the network, and is never modified, nor is its working tree read: uncommitted work is safe. The
+# other commits are fetched from the REPO of xml/versions.txt, a commit at a time.
 set -eu
 
 here=$(cd "$(dirname "$0")" && pwd)
@@ -20,7 +22,7 @@ xml_dir=$here/xml
 script=$xml_dir/generate-pdi-xml.sh
 . "$xml_dir/lib.sh"
 out=${XML_OUT:-$here/assets/doxygen}
-src=${PDI_SRC:-/var/tmp/pdi-docsygen/pdi}
+src=${PDI_CACHE:-/var/tmp/pdi-docsygen/pdi}
 
 image=$(cat "$xml_dir/image")
 digest=$(image_digest "$image")
@@ -50,6 +52,9 @@ while read -r name repo ref; do
   fi
   echo "fetch-xml.sh: generating $name ($ref at $commit)"
   if ! { git -C "$src" cat-file -e "$commit^{commit}" 2> /dev/null \
+           || { [ -n "${PDI_SRC:-}" ] \
+                && git -C "$PDI_SRC" cat-file -e "$commit^{commit}" 2> /dev/null \
+                && git -C "$src" fetch -q "$PDI_SRC" "$commit"; } \
            || git -C "$src" fetch -q --depth 1 "$repo" "$commit"; } \
      || ! git -C "$src" checkout -q -f --detach "$commit" \
      || ! git -C "$src" clean -q -ffdx \

@@ -18,7 +18,9 @@ tracked.
    to its current digest, once, and runs every version on that digest;
 2. resolves the ref of each line of `xml/versions.txt` (`NAME REPO REF`: a tag or a branch) to a
    commit with `git ls-remote`, and checks it out with its submodules in a clone cached under
-   `/var/tmp/pdi-docsygen/pdi` (or `PDI_SRC`);
+   `/var/tmp/pdi-docsygen/pdi` (`PDI_CACHE`), the only tree that is checked out and cleaned. `PDI_SRC` may name a PDI checkout of
+   one's own: the commits it has are fetched from it instead of the network, and it is never
+   modified, working tree included;
 3. runs `xml/generate-pdi-xml.sh NAME` in the image, with the checkout read-only at `/work/src`
    and this directory at `/out`.
 
