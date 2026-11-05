@@ -3,9 +3,10 @@
 # What ../fetch-xml.sh and .github/workflows/xml.yml share, so that a laptop and CI generate the same
 # bytes: source it (. xml/lib.sh). POSIX sh; needs Docker (with buildx) and git.
 
-# image_digest IMAGE: the digest the tag of IMAGE points to now.
+# image_digest IMAGE: the digest the tag of IMAGE points to now. awk reads to the end: docker exits
+# 255, silently, when its output pipe closes before it is done writing.
 image_digest() {
-  docker buildx imagetools inspect "$1" | awk '$1 == "Digest:" { print $2; exit }'
+  docker buildx imagetools inspect "$1" | awk '$1 == "Digest:" && !d { d = $2 } END { print d }'
 }
 
 # resolve_commit REPO REF: the commit a tag or a branch of REPO points to. A tag's commit is the
