@@ -60,6 +60,12 @@
       "/tutorial/latest/"
     ]
   ],
+  "links-doxygen-1.18": [
+    [
+      "/plugin-dev/latest/api/deprecated/",
+      "/plugin-dev/latest/api/pdi/#datatype_template_ptr"
+    ]
+  ],
   "menu": {
     "/plugins/main/serialize_plugin/": [
       [
