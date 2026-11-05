@@ -1,0 +1,99 @@
+# SPDX-FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>
+# SPDX-License-Identifier: MIT
+# Generate the Doxygen XML of PDI's versions (xml/versions.txt) in PDI's image (xml/image), as
+# fetch-xml.sh does locally (both source xml/lib.sh), and hand it to the calling workflow as one
+# artifact per version, named NAME and holding NAME's files: download them all (pattern pdi*) into
+# assets/doxygen/ and each lands in assets/doxygen/NAME/.
+#
+# The image's tag is resolved to its digest once, by the first job, and every version is generated
+# on that digest. A version's XML is cached under the PDI commit its ref points to, that digest and
+# the hash of xml/generate-pdi-xml.sh, as fetch-xml.sh's stamp is: a cold cache (a new digest of the
+# tag, which comes weekly, or a new script) generates every version at once, in parallel. A version
+# that fails to generate fails the run: the site is never built without it. Nothing triggers this
+# on a schedule or from PDI: a rebuild comes from a push, a pull request or a manual run of the
+# caller.
+name: PDI's XML
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  versions:
+    runs-on: ubuntu-latest
+    outputs:
+      digest: ${{ steps.resolve.outputs.digest }}
+      matrix: ${{ steps.resolve.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Resolve the image's digest and the versions' commits
+        id: resolve
+        run: |
+          . xml/lib.sh
+          image=$(cat xml/image)
+          digest=$(image_digest "$image")
+          [ -n "$digest" ] || { echo "cannot resolve the digest of $image" >&2; exit 1; }
+          matrix=$(
+            while read -r name repo ref; do
+              case $name in '' | '#'*) continue ;; esac
+              sha=$(resolve_commit "$repo" "$ref")
+              [ -n "$sha" ] || { echo "$ref not found in $repo" >&2; exit 1; }
+              jq -cn --arg name "$name" --arg repo "$repo" --arg sha "$sha" \
+                '{name: $name, repo: $repo, sha: $sha}'
+            done < xml/versions.txt | jq -cs .
+          )
+          echo "$image resolves to $digest"
+          echo "$matrix" | jq .
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  xml:
+    needs: versions
+    runs-on: ubuntu-latest
+    name: xml (${{ matrix.version.name }})
+    strategy:
+      fail-fast: true
+      matrix:
+        version: ${{ fromJSON(needs.versions.outputs.matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Restore the XML
+        id: cache
+        uses: actions/cache@v6
+        with:
+          path: assets/doxygen/${{ matrix.version.name }}
+          key: pdi-xml-${{ matrix.version.name }}-${{ matrix.version.sha }}-${{ needs.versions.outputs.digest }}-${{ hashFiles('xml/generate-pdi-xml.sh') }}
+      - name: Checkout PDI
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ matrix.version.repo }}
+          ref: ${{ matrix.version.sha }}
+          submodules: recursive
+          path: pdi-src
+      - name: Generate the XML
+        if: steps.cache.outputs.cache-hit != 'true'
+        env:
+          DIGEST: ${{ needs.versions.outputs.digest }}
+          NAME: ${{ matrix.version.name }}
+        run: |
+          xml_dir=$PWD/xml
+          . xml/lib.sh
+          image=$(cat xml/image)
+          mkdir -p assets/doxygen
+          generate_version "${image%:*}@$DIGEST" "$PWD/pdi-src" "$PWD/assets/doxygen" "$NAME"
+      - name: Upload the XML
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ matrix.version.name }}
+          path: assets/doxygen/${{ matrix.version.name }}
+          retention-days: 1
+          if-no-files-found: error

@@ -1,7 +1,9 @@
 # SPDX-FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>
 # SPDX-License-Identifier: MIT
 # Build the site and check it (check.sh), with the Hugo release that npm installs. docsygen has no
-# release yet: it is checked out next to this repository, as in pages.yml.
+# release yet: it is checked out next to this repository, as in pages.yml. The reference's XML comes
+# from xml.yml, which generates it in PDI's image or restores it from the cache, and the jobs here
+# wait for all of it.
 name: Tests
 
 on:
@@ -22,7 +24,11 @@ defaults:
     shell: bash
 
 jobs:
+  xml:
+    uses: ./.github/workflows/xml.yml
+
   check:
+    needs: xml
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,6 +40,11 @@ jobs:
         with:
           repository: jbigot/docsygen
           path: docsygen
+      - name: Download the XML
+        uses: actions/download-artifact@v8
+        with:
+          pattern: pdi*
+          path: pdi-docsygen/assets/doxygen
       - name: Set up Go
         uses: actions/setup-go@v7
         with:

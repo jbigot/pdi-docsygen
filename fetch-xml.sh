@@ -15,12 +15,14 @@
 set -eu
 
 here=$(cd "$(dirname "$0")" && pwd)
-script=$here/xml/generate-pdi-xml.sh
+xml_dir=$here/xml
+script=$xml_dir/generate-pdi-xml.sh
+. "$xml_dir/lib.sh"
 out=${XML_OUT:-$here/assets/doxygen}
 src=${PDI_SRC:-/var/tmp/pdi-docsygen/pdi}
 
-image=$(cat "$here/xml/image")
-digest=$(docker buildx imagetools inspect "$image" | awk '$1 == "Digest:" { print $2; exit }')
+image=$(cat "$xml_dir/image")
+digest=$(image_digest "$image")
 [ -n "$digest" ] || { echo "fetch-xml.sh: cannot resolve the digest of $image" >&2; exit 1; }
 pinned=${image%:*}@$digest
 docker image inspect "$pinned" > /dev/null 2>&1 || docker pull -q "$pinned" > /dev/null
@@ -38,11 +40,7 @@ while read -r name repo ref; do
   if [ $# -gt 0 ]; then
     case " $* " in *" $name "*) ;; *) continue ;; esac
   fi
-  # A tag's commit is the peeled line (^{}) when the tag is annotated.
-  commit=$(git ls-remote "$repo" "refs/heads/$ref" "refs/tags/$ref" "refs/tags/$ref^{}" \
-    | awk -v ref="$ref" '{ sha[$2] = $1 }
-        END { for (r in sha) if (r == "refs/tags/" ref "^{}") peeled = sha[r]
-              print peeled ? peeled : sha["refs/tags/" ref] ? sha["refs/tags/" ref] : sha["refs/heads/" ref] }')
+  commit=$(resolve_commit "$repo" "$ref")
   [ -n "$commit" ] || { echo "fetch-xml.sh: $ref not found in $repo" >&2; status=1; continue; }
   stamp="$commit $digest $script_sha"
   if [ "$(cat "$out/$name/.source" 2> /dev/null)" = "$stamp" ]; then
@@ -58,9 +56,7 @@ while read -r name repo ref; do
     echo "fetch-xml.sh: cannot check out $commit of $repo" >&2; status=1; continue
   fi
   rm -rf "${out:?}/$name"
-  # generate-pdi-xml.sh says why OUT's files are the host user's, and why the build tree is a tmpfs.
-  if docker run --rm --user root -v "$src":/work/src:ro -v "$out":/out -v "$here/xml":/xml:ro \
-       --tmpfs /work/build:exec "$pinned" sh /xml/generate-pdi-xml.sh "$name"; then
+  if generate_version "$pinned" "$src" "$out" "$name"; then
     printf '%s\n' "$stamp" > "$out/$name/.source"
     # The tags are split so that reuse doesn't read them in this script.
     printf '%s\n%s\n' "SPDX-""FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>" \
@@ -69,5 +65,5 @@ while read -r name repo ref; do
     echo "fetch-xml.sh: the generation of $name failed" >&2
     rm -rf "${out:?}/$name"; status=1
   fi
-done < "$here/xml/versions.txt"
+done < "$xml_dir/versions.txt"
 exit $status
