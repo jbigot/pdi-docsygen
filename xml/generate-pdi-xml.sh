@@ -60,14 +60,18 @@ clang=
 if doxygen -V | grep -qi clang; then
   clang="CLANG_ASSISTED_PARSING=YES CLANG_DATABASE_PATH=$build"
 fi
-# Doxygen's errors are not fatal to its exit status, and libclang that doesn't find a header falls
-# back silently to Doxygen's own parser: an `error:` line on stderr fails the generation.
+# Doxygen's errors don't change its exit status, and libclang that doesn't find a header falls back
+# silently to Doxygen's own parser: an `error:` line on stderr fails the generation. Once the image
+# has libclang, its diagnostics reach stderr through Doxygen's err(), which prints `error:` for
+# warnings too, and fail the generation on purpose: a header libclang can't parse is a hole in the
+# reference. WARN_LOGFILE is emptied so that nothing is diverted from stderr.
 {
   cat "$doxyfile"
   # shellcheck disable=SC2086 # $clang is a list of settings
   printf '%s\n' GENERATE_HTML=NO GENERATE_XML=YES "OUTPUT_DIRECTORY=$out" "XML_OUTPUT=$name" \
     XML_PROGRAMLISTING=NO QUIET=YES WARNINGS=NO WARN_IF_UNDOCUMENTED=NO WARN_IF_INCOMPLETE_DOC=NO \
-    WARN_IF_DOC_ERROR=NO SHOW_USED_FILES=NO VERBATIM_HEADERS=NO $clang
+    WARN_IF_DOC_ERROR=NO SHOW_USED_FILES=NO VERBATIM_HEADERS=NO WARN_LOGFILE= WARN_AS_ERROR=NO \
+    $clang
 } | doxygen - 2> "$build/doxygen.log" || { cat "$build/doxygen.log" >&2; exit 1; }
 cat "$build/doxygen.log" >&2
 if grep -E 'error:' "$build/doxygen.log" >&2; then

@@ -8,7 +8,8 @@
 # without its role checks, since each placement holds part of a tree, and tests/check_layout.py
 # with layout-expected.json: the titles of some pages, some links and version menus. The build
 # warns that the examples of the versions whose XML has the tutorial's page (PDI's tutorial
-# submodule is checked out) link to it as text: the tutorial comes from the latest release only.
+# submodule is checked out) link to it as text: the tutorial comes from the latest release only,
+# whose own warning is not tolerated.
 # No page has Doxygen's footer or source links. A second build must be identical: the adapter files
 # run in no fixed order. A development build (config/development: main and latest) must pass
 # check_layout.py --development.
@@ -24,8 +25,24 @@ if ! "$hugo" --source "$here" --baseURL / --printPathWarnings --destination "$tm
   cat "$tmp/log" >&2; exit 1
 fi
 status=0
+# The latest release must place the tutorial (content/_content.gotmpl): only the other versions
+# are expected to warn that their example links to it as text.
+latest=$(sed -n 's/.*"version" "\([^"]*\)" "latest" true.*/\1/p' "$here/content/_content.gotmpl")
+[ -n "$latest" ] || { echo "check.sh: no latest version in content/_content.gotmpl" >&2; exit 1; }
 tutorial='docsygen: /docs/[^ ]*/pdi_example links to Hands_on, which no page of version [^ ]* holds: rendered as text'
-if grep -E 'WARN|ERROR' "$tmp/log" | grep -vE "$tutorial" >&2; then status=1; fi
+# unexpected LOG: its WARN and ERROR lines, but for the tutorial's of the versions but the latest.
+unexpected() {
+  grep -E 'WARN|ERROR' "$1" | awk -v re="$tutorial" -v latest="$latest" \
+    '!($0 ~ re && index($0, "version " latest " holds") == 0)' || true
+}
+# The filter must keep the tutorial's warning of the latest release (a self-check).
+printf 'WARN  docsygen: /docs/%s/pdi_example links to Hands_on, which no page of version %s holds: rendered as text\n' \
+  "$latest" "$latest" > "$tmp/latest-warning"
+if [ -z "$(unexpected "$tmp/latest-warning")" ]; then
+  echo "check.sh: the tolerated tutorial warning covers the latest release ($latest)" >&2; exit 1
+fi
+unexpected "$tmp/log" > "$tmp/unexpected"
+if [ -s "$tmp/unexpected" ]; then cat "$tmp/unexpected" >&2; status=1; fi
 python3 -I "$here/tests/check.py" "$tmp/public" - - || status=1
 # Chroma's classes (markup.highlight.noClasses: false) need their rules in the CSS: Docsy's
 # `@import 'td/code-dark'` gives them, in light and dark mode. A few dozen at least, one per token.
@@ -51,7 +68,8 @@ fi
 if ! "$hugo" --source "$here" --baseURL / --environment development --destination "$tmp/dev" > "$tmp/dev.log" 2>&1; then
   cat "$tmp/dev.log" >&2; exit 1
 fi
-if grep -E 'WARN|ERROR' "$tmp/dev.log" | grep -vE "$tutorial" >&2; then status=1; fi
+unexpected "$tmp/dev.log" > "$tmp/unexpected"
+if [ -s "$tmp/unexpected" ]; then cat "$tmp/unexpected" >&2; status=1; fi
 python3 -I "$here/tests/check_layout.py" "$tmp/dev" "$here/layout-expected.json" --development || status=1
 [ $status -eq 0 ] && echo "check.sh: OK"
 exit $status
