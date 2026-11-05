@@ -46,8 +46,13 @@ jobs:
               case $name in '' | '#'*) continue ;; esac
               sha=$(resolve_commit "$repo" "$ref")
               [ -n "$sha" ] || { echo "$ref not found in $repo" >&2; exit 1; }
-              jq -cn --arg name "$name" --arg repo "$repo" --arg sha "$sha" \
-                '{name: $name, repo: $repo, sha: $sha}'
+              # actions/checkout takes OWNER/REPO, where versions.txt has the URL git needs.
+              case $repo in
+                https://github.com/*) slug=${repo#https://github.com/} ;;
+                *) echo "$repo: CI checks out GitHub repositories only" >&2; exit 1 ;;
+              esac
+              jq -cn --arg name "$name" --arg repo "$repo" --arg slug "${slug%.git}" --arg sha "$sha" \
+                '{name: $name, repo: $repo, slug: $slug, sha: $sha}'
             done < xml/versions.txt | jq -cs .
           )
           echo "$image resolves to $digest"
@@ -82,7 +87,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         uses: actions/checkout@v7
         with:
-          repository: ${{ matrix.version.repo }}
+          repository: ${{ matrix.version.slug }}
           ref: ${{ matrix.version.sha }}
           submodules: recursive
           path: pdi-src
