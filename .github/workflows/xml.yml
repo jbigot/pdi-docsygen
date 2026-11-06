@@ -64,9 +64,8 @@ jobs:
     needs: versions
     runs-on: ubuntu-latest
     name: xml (${{ matrix.version.name }})
-    # A version takes 1 to 2 minutes today. Once the image's Doxygen has libclang, a hang (more than
-    # 20 minutes single-threaded on main was seen) would hold the job for GitHub's 6 hours default:
-    # 30 minutes is generous headroom, and bounds the cost of a hang.
+    # A version takes 1 to 2 minutes: 30 minutes is generous headroom, and bounds the cost of a hang,
+    # which would otherwise hold the job for GitHub's 6 hours default.
     timeout-minutes: 30
     strategy:
       # The other versions finish and save their caches, which the next run restores; the run fails

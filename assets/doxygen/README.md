@@ -36,10 +36,10 @@ cmake -S pdi -B BUILD -DBUILD_DOCUMENTATION=ON -DBUILD_TESTING=OFF -DBUILD_FORTR
 Doxygen then runs with PDI's Doxyfile, from the directory that PDI's `doc` target runs it from, and
 these settings on top: XML only, `XML_PROGRAMLISTING=NO` (PDI's HTML has no source listings),
 `SHOW_USED_FILES=NO` and `VERBATIM_HEADERS=NO` (no "generated from the following file" footer, as in
-PDI's HTML), the warnings off, and, when the image's `doxygen -V` reports clang support,
-`CLANG_ASSISTED_PARSING=YES` with `CLANG_DATABASE_PATH` the build directory. The generation fails
-when Doxygen's stderr has an `error:` line: libclang that doesn't find a header falls back silently
-to Doxygen's own parser. Each XML file gets a `.license` file (REUSE).
+PDI's HTML), the warnings off, and `CLANG_ASSISTED_PARSING=NO`: Doxygen only uses libclang to link
+identifiers in source listings, which this XML leaves out, so it changes nothing here. The
+generation fails when Doxygen's stderr has an `error:` line. Each XML file gets a `.license` file
+(REUSE).
 
 The paths are fixed, so that two generations are identical, `Doxyfile.xml` included.
 

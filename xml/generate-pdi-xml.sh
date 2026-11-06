@@ -36,7 +36,7 @@ trap 'chown -R "$(stat -c %u:%g "$out")" "$out/$name" 2> /dev/null || true' EXIT
 configure() {
   cmake -S "$src/pdi" -B "$build" -DBUILD_DOCUMENTATION=ON -DBUILD_TESTING=OFF \
     -DBUILD_FORTRAN="$1" -DBUILD_BENCHMARKING=OFF -DBUILD_PYTHON=OFF \
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     > "$build/cmake.log" 2>&1
 }
 if ! configure OFF; then
@@ -54,24 +54,16 @@ if grep -q 'WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"' "$src/pdi/docs/CMak
 else
   cd "$src"
 fi
-# The Doxygen of the image may have no libclang; the first image that does gets clang-assisted
-# parsing, with the compilation database CMake just wrote.
-clang=
-if doxygen -V | grep -qi clang; then
-  clang="CLANG_ASSISTED_PARSING=YES CLANG_DATABASE_PATH=$build"
-fi
-# Doxygen's errors don't change its exit status, and libclang that doesn't find a header falls back
-# silently to Doxygen's own parser: an `error:` line on stderr fails the generation. Once the image
-# has libclang, its diagnostics reach stderr through Doxygen's err(), which prints `error:` for
-# warnings too, and fail the generation on purpose: a header libclang can't parse is a hole in the
-# reference. WARN_LOGFILE is emptied so that nothing is diverted from stderr.
+# Doxygen's errors don't change its exit status: an `error:` line on stderr fails the generation,
+# and WARN_LOGFILE is emptied so that nothing is diverted from stderr. No clang-assisted parsing,
+# even when the image's Doxygen has libclang: Doxygen only uses it to link identifiers in source
+# listings, which this XML leaves out, so it changes no byte of the XML and is about ten times slower.
 {
   cat "$doxyfile"
-  # shellcheck disable=SC2086 # $clang is a list of settings
   printf '%s\n' GENERATE_HTML=NO GENERATE_XML=YES "OUTPUT_DIRECTORY=$out" "XML_OUTPUT=$name" \
     XML_PROGRAMLISTING=NO QUIET=YES WARNINGS=NO WARN_IF_UNDOCUMENTED=NO WARN_IF_INCOMPLETE_DOC=NO \
     WARN_IF_DOC_ERROR=NO SHOW_USED_FILES=NO VERBATIM_HEADERS=NO WARN_LOGFILE= WARN_AS_ERROR=NO \
-    $clang
+    CLANG_ASSISTED_PARSING=NO
 } | doxygen - 2> "$build/doxygen.log" || { cat "$build/doxygen.log" >&2; exit 1; }
 cat "$build/doxygen.log" >&2
 if grep -E 'error:' "$build/doxygen.log" >&2; then
