@@ -19,10 +19,12 @@ Checks:
   - no `name` attribute on an <a>, nor an id of Doxygen's anchors (a<N>_…, r_…), which nothing
     links to;
   - no <p> holds a block element;
-  - no class but docsygen-*, Docsy's alert classes, mermaid and the Bootstrap classes docsygen uses
-    (badge, d-block, figure, figure-caption, fw-bold, mb-0, mb-3, small, text-bg-secondary,
+  - no class but docsygen-*, Docsy's alert classes, mermaid, Chroma's chroma and the Bootstrap
+    classes docsygen uses (badge, bg-transparent, border-top, d-block, figure, figure-caption,
+    fs-5, fw-bold, fw-normal, mb-0, mb-3, mt-4, pt-3, small, text-bg-secondary, text-body,
     text-body-secondary),
-    outside KaTeX's output (.katex*), the highlighted code (div.highlight) and the language-* class of
+    outside KaTeX's output (.katex*), the highlighted code (div.highlight, the tokens inside an
+    inline .chroma) and the language-* class of
     code that Chroma has no lexer for,
     on the pages of the test site (those that Docsy didn't lay out: without .td-content, nor a
     td-* class on <body>, as Docsy's home and community pages have; Docsy's classes are its
@@ -43,12 +45,12 @@ BLOCKS = {'div', 'table', 'ul', 'ol', 'dl', 'pre', 'p', 'blockquote', 'h1', 'h2'
 LEFTOVERS = ('{{<', '{{%', 'HAHAHUGOSHORTCODE', 'ZgotmplZ')
 # A heading that Markdown didn't read: a shortcode called as {{< >}} returns the Markdown it holds as text.
 HEADING_LEFT = re.compile(r'#{1,6} [^\n<]*\{#[\w:.-]+\}')
-ALLOWED = re.compile(r'^(docsygen-.*|alert|alert-.*|h4|mermaid|katex.*|language-.*|badge|d-block|figure|figure-caption|fw-bold|mb-0|mb-3|small|td-max-width-on-larger-screens|text-bg-secondary|text-body-secondary)$')
+ALLOWED = re.compile(r'^(docsygen-.*|alert|alert-.*|h4|mermaid|katex.*|language-.*|badge|bg-transparent|border-top|chroma|d-block|figure|figure-caption|fs-5|fw-bold|fw-normal|mb-0|mb-3|mt-4|pt-3|small|td-max-width-on-larger-screens|text-bg-secondary|text-body|text-body-secondary)$')
 
 
 def foreign_classes(node, out):
     """The classes of node and its descendants that ALLOWED rejects, as {class: count}, skipping
-    KaTeX's output and the highlighted code (div.highlight)."""
+    KaTeX's output and the highlighted code (div.highlight, and the tokens inside .chroma)."""
     for c in node.children:
         if not isinstance(c, htmltree.Node):
             continue
@@ -58,7 +60,8 @@ def foreign_classes(node, out):
         for x in cls:
             if not ALLOWED.match(x):
                 out[x] += 1
-        foreign_classes(c, out)
+        if 'chroma' not in cls:
+            foreign_classes(c, out)
 
 
 def walk(node):
