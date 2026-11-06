@@ -15,6 +15,9 @@
 # one's own (a PDI checkout): it is only a place to fetch a commit from when it has it, instead of
 # the network, and is never modified, nor is its working tree read: uncommitted work is safe. The
 # other commits are fetched from the REPO of xml/versions.txt, a commit at a time.
+# PDI_MAIN_REF, with PDI_SRC, names a ref of PDI_SRC (a branch, a tag or a commit, such as an
+# unpushed local branch) whose commit replaces the one main (NAME pdi) resolves to; the stamp has
+# that commit, so that main is generated again once the variable is unset.
 set -eu
 
 here=$(cd "$(dirname "$0")" && pwd)
@@ -43,7 +46,13 @@ while read -r name repo ref; do
   if [ $# -gt 0 ]; then
     case " $* " in *" $name "*) ;; *) continue ;; esac
   fi
-  commit=$(resolve_commit "$repo" "$ref")
+  if [ "$name" = pdi ] && [ -n "${PDI_MAIN_REF:-}" ]; then
+    [ -n "${PDI_SRC:-}" ] || { echo "fetch-xml.sh: PDI_MAIN_REF needs PDI_SRC" >&2; exit 1; }
+    ref=$PDI_MAIN_REF repo=$PDI_SRC
+    commit=$(git -C "$PDI_SRC" rev-parse -q --verify "$ref^{commit}" || true)
+  else
+    commit=$(resolve_commit "$repo" "$ref")
+  fi
   [ -n "$commit" ] || { echo "fetch-xml.sh: $ref not found in $repo" >&2; status=1; continue; }
   stamp="$commit $digest $scripts_sha"
   if [ "$(cat "$out/$name/.source" 2> /dev/null)" = "$stamp" ]; then

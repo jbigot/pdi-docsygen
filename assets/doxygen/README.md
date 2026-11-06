@@ -20,7 +20,10 @@ tracked.
    commit with `git ls-remote`, and checks it out with its submodules in a clone cached under
    `/var/tmp/pdi-docsygen/pdi` (`PDI_CACHE`), the only tree that is checked out and cleaned. `PDI_SRC` may name a PDI checkout of
    one's own: the commits it has are fetched from it instead of the network, and it is never
-   modified, working tree included;
+   modified, working tree included. With it, `PDI_MAIN_REF` names a ref of that checkout (a
+   branch, a tag or a commit, such as a local branch not pushed yet) that main, `pdi`, is generated
+   from instead of the ref of `versions.txt`: `PDI_SRC=~/pdi PDI_MAIN_REF=my-branch sh fetch-xml.sh
+   pdi`. CI never sets it;
 3. runs `xml/generate-pdi-xml.sh NAME` in the image, with the checkout read-only at `/work/src`
    and this directory at `/out`.
 
