@@ -20,8 +20,8 @@ Checks:
     links to;
   - no <p> holds a block element;
   - no class but docsygen-*, Docsy's alert classes, mermaid and the Bootstrap classes docsygen uses
-    (badge, d-block, figure, figure-caption, fw-bold, mb-0, mb-2, small, text-bg-secondary,
-    text-body-secondary, text-*-emphasis),
+    (badge, d-block, figure, figure-caption, fw-bold, mb-0, mb-3, small, text-bg-secondary,
+    text-body-secondary),
     outside KaTeX's output (.katex*), the highlighted code (div.highlight) and the language-* class of
     code that Chroma has no lexer for,
     on the pages of the test site (those that Docsy didn't lay out: without .td-content, nor a
@@ -43,7 +43,7 @@ BLOCKS = {'div', 'table', 'ul', 'ol', 'dl', 'pre', 'p', 'blockquote', 'h1', 'h2'
 LEFTOVERS = ('{{<', '{{%', 'HAHAHUGOSHORTCODE', 'ZgotmplZ')
 # A heading that Markdown didn't read: a shortcode called as {{< >}} returns the Markdown it holds as text.
 HEADING_LEFT = re.compile(r'#{1,6} [^\n<]*\{#[\w:.-]+\}')
-ALLOWED = re.compile(r'^(docsygen-.*|alert|alert-.*|h4|mermaid|katex.*|language-.*|badge|d-block|figure|figure-caption|fw-bold|mb-0|mb-2|small|td-max-width-on-larger-screens|text-bg-secondary|text-body-secondary|text-(primary|secondary|success|danger|warning|info|dark)-emphasis)$')
+ALLOWED = re.compile(r'^(docsygen-.*|alert|alert-.*|h4|mermaid|katex.*|language-.*|badge|d-block|figure|figure-caption|fw-bold|mb-0|mb-3|small|td-max-width-on-larger-screens|text-bg-secondary|text-body-secondary)$')
 
 
 def foreign_classes(node, out):
