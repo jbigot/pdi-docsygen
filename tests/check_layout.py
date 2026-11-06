@@ -2,13 +2,10 @@
 # SPDX-License-Identifier: MIT
 """Check the example site in PDI's organization (check.sh).
 
-Usage: python3 -I check_layout.py PUBLIC EXPECTED.json [--doxygen VERSION] [--development]
-EXPECTED.json is {"pages": {URL: TITLE}, "links": [[URL, HREF]], "links-doxygen-1.18": [[URL, HREF]],
-"menu": {URL: MENU}, "development": {"links": …, "menu": …}}; with --development, its development
-part is checked. "links-doxygen-1.18" are the links that only Doxygen 1.18 and later gives (1.17
-doesn't mark [[deprecated]] declarations): VERSION is the Doxygen that generated the XML, and below
-1.18 a line names the known regression instead of checking them, so that the check turns strict
-by itself with an image that has 1.18. Each check:
+Usage: python3 -I check_layout.py PUBLIC EXPECTED.json [--development]
+EXPECTED.json is {"pages": {URL: TITLE}, "links": [[URL, HREF]], "menu": {URL: MENU},
+"development": {"links": …, "menu": …}}; with --development, its development part is checked.
+Each check:
   - each page exists, and its <title> is TITLE, before Docsy's " | <site title>";
   - each page's main content links HREF (tests/check.py checks that every link resolves);
   - each page's version menu is MENU, as tests/site/check_versions.py reads it.
@@ -20,18 +17,9 @@ import htmltree
 from check_versions import menu
 
 
-def version_tuple(v):
-    return tuple(int(n) for n in re.findall(r'\d+', v)[:3])
-
-
 def main(argv):
     development = '--development' in argv
     argv = [a for a in argv if a != '--development']
-    doxygen = None
-    if '--doxygen' in argv:
-        i = argv.index('--doxygen')
-        doxygen = argv[i + 1]
-        del argv[i:i + 2]
     public, expected = argv
     with open(expected) as f:
         want = json.load(f)
@@ -40,17 +28,6 @@ def main(argv):
     errors = []
     texts = {}
     links = list(want.get('links', []))
-    since_1_18 = want.get('links-doxygen-1.18', [])
-    if since_1_18 and not development:
-        if doxygen is None:
-            errors.append('--doxygen VERSION is needed: the expectations have links of Doxygen 1.18')
-        elif version_tuple(doxygen) >= (1, 18):
-            links += since_1_18
-        else:
-            print(f'check_layout.py: Doxygen {doxygen} generated the XML: {len(since_1_18)} link(s) '
-                  f'not checked, known regression of Doxygen < 1.18, which does not mark [[deprecated]] '
-                  f'declarations (PDI::Datatype_template_ptr is not in the deprecated list); '
-                  f'an image with Doxygen 1.18 restores it and makes the check strict')
 
     def page(url):
         if url not in texts:

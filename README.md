@@ -13,7 +13,7 @@ patch release of every minor release since 1.0 (1.0.1, 1.1.0, 1.2.2, 1.3.1, 1.4.
 - the user documentation at `/docs/<version>/` (the guide's pages and the C API);
 - the plugins at `/plugins/<version>/`;
 - the plugin developer documentation at `/plugin-dev/<version>/` (how to create a plugin, the
-  plugin API and the deprecated list);
+  plugin API);
 - the tutorial at `/tutorial/<version>/`, from the latest release only.
 
 Each section redirects to its latest version, and the home and community pages come from PDI's

@@ -3,7 +3,7 @@
 # PDI's website, in docsygen's draft of it: four top-menu entries, each a docs section with its
 # own sidebar: the user documentation at /docs/<version>/ (the guide's pages and the C API), the
 # plugins at /plugins/<version>/, the plugin developer documentation at /plugin-dev/<version>/
-# (how to create a plugin, the plugin API and the deprecated list), and the tutorial at
+# (how to create a plugin, the plugin API), and the tutorial at
 # /tutorial/<version>/, from the latest release only. Each section redirects to its latest
 # version. The home and community pages come from PDI's new-site (github.com/pdidev/new-site),
 # with the community's links in params.links, which Docsy's footer shows too.

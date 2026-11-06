@@ -11,8 +11,7 @@
     "/plugin-dev/latest/api/": "Plugin API reference",
     "/plugin-dev/latest/api/pdi/datatype/": "PDI::Datatype",
     "/tutorial/latest/": "Hands-on tutorial",
-    "/community/": "Community",
-    "/plugin-dev/latest/api/deprecated/": "Deprecated List"
+    "/community/": "Community"
   },
   "links": [
     [
@@ -30,14 +29,6 @@
     [
       "/plugin-dev/1.7/api/pdi/datatype/",
       "/plugin-dev/1.7/api/pdi/datatype/#datatype"
-    ],
-    [
-      "/plugin-dev/latest/api/deprecated/",
-      "/docs/latest/c-api/error/#pdi_status_t-pdi_unavailable_deprecated"
-    ],
-    [
-      "/docs/latest/c-api/error/",
-      "/plugin-dev/latest/api/deprecated/#_deprecated000001"
     ],
     [
       "/docs/latest/concepts/",
@@ -58,12 +49,6 @@
     [
       "/docs/latest/pdi_example/",
       "/tutorial/latest/"
-    ]
-  ],
-  "links-doxygen-1.18": [
-    [
-      "/plugin-dev/latest/api/deprecated/",
-      "/plugin-dev/latest/api/pdi/#datatype_template_ptr"
     ]
   ],
   "menu": {
