@@ -3,9 +3,9 @@
 # The versions of PDI whose reference the site renders: NAME REPO REF, one per line, where NAME is
 # the directory under assets/doxygen/ (and what content/_content.gotmpl calls it), and REF a tag or
 # a branch of REPO. ../fetch-xml.sh resolves each REF to a commit when it runs.
-# main is the tip of jbigot's spectree_paths_doc; it moves to https://github.com/pdidev/pdi main
-# once spectree_paths_doc merges.
-pdi https://github.com/jbigot/pdi spectree_paths_doc
+# main is the tip of jbigot's doc_rework; it moves to https://github.com/pdidev/pdi main once
+# doc_rework merges.
+pdi https://github.com/jbigot/pdi doc_rework
 pdi-1.12 https://github.com/pdidev/pdi 1.12.0
 pdi-1.11 https://github.com/pdidev/pdi 1.11.2
 pdi-1.10 https://github.com/pdidev/pdi 1.10.1
