@@ -7,9 +7,9 @@
 # The build fails on any WARN or ERROR (--printPathWarnings included). Then tests/check.py
 # without its role checks, since each placement holds part of a tree, and tests/check_layout.py
 # with layout-expected.json: the titles of some pages, some links and version menus. The build
-# warns that the examples of the versions whose XML has the tutorial's page (PDI's tutorial
-# submodule is checked out) link to it as text: the tutorial comes from the latest release only,
-# whose own warning is not tolerated.
+# warns that the examples and main pages of the versions whose XML has the tutorial's page (PDI's
+# tutorial submodule is checked out) link to it as text: the tutorial comes from the latest
+# release only, whose own warning is not tolerated.
 # No page has Doxygen's footer or source links. A second build must be identical: the adapter files
 # run in no fixed order. A development build (config/development: main and latest) must pass
 # check_layout.py --development.
@@ -26,10 +26,10 @@ if ! "$hugo" --source "$here" --baseURL / --printPathWarnings --destination "$tm
 fi
 status=0
 # The latest release must place the tutorial (content/_content.gotmpl): only the other versions
-# are expected to warn that their example links to it as text.
+# are expected to warn that their example and their main page link to it as text.
 latest=$(sed -n 's/.*"version" "\([^"]*\)" "latest" true.*/\1/p' "$here/content/_content.gotmpl")
 [ -n "$latest" ] || { echo "check.sh: no latest version in content/_content.gotmpl" >&2; exit 1; }
-tutorial='docsygen: /docs/[^ ]*/pdi_example links to Hands_on, which no page of version [^ ]* holds: rendered as text'
+tutorial='docsygen: /docs/[^ /]*(/pdi_example)? links to Hands_on, which no page of version [^ ]* holds: rendered as text'
 # unexpected LOG: its WARN and ERROR lines, but for the tutorial's of the versions but the latest.
 unexpected() {
   grep -E 'WARN|ERROR' "$1" | awk -v re="$tutorial" -v latest="$latest" \

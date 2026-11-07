@@ -7,6 +7,7 @@
     "/docs/1.7/c-api/annotation/": "Code annotation",
     "/plugins/latest/": "Plugins",
     "/plugins/latest/trace_plugin/": "Trace plugin",
+    "/plugin-dev/latest/": "PDI 1.12",
     "/plugin-dev/latest/how_to_create_plugin/": "How to create a plugin",
     "/plugin-dev/latest/api/": "Plugin API reference",
     "/plugin-dev/latest/api/pdi/datatype/": "PDI::Datatype",
@@ -14,6 +15,14 @@
     "/community/": "Community"
   },
   "links": [
+    [
+      "/docs/latest/",
+      "/docs/latest/installation/"
+    ],
+    [
+      "/plugin-dev/1.4/",
+      "/plugin-dev/1.4/api/"
+    ],
     [
       "/docs/latest/first_steps/",
       "/plugins/latest/trace_plugin/"
