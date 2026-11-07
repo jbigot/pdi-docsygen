@@ -4,8 +4,10 @@
 # Build the site and check it.
 #
 # Usage: sh check.sh
-# The build fails on any WARN or ERROR (--printPathWarnings included). Then tests/check.py
-# without its role checks, since each placement holds part of a tree, and tests/check_layout.py
+# The build fails on any WARN or ERROR (--printPathWarnings included). Then docsygen's
+# tools/check.py (from the checkout local.sh uses) without its role checks, since each placement
+# holds part of a tree, its tools/check_redirects.py on each section's latest release, and
+# tests/check_layout.py
 # with layout-expected.json: the titles of some pages, some links and version menus. The build
 # warns that the examples and main pages of the versions whose XML has the tutorial's page (PDI's
 # tutorial submodule is checked out) link to it as text: the tutorial comes from the latest
@@ -17,6 +19,10 @@
 set -eu
 
 . "$(dirname "$0")/local.sh"
+# docsygen's checks of a built site, and the htmltree.py that tests/check_*.py import.
+DOCSYGEN_TOOLS=$docsygen/tools
+[ -f "$DOCSYGEN_TOOLS/check.py" ] || { echo "check.sh: $DOCSYGEN_TOOLS/check.py is missing: set DOCSYGEN_SRC to a docsygen checkout" >&2; exit 1; }
+export DOCSYGEN_TOOLS
 hugo=${HUGO:-hugo}
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
@@ -43,7 +49,11 @@ if [ -z "$(unexpected "$tmp/latest-warning")" ]; then
 fi
 unexpected "$tmp/log" > "$tmp/unexpected"
 if [ -s "$tmp/unexpected" ]; then cat "$tmp/unexpected" >&2; status=1; fi
-python3 -I "$here/tests/check.py" "$tmp/public" - - || status=1
+python3 -I "$DOCSYGEN_TOOLS/check.py" "$tmp/public" - - || status=1
+# Every page of the latest release has a redirect at its numbered path, in each section.
+for section in docs plugins plugin-dev tutorial; do
+  python3 -I "$DOCSYGEN_TOOLS/check_redirects.py" "$tmp/public" "/$section/latest/" "/$section/$latest/" || status=1
+done
 # Chroma's classes (markup.highlight.noClasses: false) need their rules in the CSS: Docsy's
 # `@import 'td/code-dark'` gives them, in light and dark mode. A few dozen at least, one per token.
 rules=$(find "$tmp/public" -name '*.css' -exec grep -oh '\.chroma [^{]*{' {} + | wc -l)

@@ -33,19 +33,19 @@
     ],
     [
       "/docs/latest/c-api/annotation/",
-      "/docs/latest/c-api/annotation/#pdi_share"
+      "/docs/latest/c-api/annotation/#dg-pdi_share"
     ],
     [
       "/plugin-dev/1.7/api/pdi/datatype/",
-      "/plugin-dev/1.7/api/pdi/datatype/#datatype"
+      "/plugin-dev/1.7/api/pdi/datatype/#dg-datatype"
     ],
     [
       "/docs/latest/concepts/",
-      "/docs/latest/c-api/annotation/#pdi_event"
+      "/docs/latest/c-api/annotation/#dg-pdi_event"
     ],
     [
       "/plugin-dev/latest/api/pdi/datatype/",
-      "/plugin-dev/latest/api/pdi/array_datatype/#datasize"
+      "/plugin-dev/latest/api/pdi/array_datatype/#dg-datasize"
     ],
     [
       "/plugins/latest/",
