@@ -21,3 +21,19 @@
     margin-inline-end: auto;
   }
 }
+
+// Code in a heading looks like the rest of the heading (its color and size), so that a heading
+// made only of code, such as the specification tree reference's, reads as a heading.
+.td-content > :is(h2, h3, h4, h5, h6) code {
+  color: inherit;
+  font-size: inherit;
+}
+
+// An h2 stands apart from the h3 below it, which Docsy's styles barely do: more space above it, a
+// little bolder, and a rule under it.
+.td-content > h2 {
+  font-weight: 600;
+  margin-top: 3rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--bs-border-color);
+}
