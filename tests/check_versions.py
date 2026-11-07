@@ -13,6 +13,7 @@ Exit 1 on any difference.
 """
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+if 'DOCSYGEN_TOOLS' in os.environ: sys.path.insert(0, os.environ['DOCSYGEN_TOOLS'])
 import htmltree
 
 
