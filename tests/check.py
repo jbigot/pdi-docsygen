@@ -29,8 +29,8 @@ Checks:
     on the pages of the test site (those that Docsy didn't lay out: without .td-content, nor a
     td-* class on <body>, as Docsy's home and community pages have; Docsy's classes are its
     business);
-  - no {{<, {{%, HAHAHUGOSHORTCODE, ZgotmplZ or heading with its {#id} as text (what a docsygen
-    shortcode called as {{< >}} leaves) is left;
+  - no {{< or {{% out of code, nor HAHAHUGOSHORTCODE, ZgotmplZ or heading with its {#id} as
+    text (what a docsygen shortcode called as {{< >}} leaves) is left;
   - PUBLIC has a page, and with --under, DIR has one;
   - with --links, the hrefs of PAGE's main element (a path under PUBLIC) are, in order, the list
     of EXPECTED.json.
@@ -101,10 +101,12 @@ def main(argv):
         rel = os.path.relpath(path, public)
         printed = rel.split(os.sep)[0] == '_print'
         in_root = root_url != '-' and ('/' + rel.replace(os.sep, '/')).startswith(root_url)
-        # {{% is what a page shows of a shortcode call it documents, in code (Hugo can't escape it).
+        # Shortcode delimiters are only leftovers out of code: {{% is what a page shows of a
+        # shortcode call it documents (Hugo can't escape it), and {{< what Chroma makes of a {{
+        # followed by a token's tag, as in C's {{0}}.
         prose = re.sub(r'<(pre|code)\b.*?</\1>', '', text, flags=re.S)
         for s in LEFTOVERS:
-            if s in (prose if s == '{{%' else text):
+            if s in (prose if s in ('{{%', '{{<') else text):
                 errors.append(f'{rel}: {s} left')
         if HEADING_LEFT.search(text):
             errors.append(f'{rel}: a heading with its {{#id}} left as text')
