@@ -61,6 +61,9 @@ artifact named after the version, which the site's job downloads into `assets/do
 key is `pdi-xml-NAME-COMMIT-DIGEST-SCRIPTS_HASH`: the PDI commit, the image digest and a hash of
 the generation scripts (`xml/generate-pdi-xml.sh`, `xml/lib.sh`). A version that fails to generate fails the run: the site is never built
 without it.
+The check and the build share their setup (`.github/actions/setup`), which caches `node_modules`
+under the hash of `package-lock.json`: npm, and the download of Hugo from GitHub's releases that
+installing `hugo-extended` makes, only run when the lock file changes.
 
 Nothing runs on a schedule or on PDI's pushes while the site is a prototype: a rebuild comes from a
 push, a pull request or a manual run. What the XML then depends on is re-resolved each time: a push

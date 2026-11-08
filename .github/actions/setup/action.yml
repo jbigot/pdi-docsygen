@@ -1,0 +1,45 @@
+# SPDX-FileCopyrightText: 2026 Julien Bigot <julien@julien-bigot.fr>
+# SPDX-License-Identifier: MIT
+# What website.yml's check and build jobs share, after their checkout of this repository into
+# pdi-docsygen/: docsygen next to it, the XML that xml.yml made, Go for Hugo's modules, and the npm
+# dependencies (Hugo, Dart Sass, Bootstrap, Font Awesome). node_modules is cached under the lock
+# file's hash: hugo-extended downloads Hugo from GitHub's releases when it installs, and a timeout
+# there failed whole runs; on a hit, npm doesn't run at all.
+name: Set up the site's build
+description: docsygen, the XML, Go and the npm dependencies, for website.yml's jobs
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout docsygen
+      uses: actions/checkout@v7
+      with:
+        repository: jbigot/docsygen
+        path: docsygen
+    - name: Download the XML
+      uses: actions/download-artifact@v8
+      with:
+        pattern: pdi*
+        path: pdi-docsygen/assets/doxygen
+    - name: Set up Go
+      uses: actions/setup-go@v7
+      with:
+        go-version: stable
+        cache-dependency-path: pdi-docsygen/go.sum
+    - name: Set up Node.js
+      uses: actions/setup-node@v7
+      with:
+        node-version: 24
+    - name: Restore the npm dependencies
+      id: npm-cache
+      uses: actions/cache@v6
+      with:
+        path: pdi-docsygen/node_modules
+        key: node_modules-${{ runner.os }}-${{ runner.arch }}-node24-${{ hashFiles('pdi-docsygen/package-lock.json') }}
+    - name: Install npm dependencies (Hugo, Dart Sass, Bootstrap, Font Awesome)
+      if: steps.npm-cache.outputs.cache-hit != 'true'
+      shell: bash
+      working-directory: pdi-docsygen
+      run: |
+        npm install --global npm@11
+        npm ci
