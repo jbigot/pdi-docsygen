@@ -14,10 +14,10 @@ patch release of every minor release since 1.0 (1.0.1, 1.1.0, 1.2.2, 1.3.1, 1.4.
 - the plugins at `/plugins/<version>/`;
 - the plugin developer documentation at `/plugin-dev/<version>/` (how to create a plugin, the
   plugin API);
-- the tutorial at `/tutorial/<version>/`, from the latest release only.
+- the tutorial at `/tutorial/main/`, from `main` only, with PDI's example as its subpage.
 
-Each section redirects to its latest version, and the home and community pages come from PDI's
-[new-site](https://github.com/pdidev/new-site). It is published at
+Each section redirects to its latest version, the tutorial to `main`, and the home and community
+pages come from PDI's [new-site](https://github.com/pdidev/new-site). It is published at
 <https://jbigot.github.io/pdi-docsygen/>.
 
 ## Build

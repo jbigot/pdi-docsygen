@@ -6,36 +6,35 @@ SPDX-License-Identifier: MIT
        documentation at /docs/<version>/ (the guide's pages and the C API's topics), the plugins
        at /plugins/<version>/, the plugin developer documentation at /plugin-dev/<version>/ (how
        to create a plugin, the namespaces among them, without what the C API's topics already
-       document), and the tutorial at /tutorial/<version>/, from the latest release only. The
+       document), and the tutorial at /tutorial/main/, from main only, with PDI's example as its
+       subpage: the example is in no other version's user documentation. The
        user documentation's landing page is PDI's main page, About; the plugin developers' is
        assets/landing/plugin-dev.md, one text for every version. Both are placed first:
        docsygen stops the build when a page lands where a call already added a section above its
        pages. */ -}}
-{{- /* What each version has. The user pages: PDI_example up to 1.4 and from 1.9, FAQ from 1.3. How to create a plugin is a subpage of the
+{{- /* What each version has. The user pages: FAQ from 1.3. How to create a plugin is a subpage of the
        Plugins page up to 1.8, and is placed apart with the plugin developers' pages: up to 1.4, the plugins' pages are
        subpages too, so the Plugins page keeps them and marks this one as a duplicate; in 1.5 to
        1.8 it is the only subpage, and the Plugins page is placed alone. */ -}}
 {{- $pluginDev := (resources.Get "landing/plugin-dev.md").Content -}}
 {{- $plugins_with_howto := dict "duplicate" (slice "page:how_to_create_plugin") -}}
 {{- $versions := slice
-    (dict "dir" "doxygen/pdi" "version" "main" "example" true "faq" true)
-    (dict "dir" "doxygen/pdi-1.12" "version" "1.12" "latest" true "example" true "faq" true)
-    (dict "dir" "doxygen/pdi-1.11" "version" "1.11" "example" true "faq" true)
-    (dict "dir" "doxygen/pdi-1.10" "version" "1.10" "example" true "faq" true)
-    (dict "dir" "doxygen/pdi-1.9" "version" "1.9" "example" true "faq" true)
+    (dict "dir" "doxygen/pdi" "version" "main" "tutorial" true "faq" true)
+    (dict "dir" "doxygen/pdi-1.12" "version" "1.12" "latest" true "faq" true)
+    (dict "dir" "doxygen/pdi-1.11" "version" "1.11" "faq" true)
+    (dict "dir" "doxygen/pdi-1.10" "version" "1.10" "faq" true)
+    (dict "dir" "doxygen/pdi-1.9" "version" "1.9" "faq" true)
     (dict "dir" "doxygen/pdi-1.8" "version" "1.8" "faq" true "plugins" (dict "children" false))
     (dict "dir" "doxygen/pdi-1.7" "version" "1.7" "faq" true "plugins" (dict "children" false))
     (dict "dir" "doxygen/pdi-1.6" "version" "1.6" "faq" true "plugins" (dict "children" false))
     (dict "dir" "doxygen/pdi-1.5" "version" "1.5" "faq" true "plugins" (dict "children" false))
-    (dict "dir" "doxygen/pdi-1.4" "version" "1.4" "example" true "faq" true "plugins" $plugins_with_howto)
-    (dict "dir" "doxygen/pdi-1.3" "version" "1.3" "example" true "faq" true "plugins" $plugins_with_howto)
-    (dict "dir" "doxygen/pdi-1.2" "version" "1.2" "example" true "plugins" $plugins_with_howto)
-    (dict "dir" "doxygen/pdi-1.1" "version" "1.1" "example" true "plugins" $plugins_with_howto)
-    (dict "dir" "doxygen/pdi-1.0" "version" "1.0" "example" true "plugins" $plugins_with_howto) -}}
+    (dict "dir" "doxygen/pdi-1.4" "version" "1.4" "faq" true "plugins" $plugins_with_howto)
+    (dict "dir" "doxygen/pdi-1.3" "version" "1.3" "faq" true "plugins" $plugins_with_howto)
+    (dict "dir" "doxygen/pdi-1.2" "version" "1.2" "plugins" $plugins_with_howto)
+    (dict "dir" "doxygen/pdi-1.1" "version" "1.1" "plugins" $plugins_with_howto)
+    (dict "dir" "doxygen/pdi-1.0" "version" "1.0" "plugins" $plugins_with_howto) -}}
 {{- range $versions -}}
-  {{- $user := slice "page:Installation" "page:PDI_usage" "page:Concepts" "page:First_steps" -}}
-  {{- if .example -}}{{- $user = $user | append "page:PDI_example" -}}{{- end -}}
-  {{- $user = $user | append "page:Specification_tree_ref" "topics" -}}
+  {{- $user := slice "page:Installation" "page:PDI_usage" "page:Concepts" "page:First_steps" "page:Specification_tree_ref" "topics" -}}
   {{- if .faq -}}{{- $user = $user | append "page:FAQ" -}}{{- end -}}
   {{- $v := dict "store" $ "dir" .dir "version" .version "latest" (.latest | default false) "initializers" false -}}
   {{- partial "docsygen/adapter.html" (merge $v (dict "path" "docs/:version" "select" "" "children" false)) -}}
@@ -52,7 +51,8 @@ SPDX-License-Identifier: MIT
       "weight" 10)) -}}
   {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugin-dev/:version/api" "select" "api" "title" "Plugin API reference" "weight" 20
       "topicMembers" false)) -}}
-  {{- if .latest -}}
+  {{- if .tutorial -}}
     {{- partial "docsygen/adapter.html" (merge $v (dict "path" "tutorial/:version" "select" "page:Hands_on")) -}}
+    {{- partial "docsygen/adapter.html" (merge $v (dict "path" "tutorial/:version/pdi_example" "select" "page:PDI_example" "weight" 10)) -}}
   {{- end -}}
 {{- end -}}

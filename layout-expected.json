@@ -11,7 +11,8 @@
     "/plugin-dev/latest/how_to_create_plugin/": "How to create a plugin",
     "/plugin-dev/latest/api/": "Plugin API reference",
     "/plugin-dev/latest/api/pdi/datatype/": "PDI::Datatype",
-    "/tutorial/latest/": "Hands-on tutorial",
+    "/tutorial/main/": "Hands-on tutorial",
+    "/tutorial/main/pdi_example/": "PDI examples",
     "/community/": "Community"
   },
   "links": [
@@ -56,8 +57,20 @@
       "/plugin-dev/1.7/how_to_create_plugin/"
     ],
     [
-      "/docs/latest/pdi_example/",
-      "/tutorial/latest/"
+      "/docs/main/",
+      "/tutorial/main/"
+    ],
+    [
+      "/docs/main/",
+      "/tutorial/main/pdi_example/"
+    ],
+    [
+      "/tutorial/main/",
+      "/tutorial/main/pdi_example/"
+    ],
+    [
+      "/tutorial/main/pdi_example/",
+      "/tutorial/main/"
     ]
   ],
   "menu": {

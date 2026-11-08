@@ -7,5 +7,5 @@ outputs: [HTML]
 sitemap:
   disable: true
 params:
-  redirect: /tutorial/latest
+  redirect: /tutorial/main
 ---

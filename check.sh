@@ -9,9 +9,9 @@
 # holds part of a tree, its tools/check_redirects.py on each section's latest release, and
 # tests/check_layout.py
 # with layout-expected.json: the titles of some pages, some links and version menus. The build
-# warns that the examples and main pages of the versions whose XML has the tutorial's page (PDI's
-# tutorial submodule is checked out) link to it as text: the tutorial comes from the latest
-# release only, whose own warning is not tolerated.
+# warns that the main pages of the versions whose XML has the tutorial's and the example's pages
+# link to them as text: the tutorial and its example come from main only, whose own warnings are
+# not tolerated.
 # No page has Doxygen's footer or source links. A second build must be identical: the adapter files
 # run in no fixed order. A development build (config/development: main and latest) must pass
 # check_layout.py --development.
@@ -31,27 +31,31 @@ if ! "$hugo" --source "$here" --baseURL / --printPathWarnings --destination "$tm
   cat "$tmp/log" >&2; exit 1
 fi
 status=0
-# The latest release must place the tutorial (content/_content.gotmpl): only the other versions
-# are expected to warn that their example and their main page link to it as text.
 latest=$(sed -n 's/.*"version" "\([^"]*\)" "latest" true.*/\1/p' "$here/content/_content.gotmpl")
 [ -n "$latest" ] || { echo "check.sh: no latest version in content/_content.gotmpl" >&2; exit 1; }
-tutorial='docsygen: /docs/[^ /]*(/pdi_example)? links to Hands_on, which no page of version [^ ]* holds: rendered as text'
-# unexpected LOG: its WARN and ERROR lines, but for the tutorial's of the versions but the latest.
+# The version that places the tutorial and its example (content/_content.gotmpl): only the other
+# versions are expected to warn that their main page links to them as text.
+tutorial_version=$(sed -n 's/.*"version" "\([^"]*\)" "tutorial" true.*/\1/p' "$here/content/_content.gotmpl")
+[ -n "$tutorial_version" ] || { echo "check.sh: no tutorial version in content/_content.gotmpl" >&2; exit 1; }
+tutorial='docsygen: /docs/[^ /]* links to (Hands_on|PDI_example), which no page of version [^ ]* holds: rendered as text'
+# unexpected LOG: its WARN and ERROR lines, but for the tutorial's of the versions without it.
 unexpected() {
-  grep -E 'WARN|ERROR' "$1" | awk -v re="$tutorial" -v latest="$latest" \
-    '!($0 ~ re && index($0, "version " latest " holds") == 0)' || true
+  grep -E 'WARN|ERROR' "$1" | awk -v re="$tutorial" -v mine="$tutorial_version" \
+    '!($0 ~ re && index($0, "version " mine " holds") == 0)' || true
 }
-# The filter must keep the tutorial's warning of the latest release (a self-check).
-printf 'WARN  docsygen: /docs/%s/pdi_example links to Hands_on, which no page of version %s holds: rendered as text\n' \
-  "$latest" "$latest" > "$tmp/latest-warning"
-if [ -z "$(unexpected "$tmp/latest-warning")" ]; then
-  echo "check.sh: the tolerated tutorial warning covers the latest release ($latest)" >&2; exit 1
+# The filter must keep the warnings of the version that places the tutorial (a self-check).
+for page in Hands_on PDI_example; do
+  printf 'WARN  docsygen: /docs/%s links to %s, which no page of version %s holds: rendered as text\n' \
+    "$tutorial_version" "$page" "$tutorial_version"
+done > "$tmp/tutorial-warning"
+if [ "$(unexpected "$tmp/tutorial-warning" | wc -l)" -ne 2 ]; then
+  echo "check.sh: the tolerated tutorial warnings cover the version that places it ($tutorial_version)" >&2; exit 1
 fi
 unexpected "$tmp/log" > "$tmp/unexpected"
 if [ -s "$tmp/unexpected" ]; then cat "$tmp/unexpected" >&2; status=1; fi
 python3 -I "$DOCSYGEN_TOOLS/check.py" "$tmp/public" - - || status=1
-# Every page of the latest release has a redirect at its numbered path, in each section.
-for section in docs plugins plugin-dev tutorial; do
+# Every page of the latest release has a redirect at its numbered path, in each versioned section.
+for section in docs plugins plugin-dev; do
   python3 -I "$DOCSYGEN_TOOLS/check_redirects.py" "$tmp/public" "/$section/latest/" "/$section/$latest/" || status=1
 done
 # Chroma's classes (markup.highlight.noClasses: false) need their rules in the CSS: Docsy's
