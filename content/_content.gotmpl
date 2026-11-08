@@ -37,7 +37,7 @@ SPDX-License-Identifier: MIT
   {{- if .example -}}{{- $user = $user | append "page:PDI_example" -}}{{- end -}}
   {{- $user = $user | append "page:Specification_tree_ref" "topics" -}}
   {{- if .faq -}}{{- $user = $user | append "page:FAQ" -}}{{- end -}}
-  {{- $v := dict "store" $ "dir" .dir "version" .version "latest" (.latest | default false) -}}
+  {{- $v := dict "store" $ "dir" .dir "version" .version "latest" (.latest | default false) "initializers" false -}}
   {{- partial "docsygen/adapter.html" (merge $v (dict "path" "docs/:version" "select" "" "children" false)) -}}
   {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugin-dev/:version" "content" $pluginDev)) -}}
   {{- range $i, $select := $user -}}
