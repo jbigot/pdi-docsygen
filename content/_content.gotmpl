@@ -12,18 +12,21 @@ SPDX-License-Identifier: MIT
        assets/landing/plugin-dev.md, one text for every version. Both are placed first:
        docsygen stops the build when a page lands where a call already added a section above its
        pages. */ -}}
-{{- /* What each version has. How to create a plugin is the only subpage of the Plugins page in 1.8,
-       and is placed apart with the plugin developers' pages: the Plugins page of 1.8 is placed
-       alone. */ -}}
+{{- /* What each version has. How to create a plugin is page:how_to_create_a_plugin from 1.14, and
+       page:how_to_create_plugin up to 1.13 (howto); it is placed at the same path whatever its
+       name, so that the version menu goes from one to the other. It is the only subpage of the
+       Plugins page in 1.8, and is placed apart with the plugin developers' pages: the Plugins page
+       of 1.8 is placed alone. */ -}}
 {{- $pluginDev := (resources.Get "landing/plugin-dev.md").Content -}}
+{{- $howto := "page:how_to_create_plugin" -}}
 {{- $versions := slice
     (dict "dir" "doxygen/pdi" "version" "main" "tutorial" true)
-    (dict "dir" "doxygen/pdi-1.13" "version" "1.13" "latest" true)
-    (dict "dir" "doxygen/pdi-1.12" "version" "1.12")
-    (dict "dir" "doxygen/pdi-1.11" "version" "1.11")
-    (dict "dir" "doxygen/pdi-1.10" "version" "1.10")
-    (dict "dir" "doxygen/pdi-1.9" "version" "1.9")
-    (dict "dir" "doxygen/pdi-1.8" "version" "1.8" "plugins" (dict "children" false)) -}}
+    (dict "dir" "doxygen/pdi-1.13" "version" "1.13" "latest" true "howto" $howto)
+    (dict "dir" "doxygen/pdi-1.12" "version" "1.12" "howto" $howto)
+    (dict "dir" "doxygen/pdi-1.11" "version" "1.11" "howto" $howto)
+    (dict "dir" "doxygen/pdi-1.10" "version" "1.10" "howto" $howto)
+    (dict "dir" "doxygen/pdi-1.9" "version" "1.9" "howto" $howto)
+    (dict "dir" "doxygen/pdi-1.8" "version" "1.8" "howto" $howto "plugins" (dict "children" false)) -}}
 {{- range $versions -}}
   {{- $user := slice "page:Installation" "page:PDI_usage" "page:Concepts" "page:First_steps" "page:Specification_tree_ref" "topics" "page:FAQ" -}}
   {{- $v := dict "store" $ "dir" .dir "version" .version "latest" (.latest | default false) "initializers" false -}}
@@ -37,7 +40,7 @@ SPDX-License-Identifier: MIT
     {{- partial "docsygen/adapter.html" $call -}}
   {{- end -}}
   {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugins/:version" "select" "page:Plugins") (.plugins | default dict)) -}}
-  {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugin-dev/:version/how_to_create_plugin" "select" "page:how_to_create_plugin"
+  {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugin-dev/:version/how_to_create_plugin" "select" (.howto | default "page:how_to_create_a_plugin")
       "weight" 10)) -}}
   {{- partial "docsygen/adapter.html" (merge $v (dict "path" "plugin-dev/:version/api" "select" "api" "title" "Plugin API reference" "weight" 20
       "topicMembers" false)) -}}
