@@ -6,16 +6,9 @@
 # main is the tip of jbigot's doc_rework; it moves to https://github.com/pdidev/pdi main once
 # doc_rework merges.
 pdi https://github.com/jbigot/pdi doc_rework
+pdi-1.13 https://github.com/pdidev/pdi 1.13.0
 pdi-1.12 https://github.com/pdidev/pdi 1.12.0
 pdi-1.11 https://github.com/pdidev/pdi 1.11.2
 pdi-1.10 https://github.com/pdidev/pdi 1.10.1
 pdi-1.9 https://github.com/pdidev/pdi 1.9.3
 pdi-1.8 https://github.com/pdidev/pdi 1.8.3
-pdi-1.7 https://github.com/pdidev/pdi 1.7.1-gh
-pdi-1.6 https://github.com/pdidev/pdi 1.6.0-gh
-pdi-1.5 https://github.com/pdidev/pdi 1.5.5-gh
-pdi-1.4 https://github.com/pdidev/pdi 1.4.3-gh
-pdi-1.3 https://github.com/pdidev/pdi 1.3.1-gh
-pdi-1.2 https://github.com/pdidev/pdi 1.2.2-gh
-pdi-1.1 https://github.com/pdidev/pdi 1.1.0-gh
-pdi-1.0 https://github.com/pdidev/pdi 1.0.1-gh

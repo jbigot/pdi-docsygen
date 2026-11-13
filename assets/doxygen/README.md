@@ -58,19 +58,17 @@ in `../../xml/lib.sh`.
 
 ## Notes on the old releases
 
-- A release configured with `BUILD_FORTRAN=OFF` has no Fortran interface in its pages when its
-  `pdif.h`, which zpp generates, is an input of the Doxyfile: Doxygen warns that the input is
-  missing and skips it (1.0 to 1.7 do). 1.8 to 1.10 can't configure without Fortran, and are
-  configured with `BUILD_FORTRAN=ON` (the script retries by itself), which gives their Fortran
-  pages. The vendored zpp of 1.8 predates CMake 4: `CMAKE_POLICY_VERSION_MINIMUM=3.5`.
+- 1.8 to 1.10 can't configure without Fortran, and are configured with `BUILD_FORTRAN=ON` (the
+  script retries by itself), which gives their Fortran pages. The vendored zpp of 1.8 predates
+  CMake 4: `CMAKE_POLICY_VERSION_MINIMUM=3.5`.
 - Doxygen warns that `DOT_MULTI_TARGETS` is obsolete in all the Doxyfiles, and ignores it.
-- With the tutorial submodule checked out, 1.0 to 1.4 and 1.9 to 1.12 have a Hands-on page; only the
-  latest release's is rendered (`content/_content.gotmpl`), and `check.sh` expects the warnings of
-  the other versions' examples, which link to it.
+- With the tutorial submodule checked out, 1.9 to 1.13 have a Hands-on page; only the latest
+  release's is rendered (`content/_content.gotmpl`), and `check.sh` expects the warnings of the
+  other versions' examples, which link to it.
 - The image's Doxygen is 1.17.0, which doesn't mark `[[deprecated]]` declarations as 1.18 does: it
   has no deprecated label and no entry in the deprecated list for them. What is lost, against 1.18:
-  - `PDI::Datatype_template_ptr` has no "Deprecated" label on `/plugin-dev/{1.8 to 1.12,latest,main}/api/pdi/`,
-    and is missing from the deprecated list of 1.11, 1.12 (latest) and main;
+  - `PDI::Datatype_template_ptr` has no "Deprecated" label on `/plugin-dev/{1.8 to 1.13,latest,main}/api/pdi/`,
+    and is missing from the deprecated list of 1.11 to 1.13 (latest) and main;
   - on main, the note "use Timer_event_handler instead" is missing;
   - 1.8 to 1.10, whose only deprecated entry is such a declaration, have no deprecated page at all.
 

@@ -3,9 +3,8 @@
 # SPDX-License-Identifier: MIT
 # Generate the Doxygen XML of one version of PDI, inside PDI's CI image (xml/image), with the
 # Doxygen configuration PDI uses for its own documentation: the Doxyfile that PDI's CMake build
-# configures (Doxyfile, or Doxyfile.doxygen_doc for releases that use doxygen_add_docs), found under
-# the build tree's docs/. Only XML is generated, without source listings, since PDI's HTML
-# documentation has none (SOURCE_BROWSER = NO). ../fetch-xml.sh runs it, and
+# configures, found under the build tree's docs/. Only XML is generated, without source listings,
+# since PDI's HTML documentation has none (SOURCE_BROWSER = NO). ../fetch-xml.sh runs it, and
 # assets/doxygen/README.md says how.
 #
 # Usage, from the repository root (SRC: a PDI checkout with its submodules, OUT: the directory that
@@ -44,7 +43,7 @@ if ! configure OFF; then
   configure ON || { cat "$build/cmake.log" >&2; exit 1; }
   echo "generate-pdi-xml.sh: $name needed BUILD_FORTRAN=ON to configure" >&2
 fi
-doxyfile=$(find "$build" -name 'Doxyfile*' -path '*docs*' | head -n 1)
+doxyfile=$(find "$build" -name Doxyfile -path '*docs*' | head -n 1)
 [ -n "$doxyfile" ] || { echo "generate-pdi-xml.sh: no Doxyfile in the build tree of $name" >&2; exit 1; }
 
 rm -rf "${out:?}/$name"

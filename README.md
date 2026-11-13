@@ -7,8 +7,7 @@ SPDX-License-Identifier: MIT
 
 A draft of [PDI](https://pdi.dev)'s website, built with [docsygen](https://github.com/jbigot/docsygen)
 and [Docsy](https://www.docsy.dev/): PDI's reference, generated from Doxygen's XML, in the latest
-patch release of every minor release since 1.0 (1.0.1, 1.1.0, 1.2.2, 1.3.1, 1.4.3, 1.5.5, 1.6.0,
-1.7.1, 1.8.3, 1.9.3, 1.10.1, 1.11.2, 1.12.0) and `main`, in four sections with their own sidebars:
+patch release of every minor release since 1.8 and`main`, in four sections with their own sidebars:
 
 - the user documentation at `/docs/<version>/` (the guide's pages and the C API);
 - the plugins at `/plugins/<version>/`;
@@ -69,7 +68,7 @@ Nothing runs on a schedule or on PDI's pushes while the site is a prototype: a r
 push, a pull request or a manual run. What the XML then depends on is re-resolved each time: a push
 to a branch that `xml/versions.txt` follows (`main`'s), or an edit of a generation script, regenerates the
 versions concerned; and since the image's `v4` tag is not pinned, its next digest (the image is
-rebuilt weekly) regenerates every version, 14 generations at once, at the first run after it.
+rebuilt weekly) regenerates every version, 7 generations at once, at the first run after it.
 
 ## License
 
